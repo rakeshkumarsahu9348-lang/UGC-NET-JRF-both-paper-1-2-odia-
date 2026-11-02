@@ -21,17 +21,17 @@
         <div class="inline-flex h-12 w-12 rounded-xl bg-indigo-600 items-center justify-center font-bold text-2xl text-white shadow-lg mb-2">
           JRF
         </div>
-        <h2 class="text-xl font-bold text-white">UGC NET JRF Cloud Access</h2>
-        <p class="text-xs text-slate-400 mt-1">Multi-Device Cloud Authentication Portal</p>
+        <h2 class="text-xl font-bold text-white">UGC NET JRF Candidate Access</h2>
+        <p class="text-xs text-slate-400 mt-1">Multi-Device Candidate Portal</p>
       </div>
 
       <div class="space-y-4">
         <div>
           <label class="text-xs font-semibold text-slate-300 block mb-1">User ID / Candidate Username</label>
-          <input type="text" id="authUsername" placeholder="e.g. admin or candidate_id" class="w-full bg-slate-800 border border-slate-700 px-3.5 py-2.5 rounded-lg text-sm text-white focus:outline-none focus:border-indigo-500" />
+          <input type="text" id="authUsername" placeholder="Enter your User ID" class="w-full bg-slate-800 border border-slate-700 px-3.5 py-2.5 rounded-lg text-sm text-white focus:outline-none focus:border-indigo-500" />
         </div>
         <div>
-          <label class="text-xs font-semibold text-slate-300 block mb-1">Security Password</label>
+          <label class="text-xs font-semibold text-slate-300 block mb-1">Password</label>
           <input type="password" id="authPassword" placeholder="••••••••" class="w-full bg-slate-800 border border-slate-700 px-3.5 py-2.5 rounded-lg text-sm text-white focus:outline-none focus:border-indigo-500" />
         </div>
         <div class="flex gap-3 pt-2">
@@ -43,9 +43,6 @@
           </button>
         </div>
       </div>
-      <p class="text-[11px] text-slate-500 text-center mt-4">
-        Default SuperAdmin: ID <code class="text-indigo-400 font-bold">admin</code> | Pass <code class="text-indigo-400 font-bold">admin123</code>
-      </p>
     </div>
   </div>
 
@@ -152,11 +149,11 @@
         </div>
       </div>
 
-      <!-- 2. ODIA SHABDATATWA SECTION (ତତ୍ସମ, ତଦ୍ଭବ, ଦେଶଜ, ବୈଦେଶିକ) -->
+      <!-- 2. ODIA SHABDATATWA SECTION -->
       <div id="odiaWordsView" class="hidden space-y-5">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
           <h2 class="text-lg font-bold text-amber-400">ଓଡ଼ିଆ ଭାଷା ଓ ଶବ୍ଦଭଣ୍ଡାର (ଶବ୍ଦତତ୍ତ୍ୱ)</h2>
-          <p class="text-xs text-slate-400 mt-1">ତତ୍ସମ, ତଦ୍ଭବ, ଦେଶଜ, ଯାବନିକ (ଆରବୀ, ଫାରସୀ), ଇଂରାଜୀ ଓ ପର୍ତ୍ତୁଗୀଜ୍ ଶବ୍ଦର ବିସ୍ତୃତ ଆଲୋଚନା ଓ ଅଭ୍ୟାସ MSQ</p>
+          <p class="text-xs text-slate-400 mt-1">ତତ୍ସମ, ତଦ୍ଭବ, ଦେଶଜ, ଯାବନିକ, ଇଂରାଜୀ ଓ ପର୍ତ୍ତୁଗୀଜ୍ ଶବ୍ଦର ବିସ୍ତୃତ ଆଲୋଚନା ଓ ଅଭ୍ୟାସ MSQ</p>
           
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4">
             <button onclick="showWordTab('tatsam')" class="p-2 text-xs rounded-lg bg-indigo-950 text-indigo-300 border border-indigo-800 font-semibold">ତତ୍ସମ ଓ ତଦ୍ଭବ</button>
@@ -166,9 +163,7 @@
           </div>
         </div>
 
-        <div id="wordContentArea" class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-sm space-y-4">
-          <!-- Dynamically Injected -->
-        </div>
+        <div id="wordContentArea" class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-sm space-y-4"></div>
       </div>
 
       <!-- 3. COMPREHENSIVE SYLLABUS NOTES SECTION -->
@@ -177,9 +172,7 @@
           <h2 class="text-lg font-bold text-emerald-400">📖 ସମ୍ପୂର୍ଣ୍ଣ ସିଲାବସ୍ ପାଠ ଓ Master Notes Repository</h2>
           <p class="text-xs text-slate-400 mt-1">Paper 1 ଏବଂ Paper 2 (ଓଡ଼ିଆ)ର ପ୍ରତ୍ୟେକ ୟୁନିଟ୍‌ର ଅଧ୍ୟୟନ ନୋଟ୍ସ</p>
         </div>
-        <div id="notesAccordionContainer" class="space-y-3">
-          <!-- Notes accordion rendered here -->
-        </div>
+        <div id="notesAccordionContainer" class="space-y-3"></div>
       </div>
 
       <!-- 4. WRONG QUESTIONS VAULT -->
@@ -191,12 +184,12 @@
         <div id="wrongQuestionsListContainer" class="space-y-4"></div>
       </div>
 
-      <!-- 5. SUPERADMIN LIVE DEVICE & USER MONITOR -->
+      <!-- 5. SUPERADMIN LIVE MONITOR (Sirf aapke liye visible) -->
       <div id="adminPanelView" class="hidden space-y-5">
         <div class="bg-slate-900 border border-amber-800/80 rounded-2xl p-5">
           <div class="flex justify-between items-center">
             <div>
-              <h2 class="text-lg font-bold text-amber-400">⚙️ Admin Live Command Center</h2>
+              <h2 class="text-lg font-bold text-amber-400">⚙️ Master Admin Control Center</h2>
               <p class="text-xs text-slate-400 mt-0.5">Real-time candidate monitoring, active hardware sessions & battery metrics</p>
             </div>
             <button onclick="refreshAdminData()" class="bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold px-3 py-1.5 rounded-lg text-xs transition">
@@ -205,10 +198,7 @@
           </div>
         </div>
 
-        <!-- Live Candidate Cards -->
-        <div id="adminUserMonitorGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- Injected dynamically -->
-        </div>
+        <div id="adminUserMonitorGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
       </div>
 
     </section>
@@ -364,7 +354,7 @@
 
     function renderNotes() {
       const container = document.getElementById("notesAccordionContainer");
-      container.innerHTML = SYLLABUS_NOTES.map((n, i) => `
+      container.innerHTML = SYLLABUS_NOTES.map((n) => `
         <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-sm">
           <h3 class="text-sm font-bold text-emerald-400 mb-2">${n.unit}</h3>
           <p class="text-xs text-slate-300 whitespace-pre-line leading-relaxed font-mono bg-slate-950 p-3 rounded-xl border border-slate-800/80">${n.summary}</p>
@@ -373,20 +363,21 @@
     }
 
     // ==========================================
-    // 4. CROSS-DEVICE CLOUD DATABASE & BATTERY TRACKER
+    // 4. SECURE AUTHENTICATION & BATTERY TRACKING
     // ==========================================
-    const CLOUD_STORAGE_KEY = "UGC_NET_SHARED_CLOUD_DATA_V3";
+    const CLOUD_STORAGE_KEY = "UGC_NET_SHARED_CLOUD_DATA_V4";
     let currentUser = null;
     let isAdmin = false;
     let liveBatteryLevel = "Detecting...";
 
+    // Confidential Master Admin Credentials
+    const MASTER_ADMIN_ID = "Rakeh793825";
+    const MASTER_ADMIN_PASS = "Rakesh79";
+
     let cloudDb = {
-      users: {
-        admin: { password: "admin123", role: "admin", history: {}, sessions: [] }
-      }
+      users: {}
     };
 
-    // Auto-detect Battery level (Chromebook & Android mobile)
     function trackLiveBattery() {
       if (navigator.getBattery) {
         navigator.getBattery().then(battery => {
@@ -411,8 +402,21 @@
       if (raw) {
         try { cloudDb = JSON.parse(raw); } catch (e) {}
       }
-      if (!cloudDb.users.admin) {
-        cloudDb.users.admin = { password: "admin123", role: "admin", history: {}, sessions: [] };
+
+      // Purana exposed admin account delete kar ke naya confidential setup karna
+      if (cloudDb.users["admin"]) {
+        delete cloudDb.users["admin"];
+      }
+
+      // Ensure Master Admin exists in database
+      if (!cloudDb.users[MASTER_ADMIN_ID]) {
+        cloudDb.users[MASTER_ADMIN_ID] = {
+          password: MASTER_ADMIN_PASS,
+          role: "admin",
+          history: {},
+          sessions: []
+        };
+        saveCloudDb();
       }
 
       const sessionUser = sessionStorage.getItem("CURRENT_NET_SESSION_USER");
@@ -433,7 +437,7 @@
     }
 
     function handleAuth(type) {
-      const u = document.getElementById("authUsername").value.trim().toLowerCase();
+      const u = document.getElementById("authUsername").value.trim();
       const p = document.getElementById("authPassword").value.trim();
 
       if (!u || !p) {
@@ -441,9 +445,26 @@
         return;
       }
 
+      // Special secret routing for SuperAdmin
+      if (u === MASTER_ADMIN_ID) {
+        if (p !== MASTER_ADMIN_PASS) {
+          alert("Invalid credentials.");
+          return;
+        }
+        currentUser = u;
+        isAdmin = true;
+        sessionStorage.setItem("CURRENT_NET_SESSION_USER", u);
+        document.getElementById("authModal").classList.add("hidden");
+        trackLiveBattery();
+        syncCurrentSession();
+        refreshGlobalUI();
+        return;
+      }
+
+      // Normal candidate handling
       if (type === "register") {
         if (cloudDb.users[u]) {
-          alert("This User ID already exists! Please login directly.");
+          alert("This User ID already exists! Please choose another or login.");
           return;
         }
         cloudDb.users[u] = {
@@ -462,11 +483,11 @@
         refreshGlobalUI();
       } else {
         if (!cloudDb.users[u] || cloudDb.users[u].password !== p) {
-          alert("Invalid User ID or Password. Ensure same credentials across devices.");
+          alert("Invalid User ID or Password.");
           return;
         }
         currentUser = u;
-        isAdmin = cloudDb.users[u].role === "admin";
+        isAdmin = false;
         sessionStorage.setItem("CURRENT_NET_SESSION_USER", u);
         document.getElementById("authModal").classList.add("hidden");
         trackLiveBattery();
@@ -518,9 +539,10 @@
     }
 
     // ==========================================
-    // 5. SUPERADMIN CONTROLS & MONITORING
+    // 5. SUPERADMIN MONITORING (CONFIDENTIAL)
     // ==========================================
     function refreshAdminData() {
+      if (!isAdmin) return;
       const container = document.getElementById("adminUserMonitorGrid");
       if (!container) return;
 
@@ -549,8 +571,8 @@
             </div>
 
             <div class="mt-3 border-t border-slate-800/80 pt-2 space-y-1.5">
-              <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Logged Devices & Battery:</p>
-              ${activeSessions.length === 0 ? '<p class="text-xs text-slate-500 italic">No devices active yet</p>' : activeSessions.map(s => `
+              <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Logged Devices & Live Battery:</p>
+              ${activeSessions.length === 0 ? '<p class="text-xs text-slate-500 italic">No devices active</p>' : activeSessions.map(s => `
                 <div class="p-2 rounded-xl bg-slate-900 border border-slate-800 flex justify-between items-center text-xs">
                   <div>
                     <p class="font-semibold text-slate-200">${s.device} <span class="text-[10px] text-slate-500 font-mono">(${s.platform})</span></p>
@@ -569,7 +591,7 @@
     }
 
     // ==========================================
-    // 6. GENERAL CONTROLS & QUIZ ROUTING
+    // 6. GENERAL QUIZ ROUTING & CONTROLS
     // ==========================================
     let currentTab = "paper1";
     let activeUnitId = 1;
@@ -636,7 +658,7 @@
       const user = cloudDb.users[currentUser];
 
       units.forEach(u => {
-        const solved = (user.history && user.history[u.id]) ? user.history[u.id].length : 0;
+        const solved = (user && user.history && user.history[u.id]) ? user.history[u.id].length : 0;
         const isActive = u.id === activeUnitId;
         const btn = document.createElement("button");
         btn.className = `w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium transition flex justify-between items-center ${
@@ -853,12 +875,14 @@
       let totalCorrect = 0;
       let totalWrong = 0;
 
-      Object.keys(user.history || {}).forEach(uId => {
-        const list = user.history[uId] || [];
-        totalSolved += list.length;
-        totalCorrect += list.filter(x => x.isCorrect).length;
-        totalWrong += list.filter(x => !x.isCorrect).length;
-      });
+      if (user && user.history) {
+        Object.keys(user.history).forEach(uId => {
+          const list = user.history[uId] || [];
+          totalSolved += list.length;
+          totalCorrect += list.filter(x => x.isCorrect).length;
+          totalWrong += list.filter(x => !x.isCorrect).length;
+        });
+      }
 
       const acc = totalSolved > 0 ? Math.round((totalCorrect / totalSolved) * 100) : 0;
       document.getElementById("totalAttemptedStat").innerText = totalSolved;
