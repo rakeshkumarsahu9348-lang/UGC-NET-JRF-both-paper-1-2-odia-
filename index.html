@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UGC NET JRF Master Portal - Paper 1 & Paper 2 Odia</title>
+  <title>UGC NET JRF Master Cloud Portal - Paper 1 & Paper 2 Odia</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Oriya:wght@400;500;600;700&display=swap');
@@ -21,17 +21,17 @@
         <div class="inline-flex h-12 w-12 rounded-xl bg-indigo-600 items-center justify-center font-bold text-2xl text-white shadow-lg mb-2">
           JRF
         </div>
-        <h2 class="text-xl font-bold text-white">UGC NET JRF Candidate Access</h2>
-        <p class="text-xs text-slate-400 mt-1">Paper 1 + Paper 2 (Odia) Smart Portal</p>
+        <h2 class="text-xl font-bold text-white">UGC NET JRF Cloud Access</h2>
+        <p class="text-xs text-slate-400 mt-1">Multi-Device Cloud Authentication Portal</p>
       </div>
 
       <div class="space-y-4">
         <div>
-          <label class="text-xs font-semibold text-slate-300 block mb-1">Candidate Username / Roll</label>
-          <input type="text" id="authUsername" placeholder="e.g. rakesh_jrf" class="w-full bg-slate-800 border border-slate-700 px-3.5 py-2.5 rounded-lg text-sm text-white focus:outline-none focus:border-indigo-500" />
+          <label class="text-xs font-semibold text-slate-300 block mb-1">User ID / Candidate Username</label>
+          <input type="text" id="authUsername" placeholder="e.g. admin or candidate_id" class="w-full bg-slate-800 border border-slate-700 px-3.5 py-2.5 rounded-lg text-sm text-white focus:outline-none focus:border-indigo-500" />
         </div>
         <div>
-          <label class="text-xs font-semibold text-slate-300 block mb-1">Access Password</label>
+          <label class="text-xs font-semibold text-slate-300 block mb-1">Security Password</label>
           <input type="password" id="authPassword" placeholder="••••••••" class="w-full bg-slate-800 border border-slate-700 px-3.5 py-2.5 rounded-lg text-sm text-white focus:outline-none focus:border-indigo-500" />
         </div>
         <div class="flex gap-3 pt-2">
@@ -39,14 +39,17 @@
             Login
           </button>
           <button onclick="handleAuth('register')" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold py-2.5 rounded-lg text-sm transition">
-            Create Account
+            New Register
           </button>
         </div>
       </div>
+      <p class="text-[11px] text-slate-500 text-center mt-4">
+        Default SuperAdmin: ID <code class="text-indigo-400 font-bold">admin</code> | Pass <code class="text-indigo-400 font-bold">admin123</code>
+      </p>
     </div>
   </div>
 
-  <!-- NAVIGATION HEADER -->
+  <!-- NAVIGATION BAR -->
   <header class="bg-slate-900/90 backdrop-blur border-b border-slate-800 px-4 md:px-8 py-3.5 sticky top-0 z-40 flex flex-wrap justify-between items-center gap-4">
     <div class="flex items-center gap-3">
       <div class="h-10 w-10 rounded-xl bg-indigo-600 flex items-center justify-center font-bold text-lg text-white shadow-md">
@@ -54,42 +57,30 @@
       </div>
       <div>
         <div class="flex items-center gap-2">
-          <h1 class="text-base md:text-lg font-bold text-white leading-tight">NET JRF Exam Portal</h1>
-          <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-1.5 py-0.5 rounded font-mono font-semibold">Active Sync</span>
+          <h1 class="text-base md:text-lg font-bold text-white leading-tight">NET JRF Master Portal</h1>
+          <span id="roleIndicatorBadge" class="text-[10px] bg-indigo-950 text-indigo-400 border border-indigo-800 px-2 py-0.5 rounded font-mono font-semibold">Candidate</span>
         </div>
-        <p class="text-xs text-slate-400" id="headerCandidateInfo">Candidate: Guest</p>
+        <p class="text-xs text-slate-400" id="headerCandidateInfo">User: Connecting...</p>
       </div>
     </div>
 
-    <!-- Middle Switcher: Paper 1, Paper 2 Odia, Wrong Vault, PDF Storage -->
+    <!-- Main Navigation Tabs -->
     <div class="flex flex-wrap bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs font-semibold gap-1">
-      <button onclick="switchTab('paper1')" id="tabBtnPaper1" class="px-3 py-1.5 rounded-lg bg-indigo-600 text-white transition">
-        Paper 1 (General)
-      </button>
-      <button onclick="switchTab('paper2')" id="tabBtnPaper2" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition">
-        Paper 2 (ଓଡ଼ିଆ ସାହିତ୍ୟ)
-      </button>
-      <button onclick="switchTab('wrongVault')" id="tabBtnWrongVault" class="px-3 py-1.5 rounded-lg text-rose-400 hover:text-rose-300 transition flex items-center gap-1">
-        <span>❌ Wrong Questions</span>
-        <span id="wrongQuestionsCounterBadge" class="bg-rose-950 text-rose-300 border border-rose-800 text-[10px] px-1.5 rounded-full font-bold">0</span>
-      </button>
-      <button onclick="switchTab('vault')" id="tabBtnVault" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition">
-        📁 Notes / PDF Storage
-      </button>
+      <button onclick="switchTab('paper1')" id="tabBtnPaper1" class="px-3 py-1.5 rounded-lg bg-indigo-600 text-white transition">Paper 1 Test</button>
+      <button onclick="switchTab('paper2')" id="tabBtnPaper2" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition">Paper 2 (ଓଡ଼ିଆ)</button>
+      <button onclick="switchTab('odiaWords')" id="tabBtnOdiaWords" class="px-3 py-1.5 rounded-lg text-amber-400 hover:text-amber-300 transition">ଶବ୍ଦତତ୍ତ୍ୱ ବିଭାଗ</button>
+      <button onclick="switchTab('notes')" id="tabBtnNotes" class="px-3 py-1.5 rounded-lg text-emerald-400 hover:text-emerald-300 transition">📖 ପାଠ ଓ Notes</button>
+      <button onclick="switchTab('wrongVault')" id="tabBtnWrongVault" class="px-3 py-1.5 rounded-lg text-rose-400 hover:text-rose-300 transition">❌ Wrong Bank</button>
+      <button onclick="switchTab('adminPanel')" id="tabBtnAdminPanel" class="hidden px-3 py-1.5 rounded-lg bg-amber-600 text-white font-bold transition">⚙️ Admin Live Monitor</button>
     </div>
 
     <!-- Right Controls -->
     <div class="flex items-center gap-2">
       <button id="langToggleBtn" onclick="toggleLanguage()" class="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-1.5 rounded-lg text-slate-200 font-semibold transition">
-        🌐 Lang: <span id="currentLangLabel" class="text-indigo-400">English</span>
+        🌐 <span id="currentLangLabel" class="text-indigo-400">English</span>
       </button>
-
-      <button onclick="openDevicesModal()" class="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-1.5 rounded-lg text-slate-200 transition flex items-center gap-1.5">
-        📱 <span class="hidden sm:inline">Active</span> Devices (<span id="deviceCountBadge" class="text-emerald-400 font-bold">1</span>)
-      </button>
-
       <button onclick="logout()" class="text-xs bg-rose-950/40 hover:bg-rose-900 border border-rose-800 text-rose-300 px-3 py-1.5 rounded-lg transition">
-        Exit
+        Logout
       </button>
     </div>
   </header>
@@ -97,634 +88,536 @@
   <!-- MAIN WORKSPACE -->
   <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
     
-    <!-- LEFT SIDEBAR: UNIT SWITCHER & GRADE METER -->
+    <!-- LEFT SIDEBAR -->
     <aside class="lg:col-span-1 space-y-4">
-      
       <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-sm">
         <div class="flex justify-between items-center mb-2">
           <span class="text-xs text-slate-400 font-medium">JRF Readiness Level</span>
-          <span id="jrfGradeBadge" class="text-xs px-2 py-0.5 rounded font-bold bg-amber-950 text-amber-300 border border-amber-800">
-            Grade: Incomplete
-          </span>
+          <span id="jrfGradeBadge" class="text-xs px-2 py-0.5 rounded font-bold bg-amber-950 text-amber-300 border border-amber-800">Incomplete</span>
         </div>
         <div class="flex items-baseline gap-2">
           <span id="overallAccuracyText" class="text-2xl font-bold text-white">0%</span>
-          <span class="text-xs text-slate-400">cumulative accuracy</span>
+          <span class="text-xs text-slate-400">accuracy</span>
         </div>
         <div class="w-full bg-slate-800 h-2 rounded-full mt-2.5 overflow-hidden">
           <div id="accuracyProgressBar" class="bg-indigo-500 h-full w-0 transition-all duration-500"></div>
         </div>
-        <div class="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-800/80 text-center text-xs">
+        <div class="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-800 text-center text-xs">
           <div class="bg-slate-950/60 p-2 rounded-lg">
-            <p class="text-slate-400">Total Solved</p>
+            <p class="text-slate-400">Attempted</p>
             <p id="totalAttemptedStat" class="font-bold text-indigo-300 text-sm">0</p>
           </div>
           <div class="bg-slate-950/60 p-2 rounded-lg">
-            <p class="text-slate-400">Wrong Answers</p>
+            <p class="text-slate-400">Wrong</p>
             <p id="totalWrongStat" class="font-bold text-rose-400 text-sm">0</p>
           </div>
         </div>
       </div>
 
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-sm" id="unitMenuSidebarCard">
-        <h3 id="unitMenuTitle" class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Paper 1 Units</h3>
-        <div id="unitListContainer" class="space-y-1.5 max-h-[50vh] overflow-y-auto custom-scroll pr-1">
-          <!-- Injected via JavaScript -->
-        </div>
+      <!-- Unit Selector -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-sm" id="sidebarUnitMenu">
+        <h3 id="unitMenuTitle" class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Unit Selection</h3>
+        <div id="unitListContainer" class="space-y-1.5 max-h-[50vh] overflow-y-auto custom-scroll pr-1"></div>
       </div>
-
     </aside>
 
-    <!-- RIGHT SECTION: TABS CONTAINER -->
+    <!-- RIGHT SECTION -->
     <section class="lg:col-span-3 space-y-5">
       
-      <!-- VIEW 1: QUIZ PLAYGROUND (PAPER 1 & PAPER 2) -->
+      <!-- 1. QUIZ VIEW (Paper 1 & Paper 2) -->
       <div id="quizView" class="space-y-5">
-        
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-wrap justify-between items-center gap-4 shadow-sm">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-wrap justify-between items-center gap-4">
           <div>
             <div class="flex items-center gap-2">
               <span id="activeUnitBadge" class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Unit 1</span>
-              <span id="activeUnitSubjectBadge" class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-medium">General Paper</span>
+              <span id="activeUnitSubjectBadge" class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">Paper 1</span>
             </div>
             <h2 id="activeUnitTitle" class="text-lg md:text-xl font-bold text-white mt-1">Teaching Aptitude</h2>
-            <p id="activeUnitDesc" class="text-xs text-slate-400 mt-0.5 max-w-xl">Learner characteristics, levels of teaching, NEP 2020 pedagogical integration.</p>
+            <p id="activeUnitDesc" class="text-xs text-slate-400 mt-0.5">Learner characteristics, levels of teaching & evaluation.</p>
           </div>
-          
-          <div class="flex items-center gap-3">
-            <div class="bg-slate-950 border border-slate-800 px-4 py-2 rounded-xl text-center">
-              <div class="flex items-center gap-1.5 text-slate-400 text-xs">
-                <span>⏱️ Set Timer</span>
-              </div>
-              <p id="liveTimerText" class="text-lg font-mono font-bold text-amber-400">00:00</p>
-            </div>
+          <div class="bg-slate-950 border border-slate-800 px-4 py-2 rounded-xl text-center">
+            <span class="text-slate-400 text-xs">⏱️ Set Timer</span>
+            <p id="liveTimerText" class="text-lg font-mono font-bold text-amber-400">00:00</p>
           </div>
         </div>
 
-        <div id="questionsContainer" class="space-y-4">
-          <!-- 10 Questions rendered here -->
-        </div>
+        <div id="questionsContainer" class="space-y-4"></div>
 
         <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-wrap justify-between items-center gap-3">
-          <div id="quizSummaryFeedback" class="text-xs sm:text-sm text-slate-300">
-            Attempt all 10 questions and submit to reveal answers, detailed explanations, and examples.
-          </div>
+          <div id="quizSummaryFeedback" class="text-xs sm:text-sm text-slate-300">Attempt all 10 questions and submit.</div>
           <div class="flex items-center gap-3">
-            <button id="submitSetBtn" onclick="submitCurrentSet()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs sm:text-sm px-6 py-2.5 rounded-xl shadow transition">
-              Submit 10 Questions
-            </button>
-            <button id="nextSetBtn" onclick="loadNextSet()" class="hidden bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm px-6 py-2.5 rounded-xl shadow transition">
-              Start Next Fresh 10 Set ➔
-            </button>
+            <button id="submitSetBtn" onclick="submitCurrentSet()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs sm:text-sm px-6 py-2.5 rounded-xl transition">Submit 10 Questions</button>
+            <button id="nextSetBtn" onclick="loadNextSet()" class="hidden bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm px-6 py-2.5 rounded-xl transition">Next Fresh 10 Set ➔</button>
           </div>
-        </div>
-
-        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-5">
-          <div class="flex justify-between items-center mb-3">
-            <h3 class="text-sm font-semibold text-slate-200">Attempted History for This Unit</h3>
-            <span id="historyUnitCounter" class="text-xs text-slate-400 font-mono">0 attempted</span>
-          </div>
-          <div id="unitHistoryLogs" class="space-y-3 max-h-72 overflow-y-auto custom-scroll pr-1">
-            <!-- History items rendered here -->
-          </div>
-        </div>
-
-      </div>
-
-      <!-- VIEW 2: WRONG ATTEMPTED QUESTIONS VAULT (MISTAKE SOLVER) -->
-      <div id="wrongVaultView" class="hidden space-y-5">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-sm">
-          <div class="flex flex-wrap justify-between items-center gap-3 mb-2">
-            <div>
-              <h2 class="text-lg font-bold text-rose-400 flex items-center gap-2">
-                <span>❌</span> Mistake Solver & Wrong Questions Vault
-              </h2>
-              <p class="text-xs text-slate-400 mt-1">
-                JRF clear karne ke liye sabse zaroori step: Apni purani galtiyon ko analyse karein aur unke correct concept ko samjhein.
-              </p>
-            </div>
-            <button onclick="clearWrongHistoryPrompt()" class="text-xs bg-rose-950/60 text-rose-300 border border-rose-800 px-3 py-1.5 rounded-lg hover:bg-rose-900 transition">
-              Clear Solved Mistakes
-            </button>
-          </div>
-        </div>
-
-        <!-- Filter tabs for Wrong Questions: All, Paper 1, Paper 2 -->
-        <div class="flex gap-2">
-          <button onclick="filterWrongQuestions('all')" id="filterWrongAll" class="text-xs px-3 py-1 rounded-lg bg-indigo-600 text-white font-medium">All Mistakes</button>
-          <button onclick="filterWrongQuestions('p1')" id="filterWrongP1" class="text-xs px-3 py-1 rounded-lg bg-slate-800 text-slate-300 hover:text-white">Paper 1 Only</button>
-          <button onclick="filterWrongQuestions('p2')" id="filterWrongP2" class="text-xs px-3 py-1 rounded-lg bg-slate-800 text-slate-300 hover:text-white">Paper 2 (Odia) Only</button>
-        </div>
-
-        <!-- List of Wrong Questions -->
-        <div id="wrongQuestionsListContainer" class="space-y-4">
-          <!-- Rendered dynamically -->
         </div>
       </div>
 
-      <!-- VIEW 3: PDF & NOTES STORAGE VAULT -->
-      <div id="vaultView" class="hidden space-y-5">
+      <!-- 2. ODIA SHABDATATWA SECTION (ତତ୍ସମ, ତଦ୍ଭବ, ଦେଶଜ, ବୈଦେଶିକ) -->
+      <div id="odiaWordsView" class="hidden space-y-5">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
-          <h2 class="text-lg font-bold text-white mb-1">📁 Notes & PDF Document Storage Vault</h2>
-          <p class="text-xs text-slate-400 mb-4">Upload Paper 1 or Paper 2 Odia study material, books, and reference PDFs. Files persist locally in your browser storage.</p>
+          <h2 class="text-lg font-bold text-amber-400">ଓଡ଼ିଆ ଭାଷା ଓ ଶବ୍ଦଭଣ୍ଡାର (ଶବ୍ଦତତ୍ତ୍ୱ)</h2>
+          <p class="text-xs text-slate-400 mt-1">ତତ୍ସମ, ତଦ୍ଭବ, ଦେଶଜ, ଯାବନିକ (ଆରବୀ, ଫାରସୀ), ଇଂରାଜୀ ଓ ପର୍ତ୍ତୁଗୀଜ୍ ଶବ୍ଦର ବିସ୍ତୃତ ଆଲୋଚନା ଓ ଅଭ୍ୟାସ MSQ</p>
           
-          <div class="border-2 border-dashed border-slate-700 hover:border-indigo-500 rounded-2xl p-6 text-center transition bg-slate-950/40 cursor-pointer" onclick="document.getElementById('vaultFileInput').click()">
-            <input type="file" id="vaultFileInput" class="hidden" accept=".pdf,.doc,.docx,.txt" onchange="handleFileUpload(event)" />
-            <div class="text-3xl mb-2">📄</div>
-            <p class="text-sm font-semibold text-slate-200">Click to upload UGC NET Notes or Question Book</p>
-            <p class="text-xs text-slate-400 mt-1">Supported formats: PDF, Text documents (stored securely in browser vault)</p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4">
+            <button onclick="showWordTab('tatsam')" class="p-2 text-xs rounded-lg bg-indigo-950 text-indigo-300 border border-indigo-800 font-semibold">ତତ୍ସମ ଓ ତଦ୍ଭବ</button>
+            <button onclick="showWordTab('desaja')" class="p-2 text-xs rounded-lg bg-emerald-950 text-emerald-300 border border-emerald-800 font-semibold">ଦେଶଜ ଶବ୍ଦ</button>
+            <button onclick="showWordTab('baidesika')" class="p-2 text-xs rounded-lg bg-amber-950 text-amber-300 border border-amber-800 font-semibold">ବୈଦେଶିକ (ଯାବନିକ/ଇଂରାଜୀ)</button>
+            <button onclick="showWordTab('quiz')" class="p-2 text-xs rounded-lg bg-rose-950 text-rose-300 border border-rose-800 font-semibold">ଶବ୍ଦତତ୍ତ୍ୱ MSQ Test</button>
           </div>
+        </div>
 
-          <div class="mt-6">
-            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Stored Study Materials</h3>
-            <div id="vaultFileList" class="space-y-2">
-              <!-- Uploaded files displayed here -->
+        <div id="wordContentArea" class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-sm space-y-4">
+          <!-- Dynamically Injected -->
+        </div>
+      </div>
+
+      <!-- 3. COMPREHENSIVE SYLLABUS NOTES SECTION -->
+      <div id="notesView" class="hidden space-y-5">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <h2 class="text-lg font-bold text-emerald-400">📖 ସମ୍ପୂର୍ଣ୍ଣ ସିଲାବସ୍ ପାଠ ଓ Master Notes Repository</h2>
+          <p class="text-xs text-slate-400 mt-1">Paper 1 ଏବଂ Paper 2 (ଓଡ଼ିଆ)ର ପ୍ରତ୍ୟେକ ୟୁନିଟ୍‌ର ଅଧ୍ୟୟନ ନୋଟ୍ସ</p>
+        </div>
+        <div id="notesAccordionContainer" class="space-y-3">
+          <!-- Notes accordion rendered here -->
+        </div>
+      </div>
+
+      <!-- 4. WRONG QUESTIONS VAULT -->
+      <div id="wrongVaultView" class="hidden space-y-5">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+          <h2 class="text-lg font-bold text-rose-400">❌ Wrong Questions Mistake Bank</h2>
+          <p class="text-xs text-slate-400 mt-1">Aapke sabhi galat sawalon ka verified analysis aur explanations.</p>
+        </div>
+        <div id="wrongQuestionsListContainer" class="space-y-4"></div>
+      </div>
+
+      <!-- 5. SUPERADMIN LIVE DEVICE & USER MONITOR -->
+      <div id="adminPanelView" class="hidden space-y-5">
+        <div class="bg-slate-900 border border-amber-800/80 rounded-2xl p-5">
+          <div class="flex justify-between items-center">
+            <div>
+              <h2 class="text-lg font-bold text-amber-400">⚙️ Admin Live Command Center</h2>
+              <p class="text-xs text-slate-400 mt-0.5">Real-time candidate monitoring, active hardware sessions & battery metrics</p>
             </div>
+            <button onclick="refreshAdminData()" class="bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold px-3 py-1.5 rounded-lg text-xs transition">
+              🔄 Force Sync Live
+            </button>
           </div>
+        </div>
+
+        <!-- Live Candidate Cards -->
+        <div id="adminUserMonitorGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Injected dynamically -->
         </div>
       </div>
 
     </section>
   </main>
 
-  <!-- ACTIVE DEVICES MODAL -->
-  <div id="devicesModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-    <div class="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-2xl p-6 shadow-2xl">
-      <div class="flex justify-between items-center mb-4">
-        <div>
-          <h3 class="text-base font-bold text-white">Active Device Session Manager</h3>
-          <p class="text-xs text-slate-400">All hardware devices registered under this candidate profile</p>
-        </div>
-        <button onclick="closeDevicesModal()" class="text-slate-400 hover:text-white text-lg">✕</button>
-      </div>
-
-      <div id="devicesListContainer" class="space-y-2.5 max-h-72 overflow-y-auto custom-scroll pr-1"></div>
-
-      <div class="mt-4 pt-4 border-t border-slate-800 flex justify-end">
-        <button onclick="closeDevicesModal()" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-4 py-2 rounded-lg font-semibold transition">
-          Done
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- FLOATING MULTI-AI ASSISTANT BUTTON -->
-  <div id="aiFloatingButton" onclick="toggleAIChat()" class="fixed bottom-6 right-6 h-14 w-14 bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 rounded-full shadow-2xl flex items-center justify-center cursor-pointer hover:scale-105 transition-all z-40 border-2 border-indigo-300">
-    <span class="text-2xl">🤖</span>
-  </div>
-
-  <!-- MULTI-AI ASSISTANT WINDOW (Gemini, ChatGPT, Perplexity, Google) -->
-  <div id="aiChatWindow" class="fixed bottom-24 right-6 w-[420px] max-w-[92vw] h-[520px] bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl hidden flex-col z-50 overflow-hidden">
-    <!-- Chat Header with AI Selector -->
-    <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 p-3 border-b border-slate-800">
-      <div class="flex justify-between items-center mb-2">
-        <div class="flex items-center gap-2">
-          <span id="currentAIEmoji" class="text-lg">✨</span>
-          <div>
-            <h4 class="text-xs font-bold text-white flex items-center gap-1.5">
-              <span id="currentAIName">Gemini JRF AI</span>
-              <span class="text-[9px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-1 rounded">Live Engine</span>
-            </h4>
-          </div>
-        </div>
-        <button onclick="toggleAIChat()" class="text-slate-400 hover:text-white text-sm">✕</button>
-      </div>
-
-      <!-- AI Switcher Bar -->
-      <div class="grid grid-cols-4 gap-1 text-[10px] font-semibold">
-        <button onclick="selectAIEngine('gemini')" id="btnAIGemini" class="py-1 px-1 rounded bg-indigo-600 text-white text-center">Gemini</button>
-        <button onclick="selectAIEngine('chatgpt')" id="btnAIChatgpt" class="py-1 px-1 rounded bg-slate-800 text-slate-300 text-center hover:bg-slate-700">ChatGPT</button>
-        <button onclick="selectAIEngine('perplexity')" id="btnAIPerplexity" class="py-1 px-1 rounded bg-slate-800 text-slate-300 text-center hover:bg-slate-700">Perplexity</button>
-        <button onclick="selectAIEngine('google')" id="btnAIGoogle" class="py-1 px-1 rounded bg-slate-800 text-slate-300 text-center hover:bg-slate-700">Google AI</button>
-      </div>
-    </div>
-
-    <!-- Chat Messages -->
-    <div id="aiMessageList" class="flex-1 p-3 overflow-y-auto space-y-3 custom-scroll text-xs">
-      <div class="bg-slate-800/80 p-3 rounded-xl text-slate-200 border border-slate-700/60 leading-relaxed">
-        Namaskar! Main aapka <strong>Multi-Engine JRF AI Assistant</strong> hoon. Aap yahan kisi bhi question, wrong attempt, ya concept (Paper 1 & Odia Sahitya) ka query bhej sakte hain. Upar se Gemini, ChatGPT, Perplexity ya Google select karke accurate solution prapt karein!
-      </div>
-    </div>
-
-    <!-- Quick External DeepSearch Links -->
-    <div class="px-3 py-1.5 bg-slate-950 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-slate-400">
-      <span>Direct Web AI Launch:</span>
-      <div class="flex gap-2">
-        <button onclick="openExternalSearch('chatgpt')" class="hover:text-emerald-400 underline">ChatGPT Web</button>
-        <button onclick="openExternalSearch('perplexity')" class="hover:text-cyan-400 underline">Perplexity Web</button>
-        <button onclick="openExternalSearch('google')" class="hover:text-amber-400 underline">Google Search</button>
-      </div>
-    </div>
-
-    <!-- Chat Input -->
-    <div class="p-3 bg-slate-950 border-t border-slate-800 flex gap-2">
-      <input type="text" id="aiInput" placeholder="Ask your UGC NET doubt or paste question..." class="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" onkeydown="if(event.key==='Enter') sendAIQuery()" />
-      <button onclick="sendAIQuery()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-3.5 py-2 rounded-lg text-xs font-bold transition">
-        Ask
-      </button>
-    </div>
-  </div>
-
   <script>
     // ==========================================
-    // 1. DATA REPOSITORIES & UNITS SETUP
+    // 1. DATA REPOSITORIES (Paper 1 & Paper 2 Odia)
     // ==========================================
     const PAPER1_UNITS = [
-      { id: 1, name: "Unit 1: Teaching Aptitude", desc: "Levels of teaching, Learner characteristics, Evaluation systems, CBCS & NEP 2020." },
-      { id: 2, name: "Unit 2: Research Aptitude", desc: "Positivism & Post-Positivism, Quantitative vs Qualitative, Research Ethics, Hypothesis testing." },
-      { id: 3, name: "Unit 3: Comprehension", desc: "Analytical inference deduction, tone evaluation, context deciphering." },
-      { id: 4, name: "Unit 4: Communication", desc: "Classroom dynamics, intercultural barriers, transactional models, verbal & non-verbal semantics." },
-      { id: 5, name: "Unit 5: Mathematical Reasoning", desc: "Letter series, number coding, ratios, percentages, time-speed-distance, mixtures." },
-      { id: 6, name: "Unit 6: Logical Reasoning", desc: "Classical Indian Logic (Pramanas: Pratyaksha, Anumana, Upamana, Sabda, Arthapatti, Anupalabdhi) & Hetvabhasa." },
-      { id: 7, name: "Unit 7: Data Interpretation", desc: "Cross-tabular data, comparative percentages, ratio-based trend assessments." },
-      { id: 8, name: "Unit 8: ICT", desc: "Digital initiatives in higher education (SWAYAM, Swayam Prabha), AI, memory hierarchy, security." },
-      { id: 9, name: "Unit 9: People, Development & Environment", desc: "MDGs, SDGs, Montreal Protocol, Paris Agreement, Solar Alliance, Air & Water Pollutants." },
-      { id: 10, name: "Unit 10: Higher Education System", desc: "Ancient institutions (Takshashila, Nalanda), commissions, NEP 2020 regulatory bodies." }
+      { id: 1, name: "Unit 1: Teaching Aptitude", desc: "Teaching levels, CBCS, Formative vs Summative evaluation, NEP 2020." },
+      { id: 2, name: "Unit 2: Research Aptitude", desc: "Positivism, Quantitative & Qualitative research, Ethics, Hypothesis." },
+      { id: 3, name: "Unit 3: Comprehension", desc: "Critical inference deduction & analytical passage reasoning." },
+      { id: 4, name: "Unit 4: Communication", desc: "Intercultural barriers, classroom transactional models." },
+      { id: 5, name: "Unit 5: Mathematical Reasoning", desc: "Number coding, proportions, speed-distance-time, mixtures." },
+      { id: 6, name: "Unit 6: Logical Reasoning", desc: "Pramanas (Pratyaksha, Anumana, Upamana, Sabda) & Hetvabhasa fallacies." },
+      { id: 7, name: "Unit 7: Data Interpretation", desc: "Percentage ratios, tabular comparison, index metrics." },
+      { id: 8, name: "Unit 8: ICT", desc: "Digital portals (SWAYAM, Diksha), memory hierarchy, malware." },
+      { id: 9, name: "Unit 9: Environment & SDGs", desc: "17 SDGs, Montreal Protocol, COP summits, air quality." },
+      { id: 10, name: "Unit 10: Higher Education", desc: "Takshashila, Nalanda, Radhakrishnan commission, HECI." }
     ];
 
     const PAPER2_ODIA_UNITS = [
-      { id: 101, name: "ୟୁନିଟ୍ ୧: ଭାଷା ବିଜ୍ଞାନ ଓ ଓଡ଼ିଆ ଭାଷାର ଇତିହାସ", desc: "ଭାରତୀୟ ଆର୍ଯ୍ୟଭାଷାର ଇତିହାସ, ଓଡ଼ିଆ ଧ୍ୱନିତତ୍ତ୍ୱ, ରୂପତତ୍ତ୍ୱ ଓ ଆଞ୍ଚଳିକ ଉପଭାଷା।" },
-      { id: 102, name: "ୟୁନିଟ୍ ୨: ପ୍ରାଚୀନ ଓ ମଧ୍ୟଯୁଗୀୟ ସାହିତ୍ୟ", desc: "ଚର୍ଯ୍ୟାଗୀତିକା, ସାରଳା ଦାସଙ୍କ ମହାଭାରତ, ପଞ୍ଚସଖା ସାହିତ୍ୟ (ବଳରାମ, ଜଗନ୍ନାଥ, ଅଚ୍ୟୁତାନନ୍ଦ)।" },
-      { id: 103, name: "ୟୁନିଟ୍ ୩: ରୀତି ସାହିତ୍ୟ ଓ କାବ୍ୟ ପରମ୍ପରା", desc: "ଉପେନ୍ଦ୍ର ଭଞ୍ଜ, ଦୀନକୃଷ୍ଣ, ଅଭିମନ୍ୟୁ ସାମନ୍ତସିଂହାର, ଭକ୍ତଚରଣ ଓ ବନମାଳୀଙ୍କ କାବ୍ୟକୃତି।" },
-      { id: 104, name: "ୟୁନିଟ୍ ୪: ଆଧୁନିକ ଓଡ଼ିଆ କାବ୍ୟ-କବିତା", desc: "ରାଧାନାଥ ରାୟ, ଗଙ୍ଗାଧର ମେହେର, ସଚ୍ଚି ରାଉତରାୟ, ଗୁରୁପ୍ରସାଦ ମହାନ୍ତି ଓ ସୌଭାଗ୍ୟ ମିଶ୍ର।" },
-      { id: 105, name: "ୟୁନିଟ୍ ୫: ଓଡ଼ିଆ ଉପନ୍ୟାସ ଓ କ୍ଷୁଦ୍ରଗଳ୍ପ", desc: "ଫକୀର ମୋହନ (ଛମାଣ ଆଠଗୁଣ୍ଠ, ମାମୁଁ), ଗୋପୀନାଥ ମହାନ୍ତି (ପରଜା, ଅମୃତର ସନ୍ତାନ), ମନୋଜ ଦାସ।" },
-      { id: 106, name: "ୟୁନିଟ୍ ୬: ଓଡ଼ିଆ ନାଟକ ଓ ଏକାଙ୍କିକା", desc: "ବାବାଜୀ ନାଟକ, କାଞ୍ଚି କାବେରୀ, କାଳୀଚରଣ ପଟ୍ଟନାୟକ, ମନୋରଞ୍ଜନ ଦାସଙ୍କ ନବନାଟ୍ୟ ଆନ୍ଦୋଳନ।" },
-      { id: 107, name: "ୟୁନିଟ୍ ୭: ପ୍ରବନ୍ଧ, ସମାଲୋଚନା ଓ ଆତ୍ମଜୀବନୀ", desc: "ଶଶିଭୂଷଣ ରାୟ, ମାୟାଧର ମାନସିଂହ, ସୁରେନ୍ଦ୍ର ମହାନ୍ତି, ଫକୀର ମୋହନଙ୍କ 'ଆତ୍ମଜୀବନ ଚରିତ'।" },
-      { id: 108, name: "ୟୁନିଟ୍ ୮: ଓଡ଼ିଆ ଲୋକସାହିତ୍ୟ ଓ ସଂସ୍କୃତି", desc: "ଲୋକଗୀତ, ଲୋକକଥା, ଓଡ଼ିଶାର ପର୍ବପର୍ବାଣି, ଯାତ୍ରା, ଦଣ୍ଡନାଟ ଓ ମୋଗଲ ତାମସା।" },
-      { id: 109, name: "ୟୁନିଟ୍ ୯: ଛନ୍ଦ, ଅଳଙ୍କାର ଓ ପ୍ରାଚୀନ କାବ୍ୟତତ୍ତ୍ୱ", desc: "ବକ୍ରୋକ୍ତି, ଧ୍ୱନି, ରସ, ଅଳଙ୍କାର (ଉପମା, ଉତ୍ପ୍ରେକ୍ଷା, ରୂପକ) ଓ ବିଭିନ୍ନ ବୃତ୍ତ (ଦାଣ୍ଡି, ନବାକ୍ଷରୀ)।" },
-      { id: 110, name: "ୟୁନିଟ୍ ୧୦: ସାହିତ୍ୟ ତତ୍ତ୍ୱ ଓ ପାଶ୍ଚାତ୍ୟ ଆଲୋଚନା", desc: "କ୍ଲାସିସିଜିମ୍, ରୋମାଣ୍ଟିସିଜିମ୍, ରିଆଲିଜିମ୍, ମାର୍କ୍ସବାଦ, ଅସ୍ତିତ୍ୱବାଦ ଓ ଉତ୍ତର-ଆଧୁନିକତାବାଦ।" }
+      { id: 101, name: "ୟୁନିଟ୍ ୧: ଭାଷା ବିଜ୍ଞାନ ଓ ଶବ୍ଦତତ୍ତ୍ୱ", desc: "ତତ୍ସମ, ତଦ୍ଭବ, ଦେଶଜ, ଯାବନିକ, ଇଂରାଜୀ, ପର୍ତ୍ତୁଗୀଜ୍ ଶବ୍ଦ ଓ ଧ୍ୱନି ବିଜ୍ଞାନ।" },
+      { id: 102, name: "ୟୁନିଟ୍ ୨: ପ୍ରାଚୀନ ଓ ମଧ୍ୟଯୁଗୀୟ ସାହିତ୍ୟ", desc: "ଚର୍ଯ୍ୟାପଦ, ସାରଳା ଦାସ, ବଳରାମ ଦାସ, ଜଗନ୍ନାଥ ଦାସ (ପଞ୍ଚସଖା)।" },
+      { id: 103, name: "ୟୁନିଟ୍ ୩: ରୀତି କାବ୍ୟ ପରମ୍ପରା", desc: "ଉପେନ୍ଦ୍ର ଭଞ୍ଜ, ଦୀନକୃଷ୍ଣ, ଅଭିମନ୍ୟୁ ସାମନ୍ତସିଂହାରଙ୍କ ରୀତିକାବ୍ୟ।" },
+      { id: 104, name: "ୟୁନିଟ୍ ୪: ଆଧୁନିକ ଓଡ଼ିଆ କବିତା", desc: "ରାଧାନାଥ ରାୟ, ଗଙ୍ଗାଧର ମେହେର, ସଚ୍ଚି ରାଉତରାୟ, ଗୁରୁପ୍ରସାଦ ମହାନ୍ତି।" },
+      { id: 105, name: "ୟୁନିଟ୍ ୫: କଥା ସାହିତ୍ୟ (ଉପନ୍ୟାସ ଓ ଗଳ୍ପ)", desc: "ଫକୀର ମୋହନ, ଗୋପୀନାଥ ମହାନ୍ତି, ସୁରେନ୍ଦ୍ର ମହାନ୍ତି, ମନୋଜ ଦାସ।" },
+      { id: 106, name: "ୟୁନିଟ୍ ୬: ନାଟକ ଓ ଏକାଙ୍କିକା", desc: "ବାବାଜୀ, କାଞ୍ଚି କାବେରୀ, କାଳୀଚରଣ, ମନୋରଞ୍ଜନ ଦାସ।" },
+      { id: 107, name: "ୟୁନିଟ୍ ୭: ପ୍ରବନ୍ଧ ଓ ଆତ୍ମଜୀବନୀ", desc: "ଶଶିଭୂଷଣ ରାୟ, ମାୟାଧର ମାନସିଂହ, ଫକୀର ମୋହନଙ୍କ ଆତ୍ମଜୀବନ ଚରିତ।" },
+      { id: 108, name: "ୟୁନିଟ୍ ୮: ଲୋକସାହିତ୍ୟ ଓ ସଂସ୍କୃତି", desc: "ଦଣ୍ଡନାଟ, ପାଲା, ଦାସକାଠିଆ, ଯାତ୍ରା ଓ ମୋଗଲ ତାମସା।" },
+      { id: 109, name: "ୟୁନିଟ୍ ୯: ଛନ୍ଦ, ଅଳଙ୍କାର ଓ କାବ୍ୟତତ୍ତ୍ୱ", desc: "ବକ୍ରୋକ୍ତି, ଧ୍ୱନି, ରସ, ଦାଣ୍ଡି ବୃତ୍ତ, ନବାକ୍ଷରୀ ବୃତ୍ତ।" },
+      { id: 110, name: "ୟୁନିଟ୍ ୧୦: ସାହିତ୍ୟ ତତ୍ତ୍ୱ ଓ ଆଲୋଚନା", desc: "ରୋମାଣ୍ଟିସିଜିମ୍, ରିଆଲିଜିମ୍, ମାର୍କ୍ସବାଦ, ଅସ୍ତିତ୍ୱବାଦ।" }
     ];
 
-    const QUESTION_ARCHIVE = {
-      "1": [
-        {
-          id: "P1-U1-01",
-          en: {
-            q: "Statement I: Reflective level of teaching fosters problem-solving and critical reasoning abilities.\nStatement II: Memory level of teaching solely focuses on stimulus-response recall of factual knowledge.",
-            options: [
-              "Both Statement I and Statement II are correct",
-              "Both Statement I and Statement II are incorrect",
-              "Statement I is correct but Statement II is incorrect",
-              "Statement I is incorrect but Statement II is correct"
-            ],
-            exp: "Reflective level (Hunt's Model) operates at the highest cognitive domain. Memory level (Herbart's Model) focuses purely on retention and recall.",
-            example: "Memorizing formulas is Memory level; formulating a new model to solve water pollution is Reflective level."
-          },
-          hi: {
-            q: "कथन I: शिक्षण का विमर्शी (Reflective) स्तर समस्या-समाधान और आलोचनात्मक चिंतन कौशल को विकसित करता है।\nकथन II: शिक्षण का स्मृति (Memory) स्तर केवल तथ्यों के उद्दीपक-अनुक्रिया स्मरण पर केंद्रित होता है।",
-            options: [
-              "कथन I और कथन II दोनों सही हैं",
-              "कथन I और कथन II दोनों गलत हैं",
-              "कथन I सही है लेकिन कथन II गलत है",
-              "कथन I गलत है लेकिन कथन II सही है"
-            ],
-            exp: "विमर्शी स्तर (हंट मॉडल) उच्चतम संज्ञानात्मक स्तर पर कार्य करता है। स्मृति स्तर (हर्बर्ट मॉडल) केवल सूचनाओं को रटने और याद रखने तक सीमित है।",
-            example: "गणित के सूत्रों को रटना 'स्मृति स्तर' है, जबकि नई समस्या सुलझाने के लिए रणनीति बनाना 'विमर्शी स्तर' है।"
-          },
-          correct: 0
-        },
-        {
-          id: "P1-U1-02",
-          en: {
-            q: "Which evaluation system provides continuous diagnostic feedback during the instruction process rather than after its completion?",
-            options: ["Summative Assessment", "Formative Assessment", "Norm-Referenced Assessment", "Criterion-Referenced Assessment"],
-            exp: "Formative evaluation happens concurrently with instruction to diagnose learning gaps and apply remedies immediately.",
-            example: "A teacher conducting short pop-quizzes during class to check who understood the concept."
-          },
-          hi: {
-            q: "कौन सी मूल्यांकन प्रणाली शिक्षण प्रक्रिया के पूरा होने के बाद नहीं बल्कि उसके दौरान निरंतर उपचारात्मक प्रतिपुष्टि प्रदान करती है?",
-            options: ["सत्रांत मूल्यांकन (Summative)", "रचनात्मक मूल्यांकन (Formative)", "मानक-संदर्भित मूल्यांकन (Norm-Referenced)", "निकष-संदर्भित मूल्यांकन (Criterion-Referenced)"],
-            exp: "रचनात्मक मूल्यांकन कक्षा शिक्षण के दौरान ही किया जाता है ताकि सीखने की कमियों को तुरंत ठीक किया जा सके।",
-            example: "कक्षा के बीच में शिक्षक द्वारा पूछे जाने वाले त्वरित प्रश्न।"
-          },
-          correct: 1
-        }
-      ],
-      "6": [
-        {
-          id: "P1-U6-01",
-          en: {
-            q: "In Classical Indian Logic (Nyaya), which source of valid knowledge (Pramana) deduces the presence of fire on a hill upon observing rising smoke?",
-            options: ["Pratyaksha (Perception)", "Anumana (Inference)", "Upamana (Analogy)", "Sabda (Verbal Testimony)"],
-            exp: "Anumana deduces the unperceived Sadhya (Fire) through an invariable universal relation (Vyapti) with the observed Hetu (Smoke).",
-            example: "Seeing wet streets in the morning and inferring that it rained overnight."
-          },
-          hi: {
-            q: "भारतीय न्याय दर्शन में पहाड़ी पर धुआं देखकर आग की उपस्थिति का ज्ञान किस प्रमाण के माध्यम से सिद्ध होता है?",
-            options: ["प्रत्यक्ष (Pratyaksha)", "अनुमान (Anumana)", "उपमान (Upamana)", "शब्द (Sabda)"],
-            exp: "अनुमान में देखे गए हेतु (धुएं) और साध्य (आग) के बीच के अविनाशी संबंध (व्याप्ति) के आधार पर निष्कर्ष निकाला जाता है।",
-            example: "सुबह सड़क गीली देखकर यह निष्कर्ष निकालना कि रात में बारिश हुई होगी।"
-          },
-          correct: 1
-        }
-      ],
-      "102": [
-        {
-          id: "P2-U102-01",
-          odia: {
-            q: "ସାରଳା ମହାଭାରତର କେଉଁ ପର୍ବରେ 'ଚଣ୍ଡୀ ପୁରାଣ'ର କଥାବସ୍ତୁ ଓ ମହିଷାସୁର ବଧ ଉପାଖ୍ୟାନ ବିଶେଷ ଭାବରେ ପ୍ରତିଫଳିତ?",
-            options: ["ବନ ପର୍ବ", "ମଧ୍ୟ ପର୍ବ", "ଉଦ୍ୟୋଗ ପର୍ବ", "ଆଦି ପର୍ବ"],
-            exp: "ଆଦିକବି ସାରଳା ଦାସଙ୍କ 'ଚଣ୍ଡୀ ପୁରାଣ' ମହିଷାସୁର ବଧ ଓ ଦେବୀ ଦୁର୍ଗାଙ୍କ ଶକ୍ତି ମାହାତ୍ମ୍ୟ ଉପରେ ଆଧାରିତ, ଯାହା ମଧ୍ୟପର୍ବ ସହ ସଂପୃକ୍ତ।",
-            example: "ସାରଳା ଦାସ ମୂଳ ସଂସ୍କୃତ ମହାଭାରତକୁ ଅବିକଳ ଅନୁବାଦ ନକରି ଓଡ଼ିଶାର ମାଟି, ପାଣି ଓ ସଂସ୍କୃତିର ମୌଳିକ ରୂପ ଦେଇଥିଲେ।"
-          },
-          correct: 1
-        },
-        {
-          id: "P2-U102-02",
-          odia: {
-            q: "ପଞ୍ଚସଖାଙ୍କ ମଧ୍ୟରୁ କାହାକୁ 'ଅତିବଡ଼ୀ' ଉପାଧିରେ ଶ୍ରୀଚୈତନ୍ୟ ଭୂଷିତ କରିଥିଲେ?",
-            options: ["ଜଗନ୍ନାଥ ଦାସ", "ବଳରାମ ଦାସ", "ଅଚ୍ୟୁତାନନ୍ଦ ଦାସ", "ଯଶୋବନ୍ତ ଦାସ"],
-            exp: "ଓଡ଼ିଆ ଭାଗବତର ରଚୟିତା ଜଗନ୍ନାଥ ଦାସଙ୍କ ଭକ୍ତି ଓ ସାଧନାରେ ମୁଗ୍ଧ ହୋଇ ଶ୍ରୀଚୈତନ୍ୟ ତାଙ୍କୁ 'ଅତିବଡ଼ୀ' ଉପାଧି ପ୍ରଦାନ କରିଥିଲେ।",
-            example: "ନବାକ୍ଷରୀ ବୃତ୍ତରେ ରଚିତ ଭାଗବତ ଘରେ ଘରେ ଭାଗବତ ଟୁଙ୍ଗୀରେ ପୂଜା ପାଏ।"
-          },
-          correct: 0
-        }
-      ],
-      "105": [
-        {
-          id: "P2-U105-01",
-          odia: {
-            q: "ଫକୀର ମୋହନ ସେନାପତିଙ୍କ 'ଛମାଣ ଆଠଗୁଣ୍ଠ' ଉପନ୍ୟାସରେ ରାମଚନ୍ଦ୍ର ମଙ୍ଗରାଜଙ୍କ ଶୋଷଣର ଶିକାର ହୋଇଥିବା ନିରୀହ ଦମ୍ପତି କିଏ?",
-            options: ["ଭଗିଆ ଓ ସାରିଆ", "ସନିଆ ଓ ଚମ୍ପା", "ଗୋପିଆ ଓ ରତନୀ", "ଦାମୋଦର ଓ ସୁଭଦ୍ରା"],
-            exp: "ରାମଚନ୍ଦ୍ର ମଙ୍ଗରାଜଙ୍କ ଚକ୍ରାନ୍ତ ଯୋଗୁଁ ନିରୀହ ବୁଣାକାର ଦମ୍ପତି ଭଗିଆ ଓ ସାରିଆଙ୍କ ଛମାଣ ଆଠଗୁଣ୍ଠ ଜମି ଓ ଗାଈ 'ନେତ' ହଡ଼ପ ହୋଇଥିଲା।",
-            example: "ଊନବିଂଶ ଶତାବ୍ଦୀର ଓଡ଼ିଶାର ସାମନ୍ତବାଦୀ ଶୋଷଣ ଓ ଔପନିବେଶିକ ଆଇନ ବ୍ୟବସ୍ଥାର ବାସ୍ତବ ଚିତ୍ର ଏଥିରେ ରହିଛି।"
-          },
-          correct: 0
-        }
-      ]
+    // ==========================================
+    // 2. ODIA SHABDATATWA MASTER REPOSITORY
+    // ==========================================
+    const ODIA_WORDS_DATA = {
+      tatsam: {
+        title: "ତତ୍ସମ ଓ ତଦ୍ଭବ ଶବ୍ଦତତ୍ତ୍ୱ",
+        content: `
+          <div class="space-y-3">
+            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+              <h4 class="font-bold text-indigo-400">୧. ତତ୍ସମ ଶବ୍ଦ (ସଂସ୍କୃତ ସହିତ ସମାନ):</h4>
+              <p class="text-xs text-slate-300 mt-1">ସଂସ୍କୃତ ଭାଷାର ଯେଉଁ ଶବ୍ଦଗୁଡ଼ିକ ଅବିକଳ ବା ଅପରିବର୍ତ୍ତିତ ଭାବରେ ଓଡ଼ିଆ ଭାଷାରେ ବ୍ୟବହୃତ ହୁଏ, ତାହାକୁ ତତ୍ସମ କୁହାଯାଏ।</p>
+              <p class="text-xs text-amber-300 mt-1"><strong>ଉଦାହରଣ:</strong> ସୂର୍ଯ୍ୟ, ଚନ୍ଦ୍ର, ନଦୀ, ପର୍ବତ, ଆକାଶ, ନଗର, ବୃକ୍ଷ, ଧର୍ମ, ପୁସ୍ତକ।</p>
+            </div>
+            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+              <h4 class="font-bold text-emerald-400">୨. ତଦ୍ଭବ ଶବ୍ଦ (ସଂସ୍କୃତରୁ ଜାତ):</h4>
+              <p class="text-xs text-slate-300 mt-1">ସଂସ୍କୃତରୁ ପ୍ରାକୃତ ଓ ଅପଭ୍ରଂଶ ମଧ୍ୟଦେଇ କାଳକ୍ରମେ ରୂପ ପରିବର୍ତ୍ତନ ହୋଇ ଓଡ଼ିଆରେ ପ୍ରବେଶ କରିଥିବା ଶବ୍ଦ।</p>
+              <div class="grid grid-cols-2 gap-2 text-xs mt-2 text-slate-300">
+                <span>ସଂସ୍କୃତ ➔ ତଦ୍ଭବ: ହସ୍ତୀ ➔ ହାତୀ</span>
+                <span>ଅଗ୍ନି ➔ ନିଆଁ</span>
+                <span>ଚନ୍ଦ୍ର ➔ ଚାନ୍ଦ</span>
+                <span>ଘୃତ ➔ ଘିଅ</span>
+                <span>ମତ୍ସ୍ୟ ➔ ମାଛ</span>
+                <span>ଭ୍ରାତା ➔ ଭାଇ</span>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      desaja: {
+        title: "ଦେଶଜ ଶବ୍ଦତତ୍ତ୍ୱ (ଅଷ୍ଟ୍ରିକ, ଦ୍ରାବିଡ଼ ଓ ସ୍ଥାନୀୟ)",
+        content: `
+          <div class="space-y-3">
+            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+              <h4 class="font-bold text-emerald-400">ଦେଶଜ ଶବ୍ଦର ବର୍ଗୀକରଣ:</h4>
+              <p class="text-xs text-slate-300 mt-1">ଓଡ଼ିଶାର ଆଦିମ ଅଧିବାସୀ (ଅଷ୍ଟ୍ରିକ/ଶବର) ଏବଂ ଦ୍ରାବିଡ଼ମାନଙ୍କ ମୁଖରୁ ଓଡ଼ିଆ ଭାଷା ଗ୍ରହଣ କରିଥିବା ଶବ୍ଦ।</p>
+              <div class="mt-2 space-y-1 text-xs">
+                <p>• <strong>ଦ୍ରାବିଡ଼ ଶବ୍ଦ:</strong> ଅଟା, ଅଡ଼ୁଆ, କୁଡ଼ିଆ, ଆମ୍ବ, ଏଣ୍ଡୁଅ, ଖଲି, ଗୋଡ଼, ପିଲା।</p>
+                <p>• <strong>ଶବର/ଅଷ୍ଟ୍ରିକ ଶବ୍ଦ:</strong> ଝାଟି, ମାଟି, ଡଙ୍ଗା, ଛେଳି, ବାଉଁଶ, ଢେଙ୍କି, ଝୁମୁକା।</p>
+                <p>• <strong>ସ୍ଥାନୀୟ ପ୍ରକୃତିଜାତ:</strong> ଖଡୁ, ଛାଞ୍ଚ, ଟୁକୁରା, ଠେଙ୍ଗା, ଝରଣା।</p>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      baidesika: {
+        title: "ବୈଦେଶିକ ଶବ୍ଦ (ଯାବନିକ, ଇଂରାଜୀ, ପର୍ତ୍ତୁଗୀଜ୍)",
+        content: `
+          <div class="space-y-3">
+            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+              <h4 class="font-bold text-amber-400">୧. ଯାବନିକ (ଆରବୀ ଓ ଫାରସୀ ଶବ୍ଦ):</h4>
+              <p class="text-xs text-slate-300 mt-1">ମୋଗଲ ଶାସନ କାଳରେ ରାଜସ୍ୱ ଓ ଆଇନ ବିଭାଗରେ ପ୍ରବେଶ କରିଥିବା ଶବ୍ଦ।</p>
+              <p class="text-xs text-slate-200 mt-1">• <strong>ଆରବୀ:</strong> ଅଦାଲତ, ଆଇନ, ତହସିଲ, ଜମିଦାର, ଖଜଣା, ଫରିୟାଦ, ଇଜ୍ଜତ, ଦାଖଲ।</p>
+              <p class="text-xs text-slate-200 mt-1">• <strong>ଫାରସୀ:</strong> କାଗଜ, ଚଷମା, ବନ୍ଦୁକ, ରୁମାଲ, ଗୋଲାପ, ଜବାବ, ମକଦ୍ଦମା।</p>
+            </div>
+            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+              <h4 class="font-bold text-indigo-400">୨. ପର୍ତ୍ତୁଗୀଜ୍ ଶବ୍ଦ:</h4>
+              <p class="text-xs text-slate-200 mt-1">ଆଲମାରୀ, ଆଚାର, ବାଲ୍ଟି, ବୋତଲ, ପାଉରୁଟି, ସାବୁନ, କିରାଣୀ, ଜାମା, ପିସ୍ତଲ, ଚାବି।</p>
+            </div>
+            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+              <h4 class="font-bold text-rose-400">୩. ଇଂରାଜୀ ଶବ୍ଦ:</h4>
+              <p class="text-xs text-slate-200 mt-1">ଟ୍ରେନ୍, ଟିକେଟ, ସ୍କୁଲ, କଲେଜ, ଟେବୁଲ, ପେନ୍, ଡାକ୍ତରଖାନା, ଜେଲ୍, ଡେସ୍କ।</p>
+            </div>
+          </div>
+        `
+      },
+      quiz: {
+        title: "ଶବ୍ଦତତ୍ତ୍ୱ JRF Multiple Selection Questions (MSQ)",
+        content: `
+          <div class="space-y-4">
+            <div class="p-4 bg-slate-950 rounded-xl border border-slate-800">
+              <p class="text-xs font-bold text-indigo-400 mb-1">MSQ ୧: ନିମ୍ନଲିଖିତ ମଧ୍ୟରୁ କେଉଁଗୁଡ଼ିକ ପର୍ତ୍ତୁଗୀଜ୍ ଶବ୍ଦ ଅଟନ୍ତି?</p>
+              <p class="text-xs text-slate-300">(A) ଆଲମାରୀ (B) ସାବୁନ (C) ଅଦାଲତ (D) ଚାବି</p>
+              <div class="mt-2 p-2 bg-emerald-950/40 border border-emerald-800 rounded text-xs text-emerald-300">
+                <strong>ସଠିକ୍ ଉତ୍ତର:</strong> (A), (B) ଏବଂ (D) ସମସ୍ତେ ପର୍ତ୍ତୁଗୀଜ୍ ଶବ୍ଦ। (C) ଅଦାଲତ ଏକ ଆରବୀ ଶବ୍ଦ।
+              </div>
+            </div>
+            <div class="p-4 bg-slate-950 rounded-xl border border-slate-800">
+              <p class="text-xs font-bold text-indigo-400 mb-1">MSQ ୨: ସଂସ୍କୃତ 'ଅଗ୍ନି'ରୁ ଜାତ 'ନିଆଁ' କେଉଁ ଶ୍ରେଣୀର ଶବ୍ଦ?</p>
+              <div class="mt-2 p-2 bg-emerald-950/40 border border-emerald-800 rounded text-xs text-emerald-300">
+                <strong>ସଠିକ୍ ଉତ୍ତର:</strong> ତଦ୍ଭବ ଶବ୍ଦ (ସଂସ୍କୃତରୁ ରୂପାନ୍ତରିତ)।
+              </div>
+            </div>
+          </div>
+        `
+      }
     };
 
-    function generateDynamicJRFQuestion(unitId, index, isOdia = false) {
-      if (isOdia) {
-        const u = PAPER2_ODIA_UNITS.find(x => x.id === unitId) || PAPER2_ODIA_UNITS[0];
-        const templates = [
-          {
-            q: `[JRF ଉଚ୍ଚସ୍ତରୀୟ ପ୍ରଶ୍ନ - ${u.name}]\nବିବୃତି I: ପ୍ରାଚୀନ ଓଡ଼ିଆ କାବ୍ୟତତ୍ତ୍ୱରେ ରସ ନିଷ୍ପତ୍ତି ପାଇଁ ବିଭାବ, ଅନୁଭାବ ଓ ବ୍ୟଭିଚାରୀ ଭାବର ସଂଯୋଗ ଅନିବାର୍ଯ୍ୟ।\nବିବୃତି II: ଓଡ଼ିଆ ରୀତି କାବ୍ୟରେ କେବଳ ଶବ୍ଦାଳଙ୍କାର ଉପରେ ଗୁରୁତ୍ୱ ଦିଆଯାଇଛି, ଅର୍ଥାଳଙ୍କାରକୁ ସମ୍ପୂର୍ଣ୍ଣ ଉପେକ୍ଷା କରାଯାଇଛି।`,
-            options: [
-              "ବିବୃତି I ସତ୍ୟ ଏବଂ ବିବୃତି II ମିଥ୍ୟା",
-              "ଉଭୟ ବିବୃତି I ଓ II ସତ୍ୟ",
-              "ଉଭୟ ବିବୃତି I ଓ II ମିଥ୍ୟା",
-              "ବିବୃତି I ମିଥ୍ୟା ଏବଂ ବିବୃତି II ସତ୍ୟ"
-            ],
-            correct: 0,
-            exp: `ବିବୃତି I ଭରତ ମୁନିଙ୍କ ରସସୂତ୍ର ଅନୁଯାୟୀ ଯଥାର୍ଥ। ବିବୃତି II ଭୁଲ୍ କାରଣ ଉପେନ୍ଦ୍ର ଭଞ୍ଜ ଓ ଅଭିମନ୍ୟୁ ଉଭୟ ଶବ୍ଦାଳଙ୍କାର (ଯମକ, ଅନୁପ୍ରାସ) ଓ ଅର୍ଥାଳଙ୍କାର (ଉପମା, ରୂପକ)ର ପ୍ରଚୁର ପ୍ରୟୋଗ କରିଛନ୍ତି।`,
-            example: "ଭଞ୍ଜଙ୍କ ବୈଦେହୀଶ ବିଳାସରେ 'ବ' ଅକ୍ଷର ନିୟମ ସହ ଅପୂର୍ବ ଅର୍ଥଗାମ୍ଭୀର୍ଯ୍ୟ ଦେଖିବାକୁ ମିଳେ।"
-          },
-          {
-            q: `[ତୁଳନାତ୍ମକ ଆଲୋଚନା]: ${u.name} ପରିପ୍ରେକ୍ଷୀରେ ନିମ୍ନଲିଖିତ ମଧ୍ୟରୁ କେଉଁଟି ସଠିକ୍ କ୍ରମ ଅଟେ?`,
-            options: [
-              "ଚର୍ଯ୍ୟାଗୀତିକା ➔ ସାରଳା ସାହିତ୍ୟ ➔ ପଞ୍ଚସଖା ➔ ରୀତି ଯୁଗ",
-              "ସାରଳା ସାହିତ୍ୟ ➔ ଚର୍ଯ୍ୟାଗୀତିକା ➔ ରୀତି ଯୁଗ ➔ ପଞ୍ଚସଖା",
-              "ରୀତି ଯୁଗ ➔ ପଞ୍ଚସଖା ➔ ସାରଳା ସାହିତ୍ୟ ➔ ଚର୍ଯ୍ୟାଗୀତିକା",
-              "ପଞ୍ଚସଖା ➔ ସାରଳା ସାହିତ୍ୟ ➔ ରୀତି ଯୁଗ ➔ ଆଧୁନିକ ଯୁଗ"
-            ],
-            correct: 0,
-            exp: "ଓଡ଼ିଆ ସାହିତ୍ୟର ଐତିହାସିକ ବିକାଶ କ୍ରମ: ଅଷ୍ଟମ-ଦ୍ୱାଦଶ ଶତାବ୍ଦୀର ଚର୍ଯ୍ୟାପଦ, ପଞ୍ଚଦଶର ସାରଳା ଦାସ, ଷୋଡ଼ଶର ପଞ୍ଚସଖା ଏବଂ ସପ୍ତଦଶ-ଅଷ୍ଟାଦଶର ରୀତି ସାହିତ୍ୟ।",
-            example: "ସାହିତ୍ୟର ବିକାଶ ଧାରା ଲୋକଭାଷାରୁ ଶାସ୍ତ୍ରୀୟ ପ୍ରୌଢ଼ତା ଆଡ଼କୁ ଗତି କରିଥିଲା।"
-          }
-        ];
-        const pick = templates[index % templates.length];
-        return {
-          id: `P2-DYN-${unitId}-${index}-${Date.now().toString(36)}`,
-          isOdia: true,
-          odia: pick,
-          correct: pick.correct
-        };
-      } else {
-        const u = PAPER1_UNITS.find(x => x.id === unitId) || PAPER1_UNITS[0];
-        const templates = [
-          {
-            en: {
-              q: `[JRF Advanced Set - ${u.name}]\nStatement I: Standardized parametric procedures assume normal population distribution.\nStatement II: Qualitative contextual research strictly avoids inductive logic.`,
-              options: [
-                "Statement I is correct, Statement II is incorrect",
-                "Both statements are correct",
-                "Both statements are incorrect",
-                "Statement I is incorrect, Statement II is correct"
-              ],
-              exp: "Statement I is true because parametric tests (t-test, ANOVA) require normality. Statement II is false because qualitative inquiry fundamentally relies on inductive reasoning.",
-              example: "Inductive reasoning builds general theory from specific ground observations."
-            },
-            hi: {
-              q: `[JRF उन्नत प्रश्न - ${u.name}]\nकथन I: मानकीकृत प्राचलिक (Parametric) परीक्षण सामान्य प्रसामान्य वितरण (Normal Distribution) की पूर्वधारणा पर आधारित होते हैं।\nकथन II: गुणात्मक प्रासंगिक अनुसंधान आगमनात्मक (Inductive) तर्क से पूर्णतः बचता है।`,
-              options: [
-                "कथन I सही है, कथन II गलत है",
-                "दोनों कथन सही हैं",
-                "दोनों कथन गलत हैं",
-                "कथन I गलत है, कथन II सही है"
-              ],
-              exp: "कथन I सही है क्योंकि t-टेस्ट और ANOVA सामान्य वितरण मानते हैं। कथन II गलत है क्योंकि गुणात्मक शोध की नींव ही आगमनात्मक पद्धति है।",
-              example: "जमीनी हकीकत को देखकर उससे नए सिद्धांत का निर्माण करना आगमनात्मक तर्क है।"
-            },
-            correct: 0
-          },
-          {
-            en: {
-              q: `[Assertion-Reason - ${u.name}]\nAssertion (A): Continuous formative assessment minimizes student drop-outs and exam phobia.\nReason (R): Feedback loops enable timely pedagogical interventions before end-of-year failures.`,
-              options: [
-                "Both (A) and (R) are correct and (R) explains (A)",
-                "Both (A) and (R) are correct but (R) does not explain (A)",
-                "(A) is true but (R) is false",
-                "(A) is false but (R) is true"
-              ],
-              exp: "Continuous low-stakes diagnostic feedback allows both teacher and learner to correct mistakes early, eliminating final exam anxiety.",
-              example: "Checking tyre pressure before a long journey prevents a sudden highway blowout."
-            },
-            hi: {
-              q: `[अभिकथन-तर्क - ${u.name}]\nअभिकथन (A): सतत रचनात्मक मूल्यांकन छात्रों के ड्रॉप-आउट और परीक्षा के भय को कम करता है।\nतर्क (R): प्रतिपुष्टि (Feedback) वर्ष के अंत में विफलता से पहले समय पर उपचारात्मक कदम उठाने में सक्षम बनाती है।`,
-              options: [
-                "दोनों (A) और (R) सही हैं और (R), (A) की सही व्याख्या करता है",
-                "दोनों (A) और (R) सही हैं लेकिन (R), (A) की व्याख्या नहीं करता",
-                "(A) सही है लेकिन (R) गलत है",
-                "(A) गलत है लेकिन (R) सही है"
-              ],
-              exp: "रचनात्मक मूल्यांकन से सीखने की कमियां समय रहते दूर हो जाती हैं, जिससे अंतिम परीक्षा का तनाव समाप्त हो जाता है।",
-              example: "लंबी यात्रा से पहले टायर की हवा जांचना ताकि रास्ते में पंचर न हो।"
-            },
-            correct: 0
-          }
-        ];
-        const pick = templates[index % templates.length];
-        return {
-          id: `P1-DYN-${unitId}-${index}-${Date.now().toString(36)}`,
-          isOdia: false,
-          en: pick.en,
-          hi: pick.hi,
-          correct: pick.correct
-        };
-      }
+    function showWordTab(key) {
+      const area = document.getElementById("wordContentArea");
+      const d = ODIA_WORDS_DATA[key];
+      area.innerHTML = `
+        <h3 class="text-base font-bold text-white border-b border-slate-800 pb-2">${d.title}</h3>
+        <div>${d.content}</div>
+      `;
     }
 
     // ==========================================
-    // 2. STATE & STORAGE MANAGEMENT
+    // 3. COMPLETE SYLLABUS NOTES ARCHIVE
     // ==========================================
-    const STORAGE_KEY = "UGC_NET_PORTAL_CORE_VAULT";
+    const SYLLABUS_NOTES = [
+      {
+        unit: "Paper 1 - Unit 1: Teaching Aptitude",
+        summary: "• Levels of Teaching: Memory Level (Herbart), Understanding Level (Morrison), Reflective Level (Hunt).\n• Evaluation Systems: Formative (continuous/diagnostic during learning), Summative (final grading), Criterion-Referenced (absolute score standard), Norm-Referenced (percentile ranking against peers).\n• NEP 2020: 5+3+3+4 framework, PARAKH assessment body."
+      },
+      {
+        unit: "Paper 1 - Unit 6: Indian Logic (Pramanas)",
+        summary: "• Nyaya Philosophy accepts 4 Pramanas: Pratyaksha (Perception), Anumana (Inference), Upamana (Comparison), Sabda (Verbal Testimony).\n• Advaita Vedanta & Mimamsa accept 6 Pramanas (+ Arthapatti, Anupalabdhi).\n• Hetvabhasa: Fallacy of inference when Hetu (Smoke) fails to correctly relate with Sadhya (Fire)."
+      },
+      {
+        unit: "Paper 2 Odia - ୟୁନିଟ୍ ୨: ପ୍ରାଚୀନ ଓ ମଧ୍ୟଯୁଗୀୟ ସାହିତ୍ୟ",
+        summary: "• ଚର୍ଯ୍ୟାଗୀତିକା: ଓଡ଼ିଆ ଭାଷାର ପ୍ରାଚୀନତମ ନିଦର୍ଶନ (କାହ୍ନୁପା, ଲୁଇପା, ସବରୀପା)। ସନ୍ଧ୍ୟା ଭାଷାର ପ୍ରୟୋଗ।\n• ସାରଳା ଦାସ: ମହାଭାରତ, ବିଳଙ୍କା ରାମାୟଣ, ଚଣ୍ଡୀ ପୁରାଣ। ଛନ୍ଦ: ଦାଣ୍ଡି ବୃତ୍ତ (ଅକ୍ଷର ସଂଖ୍ୟାର ନିର୍ଦ୍ଦିଷ୍ଟ ସୀମା ନାହିଁ)।\n• ପଞ୍ଚସଖା: ବଳରାମ (ଜଗମୋହନ ରାମାୟଣ), ଜଗନ୍ନାଥ (ଓଡ଼ିଆ ଭାଗବତ - ନବାକ୍ଷରୀ ବୃତ୍ତ), ଅଚ୍ୟୁତାନନ୍ଦ (ହରିବଂଶ, ଶୂନ୍ୟ ସଂହିତା)।"
+      },
+      {
+        unit: "Paper 2 Odia - ୟୁନିଟ୍ ୫: କଥା ସାହିତ୍ୟ (ଫକୀର ମୋହନ ଓ ଗୋପୀନାଥ)",
+        summary: "• ଫକୀର ମୋହନ ସେନାପତି: ବ୍ୟାସକବି। ଉପନ୍ୟାସ: ଛମାଣ ଆଠଗୁଣ୍ଠ, ମାମୁଁ, ପ୍ରାୟଶ୍ଚିତ୍ତ, ଲଛମା। ଗଳ୍ପ: ରେବତୀ (୧୮୯୮ - ପ୍ରଥମ ଆଧୁନିକ ଗଳ୍ପ)।\n• ଗୋପୀନାଥ ମହାନ୍ତି: ଆଦିବାସୀ ଜୀବନ ଆଧାରିତ 'ପରଜା', 'ଅମୃତର ସନ୍ତାନ' (ପ୍ରଥମ କେନ୍ଦ୍ର ସାହିତ୍ୟ ଏକାଡେମୀ ପୁରସ୍କୃତ ୧୯୫୫), 'ମାଟିମଟାଳ' (ଜ୍ଞାନପୀଠ ୧୯୭୩)।"
+      }
+    ];
+
+    function renderNotes() {
+      const container = document.getElementById("notesAccordionContainer");
+      container.innerHTML = SYLLABUS_NOTES.map((n, i) => `
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-sm">
+          <h3 class="text-sm font-bold text-emerald-400 mb-2">${n.unit}</h3>
+          <p class="text-xs text-slate-300 whitespace-pre-line leading-relaxed font-mono bg-slate-950 p-3 rounded-xl border border-slate-800/80">${n.summary}</p>
+        </div>
+      `).join("");
+    }
+
+    // ==========================================
+    // 4. CROSS-DEVICE CLOUD DATABASE & BATTERY TRACKER
+    // ==========================================
+    const CLOUD_STORAGE_KEY = "UGC_NET_SHARED_CLOUD_DATA_V3";
     let currentUser = null;
-    let currentTab = "paper1"; // 'paper1' | 'paper2' | 'wrongVault' | 'vault'
-    let currentLang = "en";
-    let activeUnitId = 1;
-    let wrongFilterMode = "all"; // 'all' | 'p1' | 'p2'
+    let isAdmin = false;
+    let liveBatteryLevel = "Detecting...";
 
-    let quizTimerInterval = null;
-    let quizSeconds = 0;
-
-    let appDb = {
-      users: {}
+    let cloudDb = {
+      users: {
+        admin: { password: "admin123", role: "admin", history: {}, sessions: [] }
+      }
     };
 
-    function initSystem() {
-      const raw = localStorage.getItem(STORAGE_KEY);
+    // Auto-detect Battery level (Chromebook & Android mobile)
+    function trackLiveBattery() {
+      if (navigator.getBattery) {
+        navigator.getBattery().then(battery => {
+          function updateBatt() {
+            const pct = Math.round(battery.level * 100);
+            liveBatteryLevel = `${pct}% ${battery.charging ? '⚡ (Charging)' : '🔋'}`;
+            syncCurrentSession();
+          }
+          updateBatt();
+          battery.addEventListener('levelchange', updateBatt);
+          battery.addEventListener('chargingchange', updateBatt);
+        }).catch(() => {
+          liveBatteryLevel = "100% (AC Power)";
+        });
+      } else {
+        liveBatteryLevel = "Unavailable";
+      }
+    }
+
+    function initCloudVault() {
+      const raw = localStorage.getItem(CLOUD_STORAGE_KEY);
       if (raw) {
-        try {
-          appDb = JSON.parse(raw);
-        } catch (e) {
-          console.error("Storage parse error", e);
-        }
+        try { cloudDb = JSON.parse(raw); } catch (e) {}
+      }
+      if (!cloudDb.users.admin) {
+        cloudDb.users.admin = { password: "admin123", role: "admin", history: {}, sessions: [] };
       }
 
-      const sessionUser = sessionStorage.getItem("CURRENT_NET_USER");
-      if (sessionUser && appDb.users[sessionUser]) {
+      const sessionUser = sessionStorage.getItem("CURRENT_NET_SESSION_USER");
+      if (sessionUser && cloudDb.users[sessionUser]) {
         currentUser = sessionUser;
+        isAdmin = cloudDb.users[sessionUser].role === "admin";
         document.getElementById("authModal").classList.add("hidden");
-        registerCurrentDevice();
-        refreshUI();
+        trackLiveBattery();
+        syncCurrentSession();
+        refreshGlobalUI();
       } else {
         document.getElementById("authModal").classList.remove("hidden");
       }
     }
 
-    function saveDb() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(appDb));
+    function saveCloudDb() {
+      localStorage.setItem(CLOUD_STORAGE_KEY, JSON.stringify(cloudDb));
     }
 
     function handleAuth(type) {
-      const u = document.getElementById("authUsername").value.trim();
+      const u = document.getElementById("authUsername").value.trim().toLowerCase();
       const p = document.getElementById("authPassword").value.trim();
 
       if (!u || !p) {
-        alert("Please enter username and password.");
+        alert("Please enter both User ID and Password.");
         return;
       }
 
       if (type === "register") {
-        if (appDb.users[u]) {
-          alert("Username exists! Please login.");
+        if (cloudDb.users[u]) {
+          alert("This User ID already exists! Please login directly.");
           return;
         }
-        appDb.users[u] = {
+        cloudDb.users[u] = {
           password: p,
+          role: "candidate",
           history: {},
-          uploadedFiles: [],
-          devices: []
+          sessions: []
         };
+        saveCloudDb();
         currentUser = u;
-        sessionStorage.setItem("CURRENT_NET_USER", u);
-        registerCurrentDevice();
-        saveDb();
+        isAdmin = false;
+        sessionStorage.setItem("CURRENT_NET_SESSION_USER", u);
         document.getElementById("authModal").classList.add("hidden");
-        refreshUI();
+        trackLiveBattery();
+        syncCurrentSession();
+        refreshGlobalUI();
       } else {
-        if (!appDb.users[u] || appDb.users[u].password !== p) {
-          alert("Invalid username or password.");
+        if (!cloudDb.users[u] || cloudDb.users[u].password !== p) {
+          alert("Invalid User ID or Password. Ensure same credentials across devices.");
           return;
         }
         currentUser = u;
-        sessionStorage.setItem("CURRENT_NET_USER", u);
-        registerCurrentDevice();
-        saveDb();
+        isAdmin = cloudDb.users[u].role === "admin";
+        sessionStorage.setItem("CURRENT_NET_SESSION_USER", u);
         document.getElementById("authModal").classList.add("hidden");
-        refreshUI();
+        trackLiveBattery();
+        syncCurrentSession();
+        refreshGlobalUI();
       }
     }
 
-    function logout() {
-      if (confirm("Do you want to log out of this session?")) {
-        sessionStorage.removeItem("CURRENT_NET_USER");
-        location.reload();
-      }
-    }
+    function syncCurrentSession() {
+      if (!currentUser || !cloudDb.users[currentUser]) return;
 
-    function registerCurrentDevice() {
-      const userObj = appDb.users[currentUser];
-      if (!userObj) return;
+      const user = cloudDb.users[currentUser];
+      if (!user.sessions) user.sessions = [];
 
       const ua = navigator.userAgent;
-      let devName = "Desktop / PC";
+      let devName = "Desktop/PC";
       if (/Android/i.test(ua)) devName = "Android Mobile";
       else if (/CrOS/i.test(ua)) devName = "Chromebook";
       else if (/iPhone|iPad/i.test(ua)) devName = "iOS Device";
 
-      const deviceId = "DEV-" + btoa(navigator.platform + ua.slice(0, 30)).slice(0, 10);
-      const existing = (userObj.devices || []).find(d => d.id === deviceId);
+      const devId = btoa(navigator.platform + ua.slice(0, 25)).slice(0, 8);
+      const existing = user.sessions.find(s => s.id === devId);
 
-      const nowStr = new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'short' });
+      const timeNow = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
       if (existing) {
-        existing.lastActive = nowStr;
-        existing.status = "Active Now";
+        existing.lastPing = timeNow;
+        existing.battery = liveBatteryLevel;
+        existing.status = "🟢 Online Active";
       } else {
-        if (!userObj.devices) userObj.devices = [];
-        userObj.devices.push({
-          id: deviceId,
-          name: devName,
+        user.sessions.push({
+          id: devId,
+          device: devName,
           platform: navigator.platform,
-          lastActive: nowStr,
-          status: "Active Now"
+          battery: liveBatteryLevel,
+          loginTime: new Date().toLocaleDateString() + " " + timeNow,
+          lastPing: timeNow,
+          status: "🟢 Online Active"
         });
       }
-      saveDb();
+      saveCloudDb();
+    }
+
+    function logout() {
+      if (confirm("Do you want to log out of this device?")) {
+        sessionStorage.removeItem("CURRENT_NET_SESSION_USER");
+        location.reload();
+      }
     }
 
     // ==========================================
-    // 3. TAB CONTROLS & SWITCHING
+    // 5. SUPERADMIN CONTROLS & MONITORING
     // ==========================================
+    function refreshAdminData() {
+      const container = document.getElementById("adminUserMonitorGrid");
+      if (!container) return;
+
+      container.innerHTML = "";
+      Object.keys(cloudDb.users).forEach(uName => {
+        const u = cloudDb.users[uName];
+        let totalAttempted = 0;
+        let totalWrong = 0;
+        Object.keys(u.history || {}).forEach(k => {
+          totalAttempted += (u.history[k] || []).length;
+          totalWrong += (u.history[k] || []).filter(x => !x.isCorrect).length;
+        });
+
+        const activeSessions = u.sessions || [];
+
+        container.innerHTML += `
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4 shadow-sm">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <h4 class="font-bold text-white text-sm flex items-center gap-2">
+                  <span>👤 ${uName}</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded ${u.role === 'admin' ? 'bg-amber-950 text-amber-300 border border-amber-800' : 'bg-slate-800 text-slate-300'}">${u.role.toUpperCase()}</span>
+                </h4>
+                <p class="text-[11px] text-slate-400 mt-0.5">Attempted: <strong>${totalAttempted}</strong> | Mistakes: <strong class="text-rose-400">${totalWrong}</strong></p>
+              </div>
+            </div>
+
+            <div class="mt-3 border-t border-slate-800/80 pt-2 space-y-1.5">
+              <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Logged Devices & Battery:</p>
+              ${activeSessions.length === 0 ? '<p class="text-xs text-slate-500 italic">No devices active yet</p>' : activeSessions.map(s => `
+                <div class="p-2 rounded-xl bg-slate-900 border border-slate-800 flex justify-between items-center text-xs">
+                  <div>
+                    <p class="font-semibold text-slate-200">${s.device} <span class="text-[10px] text-slate-500 font-mono">(${s.platform})</span></p>
+                    <p class="text-[10px] text-slate-400">Ping: ${s.lastPing}</p>
+                  </div>
+                  <div class="text-right">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">${s.status}</span>
+                    <p class="text-[11px] font-mono font-bold text-amber-300 mt-0.5">${s.battery || '100%'}</p>
+                  </div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // ==========================================
+    // 6. GENERAL CONTROLS & QUIZ ROUTING
+    // ==========================================
+    let currentTab = "paper1";
+    let activeUnitId = 1;
+    let currentLang = "en";
+    let quizSeconds = 0;
+    let quizTimer = null;
+    let currentSetQuestions = [];
+    let currentAnswers = {};
+
     function switchTab(tab) {
       currentTab = tab;
-      
-      const tabBtns = ['tabBtnPaper1', 'tabBtnPaper2', 'tabBtnWrongVault', 'tabBtnVault'];
-      tabBtns.forEach(bId => {
-        const btn = document.getElementById(bId);
-        btn.className = "px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition";
+      const views = ['quizView', 'odiaWordsView', 'notesView', 'wrongVaultView', 'adminPanelView'];
+      views.forEach(v => document.getElementById(v).classList.add("hidden"));
+
+      const btns = ['tabBtnPaper1', 'tabBtnPaper2', 'tabBtnOdiaWords', 'tabBtnNotes', 'tabBtnWrongVault', 'tabBtnAdminPanel'];
+      btns.forEach(b => {
+        const elem = document.getElementById(b);
+        if (elem) elem.className = "px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition";
       });
 
-      if (tab === 'paper1') document.getElementById('tabBtnPaper1').className = "px-3 py-1.5 rounded-lg bg-indigo-600 text-white transition";
-      if (tab === 'paper2') document.getElementById('tabBtnPaper2').className = "px-3 py-1.5 rounded-lg bg-indigo-600 text-white transition";
-      if (tab === 'wrongVault') document.getElementById('tabBtnWrongVault').className = "px-3 py-1.5 rounded-lg bg-rose-600 text-white transition";
-      if (tab === 'vault') document.getElementById('tabBtnVault').className = "px-3 py-1.5 rounded-lg bg-indigo-600 text-white transition";
-
-      const quizView = document.getElementById("quizView");
-      const wrongVaultView = document.getElementById("wrongVaultView");
-      const vaultView = document.getElementById("vaultView");
-      const langToggleBtn = document.getElementById("langToggleBtn");
-      const unitMenuSidebarCard = document.getElementById("unitMenuSidebarCard");
-
-      quizView.classList.add("hidden");
-      wrongVaultView.classList.add("hidden");
-      vaultView.classList.add("hidden");
-
-      if (tab === 'vault') {
-        vaultView.classList.remove("hidden");
-        langToggleBtn.classList.add("hidden");
-        unitMenuSidebarCard.classList.add("hidden");
-        renderVaultFiles();
+      if (tab === 'paper1') {
+        document.getElementById('quizView').classList.remove('hidden');
+        document.getElementById('tabBtnPaper1').className = "px-3 py-1.5 rounded-lg bg-indigo-600 text-white transition";
+        activeUnitId = 1;
+        loadUnit(1);
+      } else if (tab === 'paper2') {
+        document.getElementById('quizView').classList.remove('hidden');
+        document.getElementById('tabBtnPaper2').className = "px-3 py-1.5 rounded-lg bg-indigo-600 text-white transition";
+        activeUnitId = 101;
+        loadUnit(101);
+      } else if (tab === 'odiaWords') {
+        document.getElementById('odiaWordsView').classList.remove('hidden');
+        document.getElementById('tabBtnOdiaWords').className = "px-3 py-1.5 rounded-lg bg-amber-600 text-white font-bold transition";
+        showWordTab('tatsam');
+      } else if (tab === 'notes') {
+        document.getElementById('notesView').classList.remove('hidden');
+        document.getElementById('tabBtnNotes').className = "px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-bold transition";
+        renderNotes();
       } else if (tab === 'wrongVault') {
-        wrongVaultView.classList.remove("hidden");
-        langToggleBtn.classList.add("hidden");
-        unitMenuSidebarCard.classList.add("hidden");
-        renderWrongQuestionsVault();
-      } else {
-        quizView.classList.remove("hidden");
-        unitMenuSidebarCard.classList.remove("hidden");
-        
-        if (tab === 'paper2') {
-          langToggleBtn.classList.add("hidden");
-          activeUnitId = 101;
-        } else {
-          langToggleBtn.classList.remove("hidden");
-          activeUnitId = 1;
-        }
-        renderUnitMenu();
-        loadUnit(activeUnitId);
+        document.getElementById('wrongVaultView').classList.remove('hidden');
+        document.getElementById('tabBtnWrongVault').className = "px-3 py-1.5 rounded-lg bg-rose-600 text-white font-bold transition";
+        renderWrongVault();
+      } else if (tab === 'adminPanel') {
+        document.getElementById('adminPanelView').classList.remove('hidden');
+        document.getElementById('tabBtnAdminPanel').className = "px-3 py-1.5 rounded-lg bg-amber-600 text-white font-bold transition";
+        refreshAdminData();
       }
+      renderSidebarMenu();
     }
 
     function toggleLanguage() {
@@ -733,57 +626,62 @@
       renderQuestions(false);
     }
 
-    // ==========================================
-    // 4. QUIZ PLAYGROUND ENGINE
-    // ==========================================
-    let currentSetQuestions = [];
-    let currentAnswers = {};
+    function renderSidebarMenu() {
+      const container = document.getElementById("unitListContainer");
+      container.innerHTML = "";
+      const isOdia = currentTab === 'paper2';
+      const units = isOdia ? PAPER2_ODIA_UNITS : PAPER1_UNITS;
 
-    function startTimer() {
-      clearInterval(quizTimerInterval);
-      quizSeconds = 0;
-      updateTimerDisplay();
-      quizTimerInterval = setInterval(() => {
-        quizSeconds++;
-        updateTimerDisplay();
-      }, 1000);
-    }
+      document.getElementById("unitMenuTitle").innerText = isOdia ? "ଓଡ଼ିଆ ୧୦ ୟୁନିଟ୍" : "Paper 1 10 Units";
+      const user = cloudDb.users[currentUser];
 
-    function stopTimer() {
-      clearInterval(quizTimerInterval);
-    }
-
-    function updateTimerDisplay() {
-      const mins = String(Math.floor(quizSeconds / 60)).padStart(2, '0');
-      const secs = String(quizSeconds % 60).padStart(2, '0');
-      document.getElementById("liveTimerText").innerText = `${mins}:${secs}`;
-    }
-
-    function getAttemptedSetForUnit(unitId) {
-      const user = appDb.users[currentUser];
-      if (!user.history) user.history = {};
-      return new Set((user.history[unitId] || []).map(q => q.id));
+      units.forEach(u => {
+        const solved = (user.history && user.history[u.id]) ? user.history[u.id].length : 0;
+        const isActive = u.id === activeUnitId;
+        const btn = document.createElement("button");
+        btn.className = `w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium transition flex justify-between items-center ${
+          isActive ? 'bg-indigo-600 text-white font-semibold shadow' : 'text-slate-300 hover:bg-slate-800'
+        }`;
+        btn.onclick = () => loadUnit(u.id);
+        btn.innerHTML = `<span class="truncate pr-2">${u.name}</span><span class="text-[10px] px-1.5 py-0.5 rounded ${isActive ? 'bg-indigo-800' : 'bg-slate-800'}">${solved}</span>`;
+        container.appendChild(btn);
+      });
     }
 
     function generate10Questions(unitId) {
-      const attempted = getAttemptedSetForUnit(unitId);
       const list = [];
       const isOdia = unitId >= 101;
 
-      const curated = QUESTION_ARCHIVE[String(unitId)] || [];
-      for (const q of curated) {
-        if (!attempted.has(q.id) && list.length < 10) {
-          list.push(q);
+      for (let i = 1; i <= 10; i++) {
+        if (isOdia) {
+          list.push({
+            id: `P2-U${unitId}-Q${i}-${Date.now().toString(36)}`,
+            isOdia: true,
+            q: `[JRF ଉଚ୍ଚସ୍ତରୀୟ ପାଠ - ପ୍ରଶ୍ନ ${i}]: ଓଡ଼ିଆ ଭାଷା ଓ କାବ୍ୟତତ୍ତ୍ୱ ପରିପ୍ରେକ୍ଷୀରେ ନିମ୍ନ ବିବୃତିଗୁଡ଼ିକୁ ବିଚାର କରନ୍ତୁ:\nବିବୃତି I: ଦାଣ୍ଡି ବୃତ୍ତରେ କୌଣସି ନିର୍ଦ୍ଦିଷ୍ଟ ଅକ୍ଷର ସଂଖ୍ୟାର ନିୟମ ନଥାଏ।\nବିବୃତି II: ଭାଗବତ ନବାକ୍ଷରୀ ବୃତ୍ତରେ ରଚିତ ଏବଂ ପ୍ରତ୍ୟେକ ପାଦରେ ନଅ ଗୋଟି ଅକ୍ଷର ଥାଏ।`,
+            options: ["ଉଭୟ ବିବୃତି I ଓ II ସତ୍ୟ", "ବିବୃତି I ସତ୍ୟ ଏବଂ ବିବୃତି II ମିଥ୍ୟା", "ଉଭୟ ବିବୃତି ମିଥ୍ୟା", "ବିବୃତି I ମିଥ୍ୟା ଓ II ସତ୍ୟ"],
+            correct: 0,
+            exp: "ସାରଳା ଦାସଙ୍କ ଦାଣ୍ଡି ବୃତ୍ତ ମୁକ୍ତ ଛନ୍ଦ ଏବଂ ଜଗନ୍ନାଥ ଦାସଙ୍କ ଭାଗବତ ବୃତ୍ତ (ନବାକ୍ଷରୀ) ନିର୍ଦ୍ଦିଷ୍ଟ ୯ ଅକ୍ଷର ବିଶିଷ୍ଟ।",
+            example: "ସାରଳା ମହାଭାରତର ପଦ ପଢ଼ିବା ସମୟରେ ତାରଙ୍ଗାୟିତ ଗତି ଦେଖିବାକୁ ମିଳେ।"
+          });
+        } else {
+          list.push({
+            id: `P1-U${unitId}-Q${i}-${Date.now().toString(36)}`,
+            isOdia: false,
+            en: {
+              q: `[Paper 1 JRF - Question ${i}]: Statement I: Formative evaluation happens concurrently during instruction to diagnose gaps.\nStatement II: Summative assessment is purely utilized for semester grading.`,
+              options: ["Both Statement I and II are correct", "Both Statement I and II are incorrect", "Statement I is correct, Statement II is incorrect", "Statement I is incorrect, Statement II is correct"],
+              exp: "Formative evaluation provides live feedback; summative determines terminal grades.",
+              example: "Classroom pop quizzes (Formative) vs Final Board Exam marksheet (Summative)."
+            },
+            hi: {
+              q: `[Paper 1 JRF - प्रश्न ${i}]: कथन I: रचनात्मक मूल्यांकन शिक्षण के दौरान कमियों को पहचानने हेतु निरंतर होता है।\nकथन II: सत्रांत मूल्यांकन केवल अंतिम सत्र ग्रेडिंग के लिए किया जाता है।`,
+              options: ["कथन I और II दोनों सही हैं", "कथन I और II दोनों गलत हैं", "कथन I सही है, कथन II गलत है", "कथन I गलत है, कथन II सही है"],
+              exp: "रचनात्मक मूल्यांकन सीखने के दौरान होता है, जबकि सत्रांत अंत में परिणाम देने के लिए।",
+              example: "कक्षा के बीच पूछे गए प्रश्न (Formative) बनाम बोर्ड परीक्षा परिणाम (Summative)।"
+            },
+            correct: 0
+          });
         }
-      }
-
-      let counter = 1;
-      while (list.length < 10) {
-        const dyn = generateDynamicJRFQuestion(unitId, counter, isOdia);
-        if (!attempted.has(dyn.id)) {
-          list.push(dyn);
-        }
-        counter++;
       }
       return list;
     }
@@ -793,28 +691,28 @@
       currentAnswers = {};
 
       const isOdia = unitId >= 101;
-      const unit = isOdia 
-        ? PAPER2_ODIA_UNITS.find(u => u.id === unitId) 
-        : PAPER1_UNITS.find(u => u.id === unitId);
+      const u = isOdia ? PAPER2_ODIA_UNITS.find(x => x.id === unitId) : PAPER1_UNITS.find(x => x.id === unitId);
 
-      document.getElementById("activeUnitBadge").innerText = isOdia ? `ୟୁନିଟ୍ ${unit.id - 100}` : `Unit ${unit.id}`;
-      document.getElementById("activeUnitSubjectBadge").innerText = isOdia ? "ପେପର ୨ (ଓଡ଼ିଆ)" : "Paper 1 General";
-      document.getElementById("activeUnitTitle").innerText = unit.name;
-      document.getElementById("activeUnitDesc").innerText = unit.desc;
+      document.getElementById("activeUnitBadge").innerText = isOdia ? `ୟୁନିଟ୍ ${u.id - 100}` : `Unit ${u.id}`;
+      document.getElementById("activeUnitSubjectBadge").innerText = isOdia ? "ଓଡ଼ିଆ ସାହିତ୍ୟ" : "Paper 1";
+      document.getElementById("activeUnitTitle").innerText = u.name;
+      document.getElementById("activeUnitDesc").innerText = u.desc;
 
       currentSetQuestions = generate10Questions(unitId);
       renderQuestions(false);
-      renderUnitHistory();
-      renderUnitMenu();
-      updateMetrics();
+
+      clearInterval(quizTimer);
+      quizSeconds = 0;
+      quizTimer = setInterval(() => {
+        quizSeconds++;
+        const mins = String(Math.floor(quizSeconds / 60)).padStart(2, '0');
+        const secs = String(quizSeconds % 60).padStart(2, '0');
+        document.getElementById("liveTimerText").innerText = `${mins}:${secs}`;
+      }, 1000);
 
       document.getElementById("submitSetBtn").classList.remove("hidden");
       document.getElementById("nextSetBtn").classList.add("hidden");
-      document.getElementById("quizSummaryFeedback").innerText = isOdia 
-        ? "ସମସ୍ତ ୧୦ ପ୍ରଶ୍ନର ଉତ୍ତର ଦିଅନ୍ତୁ ଏବଂ ସବମିଟ୍ କରି ସଠିକ୍ ଉତ୍ତର ଓ ବିସ୍ତୃତ ବ୍ୟାଖ୍ୟା ଦେଖନ୍ତୁ।"
-        : "Attempt all 10 questions and submit to reveal answers, detailed explanations, and examples.";
-
-      startTimer();
+      document.getElementById("quizSummaryFeedback").innerText = "Answer all 10 questions and submit.";
     }
 
     function renderQuestions(isSubmitted = false) {
@@ -823,76 +721,51 @@
 
       currentSetQuestions.forEach((item, idx) => {
         const card = document.createElement("div");
-        card.className = "bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-sm transition";
+        card.className = "bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-sm";
 
-        let contentObj;
-        if (item.isOdia || currentTab === 'paper2') {
-          contentObj = item.odia;
-        } else {
-          contentObj = currentLang === 'hi' ? item.hi : item.en;
-        }
+        let qText = item.isOdia ? item.q : (currentLang === 'hi' ? item.hi.q : item.en.q);
+        let opts = item.isOdia ? item.options : (currentLang === 'hi' ? item.hi.options : item.en.options);
+        let expText = item.isOdia ? item.exp : (currentLang === 'hi' ? item.hi.exp : item.en.exp);
+        let exText = item.isOdia ? item.example : (currentLang === 'hi' ? item.hi.example : item.en.example);
 
-        const selectedOption = currentAnswers[idx];
-
-        let optionsHtml = contentObj.options.map((opt, optIdx) => {
-          let optStyle = "border-slate-800 bg-slate-950/60 hover:bg-slate-800/60 text-slate-300";
-          let badge = `<span class="h-5 w-5 rounded-full border border-slate-700 text-xs flex items-center justify-center mr-3 text-slate-400">${String.fromCharCode(65 + optIdx)}</span>`;
+        let optionsHtml = opts.map((opt, optIdx) => {
+          let style = "border-slate-800 bg-slate-950/60 text-slate-300";
+          let sel = currentAnswers[idx] === optIdx;
 
           if (isSubmitted) {
-            if (optIdx === item.correct) {
-              optStyle = "border-emerald-500/80 bg-emerald-950/40 text-emerald-200 font-semibold";
-              badge = `<span class="h-5 w-5 rounded-full bg-emerald-500 text-slate-950 font-bold text-xs flex items-center justify-center mr-3">✓</span>`;
-            } else if (selectedOption === optIdx) {
-              optStyle = "border-rose-500/80 bg-rose-950/40 text-rose-200 font-semibold";
-              badge = `<span class="h-5 w-5 rounded-full bg-rose-500 text-white font-bold text-xs flex items-center justify-center mr-3">✕</span>`;
-            }
-          } else if (selectedOption === optIdx) {
-            optStyle = "border-indigo-500 bg-indigo-950/60 text-indigo-200 font-semibold";
-            badge = `<span class="h-5 w-5 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center mr-3">●</span>`;
+            if (optIdx === item.correct) style = "border-emerald-500 bg-emerald-950/40 text-emerald-200 font-bold";
+            else if (sel) style = "border-rose-500 bg-rose-950/40 text-rose-200 font-bold";
+          } else if (sel) {
+            style = "border-indigo-500 bg-indigo-950/50 text-indigo-200 font-semibold";
           }
 
           return `
-            <div onclick="${isSubmitted ? '' : `chooseOption(${idx}, ${optIdx})`}"
-                 class="flex items-center p-3 rounded-xl border text-xs sm:text-sm cursor-pointer transition ${optStyle}">
-              ${badge}
-              <span class="leading-relaxed">${opt}</span>
+            <div onclick="${isSubmitted ? '' : `chooseOption(${idx}, ${optIdx})`}" class="flex items-center p-3 rounded-xl border text-xs sm:text-sm cursor-pointer transition ${style}">
+              <span class="mr-3 font-mono font-bold">${String.fromCharCode(65 + optIdx)}.</span>
+              <span>${opt}</span>
             </div>
           `;
         }).join("");
 
-        let explanationHtml = "";
+        let solBox = "";
         if (isSubmitted) {
-          const isCorrect = selectedOption === item.correct;
-          explanationHtml = `
-            <div class="mt-4 pt-4 border-t border-slate-800 bg-slate-950/60 p-4 rounded-xl">
-              <div class="flex items-center justify-between mb-2">
-                <div class="flex items-center gap-2">
-                  <span class="text-xs px-2.5 py-0.5 rounded-full font-bold ${isCorrect ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : 'bg-rose-950 text-rose-300 border border-rose-800'}">
-                    ${isCorrect ? '✓ Correct (+2 Marks)' : '✕ Incorrect (0 Mark)'}
-                  </span>
-                  <span class="text-xs text-slate-400">Correct Option: <strong>${String.fromCharCode(65 + item.correct)}</strong></span>
-                </div>
-                <button onclick="askAIToExplain('${encodeURIComponent(contentObj.q)}', '${encodeURIComponent(contentObj.options[item.correct])}')" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1 rounded-lg transition flex items-center gap-1 font-semibold">
-                  🤖 Ask AI Detailed Doubt
-                </button>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-200 mt-2"><strong class="text-indigo-400">${item.isOdia ? 'ସରଳ ବ୍ୟାଖ୍ୟା:' : 'Detailed Explanation:'}</strong> ${contentObj.exp}</p>
-              <p class="text-xs sm:text-sm text-amber-300/90 mt-2"><strong class="text-amber-400">${item.isOdia ? 'ବାସ୍ତବ ଉଦାହରଣ:' : 'Real-World Example:'}</strong> ${contentObj.example}</p>
+          const isRight = currentAnswers[idx] === item.correct;
+          solBox = `
+            <div class="mt-4 pt-3 border-t border-slate-800 bg-slate-950 p-3 rounded-xl text-xs space-y-1">
+              <span class="font-bold ${isRight ? 'text-emerald-400' : 'text-rose-400'}">${isRight ? '✓ Sahi Answer (+2)' : '✕ Galat Answer (0)'}</span>
+              <p class="text-slate-300 mt-1"><strong>Explanation:</strong> ${expText}</p>
+              <p class="text-amber-300"><strong>Example:</strong> ${exText}</p>
             </div>
           `;
         }
 
         card.innerHTML = `
-          <div class="flex justify-between items-center mb-3">
-            <span class="text-xs font-bold text-indigo-400 bg-indigo-950/60 border border-indigo-900 px-2 py-0.5 rounded">
-              Question ${idx + 1} of 10
-            </span>
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-xs font-bold text-indigo-400 bg-indigo-950/60 border border-indigo-900 px-2 py-0.5 rounded">Q ${idx + 1} of 10</span>
           </div>
-          <p class="text-sm sm:text-base font-medium text-slate-100 whitespace-pre-line mb-4 leading-relaxed">${contentObj.q}</p>
-          <div class="space-y-2">
-            ${optionsHtml}
-          </div>
-          ${explanationHtml}
+          <p class="text-sm font-medium text-slate-100 whitespace-pre-line mb-3 leading-relaxed">${qText}</p>
+          <div class="space-y-2">${optionsHtml}</div>
+          ${solBox}
         `;
         container.appendChild(card);
       });
@@ -904,501 +777,119 @@
     }
 
     function submitCurrentSet() {
-      const answeredTotal = Object.keys(currentAnswers).length;
-      if (answeredTotal < 10) {
-        alert(`You answered ${answeredTotal} of 10 questions. Please complete all 10 questions before submitting.`);
+      if (Object.keys(currentAnswers).length < 10) {
+        alert("Please complete all 10 questions before submitting.");
         return;
       }
+      clearInterval(quizTimer);
 
-      stopTimer();
-      const user = appDb.users[currentUser];
+      const user = cloudDb.users[currentUser];
       if (!user.history[activeUnitId]) user.history[activeUnitId] = [];
-
-      let correctCount = 0;
-      const formattedTime = document.getElementById("liveTimerText").innerText;
 
       currentSetQuestions.forEach((item, idx) => {
         const choice = currentAnswers[idx];
         const isRight = choice === item.correct;
-        if (isRight) correctCount++;
-
-        let contentObj;
-        if (item.isOdia || currentTab === 'paper2') {
-          contentObj = item.odia;
-        } else {
-          contentObj = currentLang === 'hi' ? item.hi : item.en;
-        }
 
         user.history[activeUnitId].push({
           id: item.id,
-          unitId: activeUnitId,
-          q: contentObj.q,
-          options: contentObj.options,
+          q: item.isOdia ? item.q : item.en.q,
+          options: item.isOdia ? item.options : item.en.options,
           selected: choice,
           correct: item.correct,
           isCorrect: isRight,
-          exp: contentObj.exp,
-          example: contentObj.example,
-          timeTaken: formattedTime,
-          date: new Date().toLocaleDateString()
+          exp: item.isOdia ? item.exp : item.en.exp,
+          example: item.isOdia ? item.example : item.en.example
         });
       });
 
-      saveDb();
+      saveCloudDb();
       renderQuestions(true);
-      renderUnitHistory();
-      renderUnitMenu();
       updateMetrics();
 
       document.getElementById("submitSetBtn").classList.add("hidden");
       document.getElementById("nextSetBtn").classList.remove("hidden");
-      document.getElementById("quizSummaryFeedback").innerHTML = `
-        <span class="text-emerald-400 font-bold">Set Completed in ${formattedTime}! Score: ${correctCount}/10 Correct (${correctCount * 2} Marks).</span>
-      `;
+      document.getElementById("quizSummaryFeedback").innerHTML = `<span class="text-emerald-400 font-bold">Set Submitted! Check explanations below.</span>`;
     }
 
     function loadNextSet() {
-      currentAnswers = {};
-      currentSetQuestions = generate10Questions(activeUnitId);
-      renderQuestions(false);
-
-      document.getElementById("submitSetBtn").classList.remove("hidden");
-      document.getElementById("nextSetBtn").classList.add("hidden");
-      document.getElementById("quizSummaryFeedback").innerText = "Attempt all 10 questions and submit to lock progress.";
-      startTimer();
+      loadUnit(activeUnitId);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ==========================================
-    // 5. WRONG ATTEMPTED QUESTIONS VAULT
-    // ==========================================
-    function getAllWrongQuestions() {
-      const user = appDb.users[currentUser];
-      if (!user || !user.history) return [];
-
-      const list = [];
-      Object.keys(user.history).forEach(uId => {
-        const unitQuestions = user.history[uId] || [];
-        unitQuestions.forEach(item => {
-          if (!item.isCorrect) {
-            list.push({ ...item, unitIdNumber: parseInt(uId) });
-          }
-        });
-      });
-      return list;
-    }
-
-    function filterWrongQuestions(mode) {
-      wrongFilterMode = mode;
-      document.getElementById('filterWrongAll').className = mode === 'all' ? "text-xs px-3 py-1 rounded-lg bg-indigo-600 text-white font-medium" : "text-xs px-3 py-1 rounded-lg bg-slate-800 text-slate-300 hover:text-white";
-      document.getElementById('filterWrongP1').className = mode === 'p1' ? "text-xs px-3 py-1 rounded-lg bg-indigo-600 text-white font-medium" : "text-xs px-3 py-1 rounded-lg bg-slate-800 text-slate-300 hover:text-white";
-      document.getElementById('filterWrongP2').className = mode === 'p2' ? "text-xs px-3 py-1 rounded-lg bg-indigo-600 text-white font-medium" : "text-xs px-3 py-1 rounded-lg bg-slate-800 text-slate-300 hover:text-white";
-      renderWrongQuestionsVault();
-    }
-
-    function renderWrongQuestionsVault() {
+    function renderWrongVault() {
       const container = document.getElementById("wrongQuestionsListContainer");
-      const allWrong = getAllWrongQuestions();
+      const user = cloudDb.users[currentUser];
+      const wrongs = [];
 
-      let filtered = allWrong;
-      if (wrongFilterMode === 'p1') {
-        filtered = allWrong.filter(x => x.unitIdNumber < 100);
-      } else if (wrongFilterMode === 'p2') {
-        filtered = allWrong.filter(x => x.unitIdNumber >= 101);
-      }
-
-      if (filtered.length === 0) {
-        container.innerHTML = `
-          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 text-center text-slate-400">
-            <p class="text-3xl mb-2">🎉</p>
-            <p class="font-bold text-white text-base">Koi Galat Sawal Nahi Mila!</p>
-            <p class="text-xs mt-1">Ya toh aapne abhi tak koi question galat nahi kiya hai, ya aapne saare mistakes clear kar diye hain.</p>
-          </div>
-        `;
-        return;
-      }
-
-      container.innerHTML = filtered.slice().reverse().map((item, idx) => {
-        const isOdia = item.unitIdNumber >= 101;
-        const unitMeta = isOdia 
-          ? PAPER2_ODIA_UNITS.find(u => u.id === item.unitIdNumber)
-          : PAPER1_UNITS.find(u => u.id === item.unitIdNumber);
-
-        return `
-          <div class="bg-slate-900 border border-rose-900/40 rounded-2xl p-5 shadow-sm">
-            <div class="flex justify-between items-center mb-3">
-              <span class="text-xs font-bold text-rose-400 bg-rose-950/60 border border-rose-900 px-2.5 py-0.5 rounded-full">
-                ${isOdia ? 'ଓଡ଼ିଆ ସାହିତ୍ୟ' : 'Paper 1'} • ${unitMeta ? unitMeta.name : `Unit ${item.unitIdNumber}`}
-              </span>
-              <span class="text-[10px] text-slate-500">Attempted on: ${item.date}</span>
-            </div>
-
-            <p class="text-sm font-semibold text-slate-100 whitespace-pre-line mb-3 leading-relaxed">${item.q}</p>
-
-            <!-- Wrong vs Right comparison -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs mb-3">
-              <div class="p-2.5 rounded-xl bg-rose-950/30 border border-rose-800/60 text-rose-200">
-                <span class="block font-bold text-rose-400 text-[10px] uppercase">❌ Your Wrong Choice:</span>
-                <p class="mt-1 font-medium">${item.options[item.selected] || 'Unanswered'}</p>
-              </div>
-              <div class="p-2.5 rounded-xl bg-emerald-950/30 border border-emerald-800/60 text-emerald-200">
-                <span class="block font-bold text-emerald-400 text-[10px] uppercase">✓ Right Verified Answer:</span>
-                <p class="mt-1 font-medium">${item.options[item.correct]}</p>
-              </div>
-            </div>
-
-            <!-- Detailed Explanation & Example -->
-            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2 text-xs">
-              <p class="text-slate-200 leading-relaxed"><strong class="text-indigo-400">💡 Detailed Solution:</strong> ${item.exp}</p>
-              <p class="text-amber-300 leading-relaxed"><strong class="text-amber-400">📌 Real-World Example:</strong> ${item.example}</p>
-            </div>
-
-            <!-- Ask AI Action button -->
-            <div class="mt-3 flex justify-end">
-              <button onclick="askAIToExplain('${encodeURIComponent(item.q)}', '${encodeURIComponent(item.options[item.correct])}')" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-2 rounded-xl transition flex items-center gap-1.5 shadow">
-                <span>🤖</span> Ask Multi-AI (Gemini / ChatGPT) About This Question
-              </button>
-            </div>
-          </div>
-        `;
-      }).join("");
-    }
-
-    function clearWrongHistoryPrompt() {
-      if (confirm("Kya aap sabhi recorded wrong questions ko clear karna chahte hain?")) {
-        const user = appDb.users[currentUser];
-        Object.keys(user.history || {}).forEach(uId => {
-          user.history[uId] = user.history[uId].filter(x => x.isCorrect);
+      Object.keys(user.history || {}).forEach(k => {
+        (user.history[k] || []).forEach(q => {
+          if (!q.isCorrect) wrongs.push(q);
         });
-        saveDb();
-        renderWrongQuestionsVault();
-        updateMetrics();
-      }
-    }
-
-    // ==========================================
-    // 6. MULTI-AI ASSISTANT ENGINE (Gemini, ChatGPT, Perplexity, Google)
-    // ==========================================
-    let activeAIEngine = "gemini";
-
-    function selectAIEngine(engine) {
-      activeAIEngine = engine;
-      const engines = ['gemini', 'chatgpt', 'perplexity', 'google'];
-      engines.forEach(e => {
-        const btn = document.getElementById("btnAI" + e.charAt(0).toUpperCase() + e.slice(1));
-        btn.className = e === engine 
-          ? "py-1 px-1 rounded bg-indigo-600 text-white text-center font-bold" 
-          : "py-1 px-1 rounded bg-slate-800 text-slate-300 text-center hover:bg-slate-700";
       });
 
-      const meta = {
-        gemini: { name: "Gemini JRF AI", emoji: "✨" },
-        chatgpt: { name: "ChatGPT 4o Reasoning", emoji: "🟢" },
-        perplexity: { name: "Perplexity Research AI", emoji: "🔵" },
-        google: { name: "Google DeepSearch AI", emoji: "🔴" }
-      };
-
-      document.getElementById("currentAIName").innerText = meta[engine].name;
-      document.getElementById("currentAIEmoji").innerText = meta[engine].emoji;
-    }
-
-    function toggleAIChat() {
-      const win = document.getElementById("aiChatWindow");
-      win.classList.toggle("hidden");
-      win.classList.toggle("flex");
-    }
-
-    function askAIToExplain(encodedQ, encodedAns) {
-      const q = decodeURIComponent(encodedQ);
-      const ans = decodeURIComponent(encodedAns);
-
-      const win = document.getElementById("aiChatWindow");
-      win.classList.remove("hidden");
-      win.classList.add("flex");
-
-      const prompt = `Please explain why this answer is correct in simple terms with an example:\nQuestion: ${q}\nCorrect Answer: ${ans}`;
-      document.getElementById("aiInput").value = prompt;
-      sendAIQuery();
-    }
-
-    function sendAIQuery() {
-      const input = document.getElementById("aiInput");
-      const query = input.value.trim();
-      if (!query) return;
-
-      const chatList = document.getElementById("aiMessageList");
-
-      // User Bubble
-      const userBubble = document.createElement("div");
-      userBubble.className = "bg-indigo-600 text-white p-3 rounded-xl ml-auto max-w-[85%] leading-relaxed text-xs shadow-sm";
-      userBubble.innerText = query;
-      chatList.appendChild(userBubble);
-      input.value = "";
-      chatList.scrollTop = chatList.scrollHeight;
-
-      // Typing Indicator
-      const loadingBubble = document.createElement("div");
-      loadingBubble.className = "bg-slate-800 text-slate-400 p-2.5 rounded-xl mr-auto text-xs animate-pulse";
-      loadingBubble.innerText = `${activeAIEngine.toUpperCase()} soch raha hai aur JRF standard explanation synthesize kar raha hai...`;
-      chatList.appendChild(loadingBubble);
-      chatList.scrollTop = chatList.scrollHeight;
-
-      setTimeout(() => {
-        loadingBubble.remove();
-        const botBubble = document.createElement("div");
-        botBubble.className = "bg-slate-800/90 text-slate-100 p-3.5 rounded-xl mr-auto max-w-[90%] border border-slate-700 leading-relaxed text-xs space-y-2 shadow";
-
-        let response = generateSynthesizedAIResponse(activeAIEngine, query);
-        botBubble.innerHTML = response;
-        chatList.appendChild(botBubble);
-        chatList.scrollTop = chatList.scrollHeight;
-      }, 700);
-    }
-
-    function generateSynthesizedAIResponse(engine, q) {
-      const qLower = q.toLowerCase();
-      let header = `<div class="font-bold text-indigo-400 mb-1 border-b border-slate-700 pb-1 flex justify-between items-center">
-        <span>Engine: ${engine.toUpperCase()} Intelligence</span>
-        <span class="text-[10px] text-emerald-400">Verified Answer</span>
-      </div>`;
-
-      let body = "";
-
-      if (qLower.includes("pramana") || qLower.includes("nyaya") || qLower.includes("vyapti") || qLower.includes("hetvabhasa")) {
-        body = `
-          <p><strong>1. Pramana Breakdown (Indian Logic):</strong> Nyaya darshan accepts 4 pramanas: Pratyaksha (Perception), Anumana (Inference), Upamana (Comparison), Sabda (Testimony). Advaita accepts 6 by adding Arthapatti (Postulation) and Anupalabdhi (Non-apprehension).</p>
-          <p><strong>2. Why this matters for JRF:</strong> In Anumana, smoke on the hill (Hetu) indicates fire (Sadhya) through universal relation (Vyapti). Agar hetu galat hai toh <em>Hetvabhasa</em> fallacy hoti hai.</p>
-          <p class="text-amber-300"><strong>Real-World Example:</strong> Subah uthkar geeli sadak dekh kar barish ka anumaan lagana Anumana hai.</p>
-        `;
-      } else if (qLower.includes("odia") || qLower.includes("sarala") || qLower.includes("chhaman") || qLower.includes("bhanja") || qLower.includes("jagannatha")) {
-        body = `
-          <p><strong>ଓଡ଼ିଆ ସାହିତ୍ୟ JRF ବିଶ୍ଳେଷଣ:</strong></p>
-          <p><strong>୧. ଐତିହାସିକ ଗୁରୁତ୍ୱ:</strong> ଫକୀର ମୋହନ ସେନାପତିଙ୍କ 'ଛମାଣ ଆଠଗୁଣ୍ଠ' ଉପନ୍ୟାସରେ ରାମଚନ୍ଦ୍ର ମଙ୍ଗରାଜଙ୍କ ଅତ୍ୟାଚାର ଏବଂ ବ୍ରିଟିଶ ଆଇନର ଅସହାୟତାକୁ ଦେଖାଯାଇଛି। ସାରଳା ଦାସଙ୍କ ମହାଭାରତ 'ଦାଣ୍ଡି ବୃତ୍ତ'ରେ ଲିଖିତ ଯାହା ଓଡ଼ିଆ ଭାଷାକୁ ଜାତୀୟ ମାନ୍ୟତା ଦେଇଥିଲା।</p>
-          <p class="text-amber-300"><strong>ଉଦାହରଣ:</strong> ଉପେନ୍ଦ୍ର ଭଞ୍ଜଙ୍କ କାବ୍ୟରେ ଅଳଙ୍କାର (ଯମକ, ଅନୁପ୍ରାସ) ଏବଂ ପ୍ରାଚୀନ କାବ୍ୟତତ୍ତ୍ୱର ପରମ ଉତ୍କର୍ଷ ଦେଖିବାକୁ ମିଳେ।</p>
-        `;
-      } else if (qLower.includes("formative") || qLower.includes("summative") || qLower.includes("evaluation") || qLower.includes("teaching")) {
-        body = `
-          <p><strong>Evaluation Systems Analysis:</strong></p>
-          <p>• <strong>Formative Assessment:</strong> Learning ke dauran hoti hai, iska aim grading nahi balki diagnostic feedback aur improvement hota hai.</p>
-          <p>• <strong>Summative Assessment:</strong> Course ke end me rank ya grade decide karne ke liye hoti hai.</p>
-          <p class="text-amber-300"><strong>Example:</strong> Khana banate waqt chef ka namak test karna Formative hai, aur guest ka khane ke baad score dena Summative hai.</p>
-        `;
-      } else {
-        body = `
-          <p><strong>Conceptual JRF Solution:</strong></p>
-          <p>Aapke poochhe gaye prashna par dhyan dein toh UGC NET Paper 1 aur Paper 2 me statements aur assertion-reason patterns par direct fact ke bajay 'Cause-and-Effect' ka rishta dekha jata hai.</p>
-          <p>Hamesha Statement I aur Statement II dono ko independently verify karein ki kya dono facts sahi hain, uske baad unka aapas me connection dekhein.</p>
-        `;
-      }
-
-      return header + body;
-    }
-
-    function openExternalSearch(engine) {
-      const q = document.getElementById("aiInput").value.trim() || "UGC NET JRF Paper 1 Question Analysis";
-      let url = "";
-      if (engine === 'chatgpt') url = `https://chatgpt.com/?q=${encodeURIComponent(q)}`;
-      if (engine === 'perplexity') url = `https://www.perplexity.ai/search?q=${encodeURIComponent(q)}`;
-      if (engine === 'google') url = `https://www.google.com/search?q=${encodeURIComponent(q + ' UGC NET JRF')}`;
-      window.open(url, '_blank');
-    }
-
-    // ==========================================
-    // 7. FILE STORAGE & PDF VAULT
-    // ==========================================
-    function handleFileUpload(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      const user = appDb.users[currentUser];
-      if (!user.uploadedFiles) user.uploadedFiles = [];
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        user.uploadedFiles.push({
-          id: "FILE-" + Date.now(),
-          name: file.name,
-          size: (file.size / 1024).toFixed(1) + " KB",
-          date: new Date().toLocaleDateString(),
-          data: e.target.result
-        });
-        saveDb();
-        renderVaultFiles();
-        alert(`✅ File "${file.name}" saved in browser vault.`);
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function renderVaultFiles() {
-      const user = appDb.users[currentUser];
-      const container = document.getElementById("vaultFileList");
-      const list = user.uploadedFiles || [];
-
-      if (list.length === 0) {
-        container.innerHTML = `<p class="text-xs text-slate-500 italic p-4 text-center">No books or notes uploaded yet. Click above to store study materials.</p>`;
+      if (wrongs.length === 0) {
+        container.innerHTML = `<div class="bg-slate-900 p-8 text-center rounded-2xl text-slate-400">🎉 Koi galat sawal nahi mila!</div>`;
         return;
       }
 
-      container.innerHTML = list.map((f, i) => `
-        <div class="flex items-center justify-between p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs">
-          <div class="flex items-center gap-3">
-            <span class="text-xl">📄</span>
-            <div>
-              <p class="text-slate-200 font-semibold truncate max-w-xs">${f.name}</p>
-              <p class="text-[10px] text-slate-400">${f.size} • ${f.date}</p>
-            </div>
+      container.innerHTML = wrongs.slice().reverse().map(w => `
+        <div class="bg-slate-900 border border-rose-900/50 rounded-2xl p-4 text-xs space-y-2">
+          <p class="font-bold text-slate-200">${w.q}</p>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="p-2 rounded bg-rose-950/40 text-rose-300 border border-rose-800">Your Choice: ${w.options[w.selected] || 'Blank'}</div>
+            <div class="p-2 rounded bg-emerald-950/40 text-emerald-300 border border-emerald-800">Correct: ${w.options[w.correct]}</div>
           </div>
-          <div class="flex gap-2">
-            <a href="${f.data}" download="${f.name}" class="bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold">Download</a>
-            <button onclick="deleteVaultFile(${i})" class="bg-rose-950/60 text-rose-300 border border-rose-800 px-3 py-1.5 rounded-lg text-xs">Delete</button>
+          <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-slate-300">
+            <p><strong>Solution:</strong> ${w.exp}</p>
+            <p class="text-amber-300 mt-1"><strong>Example:</strong> ${w.example}</p>
           </div>
         </div>
       `).join("");
     }
 
-    function deleteVaultFile(index) {
-      const user = appDb.users[currentUser];
-      user.uploadedFiles.splice(index, 1);
-      saveDb();
-      renderVaultFiles();
-    }
-
-    // ==========================================
-    // 8. METRICS, DEVICES & SYSTEM STARTUP
-    // ==========================================
     function updateMetrics() {
-      const user = appDb.users[currentUser];
+      const user = cloudDb.users[currentUser];
       let totalSolved = 0;
       let totalCorrect = 0;
       let totalWrong = 0;
 
       Object.keys(user.history || {}).forEach(uId => {
-        const items = user.history[uId] || [];
-        totalSolved += items.length;
-        totalCorrect += items.filter(x => x.isCorrect).length;
-        totalWrong += items.filter(x => !x.isCorrect).length;
+        const list = user.history[uId] || [];
+        totalSolved += list.length;
+        totalCorrect += list.filter(x => x.isCorrect).length;
+        totalWrong += list.filter(x => !x.isCorrect).length;
       });
 
-      const accuracy = totalSolved > 0 ? Math.round((totalCorrect / totalSolved) * 100) : 0;
-
+      const acc = totalSolved > 0 ? Math.round((totalCorrect / totalSolved) * 100) : 0;
       document.getElementById("totalAttemptedStat").innerText = totalSolved;
       document.getElementById("totalWrongStat").innerText = totalWrong;
-      document.getElementById("wrongQuestionsCounterBadge").innerText = totalWrong;
-      document.getElementById("overallAccuracyText").innerText = `${accuracy}%`;
-      document.getElementById("accuracyProgressBar").style.width = `${accuracy}%`;
+      document.getElementById("overallAccuracyText").innerText = `${acc}%`;
+      document.getElementById("accuracyProgressBar").style.width = `${acc}%`;
 
-      let grade = "Grade C (Needs Work)";
-      let gradeBadgeClass = "bg-rose-950 text-rose-300 border border-rose-800";
-
+      let grade = "Grade C";
       if (totalSolved >= 10) {
-        if (accuracy >= 80) {
-          grade = "Grade A+ (JRF Confirmed)";
-          gradeBadgeClass = "bg-emerald-950 text-emerald-300 border border-emerald-800";
-        } else if (accuracy >= 65) {
-          grade = "Grade A (NET Qualified)";
-          gradeBadgeClass = "bg-indigo-950 text-indigo-300 border border-indigo-800";
-        } else if (accuracy >= 50) {
-          grade = "Grade B+ (Borderline)";
-          gradeBadgeClass = "bg-amber-950 text-amber-300 border border-amber-800";
-        }
+        if (acc >= 80) grade = "Grade A+ (JRF Confirmed)";
+        else if (acc >= 65) grade = "Grade A (NET Qualified)";
+        else if (acc >= 50) grade = "Grade B+";
+      }
+      document.getElementById("jrfGradeBadge").innerText = grade;
+    }
+
+    function refreshGlobalUI() {
+      document.getElementById("headerCandidateInfo").innerText = `User: ${currentUser}`;
+      document.getElementById("roleIndicatorBadge").innerText = isAdmin ? "SuperAdmin" : "Candidate";
+
+      if (isAdmin) {
+        document.getElementById("tabBtnAdminPanel").classList.remove("hidden");
+      } else {
+        document.getElementById("tabBtnAdminPanel").classList.add("hidden");
       }
 
-      const badgeElem = document.getElementById("jrfGradeBadge");
-      badgeElem.innerText = grade;
-      badgeElem.className = `text-xs px-2 py-0.5 rounded font-bold ${gradeBadgeClass}`;
-    }
-
-    function renderUnitMenu() {
-      const container = document.getElementById("unitListContainer");
-      container.innerHTML = "";
-
-      const units = currentTab === 'paper2' ? PAPER2_ODIA_UNITS : PAPER1_UNITS;
-      document.getElementById("unitMenuTitle").innerText = currentTab === 'paper2' ? "ଓଡ଼ିଆ ସାହିତ୍ୟ ୧୦ ୟୁନିଟ୍" : "Paper 1 10 Units";
-
-      const user = appDb.users[currentUser];
-
-      units.forEach(u => {
-        const attempted = (user.history && user.history[u.id]) ? user.history[u.id].length : 0;
-        const isActive = u.id === activeUnitId;
-        const btn = document.createElement("button");
-        btn.className = `w-full text-left px-3 py-2.5 rounded-xl text-xs font-medium transition flex justify-between items-center ${
-          isActive ? 'bg-indigo-600 text-white font-semibold shadow-md' : 'text-slate-300 hover:bg-slate-800/60'
-        }`;
-        btn.onclick = () => loadUnit(u.id);
-        btn.innerHTML = `
-          <span class="truncate pr-2">${u.name}</span>
-          <span class="text-[10px] px-1.5 py-0.5 rounded ${isActive ? 'bg-indigo-800 text-indigo-200' : 'bg-slate-800 text-slate-400'}">${attempted}</span>
-        `;
-        container.appendChild(btn);
-      });
-    }
-
-    function renderUnitHistory() {
-      const user = appDb.users[currentUser];
-      const historyList = (user.history && user.history[activeUnitId]) ? user.history[activeUnitId] : [];
-      const container = document.getElementById("unitHistoryLogs");
-      document.getElementById("historyUnitCounter").innerText = `${historyList.length} Attempted`;
-
-      if (historyList.length === 0) {
-        container.innerHTML = `<p class="text-xs text-slate-500 italic p-3 text-center">No questions completed for this unit yet.</p>`;
-        return;
-      }
-
-      container.innerHTML = historyList.slice().reverse().map(h => `
-        <div class="p-3 bg-slate-950/80 border border-slate-800 rounded-xl text-xs space-y-1">
-          <div class="flex justify-between items-center">
-            <span class="font-bold ${h.isCorrect ? 'text-emerald-400' : 'text-rose-400'}">
-              ${h.isCorrect ? '✓ Correct (+2)' : '✕ Incorrect (0)'}
-            </span>
-            <span class="text-[10px] text-slate-500">⏱️ ${h.timeTaken || '00:00'} • ${h.date}</span>
-          </div>
-          <p class="text-slate-200 line-clamp-2">${h.q.replace(/\n/g, ' ')}</p>
-          <p class="text-slate-400 text-[11px]">Selected: <span class="text-slate-300 font-medium">${h.options[h.selected]}</span></p>
-        </div>
-      `).join("");
-    }
-
-    function openDevicesModal() {
-      const user = appDb.users[currentUser];
-      const container = document.getElementById("devicesListContainer");
-      const list = user.devices || [];
-
-      document.getElementById("deviceCountBadge").innerText = list.length;
-      container.innerHTML = list.map(dev => `
-        <div class="p-3 bg-slate-950 border border-slate-800 rounded-xl flex items-center justify-between text-xs">
-          <div class="flex items-center gap-3">
-            <span class="text-xl">💻</span>
-            <div>
-              <p class="font-bold text-slate-200">${dev.name}</p>
-              <p class="text-[10px] text-slate-500 font-mono">Platform: ${dev.platform} • ID: ${dev.id}</p>
-            </div>
-          </div>
-          <div class="text-right">
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">${dev.status}</span>
-            <p class="text-[10px] text-slate-500 mt-1">Active: ${dev.lastActive}</p>
-          </div>
-        </div>
-      `).join("");
-
-      document.getElementById("devicesModal").classList.remove("hidden");
-      document.getElementById("devicesModal").classList.add("flex");
-    }
-
-    function closeDevicesModal() {
-      document.getElementById("devicesModal").classList.add("hidden");
-      document.getElementById("devicesModal").classList.remove("flex");
-    }
-
-    function refreshUI() {
-      document.getElementById("headerCandidateInfo").innerText = `Candidate: ${currentUser}`;
-      renderUnitMenu();
-      loadUnit(activeUnitId);
+      switchTab('paper1');
       updateMetrics();
-      const user = appDb.users[currentUser];
-      document.getElementById("deviceCountBadge").innerText = (user.devices || []).length;
     }
 
-    window.addEventListener("DOMContentLoaded", initSystem);
+    window.addEventListener("DOMContentLoaded", initCloudVault);
   </script>
 </body>
 </html>
