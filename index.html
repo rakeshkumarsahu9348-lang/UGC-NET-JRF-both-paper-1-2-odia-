@@ -15,9 +15,11 @@
 </head>
 <body class="bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 text-slate-100 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
 
-  <!-- AUTHENTICATION WITH MOBILE & OTP -->
+  <!-- AUTHENTICATION (NO MOBILE / NO OTP - WITH LIVE USERNAME CHECK) -->
   <div id="authModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center z-50 p-4">
     <div class="bg-slate-900/95 border border-indigo-500/30 w-full max-w-md rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+      <div class="absolute -top-12 -right-12 w-32 h-32 bg-indigo-500/20 rounded-full blur-2xl pointer-events-none"></div>
+      
       <div class="text-center mb-6">
         <div class="inline-flex h-14 w-14 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 items-center justify-center font-extrabold text-2xl text-white shadow-lg mb-3">
           JRF
@@ -26,21 +28,13 @@
         <p class="text-xs text-indigo-300/80 mt-1">Paper 1 & Paper 2 Odia Verified Cloud Access</p>
       </div>
 
+      <!-- Auth Form -->
       <div class="space-y-4 text-xs">
         <div>
           <label class="font-semibold text-slate-300 block mb-1">User ID / Candidate Username</label>
-          <input type="text" id="authUsername" placeholder="e.g. rakesh_jrf" class="w-full bg-slate-800/80 border border-slate-700 focus:border-indigo-500 px-3.5 py-2.5 rounded-xl text-sm text-white focus:outline-none transition" />
-        </div>
-        <div>
-          <label class="font-semibold text-slate-300 block mb-1">Mobile Number (SMS / WhatsApp OTP Verification)</label>
-          <div class="flex gap-2">
-            <input type="tel" id="authMobile" placeholder="10 Digit Mobile No" class="flex-1 bg-slate-800/80 border border-slate-700 focus:border-indigo-500 px-3.5 py-2.5 rounded-xl text-sm text-white focus:outline-none transition" />
-            <button onclick="requestLiveOTP()" class="bg-indigo-600 hover:bg-indigo-500 px-3 py-2 rounded-xl text-white font-semibold transition">Get OTP</button>
-          </div>
-        </div>
-        <div id="otpInputContainer" class="hidden">
-          <label class="font-semibold text-emerald-400 block mb-1">Enter 4-Digit Security OTP</label>
-          <input type="text" id="authOTP" placeholder="Enter OTP shown above" class="w-full bg-slate-800/90 border border-emerald-500 px-3.5 py-2.5 rounded-xl text-sm text-white font-mono tracking-widest text-center focus:outline-none" />
+          <input type="text" id="authUsername" oninput="checkUsernameAvailability()" placeholder="Choose unique User ID" class="w-full bg-slate-800/80 border border-slate-700 focus:border-indigo-500 px-3.5 py-2.5 rounded-xl text-sm text-white focus:outline-none transition" />
+          <!-- Live Detection Message -->
+          <p id="usernameLiveFeedback" class="text-[11px] mt-1 hidden font-semibold"></p>
         </div>
         <div>
           <label class="font-semibold text-slate-300 block mb-1">Password</label>
@@ -50,7 +44,7 @@
           <button onclick="handleAuth('login')" class="flex-1 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-bold py-3 rounded-xl text-sm shadow-lg shadow-indigo-600/30 transition">
             Login Securely
           </button>
-          <button onclick="handleAuth('register')" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold py-3 rounded-xl text-sm transition">
+          <button id="registerBtn" onclick="handleAuth('register')" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold py-3 rounded-xl text-sm transition">
             New Register
           </button>
         </div>
@@ -207,7 +201,7 @@
           <div class="flex justify-between items-center">
             <div>
               <h2 class="text-xl font-extrabold text-amber-400">⚙️ Master Admin Live Command Center</h2>
-              <p class="text-xs text-slate-300 mt-0.5">Registered candidates database, live battery percentage, device models & performance logs</p>
+              <p class="text-xs text-slate-300 mt-0.5">Registered candidates database, device sessions & performance logs</p>
             </div>
             <button onclick="triggerSound(); refreshAdminData()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs transition shadow-lg">
               🔄 Force Sync Live
@@ -344,7 +338,7 @@
     ];
 
     // ==========================================
-    // 3. INFINITE PROCEDURAL JRF QUESTION GENERATORS
+    // 3. COMPLETE UNIT-SPECIFIC QUESTION GENERATOR (FIXED)
     // ==========================================
     function getAttemptedIds(uId) {
       const user = cloudDb.users[currentUser];
@@ -368,38 +362,87 @@
     }
 
     function createQuestionForUnit(uId, s) {
-      const isOdia = uId >= 101;
       const qKey = `${uId}-${s}-${Date.now().toString(36)}-${Math.random().toString(36).substr(2, 4)}`;
 
-      if (isOdia) {
-        const odiaTemplates = [
-          {
-            q: `[ୟୁନିଟ୍ ${uId - 100} ବିଶେଷଜ୍ଞ ପ୍ରଶ୍ନ - ସେଟ୍ ${s}]: ଓଡ଼ିଆ ସାହିତ୍ୟ ପରିପ୍ରେକ୍ଷୀରେ ନିମ୍ନ ବିବୃତିଗୁଡ଼ିକର ବିଚାର କରନ୍ତୁ:\nବିବୃତି I: ଦାଣ୍ଡି ବୃତ୍ତରେ କୌଣସି ଅକ୍ଷର ସଂଖ୍ୟାର ନିର୍ଦ୍ଦିଷ୍ଟ ନିୟମ ନାହିଁ, ଏହା ପାଦାନ୍ତ ମିଳନ ଉପରେ ଆଧାରିତ।\nବିବୃତି II: ଭାଗବତ ବୃତ୍ତରେ ପ୍ରତ୍ୟେକ ପାଦ ନବାକ୍ଷରୀ (୯ ଅକ୍ଷର) ବିଶିଷ୍ଟ।`,
-            options: ["ଉଭୟ ବିବୃତି I ଓ II ସତ୍ୟ", "ବିବୃତି I ସତ୍ୟ ଏବଂ ବିବୃତି II ମିଥ୍ୟା", "ଉଭୟ ବିବୃତି ମିଥ୍ୟା", "ବିବୃତି I ମିଥ୍ୟା ଓ II ସତ୍ୟ"],
-            correct: 0,
-            exp: "ସାରଳା ଦାସଙ୍କ ଦାଣ୍ଡି ବୃତ୍ତ ଏକ ମୁକ୍ତ ଛନ୍ଦ ଏବଂ ଜଗନ୍ନାଥ ଦାସଙ୍କ ଭାଗବତ ନବାକ୍ଷରୀ ବୃତ୍ତରେ ପ୍ରତିଷ୍ଠିତ।",
-            example: "ସାରଳା ମହାଭାରତ ଓ ଜଗନ୍ନାଥ ଦାସଙ୍କ ଭାଗବତର ପଦ୍ୟାବଳୀ।"
-          },
-          {
-            q: `[ୟୁନିଟ୍ ${uId - 100} କାବ୍ୟତତ୍ତ୍ୱ - ସେଟ୍ ${s}]: ରସ ନିଷ୍ପତ୍ତି ସମ୍ପର୍କରେ ଭରତମୁନିଙ୍କ ରସସୂତ୍ର ଅନୁଯାୟୀ କେଉଁ ଉପାଦାନଟି ଅନ୍ତର୍ଭୁକ୍ତ ନୁହେଁ?`,
-            options: ["ବିଭାବ", "ଅନୁଭାବ", "ବ୍ୟଭିଚାରୀ ଭାବ", "ବକ୍ରୋକ୍ତି"],
-            correct: 3,
-            exp: "ଭରତଙ୍କ ସୂତ୍ର ହେଉଛି 'ବିଭାବାନୁଭାବ ବ୍ୟଭିଚାରି ସଂଯୋଗାଦ୍ରସ ନିଷ୍ପତ୍ତିଃ'। ବକ୍ରୋକ୍ତି ହେଉଛି କୁନ୍ତକଙ୍କ କାବ୍ୟତତ୍ତ୍ୱ।",
-            example: "କାବ୍ୟରେ ସ୍ଥାୟୀ ଭାବ ରସରେ ପରିଣତ ହେବା ପାଇଁ ବିଭାବ ଓ ଅନୁଭାବର ପ୍ରୟୋଜନ ହୁଏ।"
-          },
-          {
-            q: `[ୟୁନିଟ୍ ${uId - 100} ସାହିତ୍ୟ ଇତିହାସ - ସେଟ୍ ${s}]: ଫକୀର ମୋହନଙ୍କ 'ଛମାଣ ଆଠଗୁଣ୍ଠ'ରେ କେଉଁ ଚରିତ୍ରଟି ଶୋଷକ ସାମନ୍ତବାଦର ପ୍ରତୀକ ଅଟେ?`,
-            options: ["ରାମଚନ୍ଦ୍ର ମଙ୍ଗରାଜ", "ଭଗିଆ", "ଶେଖ ଦିଲଦାର", "ମୁକୁନ୍ଦ"],
-            correct: 0,
-            exp: "ରାମଚନ୍ଦ୍ର ମଙ୍ଗରାଜ ହେଉଛନ୍ତି ମୁଖ୍ୟ ଖଳନାୟକ ଯିଏ ନିରୀହ ପ୍ରଜାଙ୍କ ଜମି ହଡ଼ପ କରୁଥିଲେ।",
-            example: "ଊନବିଂଶ ଶତାବ୍ଦୀର ଔପନିବେଶିକ ଓଡ଼ିଶାର ବାସ୍ତବ ଚିତ୍ର।"
-          }
+      // 1. PAPER 2: ODIA SPECIFIC UNITS
+      if (uId >= 101) {
+        const odiaData = {
+          101: [
+            { q: `[ୟୁନିଟ୍ ୧: ଭାଷା ବିଜ୍ଞାନ - ପ୍ରଶ୍ନ ${s}]: ଓଡ଼ିଆ ଭାଷାରେ 'ତତ୍ସମ' ଶବ୍ଦ କହିଲେ କେଉଁଗୁଡ଼ିକୁ ବୁଝାଏ?`, options: ["ସଂସ୍କୃତ ସହିତ ସମାନ ଅବିକଳ ଶବ୍ଦ", "ସଂସ୍କୃତରୁ ବିକୃତ ହୋଇ ଆସିଥିବା ଶବ୍ଦ", "ଦେଶଜ ଶବର ଶବ୍ଦ", "ଇଂରାଜୀ ଭାଷାର ଶବ୍ଦ"], exp: "ଯେଉଁ ଶବ୍ଦ ସଂସ୍କୃତରୁ ଅପରିବର୍ତ୍ତିତ ଭାବେ ଓଡ଼ିଆରେ ବ୍ୟବହୃତ ହୁଏ ତାହା ତତ୍ସମ (ଯଥା: ସୂର୍ଯ୍ୟ, ନଦୀ)।", example: "ସୂର୍ଯ୍ୟ, ପର୍ବତ, ଧର୍ମ।" },
+            { q: `[ୟୁନିଟ୍ ୧: ଭାଷା ବିଜ୍ଞାନ - ପ୍ରଶ୍ନ ${s}]: ଓଡ଼ିଆରେ 'ହାତୀ' ଶବ୍ଦଟି କେଉଁ ଶ୍ରେଣୀର ଅଟେ?`, options: ["ତଦ୍ଭବ (ସଂସ୍କୃତ 'ହସ୍ତୀ'ରୁ ଜାତ)", "ତତ୍ସମ", "ଦେଶଜ", "ଯାବନିକ"], exp: "ସଂସ୍କୃତ 'ହସ୍ତୀ'ରୁ ପ୍ରାକୃତ ଦେଇ 'ହାତୀ' ହୋଇଛି, ତେଣୁ ଏହା ତଦ୍ଭବ।", example: "ଅଗ୍ନି ➔ ନିଆଁ, ଘୃତ ➔ ଘିଅ।" }
+          ],
+          102: [
+            { q: `[ୟୁନିଟ୍ ୨: ପ୍ରାଚୀନ ସାହିତ୍ୟ - ପ୍ରଶ୍ନ ${s}]: ସାରଳା ଦାସଙ୍କ ମହାଭାରତ କେଉଁ ଛନ୍ଦ ବା ବୃତ୍ତରେ ରଚିତ?`, options: ["ଦାଣ୍ଡି ବୃତ୍ତ (ମୁକ୍ତ ଛନ୍ଦ)", "ନବାକ୍ଷରୀ ବୃତ୍ତ", "ଶଙ୍କରାଭରଣ", "ବଙ୍ଗଳାଶ୍ରୀ"], exp: "ସାରଳା ମହାଭାରତ ଅକ୍ଷର ସଂଖ୍ୟାର ନିର୍ଦ୍ଦିଷ୍ଟ ନିୟମ ନଥିବା 'ଦାଣ୍ଡି ବୃତ୍ତ'ରେ ଲିଖିତ।", example: "ଆଦିକବି ସାରଳା ଦାସଙ୍କ ଚଣ୍ଡୀ ପୁରାଣ ଓ ବିଳଙ୍କା ରାମାୟଣ ମଧ୍ୟ ଦାଣ୍ଡି ବୃତ୍ତରେ ରଚିତ।" },
+            { q: `[ୟୁନିଟ୍ ୨: ପଞ୍ଚସଖା ସାହିତ୍ୟ - ପ୍ରଶ୍ନ ${s}]: ଜଗନ୍ନାଥ ଦାସଙ୍କ 'ଓଡ଼ିଆ ଭାଗବତ' କେଉଁ ବୃତ୍ତରେ ରଚିତ?`, options: ["ନବାକ୍ଷରୀ ବୃତ୍ତ (୯ ଅକ୍ଷର ବିଶିଷ୍ଟ)", "ଦାଣ୍ଡି ବୃତ୍ତ", "ଚୋଖି", "ରାମକେରୀ"], exp: "ଓଡ଼ିଆ ଭାଗବତ ପ୍ରତ୍ୟେକ ପାଦରେ ୯ ଗୋଟି ଅକ୍ଷର ଥିବା ନବାକ୍ଷରୀ ବୃତ୍ତରେ ରଚିତ।", example: "ଭାଗବତ ଟୁଙ୍ଗୀରେ ପାଠ କରାଯାଉଥିବା ନବାକ୍ଷରୀ ପଦ୍ୟ।" }
+          ],
+          103: [
+            { q: `[ୟୁନିଟ୍ ୩: ରୀତି ସାହିତ୍ୟ - ପ୍ରଶ୍ନ ${s}]: କବିସମ୍ରାଟ ଉପେନ୍ଦ୍ର ଭଞ୍ଜଙ୍କ କେଉଁ କାବ୍ୟଟି ପ୍ରତ୍ୟେକ ପଦ 'ବ' ଅକ୍ଷର ନିୟମରେ ରଚିତ?`, options: ["ବୈଦେହୀଶ ବିଳାସ", "ଲାବଣ୍ୟବତୀ", "କୋଟି ବ୍ରହ୍ମାଣ୍ଡ ସୁନ୍ଦରୀ", "ପ୍ରେମ ସୁଧାନିଧି"], exp: "ବୈଦେହୀଶ ବିଳାସ କାବ୍ୟର ପ୍ରତ୍ୟେକ ପାଦ 'ବ' ବର୍ଣ୍ଣରେ ଆରମ୍ଭ ହୋଇଥାଏ।", example: "'ବିହି ବିହିଲା କି ଏ ଲାବଣ୍ୟବତୀ'।" }
+          ],
+          105: [
+            { q: `[ୟୁନିଟ୍ ୫: କଥା ସାହିତ୍ୟ - ପ୍ରଶ୍ନ ${s}]: ଫକୀର ମୋହନ ସେନାପତିଙ୍କ 'ଛମାଣ ଆଠଗୁଣ୍ଠ' ଉପନ୍ୟାସରେ ଶୋଷିତ ବୁଣାକାର ଦମ୍ପତି କିଏ?`, options: ["ଭଗିଆ ଓ ସାରିଆ", "ମଙ୍ଗରାଜ ଓ ଚମ୍ପା", "ମୁକୁନ୍ଦ ଓ ଶାରଦା", "ସନିଆ ଓ ରତନୀ"], exp: "ରାମଚନ୍ଦ୍ର ମଙ୍ଗରାଜଙ୍କ ଷଡ଼ଯନ୍ତ୍ରର ଶିକାର ହୋଇ ଭଗିଆ ଓ ସାରିଆ ସର୍ବସ୍ୱାନ୍ତ ହୋଇଥିଲେ।", example: "ଓଡ଼ିଆ ବାସ୍ତବବାଦୀ ଉପନ୍ୟାସର କାଳଜୟୀ ଚରିତ୍ର।" }
+          ]
+        };
+
+        const defaultOdia = [
+          { q: `[ୟୁନିଟ୍ ${uId - 100} ଓଡ଼ିଆ ସାହିତ୍ୟ - ପ୍ରଶ୍ନ ${s}]: ଭରତ ମୁନିଙ୍କ ରସସୂତ୍ର ଅନୁଯାୟୀ ରସ ନିଷ୍ପତ୍ତି କାହାର ସଂଯୋଗରୁ ହୁଏ?`, options: ["ବିଭାବ, ଅନୁଭାବ ଓ ବ୍ୟଭିଚାରୀ ଭାବ", "ଅଳଙ୍କାର ଓ ରୀତି", "ବକ୍ରୋକ୍ତି ଓ ଧ୍ୱନି", "ଦୋଷ ଓ ଗୁଣ"], exp: "'ବିଭାବାନୁଭାବ ବ୍ୟଭିଚାରି ସଂଯୋଗାଦ୍ରସ ନିଷ୍ପତ୍ତିଃ' ରସସୂତ୍ର ଅଟେ।", example: "ନାଟ୍ୟଶାସ୍ତ୍ରର ମୂଳ ରସ ନିଷ୍ପତ୍ତି ନିୟମ।" }
         ];
-        const pick = odiaTemplates[s % odiaTemplates.length];
-        return { id: `P2-${qKey}`, isOdia: true, ...pick };
+
+        const arr = odiaData[uId] || defaultOdia;
+        const pick = arr[s % arr.length];
+        return { id: `P2-${qKey}`, isOdia: true, ...pick, correct: 0 };
       }
 
-      // Paper 1 Units Engine
+      // 2. PAPER 1: INDIVIDUAL UNITS (UNIT 1 TO 10)
+      if (uId === 1) { // Teaching Aptitude
+        const bank = [
+          {
+            en: { q: `[Unit 1: Teaching Aptitude - Set ${s}]: Which level of teaching is primarily focused on critical problem-solving and creative hypothesis evaluation?`, options: ["Reflective Level (Hunt's Model)", "Memory Level (Herbart's Model)", "Understanding Level (Morrison's Model)", "Autonomous Development Level"], exp: "Reflective level operates at the highest cognitive domain requiring independent problem-solving.", example: "Analyzing real-world economic scenarios rather than memorizing definitions." },
+            hi: { q: `[यूनिट 1: शिक्षण अभिवृत्ति - सेट ${s}]: शिक्षण का कौन सा स्तर मुख्य रूप से आलोचनात्मक समस्या-समाधान पर केंद्रित है?`, options: ["विमर्शी स्तर (हंट मॉडल)", "स्मृति स्तर (हर्बर्ट मॉडल)", "बोध स्तर (मॉरिसन मॉडल)", "स्वायत्त विकास स्तर"], exp: "विमर्शी स्तर उच्चतम संज्ञानात्मक स्तर है जो स्वतंत्र चिंतन को बढ़ावा देता है।", example: "असली समस्या पर समाधान मॉडल तैयार करना।" }
+          },
+          {
+            en: { q: `[Unit 1: Teaching Aptitude - Set ${s}]: Continuous assessment conducted during instructional delivery to diagnose learning gaps is known as:`, options: ["Formative Assessment", "Summative Assessment", "Norm-Referenced Assessment", "Criterion-Referenced Assessment"], exp: "Formative assessment provides diagnostic remedial feedback during learning.", example: "Weekly pop quizzes during lecture sessions." },
+            hi: { q: `[यूनिट 1: शिक्षण अभिवृत्ति - सेट ${s}]: शिक्षण के दौरान कमियों को पहचानने हेतु निरंतर किया जाने वाला मूल्यांकन क्या कहलाता है?`, options: ["रचनात्मक मूल्यांकन (Formative)", "सत्रांत मूल्यांकन (Summative)", "मानक-संदर्भित मूल्यांकन", "निकष-संदर्भित मूल्यांकन"], exp: "रचनात्मक मूल्यांकन सीखने के दौरान उपचारात्मक प्रतिक्रिया देता है।", example: "कक्षा के बीच में पूछे जाने वाले प्रश्न।" }
+          }
+        ];
+        const p = bank[s % bank.length];
+        return { id: `P1-${qKey}`, isOdia: false, ...p, correct: 0 };
+      }
+
+      if (uId === 2) { // Research Aptitude
+        const bank = [
+          {
+            en: { q: `[Unit 2: Research Aptitude - Set ${s}]: Which epistemological paradigm asserts that reality is socially constructed and subjective?`, options: ["Post-Positivism & Interpretivism", "Positivism", "Strict Empiricism", "Logical Behaviourism"], exp: "Post-positivism rejects a single objective reality and values qualitative contextual interpretation.", example: "Ethnographic study of cultural traditions." },
+            hi: { q: `[यूनिट 2: अनुसंधान अभिवृत्ति - सेट ${s}]: कौन सा दृष्टिकोण मानता है कि वास्तविकता सामाजिक रूप से निर्मित और व्यक्तिपरक है?`, options: ["उत्तर-प्रत्यक्षवाद और व्याख्यात्मकता", "प्रत्यक्षवाद (Positivism)", "कठोर अनुभववाद", "तार्किक व्यवहारवाद"], exp: "उत्तर-प्रत्यक्षवाद बहुआयामी व्यक्तिपरक वास्तविकताओं को स्वीकार करता है।", example: "सांस्कृतिक परंपराओं का गुणात्मक अध्ययन।" }
+          },
+          {
+            en: { q: `[Unit 2: Research Aptitude - Set ${s}]: A researcher divides the population into homogeneous strata before applying random sampling. This is:`, options: ["Stratified Random Sampling", "Snowball Sampling", "Quota Sampling", "Convenience Sampling"], exp: "Stratified sampling ensures proportional representation of diverse subgroups.", example: "Sampling 100 urban and 100 rural candidates separately." },
+            hi: { q: `[यूनिट 2: अनुसंधान अभिवृत्ति - सेट ${s}]: शोधकर्ता समग्र को समरूप स्तरों में बांटकर यादृच्छिक नमूना लेता है। यह क्या है?`, options: ["स्तरीकृत यादृच्छिक प्रतिचयन (Stratified)", "स्नोबॉल प्रतिचयन", "कोटा प्रतिचयन", "सुविधाजनक प्रतिचयन"], exp: "स्तरीकृत प्रतिचयन सभी उप-समूहों का उचित प्रतिनिधित्व सुनिश्चित करता है।", example: "शहरी और ग्रामीण छात्रों का अलग-अलग अनुपात में चयन।" }
+          }
+        ];
+        const p = bank[s % bank.length];
+        return { id: `P1-${qKey}`, isOdia: false, ...p, correct: 0 };
+      }
+
+      if (uId === 3) { // Comprehension
+        return {
+          id: `P1-${qKey}`,
+          isOdia: false,
+          en: { q: `[Unit 3: Comprehension - Set ${s}]: In analytical reading, what does determining an author's 'implicit tone' entail?`, options: ["Inferring unstated attitude and emotional inclination from lexical choices", "Counting total word length", "Memorizing direct grammatical nouns", "Copying the title"], exp: "Implicit tone deduction requires analyzing subtleties, satire, or irony beyond literal definitions.", example: "Detecting sarcasm when an author writes 'what a brilliant disaster'." },
+          hi: { q: `[यूनिट 3: बोध (Comprehension) - सेट ${s}]: विश्लेषणात्मक पठन में लेखक के 'अंतर्निहित स्वर' को समझने का क्या अर्थ है?`, options: ["शब्दों के चयन से लेखक के दृष्टिकोण और भाव का अनुमान लगाना", "कुल शब्दों की संख्या गिनना", "व्याकरण के नियमों को रटना", "शीर्षक की नकल करना"], exp: "अंतर्निहित भाव लेखक के सीधे शब्दों के पीछे छिपे मंतव्य को समझना है।", example: "व्यंग्यात्मक लहजे को पहचानना।" },
+          correct: 0
+        };
+      }
+
+      if (uId === 4) { // Communication
+        return {
+          id: `P1-${qKey}`,
+          isOdia: false,
+          en: { q: `[Unit 4: Communication - Set ${s}]: Non-verbal communication involving bodily posture, gestures, and facial expressions is technically designated as:`, options: ["Kinesics", "Proxemics", "Paralanguage", "Chronemics"], exp: "Kinesics is the study of body motion communication. Proxemics deals with interpersonal distance.", example: "Nodding or maintaining eye contact during interviews." },
+          hi: { q: `[यूनिट 4: सम्प्रेषण (Communication) - सेट ${s}]: शारीरिक मुद्राओं, हाव-भाव और चेहरे की अभिव्यक्तियों से संबंधित अशाब्दिक सम्प्रेषण क्या कहलाता है?`, options: ["काइनेसिक्स (Kinesics)", "प्रॉक्सेमिक्स (Proxemics)", "पैरा-लैंग्वेज", "क्रोनेमिक्स"], exp: "काइनेसिक्स शारीरिक हाव-भाव और बॉडी लैंग्वेज का अध्ययन है।", example: "साक्षात्कार में सिर हिलाना या आंखें मिलाना।" },
+          correct: 0
+        };
+      }
+
       if (uId === 5) { // Mathematical Reasoning
         const mathSeeds = [
           { qEn: `Find the next number in series: ${s*2}, ${s*6}, ${s*12}, ${s*20}, ?`, qHi: `श्रृंखला में अगली संख्या ज्ञात करें: ${s*2}, ${s*6}, ${s*12}, ${s*20}, ?`, ans: `${s*30}`, exp: `Pattern is ${s} * n*(n+1): n=1,2,3,4,5.`, opt: [`${s*30}`, `${s*28}`, `${s*32}`, `${s*25}`] },
@@ -410,74 +453,107 @@
         return {
           id: `P1-${qKey}`,
           isOdia: false,
-          en: { q: `[Maths Reasoning - Set ${s}]: ${m.qEn}`, options: m.opt, exp: m.exp, example: "Mathematical deduction method." },
-          hi: { q: `[गणितीय तर्क - सेट ${s}]: ${m.qHi}`, options: m.opt, exp: m.exp, example: "सटीक गणितीय सूत्र।" },
-          correct: 0
-        };
-      } else if (uId === 6) { // Logical Reasoning
-        return {
-          id: `P1-${qKey}`,
-          isOdia: false,
-          en: {
-            q: `[Logical Reasoning (Indian Logic) - Set ${s}]: Which source of valid knowledge (Pramana) in Nyaya philosophy asserts that unperceived fire on a hill is known through perceived smoke?`,
-            options: ["Anumana (Inference)", "Pratyaksha (Perception)", "Upamana (Comparison)", "Sabda (Testimony)"],
-            exp: "Anumana deduces the Sadhya (Fire) via universal Vyapti with Linga/Hetu (Smoke).",
-            example: "Seeing wet asphalt and inferring that it rained."
-          },
-          hi: {
-            q: `[तार्किक तर्क (भारतीय दर्शन) - सेट ${s}]: न्याय दर्शन में पहाड़ी पर धुआं देखकर आग का ज्ञान किस प्रमाण से होता है?`,
-            options: ["अनुमान (Anumana)", "प्रत्यक्ष (Pratyaksha)", "उपमान (Upamana)", "शब्द (Sabda)"],
-            exp: "अनुमान में हेतु (धुआं) और साध्य (आग) के बीच व्याप्ति संबंध से ज्ञान प्राप्त होता है।",
-            example: "सुबह सड़क गीली देखकर बारिश का निष्कर्ष निकालना।"
-          },
-          correct: 0
-        };
-      } else { // Generic Units 1, 2, 3, 4, 7, 8, 9, 10
-        const uMeta = PAPER1_UNITS.find(x => x.id === uId) || PAPER1_UNITS[0];
-        return {
-          id: `P1-${qKey}`,
-          isOdia: false,
-          en: {
-            q: `[${uMeta.name} - Set ${s}]: Assertion (A): In higher education systems, formative feedback loops directly elevate cognitive retention.\nReason (R): Low-stakes diagnostic assessments prevent accumulative conceptual misconceptions.`,
-            options: ["Both (A) and (R) are true and (R) explains (A)", "Both are true but (R) does not explain (A)", "(A) is true but (R) is false", "Both are false"],
-            exp: "Diagnostic formative feedback enables instant corrections, directly preventing exam phobia.",
-            example: "Weekly mock tests diagnosing weak sub-topics before finals."
-          },
-          hi: {
-            q: `[${uMeta.name} - सेट ${s}]: अभिकथन (A): उच्च शिक्षा में निरंतर रचनात्मक प्रतिपुष्टि से संज्ञानात्मक समझ बढ़ती है।\nतर्क (R): उपचारात्मक मूल्यांकन से वैचारिक त्रुटियों का तुरंत निवारण हो जाता है।`,
-            options: ["दोनों (A) और (R) सही हैं और (R), (A) की व्याख्या करता है", "दोनों सही हैं परंतु व्याख्या नहीं है", "(A) सही है परंतु (R) गलत है", "दोनों गलत हैं"],
-            exp: "रचनात्मक मूल्यांकन सीखने के दौरान कमियों को दूर करता है।",
-            example: "परीक्षा से पहले शॉर्ट टेस्ट देकर गलतियां सुधारना।"
-          },
+          en: { q: `[Unit 5: Mathematical Reasoning - Set ${s}]: ${m.qEn}`, options: m.opt, exp: m.exp, example: "Mathematical deduction method." },
+          hi: { q: `[यूनिट 5: गणितीय तर्क - सेट ${s}]: ${m.qHi}`, options: m.opt, exp: m.exp, example: "सटीक गणितीय सूत्र।" },
           correct: 0
         };
       }
+
+      if (uId === 6) { // Logical Reasoning
+        return {
+          id: `P1-${qKey}`,
+          isOdia: false,
+          en: { q: `[Unit 6: Logical Reasoning - Set ${s}]: In Classical Indian Logic (Nyaya), which source of knowledge establishes that an unperceived entity is known through universal concomitance (Vyapti)?`, options: ["Anumana (Inference)", "Pratyaksha (Direct Perception)", "Upamana (Analogy)", "Sabda (Testimony)"], exp: "Anumana deduces the Sadhya (Fire) through Vyapti with Hetu (Smoke).", example: "Inferring rain by observing wet roads." },
+          hi: { q: `[यूनिट 6: तार्किक तर्क - सेट ${s}]: भारतीय न्याय दर्शन में कौन सा प्रमाण व्याप्ति संबंध के माध्यम से ज्ञान स्थापित करता है?`, options: ["अनुमान (Anumana)", "प्रत्यक्ष (Pratyaksha)", "उपमान (Upamana)", "शब्द (Sabda)"], exp: "अनुमान में हेतु और साध्य के बीच अविनाशी संबंध (व्याप्ति) से ज्ञान होता है।", example: "गीली सड़क देखकर बारिश का अनुमान लगाना।" },
+          correct: 0
+        };
+      }
+
+      if (uId === 7) { // Data Interpretation
+        return {
+          id: `P1-${qKey}`,
+          isOdia: false,
+          en: { q: `[Unit 7: Data Interpretation - Set ${s}]: A department's budget increased from ₹${40+s*5} Lakhs to ₹${60+s*5} Lakhs. What is the approximate percentage increase?`, options: [`${Math.round((20/(40+s*5))*100)}%`, "25%", "65%", "15%"], exp: "Percentage Increase = (Absolute Increase / Initial Value) * 100.", example: "Standard budget percentage change calculation." },
+          hi: { q: `[यूनिट 7: आंकड़ों की व्याख्या - सेट ${s}]: एक विभाग का बजट ₹${40+s*5} लाख से बढ़कर ₹${60+s*5} लाख हो गया। प्रतिशत वृद्धि क्या है?`, options: [`${Math.round((20/(40+s*5))*100)}%`, "25%", "65%", "15%"], exp: "प्रतिशत वृद्धि = (वृद्धि / प्रारंभिक मूल्य) * 100.", example: "बजट अनुपात में परिवर्तन।" },
+          correct: 0
+        };
+      }
+
+      if (uId === 8) { // ICT
+        return {
+          id: `P1-${qKey}`,
+          isOdia: false,
+          en: { q: `[Unit 8: ICT - Set ${s}]: Which of the following ranks storage access speed from fastest to slowest correctly?`, options: ["CPU Registers > L1/L2 Cache > RAM > SSD/Hard Disk", "Hard Disk > RAM > Cache > Registers", "RAM > Registers > Cache > SSD", "Cache > Registers > SSD > RAM"], exp: "Registers are on-chip and fastest, followed by SRAM cache, DRAM RAM, and secondary storage.", example: "Hierarchy of computer processor storage." },
+          hi: { q: `[यूनिट 8: आईसीटी (ICT) - सेट ${s}]: मेमोरी स्पीड को सबसे तेज से सबसे धीमी के सही क्रम में पहचानें:`, options: ["सीपीयू रजिस्टर्स > कैश > रैम > एसएसडी/हार्ड डिस्क", "हार्ड डिस्क > रैम > कैश > रजिस्टर्स", "रैम > रजिस्टर्स > कैश > एसएसडी", "कैश > रजिस्टर्स > एसएसडी > रैम"], exp: "रजिस्टर्स सबसे तेज होते हैं, फिर कैश, रैम और सेकेंडरी डिस्क।", example: "कंप्यूटर मेमोरी का पदानुक्रम।" },
+          correct: 0
+        };
+      }
+
+      if (uId === 9) { // People & Environment
+        return {
+          id: `P1-${qKey}`,
+          isOdia: false,
+          en: { q: `[Unit 9: People & Environment - Set ${s}]: The Sustainable Development Goals (SDGs) targeted by the UN for 2030 consist of how many goals and targets?`, options: ["17 Goals and 169 Targets", "8 Goals and 21 Targets", "15 Goals and 100 Targets", "20 Goals and 200 Targets"], exp: "SDGs comprise 17 goals adopted in 2015 to be achieved by 2030. MDGs had 8 goals.", example: "SDG 4 is Quality Education; SDG 13 is Climate Action." },
+          hi: { q: `[यूनिट 9: लोक और पर्यावरण - सेट ${s}]: संयुक्त राष्ट्र के सतत विकास लक्ष्यों (SDGs 2030) में कितने लक्ष्य और विशिष्ट उद्देश्य शामिल हैं?`, options: ["17 लक्ष्य और 169 विशिष्ट उद्देश्य", "8 लक्ष्य और 21 उद्देश्य", "15 लक्ष्य और 100 उद्देश्य", "20 लक्ष्य और 200 उद्देश्य"], exp: "एसडीजी में 17 प्रमुख लक्ष्य और 169 सहायक उद्देश्य हैं।", example: "लक्ष्य 4: गुणवत्तापूर्ण शिक्षा; लक्ष्य 13: जलवायु कार्रवाई।" },
+          correct: 0
+        };
+      }
+
+      if (uId === 10) { // Higher Education
+        return {
+          id: `P1-${qKey}`,
+          isOdia: false,
+          en: { q: `[Unit 10: Higher Education - Set ${s}]: Under National Education Policy (NEP) 2020, which overarching regulatory umbrella body replaces UGC and AICTE?`, options: ["Higher Education Commission of India (HECI)", "National Research Foundation (NRF)", "PARAKH", "NTA"], exp: "HECI is proposed with 4 verticals: NHERC, NAC, HEGC, and GEC.", example: "Unified single regulator for higher education institutes." },
+          hi: { q: `[यूनिट 10: उच्च शिक्षा प्रणाली - सेट ${s}]: राष्ट्रीय शिक्षा नीति (NEP 2020) के तहत यूजीसी और एआईसीटीई के स्थान पर कौन सा शीर्ष निकाय प्रस्तावित है?`, options: ["भारतीय उच्चतर शिक्षा आयोग (HECI)", "राष्ट्रीय अनुसंधान फाउंडेशन (NRF)", "परख (PARAKH)", "एनटीए (NTA)"], exp: "HECI उच्च शिक्षा का एकल नियामक होगा जिसके 4 कार्यक्षेत्र हैं।", example: "विश्वविद्यालयों के लिए एकीकृत नियामक संरचना।" },
+          correct: 0
+        };
+      }
+
+      // Default Fallback
+      return {
+        id: `P1-${qKey}`,
+        isOdia: false,
+        en: { q: `[General Aptitude - Set ${s}]: Assertion (A): Rigorous scientific inquiry demands controlled empiricism.\nReason (R): Bias distort objective outcomes.`, options: ["Both (A) and (R) are true", "Both are false", "(A) is true", "(R) is true"], exp: "Controlled observation minimizes investigator bias.", example: "Laboratory experimental control." },
+        hi: { q: `[सामान्य अभिवृत्ति - सेट ${s}]: वैज्ञानिक अनुसंधान में नियंत्रित अवलोकन अनिवार्य है।`, options: ["दोनों कथन सत्य हैं", "दोनों असत्य हैं", "केवल A सत्य है", "केवल R सत्य है"], exp: "नियंत्रित अवलोकन से पूर्वाग्रह दूर होता है।", example: "प्रयोगशाला का परीक्षण।" },
+        correct: 0
+      };
     }
 
     // ==========================================
-    // 4. CLOUD DATABASE & LIVE AUTH
+    // 4. LIVE USERNAME CHECK & CLOUD DATABASE
     // ==========================================
-    const CLOUD_STORAGE_KEY = "UGC_NET_SHARED_CLOUD_DATA_V6";
+    const CLOUD_STORAGE_KEY = "UGC_NET_SHARED_CLOUD_DATA_V7";
     let currentUser = null;
     let isAdmin = false;
-    let generatedOTP = null;
-    let liveBatteryLevel = "100% 🔋";
 
     const MASTER_ADMIN_ID = "Rakeh793825";
     const MASTER_ADMIN_PASS = "Rakesh79";
 
     let cloudDb = { users: {} };
 
-    function requestLiveOTP() {
-      const mob = document.getElementById("authMobile").value.trim();
-      if (!mob || mob.length < 10) {
-        alert("Enter valid 10-digit mobile number!");
+    function checkUsernameAvailability() {
+      const u = document.getElementById("authUsername").value.trim().toLowerCase();
+      const feedback = document.getElementById("usernameLiveFeedback");
+      const regBtn = document.getElementById("registerBtn");
+
+      if (!u) {
+        feedback.classList.add("hidden");
         return;
       }
-      generatedOTP = Math.floor(1000 + Math.random() * 9000);
-      document.getElementById("otpInputContainer").classList.remove("hidden");
-      alert(`[SMS/WhatsApp Gateway Simulated]\nOTP for NET JRF Portal: ${generatedOTP}`);
-      triggerSound();
+
+      feedback.classList.remove("hidden");
+
+      if (u === MASTER_ADMIN_ID.toLowerCase() || cloudDb.users[u]) {
+        feedback.innerText = "❌ This name is already taken! Choose another User ID.";
+        feedback.className = "text-[11px] mt-1 font-semibold text-rose-400";
+        regBtn.disabled = true;
+        regBtn.classList.add("opacity-50", "cursor-not-allowed");
+      } else {
+        feedback.innerText = "✓ Username is available!";
+        feedback.className = "text-[11px] mt-1 font-semibold text-emerald-400";
+        regBtn.disabled = false;
+        regBtn.classList.remove("opacity-50", "cursor-not-allowed");
+      }
     }
 
     function initCloudVault() {
@@ -486,10 +562,10 @@
         try { cloudDb = JSON.parse(raw); } catch (e) {}
       }
 
-      if (!cloudDb.users[MASTER_ADMIN_ID]) {
-        cloudDb.users[MASTER_ADMIN_ID] = {
+      if (!cloudDb.users[MASTER_ADMIN_ID.toLowerCase()]) {
+        cloudDb.users[MASTER_ADMIN_ID.toLowerCase()] = {
+          originalId: MASTER_ADMIN_ID,
           password: MASTER_ADMIN_PASS,
-          mobile: "9348XXXXXX",
           name: "Rakesh Kumar Sahu Sir",
           role: "admin",
           history: {},
@@ -500,9 +576,9 @@
       }
 
       const sessionUser = sessionStorage.getItem("CURRENT_NET_SESSION_USER");
-      if (sessionUser && cloudDb.users[sessionUser]) {
-        currentUser = sessionUser;
-        isAdmin = cloudDb.users[sessionUser].role === "admin";
+      if (sessionUser && cloudDb.users[sessionUser.toLowerCase()]) {
+        currentUser = sessionUser.toLowerCase();
+        isAdmin = cloudDb.users[currentUser].role === "admin";
         document.getElementById("authModal").classList.add("hidden");
         refreshGlobalUI();
       } else {
@@ -516,47 +592,39 @@
 
     function handleAuth(type) {
       triggerSound();
-      const u = document.getElementById("authUsername").value.trim();
+      const rawUser = document.getElementById("authUsername").value.trim();
+      const u = rawUser.toLowerCase();
       const p = document.getElementById("authPassword").value.trim();
-      const mob = document.getElementById("authMobile").value.trim();
-      const otpEntered = document.getElementById("authOTP").value.trim();
 
       if (!u || !p) {
-        alert("Enter User ID and Password.");
+        alert("Enter both User ID and Password.");
         return;
       }
 
-      if (u === MASTER_ADMIN_ID) {
+      // Master Admin Routing
+      if (rawUser === MASTER_ADMIN_ID || u === MASTER_ADMIN_ID.toLowerCase()) {
         if (p !== MASTER_ADMIN_PASS) {
           alert("Invalid Admin Password!");
           return;
         }
-        currentUser = u;
+        currentUser = MASTER_ADMIN_ID.toLowerCase();
         isAdmin = true;
-        sessionStorage.setItem("CURRENT_NET_SESSION_USER", u);
+        sessionStorage.setItem("CURRENT_NET_SESSION_USER", MASTER_ADMIN_ID);
         document.getElementById("authModal").classList.add("hidden");
         refreshGlobalUI();
         return;
       }
 
       if (type === "register") {
-        if (!mob || mob.length < 10) {
-          alert("10 Digit Mobile Number required!");
-          return;
-        }
-        if (!generatedOTP || otpEntered != generatedOTP) {
-          alert("Invalid OTP!");
-          return;
-        }
         if (cloudDb.users[u]) {
-          alert("User ID exists!");
+          alert("This name is already taken! Please choose another User ID.");
           return;
         }
 
         cloudDb.users[u] = {
+          originalId: rawUser,
           password: p,
-          mobile: mob,
-          name: u,
+          name: rawUser,
           role: "candidate",
           history: {},
           sessions: [],
@@ -565,17 +633,17 @@
         saveCloudDb();
         currentUser = u;
         isAdmin = false;
-        sessionStorage.setItem("CURRENT_NET_SESSION_USER", u);
+        sessionStorage.setItem("CURRENT_NET_SESSION_USER", rawUser);
         document.getElementById("authModal").classList.add("hidden");
         refreshGlobalUI();
       } else {
         if (!cloudDb.users[u] || cloudDb.users[u].password !== p) {
-          alert("Invalid Credentials!");
+          alert("Invalid User ID or Password!");
           return;
         }
         currentUser = u;
         isAdmin = false;
-        sessionStorage.setItem("CURRENT_NET_SESSION_USER", u);
+        sessionStorage.setItem("CURRENT_NET_SESSION_USER", rawUser);
         document.getElementById("authModal").classList.add("hidden");
         refreshGlobalUI();
       }
@@ -682,7 +750,6 @@
       document.getElementById("activeUnitTitle").innerText = u.name;
       document.getElementById("activeUnitDesc").innerText = u.desc;
 
-      // Anti-Duplication Fresh 10 Generation
       currentSetQuestions = generateFresh10Set(unitId);
       renderQuestions(false);
       renderSidebarMenu();
@@ -1038,10 +1105,9 @@
               <img src="${u.avatar || 'https://api.dicebear.com/7.x/bottts/svg?seed='+uName}" class="h-12 w-12 rounded-2xl bg-indigo-950 border border-indigo-500/50 object-cover" />
               <div>
                 <h4 class="font-extrabold text-white text-base flex items-center gap-2">
-                  <span>${u.name || uName}</span>
+                  <span>${u.originalId || u.name || uName}</span>
                   <span class="text-[10px] px-2 py-0.5 rounded-full ${u.role === 'admin' ? 'bg-amber-950 text-amber-300 border border-amber-800' : 'bg-slate-800 text-slate-300'}">${u.role.toUpperCase()}</span>
                 </h4>
-                <p class="text-xs text-slate-400">📱 Mobile: <strong class="text-indigo-300">${u.mobile || 'N/A'}</strong></p>
               </div>
             </div>
             <div class="grid grid-cols-2 gap-2 text-center text-xs py-2 bg-slate-900 rounded-xl border border-slate-800">
@@ -1055,7 +1121,7 @@
 
     function refreshGlobalUI() {
       const u = cloudDb.users[currentUser];
-      document.getElementById("headerCandidateInfo").innerText = `User: ${u.name || currentUser}`;
+      document.getElementById("headerCandidateInfo").innerText = `User: ${u.originalId || u.name || currentUser}`;
       document.getElementById("roleIndicatorBadge").innerText = isAdmin ? "SuperAdmin" : "Candidate";
 
       if (isAdmin) {
