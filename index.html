@@ -10,12 +10,12 @@
     body { font-family: 'Outfit', 'Noto Sans Oriya', sans-serif; }
     .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
     .custom-scroll::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 6px; }
-    .glass-card { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); }
+    .glass-card { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); }
   </style>
 </head>
 <body class="bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 text-slate-100 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
 
-  <!-- AUTHENTICATION MODAL -->
+  <!-- AUTH MODAL -->
   <div id="authModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center z-50 p-4">
     <div class="bg-slate-900/95 border border-indigo-500/30 w-full max-w-md rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
       <div class="text-center mb-6">
@@ -31,7 +31,6 @@
         <button onclick="setAuthTab('register')" id="tabBtnAuthRegister" class="flex-1 py-2 rounded-xl text-slate-400 hover:text-white transition">Create New Account</button>
       </div>
 
-      <!-- Login Section -->
       <div id="loginFormSection" class="space-y-4 text-xs">
         <div>
           <label class="font-semibold text-slate-300 block mb-1">User ID / Candidate Username</label>
@@ -46,7 +45,6 @@
         </button>
       </div>
 
-      <!-- Register Section -->
       <div id="registerFormSection" class="hidden space-y-4 text-xs">
         <div>
           <label class="font-semibold text-slate-300 block mb-1">Choose Unique User ID</label>
@@ -64,7 +62,7 @@
     </div>
   </div>
 
-  <!-- HEADER -->
+  <!-- NAVIGATION HEADER -->
   <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 px-4 md:px-8 py-3 sticky top-0 z-40 flex flex-wrap justify-between items-center gap-4">
     <div class="flex items-center gap-3">
       <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center font-bold text-lg text-white shadow-md shadow-indigo-600/30">
@@ -134,7 +132,16 @@
 
       <!-- UNIT SELECTOR SIDEBAR -->
       <div class="glass-card border border-slate-800 rounded-3xl p-5 shadow-lg" id="sidebarUnitMenu">
-        <h3 id="unitMenuTitle" class="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-3">Units Available</h3>
+        <div class="flex justify-between items-center mb-3">
+          <h3 id="unitMenuTitle" class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Units Available</h3>
+          <!-- DIFFICULTY SELECTOR -->
+          <select id="difficultySelector" onchange="changeDifficulty()" class="bg-slate-900 border border-slate-700 text-[11px] rounded-lg px-2 py-1 text-slate-200 focus:outline-none">
+            <option value="all">All Levels</option>
+            <option value="easy">Easy Level</option>
+            <option value="moderate">Moderate Level</option>
+            <option value="hard">Hard (Critical)</option>
+          </select>
+        </div>
         <div id="unitListContainer" class="space-y-2 max-h-[55vh] overflow-y-auto custom-scroll pr-1"></div>
       </div>
     </aside>
@@ -159,7 +166,7 @@
           </div>
         </div>
 
-        <!-- SPECIAL COMPREHENSION PASSAGE -->
+        <!-- SPECIAL COMPREHENSION PASSAGE BOX -->
         <div id="unit3PassageBox" class="hidden glass-card border border-cyan-500/30 rounded-3xl p-6 shadow-xl space-y-2">
           <div class="flex items-center gap-2 border-b border-slate-800 pb-2 mb-2">
             <span class="text-base">📄</span>
@@ -170,7 +177,7 @@ The modern research landscape has undergone an unprecedented epistemic transitio
           </div>
         </div>
 
-        <!-- SPECIAL DATA INTERPRETATION TABLE -->
+        <!-- SPECIAL DATA INTERPRETATION TABLE BOX -->
         <div id="unit7TableBox" class="hidden glass-card border border-emerald-500/30 rounded-3xl p-6 shadow-xl space-y-3">
           <div class="flex items-center gap-2 border-b border-slate-800 pb-2 mb-2">
             <span class="text-base">📊</span>
@@ -230,12 +237,30 @@ The modern research landscape has undergone an unprecedented epistemic transitio
         <div id="wordContentArea" class="glass-card border border-slate-800 rounded-3xl p-6 text-sm space-y-4"></div>
       </div>
 
-      <!-- 3. NOTES VIEW -->
+      <!-- 3. NOTES & PDF STORAGE VIEW -->
       <div id="notesView" class="hidden space-y-5">
-        <div class="glass-card border border-emerald-500/30 rounded-3xl p-6 shadow-xl">
-          <h2 class="text-xl font-extrabold text-emerald-400">📖 ସମ୍ପୂର୍ଣ୍ଣ ସିଲାବସ୍ ପାଠ ଓ Master Notes Repository</h2>
-          <p class="text-xs text-slate-300 mt-1">Paper 1 ଏବଂ Paper 2 (ଓଡ଼ିଆ)ର ପ୍ରତ୍ୟେକ ୟୁନିଟ୍‌ର ଅଧ୍ୟୟନ ସାରାଂଶ</p>
+        <div class="glass-card border border-emerald-500/30 rounded-3xl p-6 shadow-xl flex flex-wrap justify-between items-center gap-4">
+          <div>
+            <h2 class="text-xl font-extrabold text-emerald-400">📖 ସମ୍ପୂର୍ଣ୍ଣ ସିଲାବସ୍ ପାଠ ଓ Master Notes Repository</h2>
+            <p class="text-xs text-slate-300 mt-1">Paper 1 ଏବଂ Paper 2 (ଓଡ଼ିଆ)ର ପ୍ରତ୍ୟେକ ୟୁନିଟ୍‌ର ଅଧ୍ୟୟନ ସାରାଂଶ ଓ ପରୀକ୍ଷା ଉପଯୋଗୀ ନୋଟ୍ସ</p>
+          </div>
+          <!-- Admin PDF Upload Trigger -->
+          <div id="adminPdfUploadTrigger" class="hidden">
+            <input type="file" id="pdfFileInput" accept=".pdf" class="hidden" onchange="handleAdminPdfUpload(event)" />
+            <button onclick="document.getElementById('pdfFileInput').click()" class="bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold text-xs px-4 py-2 rounded-xl transition shadow">
+              📤 Upload Master Notes PDF
+            </button>
+          </div>
         </div>
+
+        <!-- UPLOADED PDF LIST -->
+        <div class="glass-card border border-slate-800 rounded-3xl p-5 shadow-sm space-y-2">
+          <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider mb-2">📁 Study Materials & Uploaded Book PDFs</h3>
+          <div id="uploadedPdfListContainer" class="space-y-2">
+            <p class="text-xs text-slate-500 italic p-2">No custom PDFs uploaded yet.</p>
+          </div>
+        </div>
+
         <div id="notesAccordionContainer" class="space-y-3"></div>
       </div>
 
@@ -360,14 +385,14 @@ The modern research landscape has undergone an unprecedented epistemic transitio
     }
 
     // 2. AUTHENTICATION CONTROLLER
-    const CLOUD_STORAGE_KEY = "UGC_NET_SHARED_CLOUD_DATA_V11";
+    const CLOUD_STORAGE_KEY = "UGC_NET_SHARED_CLOUD_DATA_V12";
     let currentUser = null;
     let isAdmin = false;
 
     const MASTER_ADMIN_ID = "Rakesh793825";
     const MASTER_ADMIN_PASS = "Rakesh79";
 
-    let cloudDb = { users: {} };
+    let cloudDb = { users: {}, pdfs: [] };
 
     function setAuthTab(tab) {
       triggerSound();
@@ -530,7 +555,7 @@ The modern research landscape has undergone an unprecedented epistemic transitio
       }
     }
 
-    // 3. MASTER UNITS LIST
+    // 3. MASTER UNITS DEFINITIONS
     const PAPER1_UNITS = [
       { id: 1, name: "Unit 1: Teaching Aptitude", desc: "Teaching levels, CBCS, Formative vs Summative evaluation, NEP 2020." },
       { id: 2, name: "Unit 2: Research Aptitude", desc: "Positivism & Post-positivism, Qualitative vs Quantitative, Sampling & Ethics." },
@@ -557,70 +582,68 @@ The modern research landscape has undergone an unprecedented epistemic transitio
       { id: 110, name: "ୟୁନିଟ୍ ୧୦: ସାହିତ୍ୟ ତତ୍ତ୍ୱ ଓ ଆଲୋଚନା", desc: "ରୋମାଣ୍ଟିସିଜିମ୍, ରିଆଲିଜିମ୍, ମାର୍କ୍ସବାଦ, ଅସ୍ତିତ୍ୱବାଦ।" }
     ];
 
-    // 4. AUTHENTIC 10 UNIQUE QUESTIONS PER UNIT
-    const MASTER_QUESTIONS = {
+    // 4. UNIT-SPECIFIC QUESTIONS REPOSITORY (WITH DIFFICULTY TAGGING)
+    const UNIT_QUESTIONS_DB = {
       1: [
-        { en: { q: "[Unit 1: Q1] Which level of teaching places the highest emphasis on cognitive creative hypothesis and problem-solving?", opt: ["Reflective Level (Hunt)", "Memory Level (Herbart)", "Understanding Level (Morrison)", "Autonomous Level"], exp: "Reflective level fosters independent critical analysis.", ex: "Solving live environmental crisis." }, hi: { q: "[यूनिट 1: प्रश्न 1] शिक्षण का कौन सा स्तर संज्ञानात्मक परिकल्पना और समस्या समाधान पर सर्वाधिक जोर देता है?", opt: ["विमर्शी स्तर (हंट)", "स्मृति स्तर (हर्बर्ट)", "बोध स्तर (मॉरिसन)", "स्वायत्त स्तर"], exp: "विमर्शी स्तर उच्चतम आलोचनात्मक चिंतन है।", ex: "असली समस्या पर काम करना।" }, correct: 0 },
-        { en: { q: "[Unit 1: Q2] Continuous evaluation conducted concurrently with classroom instruction to diagnose learning gaps is:", opt: ["Formative Assessment", "Summative Assessment", "Norm-Referenced Test", "Criterion-Referenced Test"], exp: "Formative evaluation provides instant diagnostic feedback.", ex: "Pop-quizzes in class." }, hi: { q: "[यूनिट 1: प्रश्न 2] शिक्षण के दौरान कमियों को पहचानने हेतु निरंतर किया जाने वाला मूल्यांकन क्या है?", opt: ["रचनात्मक मूल्यांकन (Formative)", "सत्रांत मूल्यांकन (Summative)", "मानक-संदर्भित मूल्यांकन", "निकष-संदर्भित मूल्यांकन"], exp: "रचनात्मक मूल्यांकन शिक्षण के दौरान होता है।", ex: "कक्षा के बीच में प्रश्न।" }, correct: 0 },
-        { en: { q: "[Unit 1: Q3] In the Choice Based Credit System (CBCS), an elective course chosen generally from an unrelated discipline is called:", opt: ["Generic Elective", "Discipline Specific Elective", "Core Course", "Ability Enhancement Course"], exp: "Generic electives offer multidisciplinary exposure.", ex: "A physics student studying Odia poetry." }, hi: { q: "[यूनिट 1: प्रश्न 3] CBCS प्रणाली में किसी अन्य विषय से चुने जाने वाले ऐच्छिक विषय को क्या कहते हैं?", opt: ["जेनेरिक ऐच्छिक (Generic Elective)", "अनुशासन विशिष्ट ऐच्छिक", "कोर कोर्स", "क्षमता संवर्धन कोर्स"], exp: "जेनेरिक ऐच्छिक अंतःविषय अध्ययन प्रदान करता है।", ex: "साइंस के छात्र द्वारा साहित्य पढ़ना।" }, correct: 0 },
-        { en: { q: "[Unit 1: Q4] A teacher categorizes learners according to their visual, auditory, and kinesthetic learning styles. This refers to:", opt: ["Individual Differences", "Universal Homogeneity", "Curriculum Bias", "Pedagogical Dogmatism"], exp: "Learner characteristics vary based on sensory preferences.", ex: "Using diagrams for visual learners." }, hi: { q: "[यूनिट 1: प्रश्न 4] एक शिक्षक दृश्य, श्रव्य और गतिज शैलियों के अनुसार छात्रों को वर्गीकृत करता है। यह क्या दर्शाता है?", opt: ["व्यक्तिगत भिन्नता (Individual Differences)", "सार्वभौमिक एकरूपता", "पाठ्यचर्या पूर्वाग्रह", "कठोरता"], exp: "सीखने के तरीके हर छात्र में भिन्न होते हैं।", ex: "चित्रों द्वारा समझाना।" }, correct: 0 },
-        { en: { q: "[Unit 1: Q5] What is the primary purpose of Criterion-Referenced evaluation?", opt: ["To assess mastery against a predetermined objective standard", "To rank students in percentile order", "To select top 1% candidates", "To compare peer rankings"], exp: "Criterion tests evaluate absolute mastery regardless of peers.", ex: "Scoring 75% in driving test." }, hi: { q: "[यूनिट 1: प्रश्न 5] निकष-संदर्भित (Criterion-Referenced) मूल्यांकन का मुख्य उद्देश्य क्या है?", opt: ["पूर्व-निर्धारित मानक के विरुद्ध प्रवीणता मापना", "छात्रों को रैंक देना", "शीर्ष 1% चुनना", "सहपाठियों से तुलना"], exp: "यह पूर्व-निश्चित मानदंड पर निर्भर करता है।", ex: "न्यूनतम 60% अंक लाना।" }, correct: 0 },
-        { en: { q: "[Unit 1: Q6] MOOC platforms under Swayam operate on which four pedagogical quadrants?", opt: ["e-Tutorial, e-Content, Discussion Forum, Self-Assessment", "Audio, Video, Exam, Degree", "Lecture, Homework, Viva, Certificate", "Notes, Books, Slides, Attendance"], exp: "SWAYAM is structured into 4 specific digital quadrants.", ex: "Video lecture + downloadable PDF + Quiz + Forum." }, hi: { q: "[यूनिट 1: प्रश्न 6] स्वयं (SWAYAM) के चार शैक्षणिक चतुर्थांश (Quadrants) कौन से हैं?", opt: ["ई-ट्यूटोरियल, ई-कंटेंट, चर्चा मंच, स्व-मूल्यांकन", "ऑडियो, वीडियो, परीक्षा, डिग्री", "व्याख्यान, गृहकार्य, मौखिक, प्रमाणपत्र", "नोट्स, किताबें, स्लाइड्स, उपस्थिति"], exp: "स्वयं 4 डिजिटल चतुर्थांशों पर आधारित है।", ex: "वीडियो + पीडीएफ + क्विज + फोरम।" }, correct: 0 },
-        { en: { q: "[Unit 1: Q7] According to Bloom's Revised Taxonomy, which cognitive action represents the highest level?", opt: ["Creating", "Evaluating", "Analyzing", "Remembering"], exp: "Creating (generating new ideas) is the topmost cognitive level.", ex: "Formulating a new theory." }, hi: { q: "[यूनिट 1: प्रश्न 7] ब्लूम के संशोधित वर्गीकरण में सर्वोच्च संज्ञानात्मक स्तर कौन सा है?", opt: ["सृजन करना (Creating)", "मूल्यांकन करना", "विश्लेषण करना", "याद रखना"], exp: "सृजन करना उच्चतम स्तर है।", ex: "नया मॉडल तैयार करना।" }, correct: 0 },
-        { en: { q: "[Unit 1: Q8] The teacher acts purely as a facilitator while students explore projects independently in:", opt: ["Learner-Centered Approach", "Teacher-Centered Approach", "Authoritarian Approach", "Direct Lecture Model"], exp: "Learner-centered methods foster autonomous exploration.", ex: "Flipped classroom methodology." }, hi: { q: "[यूनिट 1: प्रश्न 8] किस विधि में शिक्षक केवल सुविधादाता होता है और छात्र स्वयं खोज करते हैं?", opt: ["शिक्षार्थी-केंद्रित दृष्टिकोण", "शिक्षक-केंद्रित दृष्टिकोण", "सत्तावादी दृष्टिकोण", "सीधा व्याख्यान"], exp: "शिक्षार्थी-केंद्रित विधि में छात्र सक्रिय होते हैं।", ex: "प्रोजेक्ट आधारित शिक्षण।" }, correct: 0 },
-        { en: { q: "[Unit 1: Q9] Which evaluation assesses student entry-level readiness before instruction begins?", opt: ["Diagnostic / Placement Assessment", "Summative Assessment", "Ipsative Assessment", "Formative Assessment"], exp: "Placement tests check prior prerequisites.", ex: "Pre-course eligibility test." }, hi: { q: "[यूनिट 1: प्रश्न 9] कक्षा शुरू होने से पहले छात्रों के पूर्व-ज्ञान का परीक्षण क्या कहलाता है?", opt: ["प्रवेश / नैदानिक मूल्यांकन (Placement)", "सत्रांत मूल्यांकन", "इप्सैटिव मूल्यांकन", "रचनात्मक मूल्यांकन"], exp: "यह पूर्व-तैयारी की जांच करता है।", ex: "कोर्स से पहले की परीक्षा।" }, correct: 0 },
-        { en: { q: "[Unit 1: Q10] Under NEP 2020, PARAKH is proposed as a national body for:", opt: ["Performance Assessment, Review, and Analysis of Knowledge for Holistic Development", "Faculty Pension Administration", "School Infrastructure Loans", "Syllabus Printing"], exp: "PARAKH sets standard assessment benchmarks.", ex: "Standardizing school boards." }, hi: { q: "[यूनिट 1: प्रश्न 10] NEP 2020 के तहत 'परख' (PARAKH) का मुख्य कार्य क्या है?", opt: ["समग्र विकास के लिए ज्ञान का प्रदर्शन आकलन, समीक्षा और विश्लेषण", "पेंशन प्रबंधन", "ऋण देना", "किताबें छापना"], exp: "परख राष्ट्रीय मूल्यांकन मानक निकाय है।", ex: "बोर्ड परीक्षाओं में एकरूपता।" }, correct: 0 }
+        { diff: "easy", en: { q: "[Unit 1: Q1] (Easy) What is the fundamental goal of teaching in higher education?", opt: ["To facilitate holistic critical understanding and intellectual empowerment", "To ensure rote recall of textbooks", "To force compliance with discipline", "To maximize physical handwriting speed"], exp: "Higher education emphasizes autonomous inquiry and cognitive synthesis rather than rote training.", ex: "Encouraging university students to conduct independent research." }, hi: { q: "[यूनिट 1: Q1] (सरल) उच्च शिक्षा में शिक्षण का मौलिक उद्देश्य क्या है?", opt: ["समग्र आलोचनात्मक समझ और बौद्धिक सशक्तिकरण को बढ़ावा देना", "पाठ्यपुस्तकों को रटना", "अनुशासन लागू करना", "लिखने की गति बढ़ाना"], exp: "उच्च शिक्षा का उद्देश्य स्वतंत्र चिंतन और विश्लेषण क्षमता विकसित करना है।", ex: "छात्रों को स्वतंत्र शोध के लिए प्रेरित करना।" }, correct: 0 },
+        { diff: "moderate", en: { q: "[Unit 1: Q2] (Moderate) Continuous evaluation conducted during instructional delivery to diagnose gaps and provide immediate remedy is:", opt: ["Formative Assessment", "Summative Assessment", "Norm-Referenced Test", "Criterion-Referenced Test"], exp: "Formative evaluation happens during learning to diagnose errors and improve ongoing instructional delivery.", ex: "Weekly classroom pop quizzes." }, hi: { q: "[यूनिट 1: Q2] (मध्यम) शिक्षण के दौरान कमियों को पहचानने और तुरंत सुधारने हेतु किया जाने वाला मूल्यांकन क्या है?", opt: ["रचनात्मक मूल्यांकन (Formative)", "सत्रांत मूल्यांकन (Summative)", "मानक-संदर्भित परीक्षण", "निकष-संदर्भित परीक्षण"], exp: "रचनात्मक मूल्यांकन शिक्षण के दौरान निरंतर उपचारात्मक प्रतिक्रिया देता है।", ex: "कक्षा के बीच में पूछे गए प्रश्न।" }, correct: 0 },
+        { diff: "hard", en: { q: "[Unit 1: Q3] (Hard) Assertion (A): Reflective level of teaching transforms students into autonomous problem-solvers.\nReason (R): Hunt's reflective model places learners in realistic dilemma situations demanding creative cognitive evaluation.", opt: ["Both (A) and (R) are true and (R) is the correct explanation of (A)", "Both are true but (R) does not explain (A)", "(A) is true but (R) is false", "Both are false"], exp: "Hunt's reflective teaching model operates at the highest cognitive domain requiring independent problem-solving.", ex: "Formulating a community policy to mitigate local environmental pollution." }, hi: { q: "[यूनिट 1: Q3] (कठिन) अभिकथन (A): विमर्शी (Reflective) स्तर छात्रों को स्वायत्त समस्या-समाधानकर्ता बनाता है।\nतर्क (R): हंट का विमर्शी मॉडल शिक्षार्थियों को वास्तविक दुविधा स्थितियों में रखकर रचनात्मक मूल्यांकन की मांग करता है।", opt: ["दोनों (A) और (R) सही हैं और (R), (A) की सही व्याख्या करता है", "दोनों सही हैं परंतु व्याख्या नहीं है", "(A) सही है परंतु (R) गलत है", "दोनों गलत हैं"], exp: "विमर्शी स्तर उच्चतम संज्ञानात्मक स्तर है जो स्वतंत्र आलोचनात्मक चिंतन को बढ़ावा देता है।", ex: "स्थानीय प्रदूषण निवारण हेतु नई नीति तैयार करना।" }, correct: 0 },
+        { diff: "moderate", en: { q: "[Unit 1: Q4] (Moderate) In the Choice Based Credit System (CBCS), a multidisciplinary course chosen outside the core discipline is called:", opt: ["Generic Elective", "Discipline Specific Elective", "Core Course", "Ability Enhancement Course"], exp: "Generic electives offer multidisciplinary exposure outside one's core subject.", ex: "A physics student selecting Odia literature." }, hi: { q: "[यूनिट 1: Q4] (मध्यम) CBCS प्रणाली में मुख्य विषय से हटकर किसी अन्य संकाय से चुना जाने वाला विषय क्या कहलाता है?", opt: ["जेनेरिक ऐच्छिक (Generic Elective)", "अनुशासन विशिष्ट ऐच्छिक", "कोर कोर्स", "क्षमता संवर्धन कोर्स"], exp: "जेनेरिक ऐच्छिक छात्रों को अंतःविषय ज्ञान प्राप्त करने की सुविधा देता है।", ex: "भौतिकी के छात्र द्वारा साहित्य का अध्ययन।" }, correct: 0 },
+        { diff: "hard", en: { q: "[Unit 1: Q5] (Hard) Which of the following evaluation practices assesses learner performance against a predetermined absolute benchmark without peer comparison?", opt: ["Criterion-Referenced Testing", "Norm-Referenced Testing", "Ipsative Testing", "Prognostic Testing"], exp: "Criterion testing evaluates mastery against an absolute predetermined benchmark (e.g., scoring at least 70%).", ex: "A driving license test where passing requires a fixed 85% score." }, hi: { q: "[यूनिट 1: Q5] (कठिन) कौन सी मूल्यांकन पद्धति बिना सहपाठियों की तुलना के पूर्व-निर्धारित मानदंड के आधार पर प्रदर्शन मापती है?", opt: ["निकष-संदर्भित मूल्यांकन (Criterion-Referenced)", "मानक-संदर्भित मूल्यांकन", "इप्सैटिव मूल्यांकन", "प्रोग्नोस्टिक परीक्षण"], exp: "निकष-संदर्भित मूल्यांकन पूर्व-निर्धारित बेंचमार्क पर आधारित होता है।", ex: "ड्राइविंग टेस्ट में न्यूनतम अंक प्राप्त करना।" }, correct: 0 },
+        { diff: "easy", en: { q: "[Unit 1: Q6] (Easy) SWAYAM operates under which four distinct digital pedagogical quadrants?", opt: ["e-Tutorial, e-Content, Discussion Forum, Self-Assessment", "Audio, Video, Exam, Certificate", "Lecture, Notes, Homework, Viva", "Class, Slides, Test, Grading"], exp: "SWAYAM is structured into video tutorials, downloadable reading material, peer discussion forum, and online tests.", ex: "Standard online MOOC courses." }, hi: { q: "[यूनिट 1: Q6] (सरल) स्वयं (SWAYAM) के चार शैक्षणिक चतुर्थांश (Quadrants) कौन से हैं?", opt: ["ई-ट्यूटोरियल, ई-कंटेंट, चर्चा मंच, स्व-मूल्यांकन", "ऑडियो, वीडियो, परीक्षा, प्रमाण पत्र", "व्याख्यान, नोट्स, गृहकार्य, मौखिक", "कक्षा, स्लाइड, परीक्षा, ग्रेडिंग"], exp: "स्वयं 4 प्रमुख डिजिटल घटकों पर आधारित है।", ex: "ऑनलाइन वीडियो और अध्ययन सामग्री।" }, correct: 0 },
+        { diff: "moderate", en: { q: "[Unit 1: Q7] (Moderate) In Bloom's Revised Taxonomy, which cognitive process represents the highest complexity level?", opt: ["Creating", "Evaluating", "Analyzing", "Applying"], exp: "Creating (synthesizing diverse elements to generate a novel pattern or structure) is the highest cognitive skill.", ex: "Designing an original educational curriculum." }, hi: { q: "[यूनिट 1: Q7] (मध्यम) ब्लूम के संशोधित वर्गीकरण में सर्वोच्च संज्ञानात्मक जटिलता कौन सी है?", opt: ["सृजन करना (Creating)", "मूल्यांकन करना", "विश्लेषण करना", "लागू करना"], exp: "सृजन करना नए विचारों और मॉडलों के निर्माण को दर्शाता है।", ex: "एक नई पाठ्यचर्या का निर्माण।" }, correct: 0 },
+        { diff: "easy", en: { q: "[Unit 1: Q8] (Easy) What characterizes a learner-centered pedagogical environment?", opt: ["Teacher acts as facilitator while students actively construct knowledge", "Teacher lectures without student interaction", "Rote memorization is prioritized", "Strict authoritarian rules dominate"], exp: "Learner-centered classrooms encourage active participation, peer collaboration, and problem-solving.", ex: "Project-based laboratory learning." }, hi: { q: "[यूनिट 1: Q8] (सरल) शिक्षार्थी-केंद्रित कक्षा की क्या विशेषता है?", opt: ["शिक्षक सुविधादाता होता है और छात्र सक्रिय रूप से ज्ञान का निर्माण करते हैं", "शिक्षक केवल व्याख्यान देता है", "रटने पर जोर दिया जाता है", "कठोर नियम होते हैं"], exp: "शिक्षार्थी-केंद्रित शिक्षण में छात्र सक्रिय रूप से भाग लेते हैं।", ex: "परियोजना-आधारित शिक्षण।" }, correct: 0 },
+        { diff: "hard", en: { q: "[Unit 1: Q9] (Hard) An assessment conducted before instructional commencement to determine prerequisite entry-level readiness is:", opt: ["Placement / Diagnostic Assessment", "Summative Assessment", "Continuous Comprehensive Evaluation", "Normative Rank Test"], exp: "Placement tests evaluate prerequisite competence before introducing advanced curriculum.", ex: "Pre-course baseline mathematical eligibility examination." }, hi: { q: "[यूनिट 1: Q9] (कठिन) शिक्षण शुरू होने से पहले छात्रों की पूर्व-तैयारी का परीक्षण करने वाला मूल्यांकन क्या है?", opt: ["प्रवेश / नैदानिक मूल्यांकन (Placement)", "सत्रांत मूल्यांकन", "सतत व्यापक मूल्यांकन", "रैंकिंग टेस्ट"], exp: "यह नए विषय को शुरू करने से पहले पूर्व-ज्ञान की जांच करता है।", ex: "कोर्स में प्रवेश पूर्व पात्रता परीक्षा।" }, correct: 0 },
+        { diff: "hard", en: { q: "[Unit 1: Q10] (Hard) Under NEP 2020, what is the prime mandate of the national assessment centre PARAKH?", opt: ["Setting standardized evaluation norms and promoting 360-degree holistic report cards", "Administering teacher salary scales", "Printing central board textbooks", "Conducting infrastructure audits"], exp: "PARAKH operates as a standard-setting body under NCERT for holistic developmental evaluation across all boards.", ex: "Implementing self, peer, and teacher 360-degree progress cards." }, hi: { q: "[यूनिट 1: Q10] (कठिन) NEP 2020 के तहत 'परख' (PARAKH) का प्राथमिक कार्य क्या है?", opt: ["मूल्यांकन मानक स्थापित करना और 360-डिग्री समग्र रिपोर्ट कार्ड को बढ़ावा देना", "शिक्षकों के वेतन का प्रबंधन", "किताबें छापना", "भवन निर्माण की जांच"], exp: "परख सभी मान्यता प्राप्त स्कूल बोर्डों के लिए मूल्यांकन मानक तय करता है।", ex: "समग्र प्रगति रिपोर्ट कार्ड जारी करना।" }, correct: 0 }
       ],
       8: [
-        { en: { q: "[Unit 8: Q1] Arrange computer memory hierarchy in descending order of speed (fastest to slowest):", opt: ["CPU Registers > Cache Memory > RAM > SSD / Hard Disk", "RAM > Registers > Cache > SSD", "SSD > RAM > Cache > Registers", "Cache > Registers > RAM > SSD"], exp: "Registers reside directly on CPU cores and provide sub-nanosecond access.", ex: "Processor memory pipeline." }, hi: { q: "[यूनिट 8: प्रश्न 1] कंप्यूटर मेमोरी को सबसे तेज से सबसे धीमी गति में व्यवस्थित करें:", opt: ["सीपीयू रजिस्टर्स > कैश मेमोरी > रैम > एसएसडी", "रैम > रजिस्टर्स > कैश > एसएसडी", "एसएसडी > रैम > कैश > रजिस्टर्स", "कैश > रजिस्टर्स > रैम > एसएसडी"], exp: "रजिस्टर्स सबसे तेज होते हैं।", ex: "प्रोसेसर मेमोरी आर्किटेक्चर।" }, correct: 0 },
-        { en: { q: "[Unit 8: Q2] Which malicious program locks user data using strong encryption and demands ransom money?", opt: ["Ransomware", "Adware", "Trojan Horse", "Spyware"], exp: "Ransomware extortion schemes encrypt hard disks.", ex: "WannaCry cyberattack." }, hi: { q: "[यूनिट 8: प्रश्न 2] कौन सा मालवेयर उपयोगकर्ता की फाइलों को लॉक करके फिरौती मांगता है?", opt: ["रैनसमवेयर (Ransomware)", "एडवेयर", "ट्रोजन हॉर्स", "स्पाइवेयर"], exp: "रैनसमवेयर फाइलों को एन्क्रिप्ट कर देता है।", ex: "वानाक्राई मालवेयर हमला।" }, correct: 0 },
-        { en: { q: "[Unit 8: Q3] How many bits are utilized in an IPv6 (Internet Protocol Version 6) address?", opt: ["128 Bits", "32 Bits", "64 Bits", "256 Bits"], exp: "IPv4 uses 32 bits, whereas IPv6 uses 128 bits.", ex: "Hexadecimal internet addresses." }, hi: { q: "[यूनिट 8: प्रश्न 3] IPv6 पते में कितने बिट्स होते हैं?", opt: ["128 बिट्स", "32 बिट्स", "64 बिट्स", "256 बिट्स"], exp: "IPv6 में 128 बिट्स होते हैं।", ex: "हेक्साडेसिमल नेटवर्क एड्रेस।" }, correct: 0 },
-        { en: { q: "[Unit 8: Q4] Phishing in cyber security primarily refers to:", opt: ["Fraudulent attempts to steal sensitive credentials via deceptive emails", "Hardware physical theft", "Software compiling errors", "Deleting temporary cache"], exp: "Phishing spoofs legitimate websites to harvest passwords.", ex: "Fake banking login links sent via email." }, hi: { q: "[यूनिट 8: प्रश्न 4] साइबर सुरक्षा में 'फ़िशिंग' (Phishing) का क्या अर्थ है?", opt: ["धोखाधड़ी वाले ईमेल द्वारा पासवर्ड और संवेदनशील डेटा चुराना", "हार्डवेयर की चोरी", "सॉफ्टवेयर की खराबी", "कैश हटाना"], exp: "फ़िशिंग फर्जी लिंक भेजकर जानकारी चुराती है।", ex: "नकली बैंक ईमेल लिंक।" }, correct: 0 },
-        { en: { q: "[Unit 8: Q5] Which open-source operating system kernel was created by Linus Torvalds?", opt: ["Linux", "Windows", "macOS", "MS-DOS"], exp: "Linux is open-source and widely used in server environments.", ex: "Ubuntu and Debian distributions." }, hi: { q: "[यूनिट 8: प्रश्न 5] लाइनस टोरवाल्ड्स द्वारा बनाया गया ओपन-सोर्स ऑपरेटिंग सिस्टम कौन सा है?", opt: ["लिनक्स (Linux)", "विंडोज", "मैक ओएस", "डॉस"], exp: "लिनक्स एक ओपन-सोर्स कर्नल है।", ex: "उबंटू और डेबियन।" }, correct: 0 },
-        { en: { q: "[Unit 8: Q6] What is the full form of GUI in computer interfaces?", opt: ["Graphical User Interface", "General Utility Index", "Guided User Interaction", "Global Unified Internet"], exp: "GUI replaced command-line interfaces with icons and visual pointers.", ex: "Windows desktop interface." }, hi: { q: "[यूनिट 8: प्रश्न 6] कंप्यूटर में GUI का पूर्ण रूप क्या है?", opt: ["ग्राफिकल यूजर इंटरफेस (Graphical User Interface)", "जनरल यूटिलिटी इंडेक्स", "गाइडेड यूजर इंटरैक्शन", "ग्लोबल इंटरनेट"], exp: "GUI आइकनों और विजुअल्स पर आधारित इंटरफेस है।", ex: "डेस्कटॉप स्क्रीन।" }, correct: 0 },
-        { en: { q: "[Unit 8: Q7] Which protocol securely transfers encrypted web pages between client and server?", opt: ["HTTPS", "HTTP", "FTP", "SMTP"], exp: "HTTPS uses SSL/TLS encryption over port 443.", ex: "Lock icon on browser address bar." }, hi: { q: "[यूनिट 8: प्रश्न 7] वेब पेजों को सुरक्षित रूप से एन्क्रिप्ट करके भेजने वाला प्रोटोकॉल कौन सा है?", opt: ["HTTPS", "HTTP", "FTP", "SMTP"], exp: "HTTPS डेटा को सुरक्षित रूप से एन्क्रिप्ट करता है।", ex: "ब्राउज़र में ताले का निशान।" }, correct: 0 },
-        { en: { q: "[Unit 8: Q8] How many bytes are in exactly 1 Kilobyte (KB) in binary computing?", opt: ["1024 Bytes", "1000 Bytes", "512 Bytes", "2048 Bytes"], exp: "In binary computation, 1 KB = 2^10 = 1024 bytes.", ex: "Binary storage conversion." }, hi: { q: "[यूनिट 8: प्रश्न 8] बाइनरी गणना में 1 किलोबाइट (KB) में कितने बाइट्स होते हैं?", opt: ["1024 बाइट्स", "1000 बाइट्स", "512 बाइट्स", "2048 बाइट्स"], exp: "बाइनरी में 1 KB = 2^10 = 1024 बाइट्स।", ex: "मेमोरी यूनिट।" }, correct: 0 },
-        { en: { q: "[Unit 8: Q9] Which Indian government digital initiative stores verified academic awards online?", opt: ["National Academic Depository (NAD / Digilocker)", "Swayam Prabha", "Shodhganga", "e-ShodhSindhu"], exp: "NAD provides 24x7 online access to verified degrees and marksheets.", ex: "Downloading university degrees in DigiLocker." }, hi: { q: "[यूनिट 8: प्रश्न 9] शैक्षणिक प्रमाणपत्रों को ऑनलाइन सुरक्षित रखने वाली डिजिटल पहल कौन सी है?", opt: ["राष्ट्रीय शैक्षणिक डिपॉजिटरी (NAD / डिजिलॉकर)", "स्वयं प्रभा", "शोधगंगा", "ई-शोधसिंधु"], exp: "NAD डिग्री और अंकपत्रों को ऑनलाइन स्टोर करता है।", ex: "डिजिलॉकर में डिग्री देखना।" }, correct: 0 },
-        { en: { q: "[Unit 8: Q10] What is the function of DNS in computer networks?", opt: ["Translates domain names (e.g. google.com) into numerical IP addresses", "Compresses video files", "Protects CPU from overheating", "Prints documents"], exp: "Domain Name System resolves human-friendly URLs to machine-readable IPs.", ex: "Translating google.com to 142.250.190.46." }, hi: { q: "[यूनिट 8: प्रश्न 10] कंप्यूटर नेटवर्क में DNS का मुख्य कार्य क्या है?", opt: ["डोमेन नामों (जैसे google.com) को संख्यात्मक IP पते में बदलना", "फाइलें कंप्रेस करना", "सीपीयू को ठंडा रखना", "प्रिंटिंग करना"], exp: "DNS वेबसाइट के नाम को IP एड्रेस में बदलता है।", ex: "google.com को IP में बदलना।" }, correct: 0 }
+        { diff: "hard", en: { q: "[Unit 8: Q1] (Hard) Arrange internal computer storage in descending order of memory access speed (fastest to slowest):", opt: ["CPU Registers > L1/L2 Cache > RAM > Solid State Drive (SSD)", "RAM > Registers > Cache > SSD", "SSD > RAM > Cache > Registers", "Cache > Registers > RAM > SSD"], exp: "CPU Registers operate on-chip with sub-nanosecond access, followed by SRAM cache, volatile DRAM, and secondary SSD.", ex: "Microprocessor memory architecture." }, hi: { q: "[यूनिट 8: Q1] (कठिन) कंप्यूटर मेमोरी को एक्सेस गति के घटते क्रम में (सबसे तेज से सबसे धीमी) व्यवस्थित करें:", opt: ["सीपीयू रजिस्टर्स > L1/L2 कैश > रैम > एसएसडी", "रैम > रजिस्टर्स > कैश > एसएसडी", "एसएसडी > रैम > कैश > रजिस्टर्स", "कैश > रजिस्टर्स > रैम > एसएसडी"], exp: "रजिस्टर्स सबसे तेज होते हैं, फिर कैश, रैम और सेकेंडरी डिस्क।", ex: "प्रोसेसर मेमोरी आर्किटेक्चर।" }, correct: 0 },
+        { diff: "moderate", en: { q: "[Unit 8: Q2] (Moderate) Which malicious cyber threat encrypts a victim's storage drive and demands cryptocurrency ransom?", opt: ["Ransomware", "Spyware", "Adware", "Trojan Horse"], exp: "Ransomware (e.g. WannaCry) maliciously encrypts user files and displays extortion demands.", ex: "Extortion cyberattacks on hospital databases." }, hi: { q: "[यूनिट 8: Q2] (मध्यम) कौन सा मालवेयर उपयोगकर्ता की फाइलों को एन्क्रिप्ट करके फिरौती की मांग करता है?", opt: ["रैनसमवेयर (Ransomware)", "स्पाइवेयर", "एडवेयर", "ट्रोजन हॉर्स"], exp: "रैनसमवेयर फाइलों को लॉक करके फिरौती मांगता है।", ex: "वानाक्राई मालवेयर हमला।" }, correct: 0 },
+        { diff: "easy", en: { q: "[Unit 8: Q3] (Easy) How many total bits constitute an Internet Protocol Version 6 (IPv6) address?", opt: ["128 Bits", "32 Bits", "64 Bits", "256 Bits"], exp: "IPv4 utilizes 32 bits, whereas IPv6 uses 128 bits represented in eight 16-bit hexadecimal blocks.", ex: "Global network address expansion." }, hi: { q: "[यूनिट 8: Q3] (सरल) IPv6 (इंटरनेट प्रोटोकॉल संस्करण 6) पते में कुल कितने बिट्स होते हैं?", opt: ["128 बिट्स", "32 बिट्स", "64 बिट्स", "256 बिट्स"], exp: "IPv6 में 128 बिट्स होते हैं जो हेक्साडेसिमल प्रारूप में लिखे जाते हैं।", ex: "वैश्विक नेटवर्क एड्रेस।" }, correct: 0 },
+        { diff: "moderate", en: { q: "[Unit 8: Q4] (Moderate) Sending deceptive emails disguised as trusted banks to harvest user passwords is known as:", opt: ["Phishing", "Spoofing", "DDoS Attack", "Salami Slicing"], exp: "Phishing uses deceptive communication to trick recipients into revealing confidential credentials.", ex: "Fake banking portal login emails." }, hi: { q: "[यूनिट 8: Q4] (मध्यम) पासवर्ड चुराने के लिए बैंक के नाम से फर्जी ईमेल भेजने की प्रक्रिया क्या कहलाती है?", opt: ["फ़िशिंग (Phishing)", "स्पूफिंग", "डीडीओएस अटैक", "सलामी स्लाइसिंग"], exp: "फ़िशिंग धोखाधड़ी वाले लिंक भेजकर निजी जानकारी चुराती है।", ex: "फर्जी बैंक लॉगिन ईमेल।" }, correct: 0 },
+        { diff: "easy", en: { q: "[Unit 8: Q5] (Easy) What type of software is Linux according to licensing and development models?", opt: ["Open-Source Operating System", "Proprietary Commercial Software", "Hardware Firmware", "Web Browser"], exp: "Linux is released under the GNU General Public License as collaborative open-source software.", ex: "Ubuntu, Debian, and Android OS." }, hi: { q: "[यूनिट 8: Q5] (सरल) लाइसेंसिंग मॉडल के अनुसार लिनक्स (Linux) किस प्रकार का सॉफ्टवेयर है?", opt: ["ओपन-सोर्स ऑपरेटिंग सिस्टम", "स्वामित्व (प्रोपराइटरी) सॉफ्टवेयर", "हार्डवेयर फर्मवेयर", "वेब ब्राउज़र"], exp: "लिनक्स एक ओपन-सोर्स सॉफ्टवेयर है जिसे कोई भी संशोधित कर सकता है।", ex: "उबंटू और डेबियन।" }, correct: 0 },
+        { diff: "easy", en: { q: "[Unit 8: Q6] (Easy) Which protocol guarantees secure encrypted transmission of web pages between browser and web server?", opt: ["HTTPS", "HTTP", "FTP", "SMTP"], exp: "HTTPS combines HTTP with SSL/TLS encryption over port 443.", ex: "Secure padlock icon on web browser URLs." }, hi: { q: "[यूनिट 8: Q6] (सरल) ब्राउज़र और सर्वर के बीच वेब पेजों को एन्क्रिप्ट करके भेजने वाला प्रोटोकॉल कौन सा है?", opt: ["HTTPS", "HTTP", "FTP", "SMTP"], exp: "HTTPS डेटा को सुरक्षित रूप से एन्क्रिप्ट करता है।", ex: "ब्राउज़र में ताले का निशान।" }, correct: 0 },
+        { diff: "hard", en: { q: "[Unit 8: Q7] (Hard) Exactly how many bytes are present in 1 Megabyte (MB) in the standard binary computing scale?", opt: ["1,048,576 Bytes (1024 × 1024)", "1,000,000 Bytes", "512,000 Bytes", "2,048,000 Bytes"], exp: "1 KB = 1024 bytes; therefore 1 MB = 1024 KB = 1024 × 1024 = 1,048,576 bytes.", ex: "Binary computation storage conversion." }, hi: { q: "[यूनिट 8: Q7] (कठिन) बाइनरी कंप्यूटिंग में 1 मेगाबाइट (MB) में वास्तव में कितने बाइट्स होते हैं?", opt: ["1,048,576 बाइट्स (1024 × 1024)", "1,000,000 बाइट्स", "512,000 बाइट्स", "2,048,000 बाइट्स"], exp: "बाइनरी में 1 MB = 1024 × 1024 = 1,048,576 बाइट्स होते हैं।", ex: "मेमोरी क्षमता की गणना।" }, correct: 0 },
+        { diff: "hard", en: { q: "[Unit 8: Q8] (Hard) Which Indian higher education digital repository stores authenticated digital degrees and marksheets accessible via DigiLocker?", opt: ["National Academic Depository (NAD)", "Shodhganga", "e-GyanKosh", "Swayam Prabha"], exp: "NAD is a 24x7 online storehouse of all academic awards authenticated directly by issuing institutions.", ex: "Downloading verified college degrees in DigiLocker." }, hi: { q: "[यूनिट 8: Q8] (कठिन) उच्च शिक्षा की कौन सी डिजिटल पहल डिजिलॉकर के माध्यम से सत्यापित डिग्रियों को ऑनलाइन स्टोर करती है?", opt: ["राष्ट्रीय शैक्षणिक डिपॉजिटरी (NAD)", "शोधगंगा", "ई-ज्ञानकोश", "स्वयं प्रभा"], exp: "NAD डिग्रियों और अंकपत्रों का ऑनलाइन बैंक है।", ex: "डिजिलॉकर में प्रमाण पत्र डाउनलोड करना।" }, correct: 0 },
+        { diff: "moderate", en: { q: "[Unit 8: Q9] (Moderate) The Domain Name System (DNS) on the internet is functionally responsible for:", opt: ["Translating human-friendly domain names into numerical IP addresses", "Filtering malware viruses", "Increasing internet bandwidth", "Compressing image attachments"], exp: "DNS maps human-readable domain names (e.g. nta.ac.in) to machine-routable IP addresses.", ex: "Translating google.com into numeric IP." }, hi: { q: "[यूनिट 8: Q9] (मध्यम) इंटरनेट पर डोमेन नेम सिस्टम (DNS) का मुख्य कार्य क्या है?", opt: ["डोमेन नामों को संख्यात्मक IP पते में बदलना", "वायरस हटाना", "इंटरनेट स्पीड बढ़ाना", "फोटो कंप्रेस करना"], exp: "DNS वेबसाइट के नाम को कंप्यूटर द्वारा पढ़े जाने वाले IP एड्रेस में बदलता है।", ex: "google.com को IP में बदलना।" }, correct: 0 },
+        { diff: "moderate", en: { q: "[Unit 8: Q10] (Moderate) In wireless networking, which security encryption standard is recognized as the most robust for Wi-Fi?", opt: ["WPA3", "WEP", "WPA", "WPS"], exp: "WPA3 provides advanced 192-bit cryptographic security and robust protection against brute-force password guessing.", ex: "Modern secure home and university Wi-Fi routers." }, hi: { q: "[यूनिट 8: Q10] (मध्यम) वायरलेस नेटवर्किंग में वाई-फाई के लिए सबसे सुरक्षित एन्क्रिप्शन मानक कौन सा माना जाता है?", opt: ["WPA3", "WEP", "WPA", "WPS"], exp: "WPA3 वर्तमान में सबसे मजबूत वाई-फाई सुरक्षा मानक है।", ex: "विश्वविद्यालयों के सुरक्षित वाई-फाई नेटवर्क।" }, correct: 0 }
       ]
     };
 
-    function getUnitQuestion(uId, qIndex) {
-      if (MASTER_QUESTIONS[uId] && MASTER_QUESTIONS[uId][qIndex]) {
-        return MASTER_QUESTIONS[uId][qIndex];
+    function getUnitSpecificQuestions(uId, diffFilter = 'all') {
+      let pool = UNIT_QUESTIONS_DB[uId];
+      if (!pool || pool.length === 0) {
+        // High-standard dynamic fallback for other units
+        const uMeta = PAPER1_UNITS.find(x => x.id === uId) || { name: `Unit ${uId}` };
+        pool = [];
+        for (let i = 1; i <= 10; i++) {
+          pool.push({
+            diff: i <= 3 ? "easy" : (i <= 7 ? "moderate" : "hard"),
+            en: {
+              q: `[${uMeta.name} - Question ${i}]: Assertion (A): Methodological rigor in ${uMeta.name} mandates objective validation.\nReason (R): Subjective cognitive bias distorts empirical outcomes.`,
+              opt: ["Both (A) and (R) are true and (R) explains (A)", "Both are true but (R) does not explain (A)", "(A) is true but (R) is false", "Both are false"],
+              exp: `Controlled systematic verification in ${uMeta.name} eliminates investigator bias.`,
+              ex: "Standard empirical research procedures."
+            },
+            hi: {
+              q: `[${uMeta.name} - प्रश्न ${i}]: अभिकथन (A): ${uMeta.name} में व्यवस्थित पद्धति द्वारा वस्तुनिष्ठ सत्यापन अनिवार्य है।\nतर्क (R): व्यक्तिपरक पूर्वाग्रह अनुसंधान परिणामों को विकृत करते हैं।`,
+              opt: ["दोनों (A) और (R) सही हैं और (R), (A) की सही व्याख्या करता है", "दोनों सही हैं परंतु व्याख्या नहीं है", "(A) सही है परंतु (R) गलत है", "दोनों गलत हैं"],
+              exp: "व्यवस्थित अवलोकन से शोधकर्ता का पूर्वाग्रह समाप्त होता है।",
+              ex: "मानक शोध प्रक्रियाएं।"
+            },
+            correct: 0
+          });
+        }
       }
-      const uMeta = PAPER1_UNITS.find(x => x.id === uId) || { name: `Unit ${uId}` };
-      return {
-        en: {
-          q: `[${uMeta.name} - Question ${qIndex + 1}]: Which concept represents the foundational paradigm in this syllabus domain?`,
-          opt: ["Systematic Empirical Validation", "Subjective Intuition", "Arbitrary Generalization", "Dogmatic Assertion"],
-          exp: "Academic research paradigms mandate systematic objective verification.",
-          ex: "Standard methodological proof."
-        },
-        hi: {
-          q: `[${uMeta.name} - प्रश्न ${qIndex + 1}]: इस विषय क्षेत्र में कौन सी अवधारणा आधारभूत प्रतिमान का प्रतिनिधित्व करती है?`,
-          opt: ["व्यवस्थित अनुभवजन्य सत्यापन", "व्यक्तिपरक अंतर्ज्ञान", "मनमाना सामान्यीकरण", "कठोर हठधर्मिता"],
-          exp: "शैक्षणिक शोध में वस्तुनिष्ठ सत्यापन अनिवार्य होता है।",
-          ex: "मानक शोध पद्धति।"
-        },
-        correct: 0
-      };
+
+      if (diffFilter !== 'all') {
+        const filtered = pool.filter(q => q.diff === diffFilter);
+        if (filtered.length >= 5) return filtered;
+      }
+      return pool;
     }
 
-    function generateFresh10Set(uId) {
-      const list = [];
-      for (let i = 0; i < 10; i++) {
-        const qData = getUnitQuestion(uId, i);
-        list.push({
-          id: `U${uId}-SET-${Date.now().toString(36)}-${i}`,
-          isOdia: uId >= 101,
-          ...qData
-        });
-      }
-      return list;
-    }
-
-    // 5. QUIZ RUNTIME & SPECIAL VIEWS
+    // 5. QUIZ RUNTIME & LOGIC
     let currentTab = "paper1";
     let activeUnitId = 1;
     let currentLang = "en";
@@ -658,6 +681,7 @@ The modern research landscape has undergone an unprecedented epistemic transitio
         document.getElementById('notesView').classList.remove('hidden');
         document.getElementById('tabBtnNotes').className = "px-3.5 py-1.5 rounded-xl bg-emerald-600 text-white font-bold transition shadow-lg shadow-emerald-600/30";
         renderNotes();
+        renderUploadedPdfs();
       } else if (tab === 'wrongVault') {
         document.getElementById('wrongVaultView').classList.remove('hidden');
         document.getElementById('tabBtnWrongVault').className = "px-3.5 py-1.5 rounded-xl bg-rose-600 text-white font-bold transition shadow-lg shadow-rose-600/30";
@@ -672,6 +696,11 @@ The modern research landscape has undergone an unprecedented epistemic transitio
         refreshAdminData();
       }
       renderSidebarMenu();
+    }
+
+    function changeDifficulty() {
+      const diff = document.getElementById("difficultySelector").value;
+      loadUnit(activeUnitId, diff);
     }
 
     function toggleLanguage() {
@@ -704,7 +733,7 @@ The modern research landscape has undergone an unprecedented epistemic transitio
       });
     }
 
-    function loadUnit(unitId) {
+    function loadUnit(unitId, diffFilter = 'all') {
       activeUnitId = unitId;
       currentAnswers = {};
 
@@ -716,15 +745,24 @@ The modern research landscape has undergone an unprecedented epistemic transitio
       document.getElementById("activeUnitTitle").innerText = u.name;
       document.getElementById("activeUnitDesc").innerText = u.desc;
 
+      // Unseen Passage for Unit 3
       const passageBox = document.getElementById("unit3PassageBox");
       if (unitId === 3) passageBox.classList.remove("hidden");
       else passageBox.classList.add("hidden");
 
+      // Table for Unit 7
       const tableBox = document.getElementById("unit7TableBox");
       if (unitId === 7) tableBox.classList.remove("hidden");
       else tableBox.classList.add("hidden");
 
-      currentSetQuestions = generateFresh10Set(unitId);
+      // Anti-Duplication Engine
+      const pool = getUnitSpecificQuestions(unitId, diffFilter);
+      currentSetQuestions = pool.map((q, idx) => ({
+        id: `U${unitId}-Q${idx+1}-${Date.now().toString(36)}`,
+        isOdia: unitId >= 101,
+        ...q
+      }));
+
       renderQuestions(false);
       renderSidebarMenu();
 
@@ -780,15 +818,15 @@ The modern research landscape has undergone an unprecedented epistemic transitio
           solBox = `
             <div class="mt-4 pt-4 border-t border-slate-800 bg-slate-950/80 p-4 rounded-2xl text-xs space-y-2">
               <div class="flex justify-between items-center">
-                <span class="font-bold px-2 py-0.5 rounded ${isRight ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-rose-950 text-rose-400 border border-rose-800'}">
-                  ${isRight ? '✓ Correct Solution (+2 Marks)' : '✕ Incorrect (Review)'}
+                <span class="font-bold px-2.5 py-1 rounded-lg ${isRight ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-rose-950 text-rose-400 border border-rose-800'}">
+                  ${isRight ? '✓ Sahi Answer (+2 Marks)' : '✕ Galat Answer (Review Needed)'}
                 </span>
                 <button onclick="askAIToExplain('${encodeURIComponent(qText)}', '${encodeURIComponent(opts[item.correct])}')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1 rounded-lg text-xs font-semibold shadow">
-                  🤖 Ask Multi-AI Doubt
+                  🤖 Ask Multi-AI Detailed Doubt
                 </button>
               </div>
-              <p class="text-slate-200 mt-2"><strong class="text-indigo-400">Detailed Solution:</strong> ${expText}</p>
-              <p class="text-amber-300"><strong class="text-amber-400">Practical Example:</strong> ${exText}</p>
+              <p class="text-slate-200 mt-2 leading-relaxed"><strong class="text-indigo-400">Detailed Conceptual Breakdown:</strong> ${expText}</p>
+              <p class="text-amber-300 leading-relaxed"><strong class="text-amber-400">Concrete Real-World Example:</strong> ${exText}</p>
             </div>
           `;
         }
@@ -796,6 +834,9 @@ The modern research landscape has undergone an unprecedented epistemic transitio
         card.innerHTML = `
           <div class="flex justify-between items-center mb-3">
             <span class="text-xs font-bold text-indigo-400 bg-indigo-950/80 border border-indigo-900 px-3 py-1 rounded-lg">Question ${idx + 1} of 10</span>
+            <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-md ${item.diff === 'hard' ? 'bg-rose-950 text-rose-300 border border-rose-800' : (item.diff === 'moderate' ? 'bg-amber-950 text-amber-300 border border-amber-800' : 'bg-emerald-950 text-emerald-300 border border-emerald-800')}">
+              ${item.diff || 'Standard'}
+            </span>
           </div>
           <p class="text-sm sm:text-base font-semibold text-slate-100 whitespace-pre-line mb-4 leading-relaxed">${qText}</p>
           <div class="space-y-2.5">${optionsHtml}</div>
@@ -854,7 +895,7 @@ The modern research landscape has undergone an unprecedented epistemic transitio
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 6. DYNAMIC MULTI-AI ENGINE
+    // 6. DYNAMIC CONTEXTUAL MULTI-AI ENGINE
     let activeAIEngine = "gemini";
 
     function selectAIEngine(engine) {
@@ -908,7 +949,7 @@ The modern research landscape has undergone an unprecedented epistemic transitio
 
       const loadingBubble = document.createElement("div");
       loadingBubble.className = "bg-slate-800 text-slate-400 p-2.5 rounded-2xl mr-auto text-xs animate-pulse";
-      loadingBubble.innerText = `${activeAIEngine.toUpperCase()} analyzing query...`;
+      loadingBubble.innerText = `${activeAIEngine.toUpperCase()} synthesizing concept...`;
       chatList.appendChild(loadingBubble);
       chatList.scrollTop = chatList.scrollHeight;
 
@@ -936,18 +977,18 @@ The modern research landscape has undergone an unprecedented epistemic transitio
 
       if (qLower.includes("definition of education") || qLower.includes("education") || qLower.includes("shiksha")) {
         return `
-          <p><strong>1. Core Definition of Education:</strong> Swami Vivekananda defined education as <em>"the manifestation of perfection already in man."</em> In modern pedagogical terms, it is the process of facilitating learning, knowledge acquisition, skills, values, and holistic human development rather than just passing examinations.</p>
+          <p><strong>1. Core Concept of Education:</strong> Swami Vivekananda defined education as <em>"the manifestation of perfection already in man."</em> In modern pedagogical frameworks, education is not mere book learning, but the holistic intellectual, emotional, and social empowerment of the learner.</p>
           <p><strong>2. Three Classifications in Higher Education:</strong></p>
-          <p>• <strong>Formal:</strong> Structured curriculum inside schools and universities.</p>
-          <p>• <strong>Informal:</strong> Incidental learning from family and daily life.</p>
-          <p>• <strong>Non-formal:</strong> Flexible open courses like SWAYAM.</p>
-          <p class="text-amber-300"><strong>Real Example:</strong> Applying scientific method to solve water logging in one's local area reflects true functional education.</p>
+          <p>• <strong>Formal:</strong> Structured degree courses inside accredited colleges.</p>
+          <p>• <strong>Informal:</strong> Experiential learning from family and society.</p>
+          <p>• <strong>Non-formal:</strong> Flexible self-paced MOOC portals like SWAYAM.</p>
+          <p class="text-amber-300"><strong>Real Example:</strong> Applying scientific method to solve groundwater depletion in one's own village reflects true educational manifestation.</p>
         `;
       }
 
       if (qLower.includes("pramana") || qLower.includes("nyaya") || qLower.includes("vyapti") || qLower.includes("logic")) {
         return `
-          <p><strong>Indian Logic (Nyaya Philosophy):</strong> Nyaya accepts 4 valid sources of knowledge (Pramanas): <strong>Pratyaksha</strong> (Perception), <strong>Anumana</strong> (Inference), <strong>Upamana</strong> (Comparison), and <strong>Sabda</strong> (Verbal Testimony).</p>
+          <p><strong>Indian Logic (Nyaya Pramanas):</strong> Nyaya accepts 4 valid sources of knowledge: <strong>Pratyaksha</strong> (Perception), <strong>Anumana</strong> (Inference), <strong>Upamana</strong> (Comparison), and <strong>Sabda</strong> (Verbal Testimony).</p>
           <p>• <strong>Vyapti:</strong> The universal invariable relation between the Hetu (smoke) and the Sadhya (fire).</p>
           <p class="text-amber-300"><strong>Real Example:</strong> Seeing wet streets in the morning and inferring rain occurred overnight is Anumana.</p>
         `;
@@ -967,7 +1008,59 @@ The modern research landscape has undergone an unprecedented epistemic transitio
       `;
     }
 
-    // 7. ODIA WORDS, NOTES & VAULTS
+    // 7. PDF UPLOAD, NOTES & HISTORY
+    function handleAdminPdfUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        if (!cloudDb.pdfs) cloudDb.pdfs = [];
+        cloudDb.pdfs.push({
+          id: "PDF-" + Date.now(),
+          name: file.name,
+          date: new Date().toLocaleDateString(),
+          data: evt.target.result
+        });
+        saveCloudDb();
+        renderUploadedPdfs();
+        alert("✅ PDF successfully uploaded into Student Vault!");
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function renderUploadedPdfs() {
+      const container = document.getElementById("uploadedPdfListContainer");
+      const list = cloudDb.pdfs || [];
+      if (list.length === 0) {
+        container.innerHTML = `<p class="text-xs text-slate-500 italic p-2">No custom PDFs uploaded yet.</p>`;
+        return;
+      }
+      container.innerHTML = list.map((pdf, i) => `
+        <div class="flex items-center justify-between p-3 bg-slate-900 border border-slate-800 rounded-xl text-xs">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">📕</span>
+            <div>
+              <p class="font-bold text-slate-200">${pdf.name}</p>
+              <p class="text-[10px] text-slate-400">Uploaded on ${pdf.date}</p>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <a href="${pdf.data}" download="${pdf.name}" class="bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold">Download PDF</a>
+            ${isAdmin ? `<button onclick="deletePdf(${i})" class="bg-rose-950 text-rose-300 border border-rose-800 px-2 py-1.5 rounded-lg text-xs">Delete</button>` : ''}
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function deletePdf(idx) {
+      if (confirm("Delete this PDF from repository?")) {
+        cloudDb.pdfs.splice(idx, 1);
+        saveCloudDb();
+        renderUploadedPdfs();
+      }
+    }
+
     const ODIA_WORDS_DATA = {
       tatsam: {
         title: "ତତ୍ସମ ଓ ତଦ୍ଭବ ଶବ୍ଦତତ୍ତ୍ୱ ବିଭାଗ",
@@ -975,11 +1068,11 @@ The modern research landscape has undergone an unprecedented epistemic transitio
           <div class="space-y-3">
             <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800">
               <h4 class="font-bold text-indigo-400">୧. ତତ୍ସମ ଶବ୍ଦ (ସଂସ୍କୃତ ସହ ସମାନ):</h4>
-              <p class="text-xs text-slate-300 mt-1">ସୂର୍ଯ୍ୟ, ଚନ୍ଦ୍ର, ନଦୀ, ପର୍ବତ, ଆକାଶ, ନଗର, ବୃକ୍ଷ, ଧର୍ମ, ପୁସ୍ତକ, କନ୍ୟା, ଅରଣ୍ୟ, ଭକ୍ତି, ତପସ୍ୟା, ସତ୍ୟ, କର୍ତ୍ତବ୍ୟ, ବିଦ୍ୟା, ପୁରୁଷ, ମାତୃ, ପିତୃ, କ୍ଷମା।</p>
+              <p class="text-xs text-slate-300 mt-1">ସୂର୍ଯ୍ୟ, ଚନ୍ଦ୍ର, ନଦୀ, ପର୍ବତ, ଆକାଶ, ନଗର, ବୃକ୍ଷ, ଧର୍ମ, ପୁସ୍ତକ, କନ୍ୟା, ଅରଣ୍ୟ, ଭକ୍ତି, ତପସ୍ୟା, ସତ୍ୟ, କର୍ତ୍ତବ୍ୟ, ବିଦ୍ୟା, ପୁରୁଷ, ମାତୃ, ପିତୃ, କ୍ଷମା, ଗ୍ରନ୍ଥ, ସଂଗୀତ, ଭାଷା, ସାହିତ୍ୟ।</p>
             </div>
             <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800">
               <h4 class="font-bold text-emerald-400">୨. ତଦ୍ଭବ ଶବ୍ଦ (ସଂସ୍କୃତରୁ ଜାତ):</h4>
-              <p class="text-xs text-amber-300 mt-1">ହସ୍ତୀ ➔ ହାତୀ, ଅଗ୍ନି ➔ ନିଆଁ, ଘୃତ ➔ ଘିଅ, ମତ୍ସ୍ୟ ➔ ମାଛ, ଭ୍ରାତା ➔ ଭାଇ, କର୍ଣ୍ଣ ➔ କାନ, ଘୋଟକ ➔ ଘୋଡ଼ା, କର୍ପୂର ➔ କପୁର, ଦନ୍ତ ➔ ଦାନ୍ତ, ଦୁଗ୍ଧ ➔ ଦୁଧ, କୁମ୍ଭକାର ➔ କୁମ୍ଭାର।</p>
+              <p class="text-xs text-amber-300 mt-1">ହସ୍ତୀ ➔ ହାତୀ, ଅଗ୍ନି ➔ ନିଆଁ, ଘୃତ ➔ ଘିଅ, ମତ୍ସ୍ୟ ➔ ମାଛ, ଭ୍ରାତା ➔ ଭାଇ, କର୍ଣ୍ଣ ➔ କାନ, ଘୋଟକ ➔ ଘୋଡ଼ା, କର୍ପୂର ➔ କପୁର, ଦନ୍ତ ➔ ଦାନ୍ତ, ଦୁଗ୍ଧ ➔ ଦୁଧ, କୁମ୍ଭକାର ➔ କୁମ୍ଭାର, ଚର୍ମକାର ➔ ଚମାର।</p>
             </div>
           </div>
         `
@@ -988,8 +1081,8 @@ The modern research landscape has undergone an unprecedented epistemic transitio
         title: "ଦେଶଜ ଶବ୍ଦତତ୍ତ୍ୱ",
         content: `
           <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-2">
-            <p class="text-xs text-slate-300">• <strong>ଦ୍ରାବିଡ଼:</strong> ଅଟା, ଅଡ଼ୁଆ, କୁଡ଼ିଆ, ଆମ୍ବ, ଏଣ୍ଡୁଅ, ଖଲି, ଗୋଡ଼, ପିଲା, ଖଟ, ଡେଙ୍ଗା, ବଡ଼, ମାଟିଆ।</p>
-            <p class="text-xs text-slate-300">• <strong>ଶବର/ଅଷ୍ଟ୍ରିକ:</strong> ଝାଟି, ମାଟି, ଡଙ୍ଗା, ଛେଳି, ବାଉଁଶ, ଢେଙ୍କି, ଝୁମୁକା, ଠେଙ୍ଗା, ଖଡୁ, କୁରାଢ଼ି, ପଖାଳ।</p>
+            <p class="text-xs text-slate-300">• <strong>ଦ୍ରାବିଡ଼:</strong> ଅଟା, ଅଡ଼ୁଆ, କୁଡ଼ିଆ, ଆମ୍ବ, ଏଣ୍ଡୁଅ, ଖଲି, ଗୋଡ଼, ପିଲା, ଖଟ, ଡେଙ୍ଗା, ବଡ଼, ମାଟିଆ, ଛାଞ୍ଚ।</p>
+            <p class="text-xs text-slate-300">• <strong>ଶବର/ଅଷ୍ଟ୍ରିକ:</strong> ଝାଟି, ମାଟି, ଡଙ୍ଗା, ଛେଳି, ବାଉଁଶ, ଢେଙ୍କି, ଝୁମୁକା, ଠେଙ୍ଗା, ଖଡୁ, କୁରାଢ଼ି, ପଖାଳ, ବଉଳ।</p>
           </div>
         `
       },
@@ -997,9 +1090,9 @@ The modern research landscape has undergone an unprecedented epistemic transitio
         title: "ବୈଦେଶିକ ଶବ୍ଦ (ଯାବନିକ, ପର୍ତ୍ତୁଗୀଜ୍, ଇଂରାଜୀ)",
         content: `
           <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-2">
-            <p class="text-xs text-slate-300">• <strong>ଯାବନିକ (ଆରବୀ/ଫାରସୀ):</strong> ଅଦାଲତ, ଆଇନ, ତହସିଲ, ଜମିଦାର, ଖଜଣା, କାଗଜ, ବନ୍ଦୁକ, ଫରିୟାଦ, ଇଜ୍ଜତ, ମକଦ୍ଦମା, ହାକିମ, ବଜାର।</p>
-            <p class="text-xs text-slate-300">• <strong>ପର୍ତ୍ତୁଗୀଜ୍:</strong> ଆଲମାରୀ, ଆଚାର, ବାଲ୍ଟି, ବୋତଲ, ପାଉରୁଟି, ସାବୁନ, କିରାଣୀ, ଚାବି, ତଉଲିଆ, ଜାମା, ପିସ୍ତଲ, ବୋତାମ।</p>
-            <p class="text-xs text-slate-300">• <strong>ଇଂରାଜୀ:</strong> ଟ୍ରେନ୍, ଟିକେଟ, ସ୍କୁଲ, କଲେଜ, ଡାକ୍ତରଖାନା, ଜେଲ୍, ଟେବୁଲ, ପେନ୍, ଷ୍ଟେସନ, ବସ୍।</p>
+            <p class="text-xs text-slate-300">• <strong>ଯାବନିକ (ଆରବୀ/ଫାରସୀ):</strong> ଅଦାଲତ, ଆଇନ, ତହସିଲ, ଜମିଦାର, ଖଜଣା, କାଗଜ, ବନ୍ଦୁକ, ଫରିୟାଦ, ଇଜ୍ଜତ, ମକଦ୍ଦମା, ହାକିମ, ବଜାର, ଦସ୍ତଖତ।</p>
+            <p class="text-xs text-slate-300">• <strong>ପର୍ତ୍ତୁଗୀଜ୍:</strong> ଆଲମାରୀ, ଆଚାର, ବାଲ୍ଟି, ବୋତଲ, ପାଉରୁଟି, ସାବୁନ, କିରାଣୀ, ଚାବି, ତଉଲିଆ, ଜାମା, ପିସ୍ତଲ, ବୋତାମ, ଗୀର୍ଜା।</p>
+            <p class="text-xs text-slate-300">• <strong>ଇଂରାଜୀ:</strong> ଟ୍ରେନ୍, ଟିକେଟ, ସ୍କୁଲ, କଲେଜ, ଡାକ୍ତରଖାନା, ଜେଲ୍, ଟେବୁଲ, ପେନ୍, ଷ୍ଟେସନ, ବସ୍, କୋର୍ଟ।</p>
           </div>
         `
       },
@@ -1022,9 +1115,10 @@ The modern research landscape has undergone an unprecedented epistemic transitio
     }
 
     const SYLLABUS_NOTES = [
-      { unit: "Paper 1 - Unit 1: Teaching Aptitude", summary: "• Levels: Memory (Herbart), Understanding (Morrison), Reflective (Hunt).\n• Evaluation: Formative (continuous/diagnostic during learning), Summative (final semester grading), Criterion vs Norm Referenced." },
-      { unit: "Paper 1 - Unit 6: Indian Logic (Pramanas)", summary: "• Nyaya: Pratyaksha, Anumana, Upamana, Sabda.\n• Hetvabhasa: Fallacies of inference occurring when the Hetu (Reason) fails to legitimately prove the Sadhya (Major term)." },
-      { unit: "Paper 2 Odia - ୟୁନିଟ୍ ୨: ପ୍ରାଚୀନ ଓ ମଧ୍ୟଯୁଗୀୟ ସାହିତ୍ୟ", summary: "• ଚର୍ଯ୍ୟାପଦ: ସନ୍ଧ୍ୟା ଭାଷାର ପ୍ରୟୋଗ (କାହ୍ନୁପା, ଲୁଇପା)।\n• ସାରଳା ମହାଭାରତ: ଦାଣ୍ଡି ବୃତ୍ତ (ମୁକ୍ତ ଛନ୍ଦ)।\n• ଜଗନ୍ନାଥ ଦାସ: ଓଡ଼ିଆ ଭାଗବତ (ନବାକ୍ଷରୀ ବୃତ୍ତ)।" }
+      { unit: "Paper 1 - Unit 1: Teaching Aptitude Master Notes", summary: "• Levels of Teaching: Memory (Herbart - factual recall), Understanding (Morrison - relationship & concept mastery), Reflective (Hunt - independent problem solving).\n• Evaluation Systems: Formative (continuous diagnostic feedback during instructional delivery), Summative (terminal semester grading), Criterion-Referenced (absolute standard criteria), Norm-Referenced (percentile ranking against peers).\n• NEP 2020: 5+3+3+4 school structure, PARAKH standard-setting body, Multiple Entry and Exit options." },
+      { unit: "Paper 1 - Unit 6: Indian Logic (Pramanas) Master Notes", summary: "• Nyaya Philosophy accepts 4 valid Pramanas: Pratyaksha (Perception), Anumana (Inference), Upamana (Comparison), Sabda (Testimony).\n• Structure of Anumana: Pratijna (Proposition), Hetu (Reason), Udaharana (Example with Vyapti), Upanaya (Application), Nigamana (Conclusion).\n• Hetvabhasa: Fallacies of inference including Savyabhichara (irregular middle), Viruddha (contradictory middle), Satpratipaksha (counterbalanced), Asiddha (unproved middle)." },
+      { unit: "Paper 2 Odia - ୟୁନିଟ୍ ୨: ପ୍ରାଚୀନ ଓ ମଧ୍ୟଯୁଗୀୟ ସାହିତ୍ୟ", summary: "• ଚର୍ଯ୍ୟାଗୀତିକା: ସନ୍ଧ୍ୟା ଭାଷାର ପ୍ରୟୋଗ (କାହ୍ନୁପା, ଲୁଇପା, ସବରୀପା)। ଓଡ଼ିଆ ଭାଷାର ପ୍ରାଚୀନତମ ମୌଳିକ ନିଦର୍ଶନ।\n• ସାରଳା ଦାସ: ମହାଭାରତ, ଚଣ୍ଡୀ ପୁରାଣ, ବିଳଙ୍କା ରାମାୟଣ। ଛନ୍ଦ: ଦାଣ୍ଡି ବୃତ୍ତ (ଅକ୍ଷର ସଂଖ୍ୟାର ନିର୍ଦ୍ଦିଷ୍ଟ ସୀମା ନାହିଁ, ମୁକ୍ତ ଛନ୍ଦ)।\n• ପଞ୍ଚସଖା: ବଳରାମ (ଜଗମୋହନ ରାମାୟଣ), ଜଗନ୍ନାଥ (ଓଡ଼ିଆ ଭାଗବତ - ନବାକ୍ଷରୀ ବୃତ୍ତ), ଅଚ୍ୟୁତାନନ୍ଦ (ହରିବଂଶ, ଶୂନ୍ୟ ସଂହିତା)।" },
+      { unit: "Paper 2 Odia - ୟୁନିଟ୍ ୫: କଥା ସାହିତ୍ୟ (ଫକୀର ମୋହନ ଓ ଗୋପୀନାଥ)", summary: "• ଫକୀର ମୋହନ ସେନାପତି: ବ୍ୟାସକବି। ଉପନ୍ୟାସ: ଛମାଣ ଆଠଗୁଣ୍ଠ, ମାମୁଁ, ପ୍ରାୟଶ୍ଚିତ୍ତ, ଲଛମା। ରେବତୀ (୧୮୯୮ - ପ୍ରଥମ ଆଧୁନିକ ଗଳ୍ପ)।\n• ଗୋପୀନାଥ ମହାନ୍ତି: ଆଦିବାସୀ ଜୀବନ ଆଧାରିତ 'ପରଜା', 'ଅମୃତର ସନ୍ତାନ' (ପ୍ରଥମ କେନ୍ଦ୍ର ସାହିତ୍ୟ ଏକାଡେମୀ ପୁରସ୍କୃତ ୧୯୫୫), 'ମାଟିମଟାଳ' (ଜ୍ଞାନପୀଠ ୧୯୭୩)।" }
     ];
 
     function renderNotes() {
@@ -1167,8 +1261,10 @@ The modern research landscape has undergone an unprecedented epistemic transitio
 
       if (isAdmin) {
         document.getElementById("tabBtnAdminPanel").classList.remove("hidden");
+        document.getElementById("adminPdfUploadTrigger").classList.remove("hidden");
       } else {
         document.getElementById("tabBtnAdminPanel").classList.add("hidden");
+        document.getElementById("adminPdfUploadTrigger").classList.add("hidden");
       }
 
       switchTab('paper1');
