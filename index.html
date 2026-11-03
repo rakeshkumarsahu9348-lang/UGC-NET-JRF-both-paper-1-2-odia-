@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UGC NET JRF Master Portal - By Rakesh Kumar Sahu Sir</title>
+  <title>UGC NET JRF Master Cloud Portal - By Rakesh Kumar Sahu Sir</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+Oriya:wght@400;500;600;700&display=swap');
@@ -15,7 +15,7 @@
 </head>
 <body class="bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 text-slate-100 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
 
-  <!-- AUTH MODAL -->
+  <!-- AUTHENTICATION MODAL -->
   <div id="authModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center z-50 p-4">
     <div class="bg-slate-900/95 border border-indigo-500/30 w-full max-w-md rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
       <div class="text-center mb-6">
@@ -23,20 +23,19 @@
           JRF
         </div>
         <h2 class="text-2xl font-bold text-white tracking-tight">NET JRF Exam Portal</h2>
-        <p class="text-xs text-indigo-300/80 mt-1">Paper 1 & Paper 2 Odia Cloud Access</p>
+        <p class="text-xs text-indigo-300/80 mt-1">Paper 1 & Paper 2 Odia Verified Cloud Access</p>
       </div>
 
-      <!-- Auth Tabs -->
       <div class="flex bg-slate-950 p-1 rounded-2xl border border-slate-800 mb-5 text-xs font-semibold">
         <button onclick="setAuthTab('login')" id="tabBtnAuthLogin" class="flex-1 py-2 rounded-xl bg-indigo-600 text-white transition">Login</button>
         <button onclick="setAuthTab('register')" id="tabBtnAuthRegister" class="flex-1 py-2 rounded-xl text-slate-400 hover:text-white transition">Create New Account</button>
       </div>
 
-      <!-- Login Form -->
+      <!-- Login Section -->
       <div id="loginFormSection" class="space-y-4 text-xs">
         <div>
           <label class="font-semibold text-slate-300 block mb-1">User ID / Candidate Username</label>
-          <input type="text" id="loginUsername" placeholder="Enter your registered User ID" class="w-full bg-slate-800/80 border border-slate-700 focus:border-indigo-500 px-3.5 py-2.5 rounded-xl text-sm text-white focus:outline-none transition" />
+          <input type="text" id="loginUsername" placeholder="Enter registered User ID" class="w-full bg-slate-800/80 border border-slate-700 focus:border-indigo-500 px-3.5 py-2.5 rounded-xl text-sm text-white focus:outline-none transition" />
         </div>
         <div>
           <label class="font-semibold text-slate-300 block mb-1">Password</label>
@@ -47,7 +46,7 @@
         </button>
       </div>
 
-      <!-- Register Form -->
+      <!-- Register Section -->
       <div id="registerFormSection" class="hidden space-y-4 text-xs">
         <div>
           <label class="font-semibold text-slate-300 block mb-1">Choose Unique User ID</label>
@@ -65,7 +64,7 @@
     </div>
   </div>
 
-  <!-- NAVIGATION HEADER -->
+  <!-- HEADER -->
   <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 px-4 md:px-8 py-3 sticky top-0 z-40 flex flex-wrap justify-between items-center gap-4">
     <div class="flex items-center gap-3">
       <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center font-bold text-lg text-white shadow-md shadow-indigo-600/30">
@@ -82,13 +81,13 @@
 
     <!-- Navigation Tabs -->
     <div class="flex flex-wrap bg-slate-950/80 p-1.5 rounded-2xl border border-slate-800 text-xs font-semibold gap-1">
-      <button onclick="triggerSound(); switchTab('paper1')" id="tabBtnPaper1" class="px-3 py-1.5 rounded-xl bg-indigo-600 text-white transition">Paper 1</button>
-      <button onclick="triggerSound(); switchTab('paper2')" id="tabBtnPaper2" class="px-3 py-1.5 rounded-xl text-slate-400 hover:text-white transition">Paper 2 (ଓଡ଼ିଆ)</button>
-      <button onclick="triggerSound(); switchTab('odiaWords')" id="tabBtnOdiaWords" class="px-3 py-1.5 rounded-xl text-amber-400 hover:text-amber-300 transition">ଶବ୍ଦତତ୍ତ୍ୱ ବିଭାଗ</button>
-      <button onclick="triggerSound(); switchTab('notes')" id="tabBtnNotes" class="px-3 py-1.5 rounded-xl text-emerald-400 hover:text-emerald-300 transition">📖 ପାଠ ଓ Notes</button>
-      <button onclick="triggerSound(); switchTab('wrongVault')" id="tabBtnWrongVault" class="px-3 py-1.5 rounded-xl text-rose-400 hover:text-rose-300 transition">❌ Wrong Bank</button>
-      <button onclick="triggerSound(); switchTab('historyVault')" id="tabBtnHistoryVault" class="px-3 py-1.5 rounded-xl text-cyan-400 hover:text-cyan-300 transition">📅 History Bank</button>
-      <button onclick="triggerSound(); switchTab('adminPanel')" id="tabBtnAdminPanel" class="hidden px-3 py-1.5 rounded-xl bg-amber-600 text-white font-bold transition shadow-lg shadow-amber-600/30">⚙️ Master Admin</button>
+      <button onclick="triggerSound(); switchTab('paper1')" id="tabBtnPaper1" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 text-white transition">Paper 1</button>
+      <button onclick="triggerSound(); switchTab('paper2')" id="tabBtnPaper2" class="px-3.5 py-1.5 rounded-xl text-slate-400 hover:text-white transition">Paper 2 (ଓଡ଼ିଆ)</button>
+      <button onclick="triggerSound(); switchTab('odiaWords')" id="tabBtnOdiaWords" class="px-3.5 py-1.5 rounded-xl text-amber-400 hover:text-amber-300 transition">ଶବ୍ଦତତ୍ତ୍ୱ ବିଭାଗ</button>
+      <button onclick="triggerSound(); switchTab('notes')" id="tabBtnNotes" class="px-3.5 py-1.5 rounded-xl text-emerald-400 hover:text-emerald-300 transition">📖 ପାଠ ଓ Notes</button>
+      <button onclick="triggerSound(); switchTab('wrongVault')" id="tabBtnWrongVault" class="px-3.5 py-1.5 rounded-xl text-rose-400 hover:text-rose-300 transition">❌ Wrong Bank</button>
+      <button onclick="triggerSound(); switchTab('historyVault')" id="tabBtnHistoryVault" class="px-3.5 py-1.5 rounded-xl text-cyan-400 hover:text-cyan-300 transition">📅 History Bank</button>
+      <button onclick="triggerSound(); switchTab('adminPanel')" id="tabBtnAdminPanel" class="hidden px-3.5 py-1.5 rounded-xl bg-amber-600 text-white font-bold transition shadow-lg shadow-amber-600/30">⚙️ Master Admin</button>
     </div>
 
     <!-- Controls -->
@@ -133,6 +132,7 @@
         </div>
       </div>
 
+      <!-- UNIT SELECTOR SIDEBAR -->
       <div class="glass-card border border-slate-800 rounded-3xl p-5 shadow-lg" id="sidebarUnitMenu">
         <h3 id="unitMenuTitle" class="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-3">Units Available</h3>
         <div id="unitListContainer" class="space-y-2 max-h-[55vh] overflow-y-auto custom-scroll pr-1"></div>
@@ -142,7 +142,7 @@
     <!-- RIGHT SECTION -->
     <section class="lg:col-span-3 space-y-6">
       
-      <!-- QUIZ VIEW -->
+      <!-- 1. QUIZ VIEW -->
       <div id="quizView" class="space-y-5">
         <div class="bg-gradient-to-r from-indigo-950/80 via-slate-900 to-slate-900 border border-indigo-500/30 rounded-3xl p-6 flex flex-wrap justify-between items-center gap-4 shadow-xl">
           <div>
@@ -159,22 +159,42 @@
           </div>
         </div>
 
-        <!-- SPECIAL COMPREHENSION PASSAGE BOX -->
+        <!-- SPECIAL COMPREHENSION PASSAGE -->
         <div id="unit3PassageBox" class="hidden glass-card border border-cyan-500/30 rounded-3xl p-6 shadow-xl space-y-2">
           <div class="flex items-center gap-2 border-b border-slate-800 pb-2 mb-2">
             <span class="text-base">📄</span>
-            <h3 class="text-sm font-bold text-cyan-400 uppercase tracking-wider">Reading Comprehension: Academic Passage</h3>
+            <h3 class="text-sm font-bold text-cyan-400 uppercase tracking-wider">Reading Comprehension: Unseen Academic Passage</h3>
           </div>
-          <div id="unit3PassageContent" class="text-xs sm:text-sm text-slate-200 leading-relaxed font-serif bg-slate-950/70 p-4 rounded-2xl border border-slate-800 whitespace-pre-line max-h-60 overflow-y-auto custom-scroll"></div>
+          <div id="unit3PassageContent" class="text-xs sm:text-sm text-slate-200 leading-relaxed font-serif bg-slate-950/70 p-4 rounded-2xl border border-slate-800 whitespace-pre-line max-h-60 overflow-y-auto custom-scroll">
+The modern research landscape has undergone an unprecedented epistemic transition. Traditionally anchored in autonomous philosophical wonder and the pursuit of objective truth, contemporary universities are increasingly governed by market-driven metrics, quantifiable output indexes, and commodified patent quotas. While institutional accountability ensures fiscal transparency, it has inadvertently fostered a hyper-competitive 'publish-or-perish' ecosystem. In this system, exploratory long-term inquiries are routinely marginalized in favor of incremental, low-risk investigations. Genuine scientific progress demands not merely bureaucratic surveillance, but an institutional culture grounded in intellectual courage, methodological skepticism, and ethical responsibility toward ecological and social well-being.
+          </div>
         </div>
 
-        <!-- SPECIAL DATA INTERPRETATION TABLE BOX -->
+        <!-- SPECIAL DATA INTERPRETATION TABLE -->
         <div id="unit7TableBox" class="hidden glass-card border border-emerald-500/30 rounded-3xl p-6 shadow-xl space-y-3">
           <div class="flex items-center gap-2 border-b border-slate-800 pb-2 mb-2">
             <span class="text-base">📊</span>
             <h3 class="text-sm font-bold text-emerald-400 uppercase tracking-wider">Data Interpretation: University Student Performance Table</h3>
           </div>
-          <div id="unit7TableContent" class="overflow-x-auto custom-scroll"></div>
+          <div id="unit7TableContent" class="overflow-x-auto custom-scroll">
+            <table class="w-full text-xs text-left border border-slate-700 rounded-xl overflow-hidden">
+              <thead class="bg-indigo-950/80 text-indigo-300 border-b border-slate-700">
+                <tr>
+                  <th class="p-2.5">Year</th>
+                  <th class="p-2.5">Arts Faculty (Students)</th>
+                  <th class="p-2.5">Science Faculty (Students)</th>
+                  <th class="p-2.5">Commerce Faculty (Students)</th>
+                  <th class="p-2.5">Total Grant (₹ Lakhs)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800 bg-slate-900/60 font-mono">
+                <tr><td class="p-2 font-bold text-slate-200">2021</td><td class="p-2">800</td><td class="p-2">500</td><td class="p-2">400</td><td class="p-2">₹120 L</td></tr>
+                <tr><td class="p-2 font-bold text-slate-200">2022</td><td class="p-2">850</td><td class="p-2">600</td><td class="p-2">550</td><td class="p-2">₹150 L</td></tr>
+                <tr><td class="p-2 font-bold text-slate-200">2023</td><td class="p-2">920</td><td class="p-2">750</td><td class="p-2">700</td><td class="p-2">₹180 L</td></tr>
+                <tr><td class="p-2 font-bold text-slate-200">2024</td><td class="p-2">1000</td><td class="p-2">900</td><td class="p-2">850</td><td class="p-2">₹220 L</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <!-- 10 Questions Container -->
@@ -195,11 +215,11 @@
         </div>
       </div>
 
-      <!-- ODIA WORDS VIEW -->
+      <!-- 2. ODIA WORDS VIEW -->
       <div id="odiaWordsView" class="hidden space-y-5">
         <div class="glass-card border border-amber-500/30 rounded-3xl p-6 shadow-xl">
           <h2 class="text-xl font-extrabold text-amber-400">ଓଡ଼ିଆ ଭାଷା ଓ ଶବ୍ଦଭଣ୍ଡାର (ଶବ୍ଦତତ୍ତ୍ୱ ବିଭାଗ)</h2>
-          <p class="text-xs text-slate-300 mt-1">ତତ୍ସମ, ତଦ୍ଭବ, ଦେଶଜ, ଯାବନିକ, ଇଂରାଜୀ ଓ ପର୍ତ୍ତୁଗୀଜ୍ ଶବ୍ଦର ସମ୍ପୂର୍ଣ୍ଣ ବିବରଣୀ ଓ ଅଭ୍ୟାସ</p>
+          <p class="text-xs text-slate-300 mt-1">ତତ୍ସମ, ତଦ୍ଭବ, ଦେଶଜ, ଯାବନିକ, ଇଂରାଜୀ ଓ ପର୍ତ୍ତୁଗୀଜ୍ ଶବ୍ଦର ବିସ୍ତୃତ ଆଲୋଚନା ଓ ଅଭ୍ୟାସ MSQ</p>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-5">
             <button onclick="triggerSound(); showWordTab('tatsam')" class="p-2.5 text-xs rounded-xl bg-indigo-950/80 text-indigo-300 border border-indigo-800 font-bold hover:bg-indigo-900 transition">ତତ୍ସମ ଓ ତଦ୍ଭବ</button>
             <button onclick="triggerSound(); showWordTab('desaja')" class="p-2.5 text-xs rounded-xl bg-emerald-950/80 text-emerald-300 border border-emerald-800 font-bold hover:bg-emerald-900 transition">ଦେଶଜ ଶବ୍ଦ</button>
@@ -210,39 +230,39 @@
         <div id="wordContentArea" class="glass-card border border-slate-800 rounded-3xl p-6 text-sm space-y-4"></div>
       </div>
 
-      <!-- NOTES VIEW -->
+      <!-- 3. NOTES VIEW -->
       <div id="notesView" class="hidden space-y-5">
         <div class="glass-card border border-emerald-500/30 rounded-3xl p-6 shadow-xl">
-          <h2 class="text-xl font-extrabold text-emerald-400">📖 ସମ୍ପୂର୍ଣ୍ଣ ସିଲାବସ୍ ପାଠ ଓ Master Notes</h2>
+          <h2 class="text-xl font-extrabold text-emerald-400">📖 ସମ୍ପୂର୍ଣ୍ଣ ସିଲାବସ୍ ପାଠ ଓ Master Notes Repository</h2>
           <p class="text-xs text-slate-300 mt-1">Paper 1 ଏବଂ Paper 2 (ଓଡ଼ିଆ)ର ପ୍ରତ୍ୟେକ ୟୁନିଟ୍‌ର ଅଧ୍ୟୟନ ସାରାଂଶ</p>
         </div>
         <div id="notesAccordionContainer" class="space-y-3"></div>
       </div>
 
-      <!-- WRONG BANK -->
+      <!-- 4. WRONG BANK -->
       <div id="wrongVaultView" class="hidden space-y-5">
         <div class="glass-card border border-rose-500/30 rounded-3xl p-6 shadow-xl">
           <h2 class="text-xl font-extrabold text-rose-400">❌ Wrong Questions Mistake Bank</h2>
-          <p class="text-xs text-slate-300 mt-1">Aapke sabhi galat answers ka verified analysis aur solution.</p>
+          <p class="text-xs text-slate-300 mt-1">Aapke sabhi galat answers ka verified analysis aur solution taaki JRF me dobara galti na ho.</p>
         </div>
         <div id="wrongQuestionsListContainer" class="space-y-4"></div>
       </div>
 
-      <!-- HISTORY BANK -->
+      <!-- 5. HISTORY BANK -->
       <div id="historyVaultView" class="hidden space-y-5">
         <div class="glass-card border border-cyan-500/30 rounded-3xl p-6 shadow-xl">
           <h2 class="text-xl font-extrabold text-cyan-400">📅 Candidate Date-Wise Attempt History Bank</h2>
-          <p class="text-xs text-slate-300 mt-1">Sirf aapka apna personal attempt record (never deleted).</p>
+          <p class="text-xs text-slate-300 mt-1">Sirf aapka apna personal attempt record (never deleted across restarts).</p>
         </div>
         <div id="historyLogsContainer" class="space-y-3"></div>
       </div>
 
-      <!-- ADMIN PANEL -->
+      <!-- 6. ADMIN PANEL -->
       <div id="adminPanelView" class="hidden space-y-5">
         <div class="glass-card border border-amber-500/40 rounded-3xl p-6 shadow-xl">
           <div class="flex justify-between items-center">
             <div>
-              <h2 class="text-xl font-extrabold text-amber-400">⚙️ Master Admin Command Center</h2>
+              <h2 class="text-xl font-extrabold text-amber-400">⚙️ Master Admin Live Command Center</h2>
               <p class="text-xs text-slate-300 mt-0.5">Registered candidates database & performance logs</p>
             </div>
             <button onclick="triggerSound(); refreshAdminData()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs transition shadow-lg">
@@ -269,7 +289,7 @@
           <span id="currentAIEmoji" class="text-xl">✨</span>
           <h4 class="text-xs font-bold text-white flex items-center gap-1.5">
             <span id="currentAIName">Gemini JRF AI</span>
-            <span class="text-[9px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-1.5 py-0.5 rounded font-mono">Dynamic AI</span>
+            <span class="text-[9px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-1.5 py-0.5 rounded font-mono">Dynamic Mode</span>
           </h4>
         </div>
         <button onclick="toggleAIChat()" class="text-slate-400 hover:text-white text-base">✕</button>
@@ -285,7 +305,7 @@
 
     <div id="aiMessageList" class="flex-1 p-3.5 overflow-y-auto space-y-3 custom-scroll text-xs">
       <div class="bg-slate-800/80 p-3 rounded-2xl text-slate-200 border border-slate-700/60 leading-relaxed">
-        Namaskar! Main aapka <strong>Multi-Engine JRF Assistant</strong> hoon. Education definition, Pramana, DI calculation, ICT topics, ya Odia Sahitya ka koi bhi query likhein, main exact concept answer dunga!
+        Namaskar! Main aapka <strong>Multi-Engine JRF Assistant</strong> hoon. Education definition, Pramana, DI calculation, ICT topics, ya Odia Sahitya se juda koi bhi query likhein, main exact topic ka answer aur example dunga!
       </div>
     </div>
 
@@ -296,6 +316,20 @@
       </button>
     </div>
   </div>
+
+  <!-- FOOTER ADMIN BADGE -->
+  <footer class="mt-auto border-t border-slate-800/80 bg-slate-950/80 backdrop-blur py-6 px-4">
+    <div class="max-w-4xl mx-auto text-center space-y-2">
+      <div class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500/10 via-indigo-500/10 to-amber-500/10 border border-amber-500/30 px-5 py-2.5 rounded-2xl shadow-lg">
+        <span class="text-xl">🎓</span>
+        <div class="text-left">
+          <p class="text-sm font-bold text-amber-300 tracking-wide">RAKESH KUMAR SAHU SIR. Admin</p>
+          <p class="text-[11px] text-slate-300 font-medium">M.A First Class Odia | B.A with Distinctions</p>
+        </div>
+      </div>
+      <p class="text-[11px] text-slate-500">UGC NET JRF Paper 1 & Paper 2 Odia Cloud Preparation Architecture</p>
+    </div>
+  </footer>
 
   <script>
     // 1. SOUND SYSTEM
@@ -325,8 +359,8 @@
       document.getElementById("soundToggleBtn").innerText = soundEnabled ? "🔊 Sound ON" : "🔇 Sound OFF";
     }
 
-    // 2. AUTH SYSTEM
-    const CLOUD_STORAGE_KEY = "UGC_NET_SHARED_CLOUD_DATA_V10";
+    // 2. AUTHENTICATION CONTROLLER
+    const CLOUD_STORAGE_KEY = "UGC_NET_SHARED_CLOUD_DATA_V11";
     let currentUser = null;
     let isAdmin = false;
 
@@ -496,7 +530,7 @@
       }
     }
 
-    // 3. UNITS MASTER LIST
+    // 3. MASTER UNITS LIST
     const PAPER1_UNITS = [
       { id: 1, name: "Unit 1: Teaching Aptitude", desc: "Teaching levels, CBCS, Formative vs Summative evaluation, NEP 2020." },
       { id: 2, name: "Unit 2: Research Aptitude", desc: "Positivism & Post-positivism, Qualitative vs Quantitative, Sampling & Ethics." },
@@ -555,7 +589,6 @@
       if (MASTER_QUESTIONS[uId] && MASTER_QUESTIONS[uId][qIndex]) {
         return MASTER_QUESTIONS[uId][qIndex];
       }
-      // Dynamic fallback
       const uMeta = PAPER1_UNITS.find(x => x.id === uId) || { name: `Unit ${uId}` };
       return {
         en: {
@@ -572,12 +605,6 @@
         },
         correct: 0
       };
-    }
-
-    function getAttemptedIds(uId) {
-      const user = cloudDb.users[currentUser];
-      if (!user || !user.history || !user.history[uId]) return new Set();
-      return new Set(user.history[uId].map(item => item.id));
     }
 
     function generateFresh10Set(uId) {
@@ -610,38 +637,38 @@
       const btns = ['tabBtnPaper1', 'tabBtnPaper2', 'tabBtnOdiaWords', 'tabBtnNotes', 'tabBtnWrongVault', 'tabBtnHistoryVault', 'tabBtnAdminPanel'];
       btns.forEach(b => {
         const elem = document.getElementById(b);
-        if (elem) elem.className = "px-3 py-1.5 rounded-xl text-slate-400 hover:text-white transition";
+        if (elem) elem.className = "px-3.5 py-1.5 rounded-xl text-slate-400 hover:text-white transition";
       });
 
       if (tab === 'paper1') {
         document.getElementById('quizView').classList.remove('hidden');
-        document.getElementById('tabBtnPaper1').className = "px-3 py-1.5 rounded-xl bg-indigo-600 text-white transition shadow-lg shadow-indigo-600/30";
+        document.getElementById('tabBtnPaper1').className = "px-3.5 py-1.5 rounded-xl bg-indigo-600 text-white transition shadow-lg shadow-indigo-600/30";
         activeUnitId = 1;
         loadUnit(1);
       } else if (tab === 'paper2') {
         document.getElementById('quizView').classList.remove('hidden');
-        document.getElementById('tabBtnPaper2').className = "px-3 py-1.5 rounded-xl bg-indigo-600 text-white transition shadow-lg shadow-indigo-600/30";
+        document.getElementById('tabBtnPaper2').className = "px-3.5 py-1.5 rounded-xl bg-indigo-600 text-white transition shadow-lg shadow-indigo-600/30";
         activeUnitId = 101;
         loadUnit(101);
       } else if (tab === 'odiaWords') {
         document.getElementById('odiaWordsView').classList.remove('hidden');
-        document.getElementById('tabBtnOdiaWords').className = "px-3 py-1.5 rounded-xl bg-amber-600 text-white font-bold transition shadow-lg shadow-amber-600/30";
+        document.getElementById('tabBtnOdiaWords').className = "px-3.5 py-1.5 rounded-xl bg-amber-600 text-white font-bold transition shadow-lg shadow-amber-600/30";
         showWordTab('tatsam');
       } else if (tab === 'notes') {
         document.getElementById('notesView').classList.remove('hidden');
-        document.getElementById('tabBtnNotes').className = "px-3 py-1.5 rounded-xl bg-emerald-600 text-white font-bold transition shadow-lg shadow-emerald-600/30";
+        document.getElementById('tabBtnNotes').className = "px-3.5 py-1.5 rounded-xl bg-emerald-600 text-white font-bold transition shadow-lg shadow-emerald-600/30";
         renderNotes();
       } else if (tab === 'wrongVault') {
         document.getElementById('wrongVaultView').classList.remove('hidden');
-        document.getElementById('tabBtnWrongVault').className = "px-3 py-1.5 rounded-xl bg-rose-600 text-white font-bold transition shadow-lg shadow-rose-600/30";
+        document.getElementById('tabBtnWrongVault').className = "px-3.5 py-1.5 rounded-xl bg-rose-600 text-white font-bold transition shadow-lg shadow-rose-600/30";
         renderWrongVault();
       } else if (tab === 'historyVault') {
         document.getElementById('historyVaultView').classList.remove('hidden');
-        document.getElementById('tabBtnHistoryVault').className = "px-3 py-1.5 rounded-xl bg-cyan-600 text-white font-bold transition shadow-lg shadow-cyan-600/30";
+        document.getElementById('tabBtnHistoryVault').className = "px-3.5 py-1.5 rounded-xl bg-cyan-600 text-white font-bold transition shadow-lg shadow-cyan-600/30";
         renderHistoryVault();
       } else if (tab === 'adminPanel') {
         document.getElementById('adminPanelView').classList.remove('hidden');
-        document.getElementById('tabBtnAdminPanel').className = "px-3 py-1.5 rounded-xl bg-amber-600 text-white font-bold transition shadow-lg shadow-amber-600/30";
+        document.getElementById('tabBtnAdminPanel').className = "px-3.5 py-1.5 rounded-xl bg-amber-600 text-white font-bold transition shadow-lg shadow-amber-600/30";
         refreshAdminData();
       }
       renderSidebarMenu();
@@ -689,41 +716,13 @@
       document.getElementById("activeUnitTitle").innerText = u.name;
       document.getElementById("activeUnitDesc").innerText = u.desc;
 
-      // Handle Passage & Table Displays
       const passageBox = document.getElementById("unit3PassageBox");
-      if (unitId === 3) {
-        passageBox.classList.remove("hidden");
-        document.getElementById("unit3PassageContent").innerText = 
-          "The modern research landscape has undergone an unprecedented epistemic transition. Traditionally anchored in autonomous philosophical wonder and the pursuit of objective truth, contemporary universities are increasingly governed by market-driven metrics, quantifiable output indexes, and commodified patent quotas. While institutional accountability ensures fiscal transparency, it has inadvertently fostered a hyper-competitive 'publish-or-perish' ecosystem. In this system, exploratory long-term inquiries are routinely marginalized in favor of incremental, low-risk investigations. Genuine scientific progress demands not merely bureaucratic surveillance, but an institutional culture grounded in intellectual courage, methodological skepticism, and ethical responsibility toward ecological and social well-being.";
-      } else {
-        passageBox.classList.add("hidden");
-      }
+      if (unitId === 3) passageBox.classList.remove("hidden");
+      else passageBox.classList.add("hidden");
 
       const tableBox = document.getElementById("unit7TableBox");
-      if (unitId === 7) {
-        tableBox.classList.remove("hidden");
-        document.getElementById("unit7TableContent").innerHTML = `
-          <table class="w-full text-xs text-left border border-slate-700 rounded-xl overflow-hidden">
-            <thead class="bg-indigo-950/80 text-indigo-300 border-b border-slate-700">
-              <tr>
-                <th class="p-2.5">Year</th>
-                <th class="p-2.5">Arts Faculty</th>
-                <th class="p-2.5">Science Faculty</th>
-                <th class="p-2.5">Commerce Faculty</th>
-                <th class="p-2.5">Total Grant (₹ Lakhs)</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-800 bg-slate-900/60 font-mono">
-              <tr><td class="p-2 font-bold text-slate-200">2021</td><td class="p-2">800</td><td class="p-2">500</td><td class="p-2">400</td><td class="p-2">₹120 L</td></tr>
-              <tr><td class="p-2 font-bold text-slate-200">2022</td><td class="p-2">850</td><td class="p-2">600</td><td class="p-2">550</td><td class="p-2">₹150 L</td></tr>
-              <tr><td class="p-2 font-bold text-slate-200">2023</td><td class="p-2">920</td><td class="p-2">750</td><td class="p-2">700</td><td class="p-2">₹180 L</td></tr>
-              <tr><td class="p-2 font-bold text-slate-200">2024</td><td class="p-2">1000</td><td class="p-2">900</td><td class="p-2">850</td><td class="p-2">₹220 L</td></tr>
-            </tbody>
-          </table>
-        `;
-      } else {
-        tableBox.classList.add("hidden");
-      }
+      if (unitId === 7) tableBox.classList.remove("hidden");
+      else tableBox.classList.add("hidden");
 
       currentSetQuestions = generateFresh10Set(unitId);
       renderQuestions(false);
@@ -752,9 +751,9 @@
         card.className = "glass-card border border-slate-800/80 rounded-3xl p-6 shadow-md";
 
         let qText = item.isOdia ? item.q : (currentLang === 'hi' ? item.hi.q : item.en.q);
-        let opts = item.isOdia ? item.options : (currentLang === 'hi' ? item.hi.options : item.en.options);
+        let opts = item.isOdia ? item.options : (currentLang === 'hi' ? item.hi.opt : item.en.opt);
         let expText = item.isOdia ? item.exp : (currentLang === 'hi' ? item.hi.exp : item.en.exp);
-        let exText = item.isOdia ? item.example : (currentLang === 'hi' ? item.hi.example : item.en.example);
+        let exText = item.isOdia ? item.example : (currentLang === 'hi' ? item.hi.ex : item.en.ex);
 
         let optionsHtml = opts.map((opt, optIdx) => {
           let style = "border-slate-800 bg-slate-950/60 hover:bg-slate-800/60 text-slate-300";
@@ -831,12 +830,12 @@
         user.history[activeUnitId].push({
           id: item.id,
           q: item.isOdia ? item.q : item.en.q,
-          options: item.isOdia ? item.options : item.en.options,
+          options: item.isOdia ? item.options : item.en.opt,
           selected: choice,
           correct: item.correct,
           isCorrect: isRight,
           exp: item.isOdia ? item.exp : item.en.exp,
-          example: item.isOdia ? item.example : item.en.example,
+          example: item.isOdia ? item.example : item.en.ex,
           timestamp: timeNow
         });
       });
@@ -855,7 +854,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 6. DYNAMIC CONTEXTUAL MULTI-AI ENGINE
+    // 6. DYNAMIC MULTI-AI ENGINE
     let activeAIEngine = "gemini";
 
     function selectAIEngine(engine) {
