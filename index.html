@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UGC NET JRF Master Cloud Portal - By Rakesh Kumar Sahu Sir</title>
+  <title>UGC NET JRF Paper 1 Master Portal - By Rakesh Kumar Sahu Sir</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+Oriya:wght@400;500;600;700&display=swap');
@@ -15,54 +15,7 @@
 </head>
 <body class="bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 text-slate-100 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
 
-  <!-- AUTH MODAL -->
-  <div id="authModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center z-50 p-4">
-    <div class="bg-slate-900/95 border border-indigo-500/30 w-full max-w-md rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
-      <div class="text-center mb-6">
-        <div class="inline-flex h-14 w-14 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 items-center justify-center font-extrabold text-2xl text-white shadow-lg mb-3">
-          JRF
-        </div>
-        <h2 class="text-2xl font-bold text-white tracking-tight">NET JRF Exam Portal</h2>
-        <p class="text-xs text-indigo-300/80 mt-1">Paper 1 & Paper 2 Odia Verified Cloud Access</p>
-      </div>
-
-      <div class="flex bg-slate-950 p-1 rounded-2xl border border-slate-800 mb-5 text-xs font-semibold">
-        <button onclick="setAuthTab('login')" id="tabBtnAuthLogin" class="flex-1 py-2 rounded-xl bg-indigo-600 text-white transition">Login</button>
-        <button onclick="setAuthTab('register')" id="tabBtnAuthRegister" class="flex-1 py-2 rounded-xl text-slate-400 hover:text-white transition">Create New Account</button>
-      </div>
-
-      <div id="loginFormSection" class="space-y-4 text-xs">
-        <div>
-          <label class="font-semibold text-slate-300 block mb-1">User ID / Candidate Username</label>
-          <input type="text" id="loginUsername" placeholder="Enter registered User ID" class="w-full bg-slate-800/80 border border-slate-700 focus:border-indigo-500 px-3.5 py-2.5 rounded-xl text-sm text-white focus:outline-none transition" />
-        </div>
-        <div>
-          <label class="font-semibold text-slate-300 block mb-1">Password</label>
-          <input type="password" id="loginPassword" placeholder="••••••••" class="w-full bg-slate-800/80 border border-slate-700 focus:border-indigo-500 px-3.5 py-2.5 rounded-xl text-sm text-white focus:outline-none transition" />
-        </div>
-        <button onclick="handleLogin()" class="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-bold py-3 rounded-xl text-sm shadow-lg shadow-indigo-600/30 transition mt-2">
-          Login Securely
-        </button>
-      </div>
-
-      <div id="registerFormSection" class="hidden space-y-4 text-xs">
-        <div>
-          <label class="font-semibold text-slate-300 block mb-1">Choose Unique User ID</label>
-          <input type="text" id="regUsername" oninput="checkRegisterUsername()" placeholder="e.g. rakesh_jrf" class="w-full bg-slate-800/80 border border-slate-700 focus:border-indigo-500 px-3.5 py-2.5 rounded-xl text-sm text-white focus:outline-none transition" />
-          <p id="regFeedback" class="text-[11px] mt-1 hidden font-semibold"></p>
-        </div>
-        <div>
-          <label class="font-semibold text-slate-300 block mb-1">Set Password</label>
-          <input type="password" id="regPassword" placeholder="••••••••" class="w-full bg-slate-800/80 border border-slate-700 focus:border-indigo-500 px-3.5 py-2.5 rounded-xl text-sm text-white focus:outline-none transition" />
-        </div>
-        <button id="regSubmitBtn" onclick="handleRegister()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-sm shadow-lg shadow-emerald-600/30 transition mt-2">
-          Create Account & Enter
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- NAVIGATION HEADER -->
+  <!-- HEADER -->
   <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 px-4 md:px-8 py-3 sticky top-0 z-40 flex flex-wrap justify-between items-center gap-4">
     <div class="flex items-center gap-3">
       <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center font-bold text-lg text-white shadow-md shadow-indigo-600/30">
@@ -70,22 +23,11 @@
       </div>
       <div>
         <div class="flex items-center gap-2">
-          <h1 class="text-base md:text-lg font-bold text-white tracking-wide">UGC NET JRF Portal</h1>
-          <span id="roleIndicatorBadge" class="text-[10px] bg-indigo-950 text-indigo-400 border border-indigo-800 px-2 py-0.5 rounded font-mono font-semibold">Candidate</span>
+          <h1 class="text-base md:text-lg font-bold text-white tracking-wide">UGC NET JRF Paper 1 Portal</h1>
+          <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded font-mono font-semibold">100% Fixed 10 Units</span>
         </div>
-        <p class="text-xs text-slate-400" id="headerCandidateInfo">User: Guest</p>
+        <p class="text-xs text-slate-400">Master Preparation Hub • Rakesh Kumar Sahu Sir</p>
       </div>
-    </div>
-
-    <!-- Navigation Tabs -->
-    <div class="flex flex-wrap bg-slate-950/80 p-1.5 rounded-2xl border border-slate-800 text-xs font-semibold gap-1">
-      <button onclick="triggerSound(); switchTab('paper1')" id="tabBtnPaper1" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 text-white transition">Paper 1</button>
-      <button onclick="triggerSound(); switchTab('paper2')" id="tabBtnPaper2" class="px-3.5 py-1.5 rounded-xl text-slate-400 hover:text-white transition">Paper 2 (ଓଡ଼ିଆ)</button>
-      <button onclick="triggerSound(); switchTab('odiaWords')" id="tabBtnOdiaWords" class="px-3.5 py-1.5 rounded-xl text-amber-400 hover:text-amber-300 transition">ଶବ୍ଦତତ୍ତ୍ୱ ବିଭାଗ</button>
-      <button onclick="triggerSound(); switchTab('notes')" id="tabBtnNotes" class="px-3.5 py-1.5 rounded-xl text-emerald-400 hover:text-emerald-300 transition">📖 ପାଠ ଓ Notes</button>
-      <button onclick="triggerSound(); switchTab('wrongVault')" id="tabBtnWrongVault" class="px-3.5 py-1.5 rounded-xl text-rose-400 hover:text-rose-300 transition">❌ Wrong Bank</button>
-      <button onclick="triggerSound(); switchTab('historyVault')" id="tabBtnHistoryVault" class="px-3.5 py-1.5 rounded-xl text-cyan-400 hover:text-cyan-300 transition">📅 History Bank</button>
-      <button onclick="triggerSound(); switchTab('adminPanel')" id="tabBtnAdminPanel" class="hidden px-3.5 py-1.5 rounded-xl bg-amber-600 text-white font-bold transition shadow-lg shadow-amber-600/30">⚙️ Master Admin</button>
     </div>
 
     <!-- Controls -->
@@ -93,11 +35,11 @@
       <button onclick="toggleAudio()" id="soundToggleBtn" class="text-xs bg-slate-800 border border-slate-700 px-2.5 py-1.5 rounded-xl text-emerald-400 font-semibold">
         🔊 Sound ON
       </button>
-      <button id="langToggleBtn" onclick="triggerSound(); toggleLanguage()" class="text-xs bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-xl text-slate-200 font-semibold transition">
+      <button id="langToggleBtn" onclick="toggleLanguage()" class="text-xs bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-xl text-slate-200 font-semibold transition">
         🌐 <span id="currentLangLabel" class="text-indigo-400">English</span>
       </button>
-      <button onclick="triggerSound(); logout()" class="text-xs bg-rose-950/40 hover:bg-rose-900 border border-rose-800 text-rose-300 px-3 py-1.5 rounded-xl transition">
-        Exit
+      <button onclick="resetCurrentUnitHistory()" class="text-xs bg-rose-950/40 hover:bg-rose-900 border border-rose-800 text-rose-300 px-3 py-1.5 rounded-xl transition">
+        Reset Unit
       </button>
     </div>
   </header>
@@ -108,7 +50,7 @@
     <aside class="lg:col-span-1 space-y-4">
       <div class="glass-card border border-indigo-500/20 rounded-3xl p-5 shadow-lg">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-xs text-slate-400 font-medium">JRF Readiness</span>
+          <span class="text-xs text-slate-400 font-medium">Readiness Level</span>
           <span id="jrfGradeBadge" class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-amber-950 text-amber-300 border border-amber-800">Incomplete</span>
         </div>
         <div class="flex items-baseline gap-2">
@@ -120,28 +62,19 @@
         </div>
         <div class="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-slate-800/80 text-center text-xs">
           <div class="bg-slate-900/60 p-2.5 rounded-2xl border border-slate-800">
-            <p class="text-slate-400">Total Solved</p>
+            <p class="text-slate-400">Solved</p>
             <p id="totalAttemptedStat" class="font-bold text-indigo-300 text-base mt-0.5">0</p>
           </div>
           <div class="bg-slate-900/60 p-2.5 rounded-2xl border border-slate-800">
-            <p class="text-slate-400">Wrong Answers</p>
+            <p class="text-slate-400">Wrong</p>
             <p id="totalWrongStat" class="font-bold text-rose-400 text-base mt-0.5">0</p>
           </div>
         </div>
       </div>
 
       <!-- UNIT SELECTOR SIDEBAR -->
-      <div class="glass-card border border-slate-800 rounded-3xl p-5 shadow-lg" id="sidebarUnitMenu">
-        <div class="flex justify-between items-center mb-3">
-          <h3 id="unitMenuTitle" class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Units Available</h3>
-          <!-- DIFFICULTY SELECTOR -->
-          <select id="difficultySelector" onchange="changeDifficulty()" class="bg-slate-900 border border-slate-700 text-[11px] rounded-lg px-2 py-1 text-slate-200 focus:outline-none">
-            <option value="all">All Levels</option>
-            <option value="easy">Easy Level</option>
-            <option value="moderate">Moderate Level</option>
-            <option value="hard">Hard (Critical)</option>
-          </select>
-        </div>
+      <div class="glass-card border border-slate-800 rounded-3xl p-5 shadow-lg">
+        <h3 class="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-3">Paper 1 Units (1 to 10)</h3>
         <div id="unitListContainer" class="space-y-2 max-h-[55vh] overflow-y-auto custom-scroll pr-1"></div>
       </div>
     </aside>
@@ -149,41 +82,41 @@
     <!-- RIGHT SECTION -->
     <section class="lg:col-span-3 space-y-6">
       
-      <!-- 1. QUIZ VIEW -->
-      <div id="quizView" class="space-y-5">
+      <!-- QUIZ VIEW -->
+      <div class="space-y-5">
         <div class="bg-gradient-to-r from-indigo-950/80 via-slate-900 to-slate-900 border border-indigo-500/30 rounded-3xl p-6 flex flex-wrap justify-between items-center gap-4 shadow-xl">
           <div>
             <div class="flex items-center gap-2">
               <span id="activeUnitBadge" class="text-xs font-bold text-indigo-400 uppercase tracking-widest bg-indigo-950/80 border border-indigo-800 px-2.5 py-0.5 rounded-md">Unit 1</span>
-              <span id="activeUnitSubjectBadge" class="text-[10px] bg-slate-800 text-slate-300 px-2.5 py-0.5 rounded-md font-medium">Paper 1</span>
+              <span class="text-[10px] bg-slate-800 text-slate-300 px-2.5 py-0.5 rounded-md font-medium">General Paper 1</span>
             </div>
             <h2 id="activeUnitTitle" class="text-xl md:text-2xl font-extrabold text-white mt-1.5">Teaching Aptitude</h2>
             <p id="activeUnitDesc" class="text-xs text-slate-300 mt-1 max-w-xl">Learner characteristics, levels of teaching & evaluation systems.</p>
           </div>
           <div class="bg-slate-950/90 border border-indigo-500/20 px-5 py-3 rounded-2xl text-center shadow-inner">
-            <span class="text-slate-400 text-[11px] block">⏱️ Live Set Timer</span>
+            <span class="text-slate-400 text-[11px] block">⏱️ Live Timer</span>
             <p id="liveTimerText" class="text-xl font-mono font-extrabold text-amber-400 mt-0.5">00:00</p>
           </div>
         </div>
 
-        <!-- SPECIAL COMPREHENSION PASSAGE BOX -->
+        <!-- SPECIAL UNIT 3 COMPREHENSION PASSAGE -->
         <div id="unit3PassageBox" class="hidden glass-card border border-cyan-500/30 rounded-3xl p-6 shadow-xl space-y-2">
           <div class="flex items-center gap-2 border-b border-slate-800 pb-2 mb-2">
             <span class="text-base">📄</span>
-            <h3 class="text-sm font-bold text-cyan-400 uppercase tracking-wider">Reading Comprehension: Unseen Academic Passage</h3>
+            <h3 class="text-sm font-bold text-cyan-400 uppercase tracking-wider">Reading Comprehension: Academic Passage</h3>
           </div>
-          <div id="unit3PassageContent" class="text-xs sm:text-sm text-slate-200 leading-relaxed font-serif bg-slate-950/70 p-4 rounded-2xl border border-slate-800 whitespace-pre-line max-h-60 overflow-y-auto custom-scroll">
+          <div class="text-xs sm:text-sm text-slate-200 leading-relaxed font-serif bg-slate-950/70 p-4 rounded-2xl border border-slate-800 whitespace-pre-line max-h-60 overflow-y-auto custom-scroll">
 The modern research landscape has undergone an unprecedented epistemic transition. Traditionally anchored in autonomous philosophical wonder and the pursuit of objective truth, contemporary universities are increasingly governed by market-driven metrics, quantifiable output indexes, and commodified patent quotas. While institutional accountability ensures fiscal transparency, it has inadvertently fostered a hyper-competitive 'publish-or-perish' ecosystem. In this system, exploratory long-term inquiries are routinely marginalized in favor of incremental, low-risk investigations. Genuine scientific progress demands not merely bureaucratic surveillance, but an institutional culture grounded in intellectual courage, methodological skepticism, and ethical responsibility toward ecological and social well-being.
           </div>
         </div>
 
-        <!-- SPECIAL DATA INTERPRETATION TABLE BOX -->
+        <!-- SPECIAL UNIT 7 DATA INTERPRETATION TABLE -->
         <div id="unit7TableBox" class="hidden glass-card border border-emerald-500/30 rounded-3xl p-6 shadow-xl space-y-3">
           <div class="flex items-center gap-2 border-b border-slate-800 pb-2 mb-2">
             <span class="text-base">📊</span>
             <h3 class="text-sm font-bold text-emerald-400 uppercase tracking-wider">Data Interpretation: University Student Performance Table</h3>
           </div>
-          <div id="unit7TableContent" class="overflow-x-auto custom-scroll">
+          <div class="overflow-x-auto custom-scroll">
             <table class="w-full text-xs text-left border border-slate-700 rounded-xl overflow-hidden">
               <thead class="bg-indigo-950/80 text-indigo-300 border-b border-slate-700">
                 <tr>
@@ -211,91 +144,10 @@ The modern research landscape has undergone an unprecedented epistemic transitio
           <div id="quizSummaryFeedback" class="text-xs sm:text-sm text-slate-300">
             Attempt all 10 unit-specific questions and click Submit.
           </div>
-          <div class="flex items-center gap-3">
-            <button id="submitSetBtn" onclick="triggerSound(); submitCurrentSet()" class="bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-bold text-xs sm:text-sm px-7 py-3 rounded-2xl shadow-lg shadow-indigo-600/30 transition">
-              Submit 10 Questions
-            </button>
-            <button id="nextSetBtn" onclick="triggerSound(); loadNextSet()" class="hidden bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs sm:text-sm px-7 py-3 rounded-2xl shadow-lg shadow-emerald-600/30 transition">
-              Next Fresh 10 Set ➔
-            </button>
-          </div>
+          <button id="submitSetBtn" onclick="submitCurrentSet()" class="bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-bold text-xs sm:text-sm px-7 py-3 rounded-2xl shadow-lg shadow-indigo-600/30 transition">
+            Submit 10 Questions
+          </button>
         </div>
-      </div>
-
-      <!-- 2. ODIA WORDS VIEW -->
-      <div id="odiaWordsView" class="hidden space-y-5">
-        <div class="glass-card border border-amber-500/30 rounded-3xl p-6 shadow-xl">
-          <h2 class="text-xl font-extrabold text-amber-400">ଓଡ଼ିଆ ଭାଷା ଓ ଶବ୍ଦଭଣ୍ଡାର (ଶବ୍ଦତତ୍ତ୍ୱ ବିଭାଗ)</h2>
-          <p class="text-xs text-slate-300 mt-1">ତତ୍ସମ, ତଦ୍ଭବ, ଦେଶଜ, ଯାବନିକ, ଇଂରାଜୀ ଓ ପର୍ତ୍ତୁଗୀଜ୍ ଶବ୍ଦର ବିସ୍ତୃତ ଆଲୋଚନା ଓ ଅଭ୍ୟାସ MSQ</p>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-5">
-            <button onclick="triggerSound(); showWordTab('tatsam')" class="p-2.5 text-xs rounded-xl bg-indigo-950/80 text-indigo-300 border border-indigo-800 font-bold hover:bg-indigo-900 transition">ତତ୍ସମ ଓ ତଦ୍ଭବ</button>
-            <button onclick="triggerSound(); showWordTab('desaja')" class="p-2.5 text-xs rounded-xl bg-emerald-950/80 text-emerald-300 border border-emerald-800 font-bold hover:bg-emerald-900 transition">ଦେଶଜ ଶବ୍ଦ</button>
-            <button onclick="triggerSound(); showWordTab('baidesika')" class="p-2.5 text-xs rounded-xl bg-amber-950/80 text-amber-300 border border-amber-800 font-bold hover:bg-amber-900 transition">ବୈଦେଶିକ ଶବ୍ଦ</button>
-            <button onclick="triggerSound(); showWordTab('quiz')" class="p-2.5 text-xs rounded-xl bg-rose-950/80 text-rose-300 border border-rose-800 font-bold hover:bg-rose-900 transition">ଶବ୍ଦତତ୍ତ୍ୱ MSQ Test</button>
-          </div>
-        </div>
-        <div id="wordContentArea" class="glass-card border border-slate-800 rounded-3xl p-6 text-sm space-y-4"></div>
-      </div>
-
-      <!-- 3. NOTES & PDF STORAGE VIEW -->
-      <div id="notesView" class="hidden space-y-5">
-        <div class="glass-card border border-emerald-500/30 rounded-3xl p-6 shadow-xl flex flex-wrap justify-between items-center gap-4">
-          <div>
-            <h2 class="text-xl font-extrabold text-emerald-400">📖 ସମ୍ପୂର୍ଣ୍ଣ ସିଲାବସ୍ ପାଠ ଓ Master Notes Repository</h2>
-            <p class="text-xs text-slate-300 mt-1">Paper 1 ଏବଂ Paper 2 (ଓଡ଼ିଆ)ର ପ୍ରତ୍ୟେକ ୟୁନିଟ୍‌ର ଅଧ୍ୟୟନ ସାରାଂଶ ଓ ପରୀକ୍ଷା ଉପଯୋଗୀ ନୋଟ୍ସ</p>
-          </div>
-          <!-- Admin PDF Upload Trigger -->
-          <div id="adminPdfUploadTrigger" class="hidden">
-            <input type="file" id="pdfFileInput" accept=".pdf" class="hidden" onchange="handleAdminPdfUpload(event)" />
-            <button onclick="document.getElementById('pdfFileInput').click()" class="bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold text-xs px-4 py-2 rounded-xl transition shadow">
-              📤 Upload Master Notes PDF
-            </button>
-          </div>
-        </div>
-
-        <!-- UPLOADED PDF LIST -->
-        <div class="glass-card border border-slate-800 rounded-3xl p-5 shadow-sm space-y-2">
-          <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider mb-2">📁 Study Materials & Uploaded Book PDFs</h3>
-          <div id="uploadedPdfListContainer" class="space-y-2">
-            <p class="text-xs text-slate-500 italic p-2">No custom PDFs uploaded yet.</p>
-          </div>
-        </div>
-
-        <div id="notesAccordionContainer" class="space-y-3"></div>
-      </div>
-
-      <!-- 4. WRONG BANK -->
-      <div id="wrongVaultView" class="hidden space-y-5">
-        <div class="glass-card border border-rose-500/30 rounded-3xl p-6 shadow-xl">
-          <h2 class="text-xl font-extrabold text-rose-400">❌ Wrong Questions Mistake Bank</h2>
-          <p class="text-xs text-slate-300 mt-1">Aapke sabhi galat answers ka verified analysis aur solution taaki JRF me dobara galti na ho.</p>
-        </div>
-        <div id="wrongQuestionsListContainer" class="space-y-4"></div>
-      </div>
-
-      <!-- 5. HISTORY BANK -->
-      <div id="historyVaultView" class="hidden space-y-5">
-        <div class="glass-card border border-cyan-500/30 rounded-3xl p-6 shadow-xl">
-          <h2 class="text-xl font-extrabold text-cyan-400">📅 Candidate Date-Wise Attempt History Bank</h2>
-          <p class="text-xs text-slate-300 mt-1">Sirf aapka apna personal attempt record (never deleted across restarts).</p>
-        </div>
-        <div id="historyLogsContainer" class="space-y-3"></div>
-      </div>
-
-      <!-- 6. ADMIN PANEL -->
-      <div id="adminPanelView" class="hidden space-y-5">
-        <div class="glass-card border border-amber-500/40 rounded-3xl p-6 shadow-xl">
-          <div class="flex justify-between items-center">
-            <div>
-              <h2 class="text-xl font-extrabold text-amber-400">⚙️ Master Admin Live Command Center</h2>
-              <p class="text-xs text-slate-300 mt-0.5">Registered candidates database & performance logs</p>
-            </div>
-            <button onclick="triggerSound(); refreshAdminData()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs transition shadow-lg">
-              🔄 Force Sync Live
-            </button>
-          </div>
-        </div>
-        <div id="adminUserMonitorGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
       </div>
 
     </section>
@@ -330,7 +182,7 @@ The modern research landscape has undergone an unprecedented epistemic transitio
 
     <div id="aiMessageList" class="flex-1 p-3.5 overflow-y-auto space-y-3 custom-scroll text-xs">
       <div class="bg-slate-800/80 p-3 rounded-2xl text-slate-200 border border-slate-700/60 leading-relaxed">
-        Namaskar! Main aapka <strong>Multi-Engine JRF Assistant</strong> hoon. Education definition, Pramana, DI calculation, ICT topics, ya Odia Sahitya se juda koi bhi query likhein, main exact topic ka answer aur example dunga!
+        Namaskar! Main aapka <strong>JRF Concept Assistant</strong> hoon. Education, Pramana, Sampling, ICT, Environment ya DI se juda koi bhi query likhein, main exact concept answer dunga!
       </div>
     </div>
 
@@ -342,7 +194,7 @@ The modern research landscape has undergone an unprecedented epistemic transitio
     </div>
   </div>
 
-  <!-- FOOTER ADMIN BADGE -->
+  <!-- FOOTER -->
   <footer class="mt-auto border-t border-slate-800/80 bg-slate-950/80 backdrop-blur py-6 px-4">
     <div class="max-w-4xl mx-auto text-center space-y-2">
       <div class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500/10 via-indigo-500/10 to-amber-500/10 border border-amber-500/30 px-5 py-2.5 rounded-2xl shadow-lg">
@@ -352,7 +204,7 @@ The modern research landscape has undergone an unprecedented epistemic transitio
           <p class="text-[11px] text-slate-300 font-medium">M.A First Class Odia | B.A with Distinctions</p>
         </div>
       </div>
-      <p class="text-[11px] text-slate-500">UGC NET JRF Paper 1 & Paper 2 Odia Cloud Preparation Architecture</p>
+      <p class="text-[11px] text-slate-500">UGC NET JRF Paper 1 Master Preparation Architecture</p>
     </div>
   </footer>
 
@@ -384,324 +236,171 @@ The modern research landscape has undergone an unprecedented epistemic transitio
       document.getElementById("soundToggleBtn").innerText = soundEnabled ? "🔊 Sound ON" : "🔇 Sound OFF";
     }
 
-    // 2. AUTHENTICATION CONTROLLER
-    const CLOUD_STORAGE_KEY = "UGC_NET_SHARED_CLOUD_DATA_V12";
-    let currentUser = null;
-    let isAdmin = false;
-
-    const MASTER_ADMIN_ID = "Rakesh793825";
-    const MASTER_ADMIN_PASS = "Rakesh79";
-
-    let cloudDb = { users: {}, pdfs: [] };
-
-    function setAuthTab(tab) {
-      triggerSound();
-      const loginSec = document.getElementById("loginFormSection");
-      const regSec = document.getElementById("registerFormSection");
-      const tabL = document.getElementById("tabBtnAuthLogin");
-      const tabR = document.getElementById("tabBtnAuthRegister");
-
-      if (tab === 'login') {
-        loginSec.classList.remove("hidden");
-        regSec.classList.add("hidden");
-        tabL.className = "flex-1 py-2 rounded-xl bg-indigo-600 text-white transition";
-        tabR.className = "flex-1 py-2 rounded-xl text-slate-400 hover:text-white transition";
-      } else {
-        loginSec.classList.add("hidden");
-        regSec.classList.remove("hidden");
-        tabR.className = "flex-1 py-2 rounded-xl bg-indigo-600 text-white transition";
-        tabL.className = "flex-1 py-2 rounded-xl text-slate-400 hover:text-white transition";
-      }
-    }
-
-    function checkRegisterUsername() {
-      const u = document.getElementById("regUsername").value.trim().toLowerCase();
-      const feedback = document.getElementById("regFeedback");
-      const regBtn = document.getElementById("regSubmitBtn");
-
-      if (!u) {
-        feedback.classList.add("hidden");
-        return;
-      }
-      feedback.classList.remove("hidden");
-
-      if (u === MASTER_ADMIN_ID.toLowerCase() || cloudDb.users[u]) {
-        feedback.innerText = "❌ This name is already taken! Choose another ID.";
-        feedback.className = "text-[11px] mt-1 font-semibold text-rose-400";
-        regBtn.disabled = true;
-        regBtn.classList.add("opacity-50", "cursor-not-allowed");
-      } else {
-        feedback.innerText = "✓ Username is available!";
-        feedback.className = "text-[11px] mt-1 font-semibold text-emerald-400";
-        regBtn.disabled = false;
-        regBtn.classList.remove("opacity-50", "cursor-not-allowed");
-      }
-    }
-
-    function handleLogin() {
-      triggerSound();
-      const rawUser = document.getElementById("loginUsername").value.trim();
-      const p = document.getElementById("loginPassword").value.trim();
-      const u = rawUser.toLowerCase();
-
-      if (!u || !p) {
-        alert("Please enter User ID and Password.");
-        return;
-      }
-
-      if (rawUser === MASTER_ADMIN_ID || u === MASTER_ADMIN_ID.toLowerCase()) {
-        if (p !== MASTER_ADMIN_PASS) {
-          alert("Invalid Admin Password!");
-          return;
-        }
-        currentUser = MASTER_ADMIN_ID.toLowerCase();
-        isAdmin = true;
-        sessionStorage.setItem("CURRENT_NET_SESSION_USER", MASTER_ADMIN_ID);
-        document.getElementById("authModal").classList.add("hidden");
-        refreshGlobalUI();
-        return;
-      }
-
-      if (!cloudDb.users[u]) {
-        alert("Account not found! First click 'Create New Account' to register.");
-        return;
-      }
-
-      if (cloudDb.users[u].password !== p) {
-        alert("Incorrect Password!");
-        return;
-      }
-
-      currentUser = u;
-      isAdmin = false;
-      sessionStorage.setItem("CURRENT_NET_SESSION_USER", cloudDb.users[u].originalId || rawUser);
-      document.getElementById("authModal").classList.add("hidden");
-      refreshGlobalUI();
-    }
-
-    function handleRegister() {
-      triggerSound();
-      const rawUser = document.getElementById("regUsername").value.trim();
-      const p = document.getElementById("regPassword").value.trim();
-      const u = rawUser.toLowerCase();
-
-      if (!u || !p) {
-        alert("Please enter both User ID and Password.");
-        return;
-      }
-
-      if (cloudDb.users[u] || u === MASTER_ADMIN_ID.toLowerCase()) {
-        alert("This name is already taken! Choose another ID.");
-        return;
-      }
-
-      cloudDb.users[u] = {
-        originalId: rawUser,
-        password: p,
-        name: rawUser,
-        role: "candidate",
-        history: {},
-        sessions: [],
-        avatar: `https://api.dicebear.com/7.x/bottts/svg?seed=${u}`
-      };
-      saveCloudDb();
-
-      currentUser = u;
-      isAdmin = false;
-      sessionStorage.setItem("CURRENT_NET_SESSION_USER", rawUser);
-      document.getElementById("authModal").classList.add("hidden");
-      refreshGlobalUI();
-      alert("✅ Registration successful!");
-    }
-
-    function initCloudVault() {
-      const raw = localStorage.getItem(CLOUD_STORAGE_KEY);
-      if (raw) {
-        try { cloudDb = JSON.parse(raw); } catch (e) {}
-      }
-
-      if (!cloudDb.users[MASTER_ADMIN_ID.toLowerCase()]) {
-        cloudDb.users[MASTER_ADMIN_ID.toLowerCase()] = {
-          originalId: MASTER_ADMIN_ID,
-          password: MASTER_ADMIN_PASS,
-          name: "Rakesh Kumar Sahu Sir",
-          role: "admin",
-          history: {},
-          sessions: [],
-          avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=admin"
-        };
-        saveCloudDb();
-      }
-
-      const sessionUser = sessionStorage.getItem("CURRENT_NET_SESSION_USER");
-      if (sessionUser && (sessionUser === MASTER_ADMIN_ID || cloudDb.users[sessionUser.toLowerCase()])) {
-        currentUser = sessionUser.toLowerCase();
-        isAdmin = currentUser === MASTER_ADMIN_ID.toLowerCase();
-        document.getElementById("authModal").classList.add("hidden");
-        refreshGlobalUI();
-      } else {
-        document.getElementById("authModal").classList.remove("hidden");
-      }
-    }
-
-    function saveCloudDb() {
-      localStorage.setItem(CLOUD_STORAGE_KEY, JSON.stringify(cloudDb));
-    }
-
-    function logout() {
-      if (confirm("Log out of portal?")) {
-        sessionStorage.removeItem("CURRENT_NET_SESSION_USER");
-        location.reload();
-      }
-    }
-
-    // 3. MASTER UNITS DEFINITIONS
+    // 2. UNITS DEFINITIONS
     const PAPER1_UNITS = [
       { id: 1, name: "Unit 1: Teaching Aptitude", desc: "Teaching levels, CBCS, Formative vs Summative evaluation, NEP 2020." },
       { id: 2, name: "Unit 2: Research Aptitude", desc: "Positivism & Post-positivism, Qualitative vs Quantitative, Sampling & Ethics." },
-      { id: 3, name: "Unit 3: Comprehension", desc: "Reading comprehension passages, analytical reasoning & inferences." },
-      { id: 4, name: "Unit 4: Communication", desc: "Classroom dynamics, Shannon-Weaver model, intercultural barriers." },
+      { id: 3, name: "Unit 3: Comprehension", desc: "Structured unseen academic passage & analytical inference deductions." },
+      { id: 4, name: "Unit 4: Communication", desc: "Classroom dynamics, Shannon-Weaver model, intercultural & non-verbal barriers." },
       { id: 5, name: "Unit 5: Mathematical Reasoning", desc: "Number series, speed-distance-time, percentage ratios, coding-decoding." },
       { id: 6, name: "Unit 6: Logical Reasoning", desc: "Nyaya Pramanas (Pratyaksha, Anumana, Upamana, Sabda) & Hetvabhasa." },
-      { id: 7, name: "Unit 7: Data Interpretation", desc: "Cross tabular calculation, faculty analysis, growth rates." },
+      { id: 7, name: "Unit 7: Data Interpretation", desc: "Comparative university tabular analysis, percentage ratios, variances." },
       { id: 8, name: "Unit 8: ICT", desc: "Memory hierarchy, malware types, IPv4/IPv6, SWAYAM/Diksha." },
       { id: 9, name: "Unit 9: People & Environment", desc: "17 SDGs, MDGs, Montreal Protocol, COP summits, air quality standards." },
       { id: 10, name: "Unit 10: Higher Education", desc: "Ancient Takshashila, Nalanda, Radhakrishnan commission, HECI & NEP 2020." }
     ];
 
-    const PAPER2_ODIA_UNITS = [
-      { id: 101, name: "ୟୁନିଟ୍ ୧: ଭାଷା ବିଜ୍ଞାନ ଓ ଶବ୍ଦତତ୍ତ୍ୱ", desc: "ତତ୍ସମ, ତଦ୍ଭବ, ଦେଶଜ, ଯାବନିକ, ଇଂରାଜୀ, ପର୍ତ୍ତୁଗୀଜ୍ ଶବ୍ଦ ଓ ଧ୍ୱନି ବିଜ୍ଞାନ।" },
-      { id: 102, name: "ୟୁନିଟ୍ ୨: ପ୍ରାଚୀନ ଓ ମଧ୍ୟଯୁଗୀୟ ସାହିତ୍ୟ", desc: "ଚର୍ଯ୍ୟାପଦ, ସାରଳା ଦାସ, ବଳରାମ ଦାସ, ଜଗନ୍ନାଥ ଦାସ (ପଞ୍ଚସଖା)।" },
-      { id: 103, name: "ୟୁନିଟ୍ ୩: ରୀତି କାବ୍ୟ ପରମ୍ପରା", desc: "ଉପେନ୍ଦ୍ର ଭଞ୍ଜ, ଦୀନକୃଷ୍ଣ, ଅଭିମନ୍ୟୁ ସାମନ୍ତସିଂହାରଙ୍କ ରୀତିକାବ୍ୟ।" },
-      { id: 104, name: "ୟୁନିଟ୍ ୪: ଆଧୁନିକ ଓଡ଼ିଆ କବିତା", desc: "ରାଧାନାଥ ରାୟ, ଗଙ୍ଗାଧର ମେହେର, ସଚ୍ଚି ରାଉତରାୟ, ଗୁରୁପ୍ରସାଦ ମହାନ୍ତି।" },
-      { id: 105, name: "ୟୁନିଟ୍ ୫: କଥା ସାହିତ୍ୟ (ଉପନ୍ୟାସ ଓ ଗଳ୍ପ)", desc: "ଫକୀର ମୋହନ, ଗୋପୀନାଥ ମହାନ୍ତି, ସୁରେନ୍ଦ୍ର ମହାନ୍ତି, ମନୋଜ ଦାସ।" },
-      { id: 106, name: "ୟୁନିଟ୍ ୬: ନାଟକ ଓ ଏକାଙ୍କିକା", desc: "ବାବାଜୀ, କାଞ୍ଚି କାବେରୀ, କାଳୀଚରଣ, ମନୋରଞ୍ଜନ ଦାସ।" },
-      { id: 107, name: "ୟୁନିଟ୍ ୭: ପ୍ରବନ୍ଧ ଓ ଆତ୍ମଜୀବନୀ", desc: "ଶଶିଭୂଷଣ ରାୟ, ମାୟାଧର ମାନସିଂହ, ଫକୀର ମୋହନଙ୍କ ଆତ୍ମଜୀବନ ଚରିତ।" },
-      { id: 108, name: "ୟୁନିଟ୍ ୮: ଲୋକସାହିତ୍ୟ ଓ ସଂସ୍କୃତି", desc: "ଦଣ୍ଡନାଟ, ପାଲା, ଦାସକାଠିଆ, ଯାତ୍ରା ଓ ମୋଗଲ ତାମସା।" },
-      { id: 109, name: "ୟୁନିଟ୍ ୯: ଛନ୍ଦ, ଅଳଙ୍କାର ଓ କାବ୍ୟତତ୍ତ୍ୱ", desc: "ବକ୍ରୋକ୍ତି, ଧ୍ୱନି, ରସ, ଦାଣ୍ଡି ବୃତ୍ତ, ନବାକ୍ଷରୀ ବୃତ୍ତ।" },
-      { id: 110, name: "ୟୁନିଟ୍ ୧୦: ସାହିତ୍ୟ ତତ୍ତ୍ୱ ଓ ଆଲୋଚନା", desc: "ରୋମାଣ୍ଟିସିଜିମ୍, ରିଆଲିଜିମ୍, ମାର୍କ୍ସବାଦ, ଅସ୍ତିତ୍ୱବାଦ।" }
-    ];
-
-    // 4. UNIT-SPECIFIC QUESTIONS REPOSITORY (WITH DIFFICULTY TAGGING)
-    const UNIT_QUESTIONS_DB = {
+    // 3. COMPLETE 100 VERIFIED QUESTIONS BANK (10 PER UNIT STRICTLY SEPARATE)
+    const MASTER_PAPER1_QUESTIONS = {
+      // UNIT 1: TEACHING APTITUDE (10 QUESTIONS)
       1: [
-        { diff: "easy", en: { q: "[Unit 1: Q1] (Easy) What is the fundamental goal of teaching in higher education?", opt: ["To facilitate holistic critical understanding and intellectual empowerment", "To ensure rote recall of textbooks", "To force compliance with discipline", "To maximize physical handwriting speed"], exp: "Higher education emphasizes autonomous inquiry and cognitive synthesis rather than rote training.", ex: "Encouraging university students to conduct independent research." }, hi: { q: "[यूनिट 1: Q1] (सरल) उच्च शिक्षा में शिक्षण का मौलिक उद्देश्य क्या है?", opt: ["समग्र आलोचनात्मक समझ और बौद्धिक सशक्तिकरण को बढ़ावा देना", "पाठ्यपुस्तकों को रटना", "अनुशासन लागू करना", "लिखने की गति बढ़ाना"], exp: "उच्च शिक्षा का उद्देश्य स्वतंत्र चिंतन और विश्लेषण क्षमता विकसित करना है।", ex: "छात्रों को स्वतंत्र शोध के लिए प्रेरित करना।" }, correct: 0 },
-        { diff: "moderate", en: { q: "[Unit 1: Q2] (Moderate) Continuous evaluation conducted during instructional delivery to diagnose gaps and provide immediate remedy is:", opt: ["Formative Assessment", "Summative Assessment", "Norm-Referenced Test", "Criterion-Referenced Test"], exp: "Formative evaluation happens during learning to diagnose errors and improve ongoing instructional delivery.", ex: "Weekly classroom pop quizzes." }, hi: { q: "[यूनिट 1: Q2] (मध्यम) शिक्षण के दौरान कमियों को पहचानने और तुरंत सुधारने हेतु किया जाने वाला मूल्यांकन क्या है?", opt: ["रचनात्मक मूल्यांकन (Formative)", "सत्रांत मूल्यांकन (Summative)", "मानक-संदर्भित परीक्षण", "निकष-संदर्भित परीक्षण"], exp: "रचनात्मक मूल्यांकन शिक्षण के दौरान निरंतर उपचारात्मक प्रतिक्रिया देता है।", ex: "कक्षा के बीच में पूछे गए प्रश्न।" }, correct: 0 },
-        { diff: "hard", en: { q: "[Unit 1: Q3] (Hard) Assertion (A): Reflective level of teaching transforms students into autonomous problem-solvers.\nReason (R): Hunt's reflective model places learners in realistic dilemma situations demanding creative cognitive evaluation.", opt: ["Both (A) and (R) are true and (R) is the correct explanation of (A)", "Both are true but (R) does not explain (A)", "(A) is true but (R) is false", "Both are false"], exp: "Hunt's reflective teaching model operates at the highest cognitive domain requiring independent problem-solving.", ex: "Formulating a community policy to mitigate local environmental pollution." }, hi: { q: "[यूनिट 1: Q3] (कठिन) अभिकथन (A): विमर्शी (Reflective) स्तर छात्रों को स्वायत्त समस्या-समाधानकर्ता बनाता है।\nतर्क (R): हंट का विमर्शी मॉडल शिक्षार्थियों को वास्तविक दुविधा स्थितियों में रखकर रचनात्मक मूल्यांकन की मांग करता है।", opt: ["दोनों (A) और (R) सही हैं और (R), (A) की सही व्याख्या करता है", "दोनों सही हैं परंतु व्याख्या नहीं है", "(A) सही है परंतु (R) गलत है", "दोनों गलत हैं"], exp: "विमर्शी स्तर उच्चतम संज्ञानात्मक स्तर है जो स्वतंत्र आलोचनात्मक चिंतन को बढ़ावा देता है।", ex: "स्थानीय प्रदूषण निवारण हेतु नई नीति तैयार करना।" }, correct: 0 },
-        { diff: "moderate", en: { q: "[Unit 1: Q4] (Moderate) In the Choice Based Credit System (CBCS), a multidisciplinary course chosen outside the core discipline is called:", opt: ["Generic Elective", "Discipline Specific Elective", "Core Course", "Ability Enhancement Course"], exp: "Generic electives offer multidisciplinary exposure outside one's core subject.", ex: "A physics student selecting Odia literature." }, hi: { q: "[यूनिट 1: Q4] (मध्यम) CBCS प्रणाली में मुख्य विषय से हटकर किसी अन्य संकाय से चुना जाने वाला विषय क्या कहलाता है?", opt: ["जेनेरिक ऐच्छिक (Generic Elective)", "अनुशासन विशिष्ट ऐच्छिक", "कोर कोर्स", "क्षमता संवर्धन कोर्स"], exp: "जेनेरिक ऐच्छिक छात्रों को अंतःविषय ज्ञान प्राप्त करने की सुविधा देता है।", ex: "भौतिकी के छात्र द्वारा साहित्य का अध्ययन।" }, correct: 0 },
-        { diff: "hard", en: { q: "[Unit 1: Q5] (Hard) Which of the following evaluation practices assesses learner performance against a predetermined absolute benchmark without peer comparison?", opt: ["Criterion-Referenced Testing", "Norm-Referenced Testing", "Ipsative Testing", "Prognostic Testing"], exp: "Criterion testing evaluates mastery against an absolute predetermined benchmark (e.g., scoring at least 70%).", ex: "A driving license test where passing requires a fixed 85% score." }, hi: { q: "[यूनिट 1: Q5] (कठिन) कौन सी मूल्यांकन पद्धति बिना सहपाठियों की तुलना के पूर्व-निर्धारित मानदंड के आधार पर प्रदर्शन मापती है?", opt: ["निकष-संदर्भित मूल्यांकन (Criterion-Referenced)", "मानक-संदर्भित मूल्यांकन", "इप्सैटिव मूल्यांकन", "प्रोग्नोस्टिक परीक्षण"], exp: "निकष-संदर्भित मूल्यांकन पूर्व-निर्धारित बेंचमार्क पर आधारित होता है।", ex: "ड्राइविंग टेस्ट में न्यूनतम अंक प्राप्त करना।" }, correct: 0 },
-        { diff: "easy", en: { q: "[Unit 1: Q6] (Easy) SWAYAM operates under which four distinct digital pedagogical quadrants?", opt: ["e-Tutorial, e-Content, Discussion Forum, Self-Assessment", "Audio, Video, Exam, Certificate", "Lecture, Notes, Homework, Viva", "Class, Slides, Test, Grading"], exp: "SWAYAM is structured into video tutorials, downloadable reading material, peer discussion forum, and online tests.", ex: "Standard online MOOC courses." }, hi: { q: "[यूनिट 1: Q6] (सरल) स्वयं (SWAYAM) के चार शैक्षणिक चतुर्थांश (Quadrants) कौन से हैं?", opt: ["ई-ट्यूटोरियल, ई-कंटेंट, चर्चा मंच, स्व-मूल्यांकन", "ऑडियो, वीडियो, परीक्षा, प्रमाण पत्र", "व्याख्यान, नोट्स, गृहकार्य, मौखिक", "कक्षा, स्लाइड, परीक्षा, ग्रेडिंग"], exp: "स्वयं 4 प्रमुख डिजिटल घटकों पर आधारित है।", ex: "ऑनलाइन वीडियो और अध्ययन सामग्री।" }, correct: 0 },
-        { diff: "moderate", en: { q: "[Unit 1: Q7] (Moderate) In Bloom's Revised Taxonomy, which cognitive process represents the highest complexity level?", opt: ["Creating", "Evaluating", "Analyzing", "Applying"], exp: "Creating (synthesizing diverse elements to generate a novel pattern or structure) is the highest cognitive skill.", ex: "Designing an original educational curriculum." }, hi: { q: "[यूनिट 1: Q7] (मध्यम) ब्लूम के संशोधित वर्गीकरण में सर्वोच्च संज्ञानात्मक जटिलता कौन सी है?", opt: ["सृजन करना (Creating)", "मूल्यांकन करना", "विश्लेषण करना", "लागू करना"], exp: "सृजन करना नए विचारों और मॉडलों के निर्माण को दर्शाता है।", ex: "एक नई पाठ्यचर्या का निर्माण।" }, correct: 0 },
-        { diff: "easy", en: { q: "[Unit 1: Q8] (Easy) What characterizes a learner-centered pedagogical environment?", opt: ["Teacher acts as facilitator while students actively construct knowledge", "Teacher lectures without student interaction", "Rote memorization is prioritized", "Strict authoritarian rules dominate"], exp: "Learner-centered classrooms encourage active participation, peer collaboration, and problem-solving.", ex: "Project-based laboratory learning." }, hi: { q: "[यूनिट 1: Q8] (सरल) शिक्षार्थी-केंद्रित कक्षा की क्या विशेषता है?", opt: ["शिक्षक सुविधादाता होता है और छात्र सक्रिय रूप से ज्ञान का निर्माण करते हैं", "शिक्षक केवल व्याख्यान देता है", "रटने पर जोर दिया जाता है", "कठोर नियम होते हैं"], exp: "शिक्षार्थी-केंद्रित शिक्षण में छात्र सक्रिय रूप से भाग लेते हैं।", ex: "परियोजना-आधारित शिक्षण।" }, correct: 0 },
-        { diff: "hard", en: { q: "[Unit 1: Q9] (Hard) An assessment conducted before instructional commencement to determine prerequisite entry-level readiness is:", opt: ["Placement / Diagnostic Assessment", "Summative Assessment", "Continuous Comprehensive Evaluation", "Normative Rank Test"], exp: "Placement tests evaluate prerequisite competence before introducing advanced curriculum.", ex: "Pre-course baseline mathematical eligibility examination." }, hi: { q: "[यूनिट 1: Q9] (कठिन) शिक्षण शुरू होने से पहले छात्रों की पूर्व-तैयारी का परीक्षण करने वाला मूल्यांकन क्या है?", opt: ["प्रवेश / नैदानिक मूल्यांकन (Placement)", "सत्रांत मूल्यांकन", "सतत व्यापक मूल्यांकन", "रैंकिंग टेस्ट"], exp: "यह नए विषय को शुरू करने से पहले पूर्व-ज्ञान की जांच करता है।", ex: "कोर्स में प्रवेश पूर्व पात्रता परीक्षा।" }, correct: 0 },
-        { diff: "hard", en: { q: "[Unit 1: Q10] (Hard) Under NEP 2020, what is the prime mandate of the national assessment centre PARAKH?", opt: ["Setting standardized evaluation norms and promoting 360-degree holistic report cards", "Administering teacher salary scales", "Printing central board textbooks", "Conducting infrastructure audits"], exp: "PARAKH operates as a standard-setting body under NCERT for holistic developmental evaluation across all boards.", ex: "Implementing self, peer, and teacher 360-degree progress cards." }, hi: { q: "[यूनिट 1: Q10] (कठिन) NEP 2020 के तहत 'परख' (PARAKH) का प्राथमिक कार्य क्या है?", opt: ["मूल्यांकन मानक स्थापित करना और 360-डिग्री समग्र रिपोर्ट कार्ड को बढ़ावा देना", "शिक्षकों के वेतन का प्रबंधन", "किताबें छापना", "भवन निर्माण की जांच"], exp: "परख सभी मान्यता प्राप्त स्कूल बोर्डों के लिए मूल्यांकन मानक तय करता है।", ex: "समग्र प्रगति रिपोर्ट कार्ड जारी करना।" }, correct: 0 }
+        { en: { q: "[Unit 1: Q1] Which level of teaching places the highest emphasis on cognitive creative hypothesis and independent problem-solving?", opt: ["Reflective Level (Hunt's Model)", "Memory Level (Herbart's Model)", "Understanding Level (Morrison's Model)", "Autonomous Development Level"], exp: "Reflective level operates at the highest cognitive domain requiring independent problem-solving and critical thinking.", ex: "Solving realistic societal dilemmas in university seminars." }, hi: { q: "[यूनिट 1: प्रश्न 1] शिक्षण का कौन सा स्तर स्वतंत्र समस्या-समाधान और आलोचनात्मक चिंतन पर सर्वाधिक बल देता है?", opt: ["विमर्शी स्तर (हंट मॉडल)", "स्मृति स्तर (हर्बर्ट मॉडल)", "बोध स्तर (मॉरिसन मॉडल)", "स्वायत्त विकास स्तर"], exp: "विमर्शी स्तर उच्चतम स्तर है जो स्वतंत्र आलोचनात्मक चिंतन को बढ़ावा देता है।", ex: "स्थानीय प्रदूषण निवारण हेतु नई नीति तैयार करना।" }, correct: 0 },
+        { en: { q: "[Unit 1: Q2] Continuous evaluation conducted concurrently with classroom instruction to diagnose learning gaps is:", opt: ["Formative Assessment", "Summative Assessment", "Norm-Referenced Test", "Criterion-Referenced Test"], exp: "Formative evaluation happens during learning to diagnose errors and improve ongoing instructional delivery.", ex: "Weekly classroom pop quizzes." }, hi: { q: "[यूनिट 1: प्रश्न 2] शिक्षण के दौरान कमियों को पहचानने और तुरंत सुधारने हेतु किया जाने वाला मूल्यांकन क्या है?", opt: ["रचनात्मक मूल्यांकन (Formative)", "सत्रांत मूल्यांकन (Summative)", "मानक-संदर्भित परीक्षण", "निकष-संदर्भित परीक्षण"], exp: "रचनात्मक मूल्यांकन शिक्षण के दौरान निरंतर उपचारात्मक प्रतिक्रिया देता है।", ex: "कक्षा के बीच में पूछे गए प्रश्न।" }, correct: 0 },
+        { en: { q: "[Unit 1: Q3] In the Choice Based Credit System (CBCS), an elective course chosen generally from an unrelated discipline is called:", opt: ["Generic Elective", "Discipline Specific Elective", "Core Course", "Ability Enhancement Course"], exp: "Generic electives offer multidisciplinary exposure outside one's core subject.", ex: "A physics student selecting Odia literature." }, hi: { q: "[यूनिट 1: प्रश्न 3] CBCS प्रणाली में मुख्य विषय से हटकर किसी अन्य संकाय से चुना जाने वाला विषय क्या कहलाता है?", opt: ["जेनेरिक ऐच्छिक (Generic Elective)", "अनुशासन विशिष्ट ऐच्छिक", "कोर कोर्स", "क्षमता संवर्धन कोर्स"], exp: "जेनेरिक ऐच्छिक छात्रों को अंतःविषय ज्ञान प्राप्त करने की सुविधा देता है।", ex: "भौतिकी के छात्र द्वारा साहित्य का अध्ययन।" }, correct: 0 },
+        { en: { q: "[Unit 1: Q4] A teacher categorizes learners according to their visual, auditory, and kinesthetic learning styles. This refers to:", opt: ["Individual Differences", "Universal Homogeneity", "Curriculum Bias", "Pedagogical Dogmatism"], exp: "Learner characteristics vary based on individual sensory and cognitive preferences.", ex: "Using diagrams for visual learners and audio clips for auditory learners." }, hi: { q: "[यूनिट 1: प्रश्न 4] एक शिक्षक दृश्य, श्रव्य और गतिज शैलियों के अनुसार छात्रों को वर्गीकृत करता है। यह क्या दर्शाता है?", opt: ["व्यक्तिगत भिन्नता (Individual Differences)", "सार्वभौमिक एकरूपता", "पाठ्यचर्या पूर्वाग्रह", "कठोरता"], exp: "सीखने के तरीके हर छात्र में भिन्न होते हैं।", ex: "चित्रों द्वारा समझाना।" }, correct: 0 },
+        { en: { q: "[Unit 1: Q5] What is the primary purpose of Criterion-Referenced evaluation?", opt: ["To assess mastery against a predetermined objective standard", "To rank students in percentile order", "To select top 1% candidates", "To compare peer rankings"], exp: "Criterion tests evaluate absolute mastery against a benchmark (e.g. scoring at least 70%) regardless of peers.", ex: "A driving license test where passing requires a fixed score." }, hi: { q: "[यूनिट 1: प्रश्न 5] निकष-संदर्भित (Criterion-Referenced) मूल्यांकन का मुख्य उद्देश्य क्या है?", opt: ["पूर्व-निर्धारित मानक के विरुद्ध प्रवीणता मापना", "छात्रों को रैंक देना", "शीर्ष 1% चुनना", "सहपाठियों से तुलना"], exp: "निकष-संदर्भित मूल्यांकन पूर्व-निर्धारित बेंचमार्क पर आधारित होता है।", ex: "ड्राइविंग टेस्ट में न्यूनतम अंक प्राप्त करना।" }, correct: 0 },
+        { en: { q: "[Unit 1: Q6] MOOC platforms under Swayam operate on which four pedagogical quadrants?", opt: ["e-Tutorial, e-Content, Discussion Forum, Self-Assessment", "Audio, Video, Exam, Degree", "Lecture, Homework, Viva, Certificate", "Notes, Books, Slides, Attendance"], exp: "SWAYAM is structured into video tutorials, downloadable reading material, peer discussion forum, and online tests.", ex: "Standard online MOOC courses." }, hi: { q: "[यूनिट 1: प्रश्न 6] स्वयं (SWAYAM) के चार शैक्षणिक चतुर्थांश (Quadrants) कौन से हैं?", opt: ["ई-ट्यूटोरियल, ई-कंटेंट, चर्चा मंच, स्व-मूल्यांकन", "ऑडियो, वीडियो, परीक्षा, डिग्री", "व्याख्यान, गृहकार्य, मौखिक, प्रमाणपत्र", "नोट्स, किताबें, स्लाइड्स, उपस्थिति"], exp: "स्वयं 4 प्रमुख डिजिटल घटकों पर आधारित है।", ex: "ऑनलाइन वीडियो और अध्ययन सामग्री।" }, correct: 0 },
+        { en: { q: "[Unit 1: Q7] According to Bloom's Revised Taxonomy, which cognitive action represents the highest level?", opt: ["Creating", "Evaluating", "Analyzing", "Remembering"], exp: "Creating (synthesizing diverse elements to generate a novel pattern or structure) is the highest cognitive skill.", ex: "Formulating a new theory or designing an original curriculum." }, hi: { q: "[यूनिट 1: प्रश्न 7] ब्लूम के संशोधित वर्गीकरण में सर्वोच्च संज्ञानात्मक स्तर कौन सा है?", opt: ["सृजन करना (Creating)", "मूल्यांकन करना", "विश्लेषण करना", "याद रखना"], exp: "सृजन करना नए विचारों और मॉडलों के निर्माण को दर्शाता है।", ex: "एक नई पाठ्यचर्या का निर्माण।" }, correct: 0 },
+        { en: { q: "[Unit 1: Q8] The teacher acts purely as a facilitator while students explore projects independently in:", opt: ["Learner-Centered Approach", "Teacher-Centered Approach", "Authoritarian Approach", "Direct Lecture Model"], exp: "Learner-centered methods foster autonomous exploration and collaborative discovery.", ex: "Flipped classroom methodology." }, hi: { q: "[यूनिट 1: प्रश्न 8] किस विधि में शिक्षक केवल सुविधादाता होता है और छात्र स्वयं खोज करते हैं?", opt: ["शिक्षार्थी-केंद्रित दृष्टिकोण", "शिक्षक-केंद्रित दृष्टिकोण", "सत्तावादी दृष्टिकोण", "सीधा व्याख्यान"], exp: "शिक्षार्थी-केंद्रित शिक्षण में छात्र सक्रिय रूप से भाग लेते हैं।", ex: "परियोजना-आधारित शिक्षण।" }, correct: 0 },
+        { en: { q: "[Unit 1: Q9] Which evaluation assesses student entry-level readiness before instruction begins?", opt: ["Placement / Diagnostic Assessment", "Summative Assessment", "Ipsative Assessment", "Formative Assessment"], exp: "Placement tests evaluate prerequisite competence before introducing advanced curriculum.", ex: "Pre-course baseline mathematical eligibility examination." }, hi: { q: "[यूनिट 1: प्रश्न 9] कक्षा शुरू होने से पहले छात्रों के पूर्व-ज्ञान का परीक्षण क्या कहलाता है?", opt: ["प्रवेश / नैदानिक मूल्यांकन (Placement)", "सत्रांत मूल्यांकन", "इप्सैटिव मूल्यांकन", "रचनात्मक मूल्यांकन"], exp: "यह नए विषय को शुरू करने से पहले पूर्व-ज्ञान की जांच करता है।", ex: "कोर्स में प्रवेश पूर्व पात्रता परीक्षा।" }, correct: 0 },
+        { en: { q: "[Unit 1: Q10] Under NEP 2020, PARAKH is proposed as a national body for:", opt: ["Performance Assessment, Review, and Analysis of Knowledge for Holistic Development", "Faculty Pension Administration", "School Infrastructure Loans", "Syllabus Printing"], exp: "PARAKH operates as a standard-setting body under NCERT for holistic developmental evaluation across all boards.", ex: "Implementing self, peer, and teacher 360-degree progress cards." }, hi: { q: "[यूनिट 1: प्रश्न 10] NEP 2020 के तहत 'परख' (PARAKH) का मुख्य कार्य क्या है?", opt: ["समग्र विकास के लिए ज्ञान का प्रदर्शन आकलन, समीक्षा और विश्लेषण", "पेंशन प्रबंधन", "ऋण देना", "किताबें छापना"], exp: "परख सभी मान्यता प्राप्त स्कूल बोर्डों के लिए मूल्यांकन मानक तय करता है।", ex: "समग्र प्रगति रिपोर्ट कार्ड जारी करना।" }, correct: 0 }
       ],
+
+      // UNIT 2: RESEARCH APTITUDE (10 QUESTIONS)
+      2: [
+        { en: { q: "[Unit 2: Q1] Which paradigm asserts that reality is socially constructed, contextual, and multiple rather than universal?", opt: ["Post-Positivism & Interpretivism", "Positivism", "Strict Empiricism", "Pure Behaviourism"], exp: "Post-positivism rejects a single objective reality and values qualitative contextual interpretation.", ex: "Ethnographic study of cultural traditions." }, hi: { q: "[यूनिट 2: प्रश्न 1] कौन सा दृष्टिकोण मानता है कि वास्तविकता सामाजिक रूप से निर्मित और व्यक्तिपरक है?", opt: ["उत्तर-प्रत्यक्षवाद और व्याख्यात्मकता", "प्रत्यक्षवाद (Positivism)", "कठोर अनुभववाद", "शुद्ध व्यवहारवाद"], exp: "उत्तर-प्रत्यक्षवाद बहुआयामी व्यक्तिपरक वास्तविकताओं को स्वीकार करता है।", ex: "सांस्कृतिक परंपराओं का गुणात्मक अध्ययन।" }, correct: 0 },
+        { en: { q: "[Unit 2: Q2] A researcher divides the population into homogeneous subgroups before taking random samples. This sampling is:", opt: ["Stratified Random Sampling", "Snowball Sampling", "Quota Sampling", "Convenience Sampling"], exp: "Stratified sampling ensures proportional representation of diverse subgroups.", ex: "Sampling 100 urban and 100 rural candidates separately." }, hi: { q: "[यूनिट 2: प्रश्न 2] शोधकर्ता समग्र को समरूप स्तरों में बांटकर यादृच्छिक नमूना लेता है। यह क्या है?", opt: ["स्तरीकृत यादृच्छिक प्रतिचयन (Stratified)", "स्नोबॉल प्रतिचयन", "कोटा प्रतिचयन", "सुविधाजनक प्रतिचयन"], exp: "स्तरीकृत प्रतिचयन सभी उप-समूहों का उचित प्रतिनिधित्व सुनिश्चित करता है।", ex: "शहरी और ग्रामीण छात्रों का अलग-अलग अनुपात में चयन।" }, correct: 0 },
+        { en: { q: "[Unit 2: Q3] What error occurs when a researcher rejects a true null hypothesis (H0)?", opt: ["Type I Error (Alpha Error)", "Type II Error (Beta Error)", "Sampling Frame Bias", "Measurement Error"], exp: "Type I error occurs when a true null hypothesis is mistakenly rejected.", ex: "Convicting an innocent person in court." }, hi: { q: "[यूनिट 2: प्रश्न 3] जब कोई शोधकर्ता सत्य शून्य परिकल्पना (H0) को अस्वीकार कर देता है, तो कौन सी त्रुटि होती है?", opt: ["टाइप I त्रुटि (अल्फा त्रुटि)", "टाइप II त्रुटि (बीटा त्रुटि)", "नमूनाकरण ढांचा पूर्वाग्रह", "माप त्रुटि"], exp: "टाइप I त्रुटि तब होती है जब एक सही परिकल्पना को गलत मान लिया जाता है।", ex: "अदालत में किसी निर्दोष को सजा देना।" }, correct: 0 },
+        { en: { q: "[Unit 2: Q4] Research undertaken to solve an immediate, practical problem in a specific classroom or institution is called:", opt: ["Action Research", "Fundamental Research", "Historical Research", "Pure Theoretical Research"], exp: "Action research follows a plan-act-observe-reflect cycle to resolve local practitioner challenges.", ex: "A teacher testing a new method to reduce absenteeism." }, hi: { q: "[यूनिट 2: प्रश्न 4] किसी कक्षा या संस्था की तात्कालिक समस्या के समाधान हेतु किया जाने वाला शोध क्या कहलाता है?", opt: ["क्रियात्मक अनुसंधान (Action Research)", "मौलिक अनुसंधान", "ऐतिहासिक अनुसंधान", "शुद्ध सैद्धांतिक अनुसंधान"], exp: "क्रियात्मक अनुसंधान तात्कालिक स्थानीय समस्याओं को हल करने पर केंद्रित होता है।", ex: "कक्षा में उपस्थिति बढ़ाने हेतु शिक्षक द्वारा किया गया प्रयोग।" }, correct: 0 },
+        { en: { q: "[Unit 2: Q5] Presenting another author's language, thoughts, or ideas as one's own without citation is designated as:", opt: ["Plagiarism", "Copyright Fair Use", "Peer Review", "Epistemology"], exp: "Plagiarism is an academic ethics violation punishable by UGC regulations.", ex: "Copying research paragraphs without citation." }, hi: { q: "[यूनिट 2: प्रश्न 5] बिना संदर्भ दिए किसी अन्य लेखक के विचारों या भाषा को अपना बताकर प्रस्तुत करना क्या कहलाता है?", opt: ["साहित्यिक चोरी (Plagiarism)", "उचित उपयोग", "सहकर्मी समीक्षा", "ज्ञानमीमांसा"], exp: "साहित्यिक चोरी शोध आचार संहिता का गंभीर उल्लंघन है।", ex: "बिना स्रोत बताए दूसरों का शोध चुराना।" }, correct: 0 },
+        { en: { q: "[Unit 2: Q6] Which variable is deliberately manipulated by the experimenter to observe its effect?", opt: ["Independent Variable", "Dependent Variable", "Extraneous Variable", "Confounding Variable"], exp: "The independent variable is the cause manipulated to observe changes in the dependent variable.", ex: "Hours of study (Independent) impacting exam score (Dependent)." }, hi: { q: "[यूनिट 2: प्रश्न 6] प्रयोगकर्ता द्वारा प्रभाव देखने के लिए किस चर में जानबूझकर परिवर्तन किया जाता है?", opt: ["स्वतंत्र चर (Independent Variable)", "आश्रित चर (Dependent Variable)", "बाह्य चर", "भ्रामक चर"], exp: "स्वतंत्र चर वह कारण है जिसमें बदलाव किया जाता है।", ex: "पढ़ाई के घंटे (स्वतंत्र चर) और परीक्षा परिणाम (आश्रित चर)।" }, correct: 0 },
+        { en: { q: "[Unit 2: Q7] What is the correct sequence of empirical research stages?", opt: ["Problem Identification ➔ Hypothesis Formulation ➔ Data Collection ➔ Data Analysis ➔ Conclusion", "Data Analysis ➔ Hypothesis ➔ Problem ➔ Conclusion", "Data Collection ➔ Problem ➔ Hypothesis ➔ Analysis", "Conclusion ➔ Data Collection ➔ Analysis ➔ Problem"], exp: "Standard empirical scientific inquiry begins with problem formulation and ends with findings.", ex: "Dissertation chapter methodology." }, hi: { q: "[यूनिट 2: प्रश्न 7] अनुभवजन्य अनुसंधान के चरणों का सही क्रम क्या है?", opt: ["समस्या की पहचान ➔ परिकल्पना निर्माण ➔ डेटा संग्रह ➔ डेटा विश्लेषण ➔ निष्कर्ष", "डेटा विश्लेषण ➔ परिकल्पना ➔ समस्या ➔ निष्कर्ष", "डेटा संग्रह ➔ समस्या ➔ परिकल्पना ➔ विश्लेषण", "निष्कर्ष ➔ डेटा संग्रह ➔ विश्लेषण ➔ समस्या"], exp: "शोध हमेशा समस्या से शुरू होकर निष्कर्ष पर समाप्त होता है।", ex: "शोध प्रबंध का मानक क्रम।" }, correct: 0 },
+        { en: { q: "[Unit 2: Q8] Triangulation in research methodology primarily refers to:", opt: ["Using multiple methods or data sources to cross-verify findings", "Studying triangular geometry", "Surveying exactly three participants", "Writing three research papers"], exp: "Triangulation combines quantitative and qualitative methods to increase validity.", ex: "Combining survey questionnaire with in-depth interviews." }, hi: { q: "[यूनिट 2: प्रश्न 8] अनुसंधान पद्धति में 'ट्राएंगुलेशन' (Triangulation) का क्या अर्थ है?", opt: ["निष्कर्षों के सत्यापन हेतु कई विधियों या डेटा स्रोतों का उपयोग करना", "त्रिकोण ज्यामिति का अध्ययन", "केवल तीन लोगों का साक्षात्कार", "तीन शोध पत्र लिखना"], exp: "यह विश्वसनीयता बढ़ाने के लिए कई शोध विधियों का मिश्रण है।", ex: "सर्वेक्षण और साक्षात्कार दोनों का एक साथ प्रयोग।" }, correct: 0 },
+        { en: { q: "[Unit 2: Q9] Which reference style is most commonly used in Social Sciences and Education research?", opt: ["APA Style (American Psychological Association)", "IEEE Style", "ACM Style", "Bluebook Style"], exp: "APA is the standard format for social sciences, psychology, and education papers.", ex: "Author (Year) in-text citation format." }, hi: { q: "[यूनिट 2: प्रश्न 9] सामाजिक विज्ञान और शिक्षा शोध में सामान्यतः किस संदर्भ शैली (Citation Style) का उपयोग होता है?", opt: ["APA शैली (अमेरिकन साइकोलॉजिकल एसोसिएशन)", "IEEE शैली", "ACM शैली", "ब्लूबुक शैली"], exp: "APA शैली सामाजिक विज्ञान के लिए मानक संदर्भ प्रारूप है।", ex: "लेखक (वर्ष) संदर्भ प्रारूप।" }, correct: 0 },
+        { en: { q: "[Unit 2: Q10] An in-depth investigation of a single individual, group, or institution over time is a:", opt: ["Case Study", "Experimental Trial", "Cross-Sectional Survey", "Ex-Post Facto Design"], exp: "Case studies provide exhaustive holistic descriptions of bounded entities.", ex: "Studying the administrative turnaround of one specific school." }, hi: { q: "[यूनिट 2: प्रश्न 10] किसी एक व्यक्ति, समूह या संस्था का गहन अध्ययन क्या कहलाता है?", opt: ["केस स्टडी (Case Study)", "प्रायोगिक परीक्षण", "क्रॉस-सेक्शनल सर्वेक्षण", "एक्स-पोस्ट फैक्टो डिजाइन"], exp: "केस स्टडी किसी विशिष्ट इकाई का संपूर्ण गहन विश्लेषण है।", ex: "किसी एक स्कूल के सुधार का विस्तृत अध्ययन।" }, correct: 0 }
+      ],
+
+      // UNIT 3: COMPREHENSION (10 QUESTIONS ON PASSAGE)
+      3: [
+        { en: { q: "[Unit 3: Q1] According to the passage, what is the primary factor driving the current transition in university research?", opt: ["Market-driven metrics, quantifiable output indexes, and commodified patent quotas", "Philosophical curiosity alone", "A complete absence of technological tools", "Direct student protests"], exp: "The passage asserts that contemporary academia is increasingly governed by market metrics.", ex: "Direct textual inference from line 2." }, hi: { q: "[यूनिट 3: प्रश्न 1] गद्यांश के अनुसार, विश्वविद्यालयी शोध में वर्तमान परिवर्तन का मुख्य कारण क्या है?", opt: ["बाजार-संचालित मीट्रिक्स, मात्रात्मक आउटपुट इंडेक्स और पेटेंट कोटा", "केवल दार्शनिक जिज्ञासा", "तकनीक का अभाव", "छात्र आंदोलन"], exp: "गद्यांश स्पष्ट करता है कि बाजार के दबाव ने शोध की दिशा बदली है।", ex: "गद्यांश की दूसरी पंक्ति से प्रत्यक्ष निष्कर्ष।" }, correct: 0 },
+        { en: { q: "[Unit 3: Q2] What unintended negative consequence has institutional accountability fostered?", opt: ["A hyper-competitive 'publish-or-perish' ecosystem", "Total elimination of scientific publishing", "Closure of libraries", "Decline in student admissions"], exp: "Line 4 explicitly states that accountability fostered a publish-or-perish pressure.", ex: "Academic publishing pressure." }, hi: { q: "[यूनिट 3: प्रश्न 2] संस्थागत जवाबदेही ने अनजाने में किस नकारात्मक परिणाम को बढ़ावा दिया है?", opt: ["एक अत्यधिक प्रतिस्पर्धी 'प्रकाशित करो या नष्ट हो जाओ' (Publish-or-perish) माहौल", "प्रकाशन का पूर्ण अंत", "पुस्तकालयों का बंद होना", "नामांकन में गिरावट"], exp: "गद्यांश में स्पष्ट है कि इससे अत्यधिक अंधी प्रतिस्पर्धा बढ़ी है।", ex: "विश्वविद्यालयों में केवल पेपर छापने की होड़।" }, correct: 0 },
+        { en: { q: "[Unit 3: Q3] Why are exploratory long-term inquiries routinely marginalized in universities?", opt: ["They are displaced by incremental, low-risk investigations", "They are illegal", "Nobody understands science", "Computers cannot store them"], exp: "The passage notes that long-term exploratory research is sidelined for quick, low-risk papers.", ex: "Prioritizing easy papers over groundbreaking deep science." }, hi: { q: "[यूनिट 3: प्रश्न 3] विश्वविद्यालयों में दीर्घकालिक खोजपूर्ण शोध की उपेक्षा क्यों की जाती है?", opt: ["क्योंकि कम जोखिम वाले और छोटे शोध को प्राथमिकता दी जाती है", "क्योंकि यह गैरकानूनी है", "क्योंकि कोई विज्ञान नहीं समझता", "कंप्यूटर की कमी"], exp: "त्वरित परिणाम पाने के चक्कर में गहरे मौलिक शोध पीछे छूट जाते हैं।", ex: "सरल विषयों पर त्वरित पेपर लिखना।" }, correct: 0 },
+        { en: { q: "[Unit 3: Q4] What is the overarching tone maintained by the author in the passage?", opt: ["Analytically critical and reformative", "Sarcastic and humorous", "Purely nostalgic", "Dogmatically aggressive"], exp: "The author critically dissects current flaws and advocates institutional culture reform.", ex: "Balanced academic editorial tone." }, hi: { q: "[यूनिट 3: प्रश्न 4] पूरे गद्यांश में लेखक द्वारा अपनाया गया मुख्य स्वर क्या है?", opt: ["विश्लेषणात्मक, आलोचनात्मक और सुधारात्मक", "व्यंग्यात्मक और हास्यपद", "विशुद्ध रूप से उदासीन", "कठोर और आक्रामक"], exp: "लेखक प्रणाली की कमियों का विश्लेषण करते हुए सुधार की मांग करता है।", ex: "गंभीर संपादकीय विश्लेषण।" }, correct: 0 },
+        { en: { q: "[Unit 3: Q5] What does the passage advocate as essential for genuine scientific progress?", opt: ["Intellectual courage, methodological skepticism, and ethical responsibility", "Strict government surveillance only", "Eliminating all research funding", "Abolishing university degrees"], exp: "The final sentence emphasizes intellectual courage and ethical responsibility over mere bureaucracy.", ex: "Ethical research culture." }, hi: { q: "[यूनिट 3: प्रश्न 5] वास्तविक वैज्ञानिक प्रगति के लिए लेखक किस बात की वकालत करता है?", opt: ["बौद्धिक साहस, पद्धतिगत संदेह और नैतिक जिम्मेदारी", "केवल कठोर सरकारी निगरानी", "शोध का पैसा बंद करना", "डिग्रियां समाप्त करना"], exp: "गद्यांश की अंतिम पंक्ति नैतिक जिम्मेदारी और बौद्धिक साहस पर जोर देती है।", ex: "शोध में नैतिक आचरण।" }, correct: 0 },
+        { en: { q: "[Unit 3: Q6] The word 'epistemic' in the passage relates to:", opt: ["Knowledge and its philosophical validation", "Economic stock trading", "Biological cell division", "Mechanical engineering"], exp: "Epistemic pertains to epistemology, the philosophical study of knowledge.", ex: "Epistemic shift in research paradigms." }, hi: { q: "[यूनिट 3: प्रश्न 6] गद्यांश में प्रयुक्त 'epistemic' शब्द का संबंध किससे है?", opt: ["ज्ञान और उसकी दार्शनिक वैधता से", "शेयर बाजार से", "कोशिका विभाजन से", "इंजीनियरिंग से"], exp: "एपिस्टेमिक का अर्थ ज्ञानमीमांसा से संबंधित है।", ex: "ज्ञान का दार्शनिक अध्ययन।" }, correct: 0 },
+        { en: { q: "[Unit 3: Q7] In the context of the passage, 'commodified' signifies:", opt: ["Treated purely as a commercial product to be bought and sold", "Protected from all public eyes", "Written in ancient language", "Given away freely"], exp: "Commodifying research means valuing it only for market trade rather than intrinsic truth.", ex: "Commercialization of academic patents." }, hi: { q: "[यूनिट 3: प्रश्न 7] गद्यांश के संदर्भ में 'commodified' (वस्तुकरण) का क्या अर्थ है?", opt: ["शोध को विशुद्ध रूप से व्यापारिक उत्पाद की तरह देखना", "सार्वजनिक नजरों से छिपाना", "प्राचीन भाषा में लिखना", "मुफ्त में बांटना"], exp: "शोध को ज्ञान के बजाय बाजार के उत्पाद के रूप में आंकना।", ex: "शिक्षा का व्यवसायीकरण।" }, correct: 0 },
+        { en: { q: "[Unit 3: Q8] Which statement is contradicted by the passage?", opt: ["Surveillance alone is sufficient to generate deep scientific breakthroughs", "Research is affected by market metrics", "Accountability ensures fiscal transparency", "Incremental research is low-risk"], exp: "The passage states that bureaucratic surveillance alone is NOT sufficient.", ex: "Direct reading comprehension deduction." }, hi: { q: "[यूनिट 3: प्रश्न 8] गद्यांश के अनुसार कौन सा कथन असत्य (विरोधाभासी) है?", opt: ["गहरे वैज्ञानिक शोध के लिए केवल नौकरशाही निगरानी पर्याप्त है", "शोध बाजार के मीट्रिक्स से प्रभावित है", "जवाबदेही वित्तीय पारदर्शिता लाती है", "कम जोखिम वाले शोध को बढ़ावा मिलता है"], exp: "लेखक स्पष्ट करता है कि केवल निगरानी से विज्ञान आगे नहीं बढ़ सकता।", ex: "गद्यांश आधारित तर्क।" }, correct: 0 },
+        { en: { q: "[Unit 3: Q9] What was traditional research historically anchored in, according to line 1?", opt: ["Autonomous philosophical wonder and the pursuit of objective truth", "Government grant quotas", "Corporate stock dividends", "Patent court litigation"], exp: "The passage begins by highlighting autonomous philosophical wonder as the historical root.", ex: "Classical pursuit of knowledge." }, hi: { q: "[यूनिट 3: प्रश्न 9] पहली पंक्ति के अनुसार पारंपरिक शोध ऐतिहासिक रूप से किसमें निहित था?", opt: ["स्वायत्त दार्शनिक जिज्ञासा और वस्तुनिष्ठ सत्य की खोज", "सरकारी ग्रांट कोटा", "कॉर्पोरेट लाभांश", "पेटेंट मुकदमेबाजी"], exp: "पारंपरिक शोध सत्य की निस्वार्थ खोज पर आधारित था।", ex: "ज्ञान की मौलिक खोज।" }, correct: 0 },
+        { en: { q: "[Unit 3: Q10] What is the central thesis of the entire passage?", opt: ["Academic research must balance fiscal accountability with intellectual freedom and ethics", "All science should be stopped", "Universities should not be funded", "Only patents matter"], exp: "The core argument calls for reclaiming ethical and intellectual courage amid bureaucratic pressures.", ex: "Overall passage thematic summary." }, hi: { q: "[यूनिट 3: प्रश्न 10] पूरे गद्यांश का केंद्रीय विचार क्या है?", opt: ["शैक्षणिक शोध में वित्तीय जवाबदेही के साथ बौद्धिक स्वतंत्रता और नैतिकता का संतुलन होना चाहिए", "सारा विज्ञान बंद कर देना चाहिए", "विश्वविद्यालयों को फंड नहीं मिलना चाहिए", "केवल पेटेंट महत्वपूर्ण हैं"], exp: "गद्यांश का मूल संदेश शोध में नैतिकता और स्वतंत्रता की पुनर्स्थापना है।", ex: "गद्यांश का मुख्य भाव।" }, correct: 0 }
+      ],
+
+      // UNIT 4: COMMUNICATION (10 QUESTIONS)
+      4: [
+        { en: { q: "[Unit 4: Q1] The study of body language, postures, gestures, and facial expressions in communication is called:", opt: ["Kinesics", "Proxemics", "Paralanguage", "Chronemics"], exp: "Kinesics encompasses all non-verbal bodily movements.", ex: "Nodding to signal agreement." }, hi: { q: "[यूनिट 4: प्रश्न 1] सम्प्रेषण में शारीरिक हाव-भाव, मुद्राओं और चेहरे की अभिव्यक्तियों का अध्ययन क्या कहलाता है?", opt: ["काइनेसिक्स (Kinesics)", "प्रॉक्सेमिक्स (Proxemics)", "पैरा-लैंग्वेज", "क्रोनेमिक्स"], exp: "काइनेसिक्स अशाब्दिक बॉडी लैंग्वेज का वैज्ञानिक अध्ययन है।", ex: "सहमति में सिर हिलाना।" }, correct: 0 },
+        { en: { q: "[Unit 4: Q2] Which non-verbal communication aspect relates specifically to interpersonal physical distance?", opt: ["Proxemics", "Chronemics", "Haptics", "Semantics"], exp: "Proxemics (coined by Edward T. Hall) studies personal space zones.", ex: "Standing 4 feet away during professional conversation." }, hi: { q: "[यूनिट 4: प्रश्न 2] सम्प्रेषण में व्यक्तिगत शारीरिक दूरी और स्थान (Space) का अध्ययन क्या कहलाता है?", opt: ["प्रॉक्सेमिक्स (Proxemics)", "क्रोनेमिक्स", "हैप्टिक्स", "सिमेंटिक्स"], exp: "प्रॉक्सेमिक्स बातचीत के दौरान दूरी और स्पेस का अध्ययन है।", ex: "बातचीत में उचित दूरी बनाए रखना।" }, correct: 0 },
+        { en: { q: "[Unit 4: Q3] In the linear Shannon-Weaver model of communication, unwanted interference that distorts a message is:", opt: ["Noise", "Feedback", "Channel", "Decoder"], exp: "Noise represents physical, semantic, or psychological barrier degrading message fidelity.", ex: "Static sound on telephone line." }, hi: { q: "[यूनिट 4: प्रश्न 3] शैनन-वीवर सम्प्रेषण मॉडल में संदेश को विकृत करने वाला अवांछित व्यवधान क्या कहलाता है?", opt: ["शोर (Noise)", "प्रतिपुष्टि (Feedback)", "चैनल", "डिकोडर"], exp: "शोर वह रुकावट है जो संदेश को स्पष्ट रूप से पहुंचने नहीं देती।", ex: "फोन पर आवाज कटना।" }, correct: 0 },
+        { en: { q: "[Unit 4: Q4] Classroom communication is primarily categorized as:", opt: ["Transactional and Interpersonal", "Mass Media broadcast", "Intrapersonal monologue", "Non-purposive noise"], exp: "Classroom communication is reciprocal where teacher and students constantly exchange feedback.", ex: "Interactive teacher-student dialogue." }, hi: { q: "[यूनिट 4: प्रश्न 4] कक्षा सम्प्रेषण को मुख्य रूप से किस रूप में वर्गीकृत किया जाता है?", opt: ["पारस्परिक और लेन-देन संबंधी (Transactional)", "जनसंचार प्रसारण", "अंतःवैयक्तिक एकलाप", "उद्देश्यहीन शोर"], exp: "कक्षा में शिक्षक और छात्र निरंतर विचारों का आदान-प्रदान करते हैं।", ex: "कक्षा में संवाद और प्रश्नोत्तरी।" }, correct: 0 },
+        { en: { q: "[Unit 4: Q5] When a communicator speaks to oneself in reflection or meditation, it is designated as:", opt: ["Intrapersonal Communication", "Interpersonal Communication", "Group Communication", "Public Address"], exp: "Intrapersonal communication takes place strictly within an individual's own mind.", ex: "Self-motivation or silent internal thought." }, hi: { q: "[यूनिट 4: प्रश्न 5] जब कोई व्यक्ति स्वयं से बातचीत या मनन करता है, तो उसे क्या कहा जाता है?", opt: ["अंतःवैयक्तिक सम्प्रेषण (Intrapersonal)", "अंतर-वैयक्तिक सम्प्रेषण (Interpersonal)", "समूह सम्प्रेषण", "सार्वजनिक भाषण"], exp: "यह व्यक्ति के स्वयं के भीतर चलने वाला चिंतन है।", ex: "आत्म-चिंतन या मन में सोचना।" }, correct: 0 },
+        { en: { q: "[Unit 4: Q6] Semantic barriers in communication occur due to:", opt: ["Different interpretations of words, symbols, or linguistic jargon", "Loud mic volume", "Power failure", "Distance between cities"], exp: "Semantic barriers stem from ambiguous language or conflicting word meanings.", ex: "Using technical jargon that layman students cannot comprehend." }, hi: { q: "[यूनिट 4: प्रश्न 6] सम्प्रेषण में अर्थ संबंधी बाधा (Semantic Barrier) किसके कारण उत्पन्न होती है?", opt: ["शब्दों, प्रतीकों या भाषा के अलग-अलग अर्थ निकालने से", "माइक की तेज आवाज से", "बिजली जाने से", "शहरों की दूरी से"], exp: "यह भाषा और शब्दों के अर्थ की अस्पष्टता से होती है।", ex: "कठिन तकनीकी शब्दों का प्रयोग करना।" }, correct: 0 },
+        { en: { q: "[Unit 4: Q7] Pitch, volume, tempo, and vocal intonation are studied under:", opt: ["Paralanguage (Vocalics)", "Chronemics", "Proxemics", "Kinesics"], exp: "Paralanguage concerns how words are spoken rather than the literal words themselves.", ex: "Speaking in an angry tone vs gentle whisper." }, hi: { q: "[यूनिट 4: प्रश्न 7] आवाज की टोन, पिच, गति और उतार-चढ़ाव का अध्ययन किसमें किया जाता है?", opt: ["पैरा-लैंग्वेज (Paralanguage)", "क्रोनेमिक्स", "प्रॉक्सेमिक्स", "काइनेसिक्स"], exp: "पैरा-लैंग्वेज आवाज के लहजे और बोलने के तरीके का अध्ययन है।", ex: "गुस्से या प्यार से बोलना।" }, correct: 0 },
+        { en: { q: "[Unit 4: Q8] What confirms whether the intended message has been understood correctly by the receiver?", opt: ["Feedback", "Encoding", "Channel", "Transmitter"], exp: "Feedback is the receiver's response that completes the communication loop.", ex: "Student replying correctly to a teacher's check question." }, hi: { q: "[यूनिट 4: प्रश्न 8] प्राप्तकर्ता द्वारा संदेश सही समझा गया या नहीं, इसकी पुष्टि किससे होती है?", opt: ["प्रतिपुष्टि (Feedback)", "एन्कोडिंग", "चैनल", "ट्रांसमीटर"], exp: "प्रतिपुष्टि सम्प्रेषण चक्र को पूरा करती है।", ex: "छात्र द्वारा शिक्षक के प्रश्न का सही उत्तर देना।" }, correct: 0 },
+        { en: { q: "[Unit 4: Q9] Communication that flows from subordinate staff upward to senior executives is:", opt: ["Upward Communication", "Downward Communication", "Horizontal Communication", "Grapevine"], exp: "Upward communication carries grievances, reports, and suggestions to leadership.", ex: "Teachers submitting feedback reports to the principal." }, hi: { q: "[यूनिट 4: प्रश्न 9] अधीनस्थों से वरिष्ठ अधिकारियों की ओर प्रवाहित होने वाला सम्प्रेषण क्या कहलाता है?", opt: ["ऊर्ध्वगामी सम्प्रेषण (Upward)", "अधोगामी सम्प्रेषण (Downward)", "क्षैतिज सम्प्रेषण", "ग्रेपवाइन"], exp: "यह नीचे के कर्मचारियों से प्रबंधन की ओर जाता है।", ex: "शिक्षकों द्वारा प्राचार्य को सुझाव देना।" }, correct: 0 },
+        { en: { q: "[Unit 4: Q10] Informal, unstructured word-of-mouth communication within an organization is known as:", opt: ["Grapevine Communication", "Official Circular", "Formal Agenda", "Statutory Notice"], exp: "Grapevine is the informal social grapevine network operating outside formal channels.", ex: "Staffroom office gossip." }, hi: { q: "[यूनिट 4: प्रश्न 10] किसी संगठन में अनौपचारिक, मौखिक सम्प्रेषण नेटवर्क को क्या कहा जाता है?", opt: ["ग्रेपवाइन (Grapevine)", "आधिकारिक परिपत्र", "औपचारिक एजेंडा", "वैधानिक सूचना"], exp: "ग्रेपवाइन अनौपचारिक सामाजिक बातचीत का नेटवर्क है।", ex: "दफ्तर में कर्मचारियों की अनौपचारिक गपशप।" }, correct: 0 }
+      ],
+
+      // UNIT 5: MATHEMATICAL REASONING (10 QUESTIONS)
+      5: [
+        { en: { q: "[Unit 5: Q1] Complete the following number sequence: 2, 6, 12, 20, 30, ?", opt: ["42", "40", "36", "48"], exp: "Pattern is n*(n+1): 1*2=2, 2*3=6, 3*4=12, 4*5=20, 5*6=30, 6*7=42.", ex: "Mathematical series formula." }, hi: { q: "[यूनिट 5: प्रश्न 1] दी गई संख्या श्रृंखला को पूर्ण करें: 2, 6, 12, 20, 30, ?", opt: ["42", "40", "36", "48"], exp: "पैटर्न n*(n+1) है: 1*2=2, 2*3=6, 3*4=12, 4*5=20, 5*6=30, 6*7=42.", ex: "श्रृंखला का सूत्र।" }, correct: 0 },
+        { en: { q: "[Unit 5: Q2] A train running at 72 km/hr crosses a 150m long bridge in 15 seconds. Find the length of the train.", opt: ["150 meters", "180 meters", "120 meters", "200 meters"], exp: "Speed = 72 * (5/18) = 20 m/s. Total distance = 20 * 15 = 300m. Train length = 300 - 150 = 150m.", ex: "Speed-distance formula." }, hi: { q: "[यूनिट 5: प्रश्न 2] 72 किमी/घंटा की गति से चल रही ट्रेन 15 सेकंड में 150 मीटर लंबे पुल को पार करती है। ट्रेन की लंबाई ज्ञात करें:", opt: ["150 मीटर", "180 मीटर", "120 मीटर", "200 मीटर"], exp: "गति = 72 * (5/18) = 20 मी/से। कुल दूरी = 20 * 15 = 300 मी। ट्रेन की लंबाई = 300 - 150 = 150 मीटर।", ex: "चाल और दूरी का नियम।" }, correct: 0 },
+        { en: { q: "[Unit 5: Q3] If in a code language 'TEACHER' is coded as 'VGCEJGT', how is 'STUDENT' written in that code?", opt: ["UVWFGPV", "TVWFGPV", "UVWFGOV", "RUUDEMS"], exp: "Every single alphabet is shifted forward by +2 positions in the alphabetical order.", ex: "Alphabet coding-decoding." }, hi: { q: "[यूनिट 5: प्रश्न 3] यदि किसी कूट भाषा में 'TEACHER' को 'VGCEJGT' लिखा जाता है, तो 'STUDENT' को क्या लिखा जाएगा?", opt: ["UVWFGPV", "TVWFGPV", "UVWFGOV", "RUUDEMS"], exp: "प्रत्येक वर्णमाला अक्षर को वर्णमाला में +2 आगे बढ़ाया गया है।", ex: "कोडिंग-डिकोडिंग।" }, correct: 0 },
+        { en: { q: "[Unit 5: Q4] The ratio of ages of father and son is 5 : 2. If the sum of their ages is 56 years, what is the son's age?", opt: ["16 years", "14 years", "20 years", "12 years"], exp: "5x + 2x = 56 ➔ 7x = 56 ➔ x = 8. Son's age = 2 * 8 = 16 years.", ex: "Proportional ratio calculation." }, hi: { q: "[यूनिट 5: प्रश्न 4] पिता और पुत्र की आयु का अनुपात 5 : 2 है। यदि उनकी आयु का योग 56 वर्ष है, तो पुत्र की आयु क्या है?", opt: ["16 वर्ष", "14 वर्ष", "20 वर्ष", "12 वर्ष"], exp: "5x + 2x = 56 ➔ 7x = 56 ➔ x = 8। पुत्र की आयु = 2 * 8 = 16 वर्ष।", ex: "अनुपात का नियम।" }, correct: 0 },
+        { en: { q: "[Unit 5: Q5] A shopkeeper sells an article for ₹840 and earns a 20% profit. What was the original cost price?", opt: ["₹700", "₹720", "₹680", "₹750"], exp: "Cost Price = Selling Price / (1 + Profit%) = 840 / 1.20 = ₹700.", ex: "Profit and loss calculation." }, hi: { q: "[यूनिट 5: प्रश्न 5] एक दुकानदार ₹840 में वस्तु बेचकर 20% लाभ कमाता है। वस्तु का क्रय मूल्य क्या था?", opt: ["₹700", "₹720", "₹680", "₹750"], exp: "क्रय मूल्य = 840 / 1.20 = ₹700.", ex: "लाभ-हानि सूत्र।" }, correct: 0 },
+        { en: { q: "[Unit 5: Q6] What is the simple interest on ₹5000 at 8% per annum for 3 years?", opt: ["₹1200", "₹1000", "₹1500", "₹800"], exp: "SI = (P * R * T) / 100 = (5000 * 8 * 3) / 100 = ₹1200.", ex: "Simple interest formula." }, hi: { q: "[यूनिट 5: प्रश्न 6] ₹5000 पर 8% वार्षिक दर से 3 वर्ष का साधारण ब्याज कितना होगा?", opt: ["₹1200", "₹1000", "₹1500", "₹800"], exp: "साधारण ब्याज = (मूलधन * दर * समय) / 100 = (5000 * 8 * 3) / 100 = ₹1200.", ex: "ब्याज गणना।" }, correct: 0 },
+        { en: { q: "[Unit 5: Q7] If 12 men can complete a research assignment in 20 days, in how many days can 15 men complete it?", opt: ["16 days", "18 days", "15 days", "14 days"], exp: "M1 * D1 = M2 * D2 ➔ 12 * 20 = 15 * D2 ➔ 240 / 15 = 16 days.", ex: "Time and work inverse proportion." }, hi: { q: "[यूनिट 5: प्रश्न 7] यदि 12 व्यक्ति किसी कार्य को 20 दिन में करते हैं, तो 15 व्यक्ति उसी कार्य को कितने दिन में करेंगे?", opt: ["16 दिन", "18 दिन", "15 दिन", "14 दिन"], exp: "M1 * D1 = M2 * D2 ➔ 12 * 20 = 15 * D2 ➔ 240 / 15 = 16 दिन।", ex: "कार्य और समय।" }, correct: 0 },
+        { en: { q: "[Unit 5: Q8] Find the average of the following set of numbers: 15, 25, 35, 45, 55.", opt: ["35", "30", "40", "45"], exp: "Sum = 175. Total count = 5. Average = 175 / 5 = 35.", ex: "Arithmetic mean." }, hi: { q: "[यूनिट 5: प्रश्न 8] संख्याओं 15, 25, 35, 45, 55 का औसत ज्ञात कीजिए:", opt: ["35", "30", "40", "45"], exp: "योग = 175, कुल संख्या = 5। औसत = 175 / 5 = 35.", ex: "औसत गणना।" }, correct: 0 },
+        { en: { q: "[Unit 5: Q9] Pointing to a photograph, a woman says: 'He is the son of the only son of my grandfather'. How is the boy related to the woman?", opt: ["Brother", "Uncle", "Father", "Cousin"], exp: "Only son of grandfather = Father. Son of father = Brother.", ex: "Blood relation reasoning." }, hi: { q: "[यूनिट 5: प्रश्न 9] एक तस्वीर की ओर इशारा करते हुए एक महिला कहती है: 'वह मेरे दादाजी के इकलौते बेटे का बेटा है।' वह लड़का उस महिला से कैसे संबंधित है?", opt: ["भाई (Brother)", "चाचा", "पिता", "चचेरा भाई"], exp: "दादाजी का इकलौता बेटा = पिता। पिता का बेटा = भाई।", ex: "रक्त संबंध।" }, correct: 0 },
+        { en: { q: "[Unit 5: Q10] A person walks 10m North, turns right and walks 15m, then turns right again and walks 10m. How far is he from the starting point?", opt: ["15 meters", "10 meters", "20 meters", "25 meters"], exp: "The North 10m and South 10m cancel each other out. Distance remains 15m East.", ex: "Direction sense test." }, hi: { q: "[यूनिट 5: प्रश्न 10] एक व्यक्ति 10 मीटर उत्तर की ओर जाता है, दाएं मुड़कर 15 मीटर चलता है, फिर दाएं मुड़कर 10 मीटर चलता है। वह प्रारंभिक बिंदु से कितनी दूरी पर है?", opt: ["15 मीटर", "10 मीटर", "20 मीटर", "25 मीटर"], exp: "उत्तर और दक्षिण की 10 मीटर दूरी निरस्त हो गई। वह पूर्व में 15 मीटर दूर है।", ex: "दिशा ज्ञान परीक्षण।" }, correct: 0 }
+      ],
+
+      // UNIT 6: LOGICAL REASONING (10 QUESTIONS)
+      6: [
+        { en: { q: "[Unit 6: Q1] In Nyaya philosophy, observing rising smoke on a distant hill and concluding the presence of fire is based on which Pramana?", opt: ["Anumana (Inference)", "Pratyaksha (Direct Perception)", "Upamana (Analogy)", "Sabda (Verbal Testimony)"], exp: "Anumana deduces the unperceived Sadhya (Fire) through universal concomitance (Vyapti) with Linga/Hetu (Smoke).", ex: "Inferring rain from wet streets." }, hi: { q: "[यूनिट 6: प्रश्न 1] न्याय दर्शन में पहाड़ी पर धुआं देखकर आग की उपस्थिति का निष्कर्ष निकालना किस प्रमाण पर आधारित है?", opt: ["अनुमान (Anumana)", "प्रत्यक्ष (Pratyaksha)", "उपमान (Upamana)", "शब्द (Sabda)"], exp: "अनुमान में हेतु (धुएं) और साध्य (आग) के बीच व्याप्ति संबंध से ज्ञान प्राप्त होता है।", ex: "गीली सड़क देखकर बारिश का अनुमान लगाना।" }, correct: 0 },
+        { en: { q: "[Unit 6: Q2] In Classical Indian logic, what is the invariable universal relation between the Middle Term (Hetu) and Major Term (Sadhya)?", opt: ["Vyapti", "Pakshadharmata", "Upadhi", "Paramarsa"], exp: "Vyapti is the unconditional, universal concomitance guaranteeing inference validity.", ex: "'Wherever there is smoke, there is fire'." }, hi: { q: "[यूनिट 6: प्रश्न 2] भारतीय तर्कशास्त्र में हेतु (मध्य पद) और साध्य (प्रमुख पद) के बीच के अविनाशी सार्वभौमिक संबंध को क्या कहते हैं?", opt: ["व्याप्ति (Vyapti)", "पक्षधर्मता", "उपाधि", "परामर्श"], exp: "व्याप्ति हेतु और साध्य के बीच का सार्वभौमिक नित्य संबंध है।", ex: "'जहाँ-जहाँ धुआं है, वहाँ-वहाँ आग है'।" }, correct: 0 },
+        { en: { q: "[Unit 6: Q3] Consider the fallacy: 'The hill has fire because it is knowable'. Which Hetvabhasa is committed?", opt: ["Savyabhichara (Irregular Middle)", "Viruddha (Contradictory Middle)", "Asiddha (Unproved Middle)", "Satpratipaksha"], exp: "Being knowable (Prameya) is too wide and applies universally to everything; it fails to exclusively prove fire.", ex: "Saying 'He is a scientist because he breathes'." }, hi: { q: "[यूनिट 6: प्रश्न 3] 'पहाड़ी पर आग है क्योंकि वह ज्ञेय (Knowable) है'—इसमें कौन सा हेत्वाभास है?", opt: ["सव्यभिचार (अनियत हेतु)", "विरुद्ध हेतु", "असिद्ध हेतु", "सत्प्रतिपक्ष हेतु"], exp: "ज्ञेय होना अति-व्याप्त हेतु है जो हर वस्तु में पाया जाता है।", ex: "यह कहना कि 'वह वैज्ञानिक है क्योंकि वह सांस लेता है'।" }, correct: 0 },
+        { en: { q: "[Unit 6: Q4] In the Aristotelian Classical Square of Opposition, what is the relation between Universal Affirmative (A: All S is P) and Particular Negative (O: Some S is not P)?", opt: ["Contradictory", "Contrary", "Sub-contrary", "Subalternation"], exp: "A and O propositions cannot both be true and cannot both be false at the same time.", ex: "'All men are honest' vs 'Some men are not honest'." }, hi: { q: "[यूनिट 6: प्रश्न 4] विरोध के वर्ग (Square of Opposition) में 'सभी S, P हैं' (A) और 'कुछ S, P नहीं हैं' (O) के बीच क्या संबंध है?", opt: ["विरोधाभासी (Contradictory)", "विपरीत (Contrary)", "उप-विपरीत (Sub-contrary)", "उपाश्रयी (Subaltern)"], exp: "A और O दोनों एक साथ न तो सत्य हो सकते हैं और न ही असत्य।", ex: "'सभी ईमानदार हैं' बनाम 'कुछ ईमानदार नहीं हैं'।" }, correct: 0 },
+        { en: { q: "[Unit 6: Q5] Which Indian philosophical school accepts ONLY ONE valid source of knowledge: Pratyaksha (Perception)?", opt: ["Charvaka (Lokyata)", "Buddhism", "Nyaya", "Advaita Vedanta"], exp: "Charvaka rejects inference, testimony, and comparison, accepting sensory perception alone.", ex: "Materialist Indian philosophy." }, hi: { q: "[यूनिट 6: प्रश्न 5] कौन सा भारतीय दर्शन केवल एक प्रमाण 'प्रत्यक्ष' को ही वैध मानता है?", opt: ["चार्वाक दर्शन (Charvaka)", "बौद्ध दर्शन", "न्याय दर्शन", "अद्वैत वेदांत"], exp: "चार्वाक दर्शन केवल इंद्रिय प्रत्यक्ष को ही एकमात्र प्रमाण मानता है।", ex: "भौतिकवादी चार्वाक मत।" }, correct: 0 },
+        { en: { q: "[Unit 6: Q6] Devadatta is fat. He does not eat during the day. Therefore, he must eat at night. This knowledge is derived through:", opt: ["Arthapatti (Postulation / Implication)", "Upamana", "Anumana", "Anupalabdhi"], exp: "Arthapatti resolves an apparent conflict between two established facts through logical postulation.", ex: "Standard Mimamsa example of night-eating." }, hi: { q: "[यूनिट 6: प्रश्न 6] देवदत्त मोटा है और दिन में नहीं खाता, अतः वह रात में खाता होगा। यह ज्ञान किस प्रमाण से सिद्ध होता है?", opt: ["अर्थापत्ति (Arthapatti)", "उपमान", "अनुमान", "अनुपलब्धि"], exp: "दो तथ्यों के विरोध को सुलझाने के लिए की गई कल्पना अर्थापत्ति कहलाती है।", ex: "मीमांसा दर्शन का प्रसिद्ध उदाहरण।" }, correct: 0 },
+        { en: { q: "[Unit 6: Q7] Knowing that 'There is no jar on this table' is perceived through which Pramana in Bhatta Mimamsa and Advaita?", opt: ["Anupalabdhi (Non-Apprehension)", "Pratyaksha", "Sabda", "Upamana"], exp: "Anupalabdhi is the distinct valid source for apprehending non-existence or absence.", ex: "Perceiving the absence of an object." }, hi: { q: "[यूनिट 6: प्रश्न 7] 'मेज पर कोई घड़ा नहीं है'—इस अभाव का ज्ञान किस प्रमाण द्वारा होता है?", opt: ["अनुपलब्धि (Anupalabdhi)", "प्रत्यक्ष", "शब्द", "उपमान"], exp: "अभाव या अनुपस्थिति का ज्ञान अनुपलब्धि प्रमाण द्वारा होता है।", ex: "वस्तु की अनुपस्थिति का बोध।" }, correct: 0 },
+        { en: { q: "[Unit 6: Q8] If the proposition 'All philosophers are fallible' is TRUE, which proposition is immediately FALSE by contradiction?", opt: ["Some philosophers are not fallible", "Some philosophers are fallible", "No philosophers are fallible", "All are infallible"], exp: "A (Universal Affirmative) contradicts O (Particular Negative). If A is True, O must be False.", ex: "Square of opposition truth table." }, hi: { q: "[यूनिट 6: प्रश्न 8] यदि 'सभी दार्शनिक नश्वर हैं' सत्य है, तो विरोधाभास के नियम से कौन सा कथन तुरंत असत्य होगा?", opt: ["कुछ दार्शनिक नश्वर नहीं हैं", "कुछ दार्शनिक नश्वर हैं", "कोई दार्शनिक नश्वर नहीं है", "सभी अमर हैं"], exp: "A के सत्य होने पर O अनिवार्य रूप से असत्य होता है।", ex: "विरोध का पारंपरिक नियम।" }, correct: 0 },
+        { en: { q: "[Unit 6: Q9] 'Sound is eternal, because it is produced.' Which fallacy is committed here?", opt: ["Viruddha (Contradictory Middle)", "Asiddha", "Savyabhichara", "Badhita"], exp: "The reason 'being produced' directly disproves eternity, contradicting the very major term it tries to prove.", ex: "Self-contradictory inference." }, hi: { q: "[यूनिट 6: प्रश्न 9] 'शब्द नित्य है, क्योंकि वह उत्पन्न होता है'—इसमें कौन सा हेत्वाभास है?", opt: ["विरुद्ध हेत्वाभास (Viruddha)", "असिद्ध", "सव्यभिचार", "बाधित"], exp: "उत्पन्न होना नश्वरता का प्रमाण है, जो नित्य होने का खंडन करता है।", ex: "स्वयं का खंडन करने वाला तर्क।" }, correct: 0 },
+        { en: { q: "[Unit 6: Q10] In categorical syllogisms, what fallacy occurs when a term is distributed in the conclusion without being distributed in the premise?", opt: ["Illicit Process (Major or Minor)", "Fallacy of Four Terms", "Existential Fallacy", "Affirming the Consequent"], exp: "A term cannot be broader in conclusion than it was in premises.", ex: "Syllogistic rule violation." }, hi: { q: "[यूनिट 6: प्रश्न 10] निरपेक्ष न्यायवाक्य में यदि कोई पद निष्कर्ष में व्याप्त हो लेकिन आधार वाक्य में न हो, तो कौन सा दोष होता है?", opt: ["अवैध प्रसार का दोष (Illicit Process)", "चार पदों का दोष", "अस्तित्वपरक दोष", "परिणाम का अभिपुष्टि दोष"], exp: "निष्कर्ष में किसी पद का दायरा आधार वाक्य से अधिक नहीं हो सकता।", ex: "तर्कशास्त्र का वितरण नियम।" }, correct: 0 }
+      ],
+
+      // UNIT 7: DATA INTERPRETATION (10 QUESTIONS ON TABLE)
+      7: [
+        { en: { q: "[Unit 7: Q1] From the table above, what is the percentage increase in Arts Faculty enrollment from 2021 (800) to 2024 (1000)?", opt: ["25%", "20%", "30%", "15%"], exp: "Increase = 1000 - 800 = 200. Percentage Increase = (200 / 800) * 100 = 25%.", ex: "Standard percentage growth computation." }, hi: { q: "[यूनिट 7: प्रश्न 1] तालिका के अनुसार, वर्ष 2021 (800) से 2024 (1000) तक आर्ट्स संकाय में कितने प्रतिशत वृद्धि हुई?", opt: ["25%", "20%", "30%", "15%"], exp: "वृद्धि = 1000 - 800 = 200। प्रतिशत वृद्धि = (200 / 800) * 100 = 25%।", ex: "प्रतिशत वृद्धि गणना।" }, correct: 0 },
+        { en: { q: "[Unit 7: Q2] What is the ratio of Science faculty students in 2022 (600) to Commerce students in 2023 (700)?", opt: ["6 : 7", "7 : 6", "5 : 6", "3 : 4"], exp: "Ratio = 600 : 700 = 6 : 7.", ex: "Cross-tabular ratio extraction." }, hi: { q: "[यूनिट 7: प्रश्न 2] वर्ष 2022 में साइंस के छात्रों (600) का वर्ष 2023 में कॉमर्स के छात्रों (700) से अनुपात क्या है?", opt: ["6 : 7", "7 : 6", "5 : 6", "3 : 4"], exp: "अनुपात = 600 : 700 = 6 : 7।", ex: "तालिका से अनुपात निकालना।" }, correct: 0 },
+        { en: { q: "[Unit 7: Q3] What is the average grant allocated across all four years (120, 150, 180, 220 Lakhs)?", opt: ["₹167.5 Lakhs", "₹160 Lakhs", "₹175 Lakhs", "₹155 Lakhs"], exp: "Sum = 120 + 150 + 180 + 220 = 670 Lakhs. Average = 670 / 4 = ₹167.5 Lakhs.", ex: "Annual expenditure mean." }, hi: { q: "[यूनिट 7: प्रश्न 3] चारों वर्षों में आवंटित कुल अनुदान (120, 150, 180, 220 लाख) का औसत क्या है?", opt: ["₹167.5 लाख", "₹160 लाख", "₹175 लाख", "₹155 लाख"], exp: "योग = 670 लाख। औसत = 670 / 4 = ₹167.5 लाख।", ex: "औसत बजट गणना।" }, correct: 0 },
+        { en: { q: "[Unit 7: Q4] In which year did the Commerce faculty record the highest absolute annual increase compared to its preceding year?", opt: ["2022 (from 400 to 550 = +150)", "2023 (+150)", "2024 (+150)", "Constant every year"], exp: "Commerce rose by 150 in 2022 (from 400 to 550), representing a massive 37.5% jump.", ex: "Single-year growth comparison." }, hi: { q: "[यूनिट 7: प्रश्न 4] किस वर्ष कॉमर्स संकाय में पिछले वर्ष की तुलना में सबसे अधिक वार्षिक छात्र वृद्धि दर्ज की गई?", opt: ["2022 (400 से 550 = +150)", "2023", "2024", "सभी वर्ष समान"], exp: "2022 में कॉमर्स में 150 छात्रों की सीधी छलांग लगी।", ex: "वार्षिक वृद्धि की तुलना।" }, correct: 0 },
+        { en: { q: "[Unit 7: Q5] What was the total student strength across all three faculties in the year 2021?", opt: ["1700 students", "1800 students", "1650 students", "1900 students"], exp: "2021 Total = 800 (Arts) + 500 (Science) + 400 (Commerce) = 1700 students.", ex: "Row-wise horizontal summation." }, hi: { q: "[यूनिट 7: प्रश्न 5] वर्ष 2021 में तीनों संकायों को मिलाकर कुल कितने छात्र थे?", opt: ["1700 छात्र", "1800 छात्र", "1650 छात्र", "1900 छात्र"], exp: "कुल छात्र = 800 (आर्ट्स) + 500 (साइंस) + 400 (कॉमर्स) = 1700 छात्र।", ex: "क्षैतिज जोड़।" }, correct: 0 },
+        { en: { q: "[Unit 7: Q6] What was the total student strength across all three faculties in 2024?", opt: ["2750 students", "2600 students", "2800 students", "2550 students"], exp: "2024 Total = 1000 + 900 + 850 = 2750 students.", ex: "Cross-sectional sum." }, hi: { q: "[यूनिट 7: प्रश्न 6] वर्ष 2024 में तीनों संकायों की कुल छात्र संख्या कितनी थी?", opt: ["2750 छात्र", "2600 छात्र", "2800 छात्र", "2550 छात्र"], exp: "कुल योग = 1000 + 900 + 850 = 2750 छात्र।", ex: "कुल छात्र संख्या।" }, correct: 0 },
+        { en: { q: "[Unit 7: Q7] What is the percentage increase in total grant from 2021 (₹120L) to 2024 (₹220L)?", opt: ["83.33%", "75%", "90%", "66.6%"], exp: "Increase = 220 - 120 = 100. Percentage = (100 / 120) * 100 = 83.33%.", ex: "Multi-year fiscal growth rate." }, hi: { q: "[यूनिट 7: प्रश्न 7] वर्ष 2021 (₹120 लाख) से 2024 (₹220 लाख) तक कुल अनुदान में कितने प्रतिशत वृद्धि हुई?", opt: ["83.33%", "75%", "90%", "66.6%"], exp: "वृद्धि = 100 लाख। प्रतिशत = (100 / 120) * 100 = 83.33%।", ex: "वित्तीय विकास दर।" }, correct: 0 },
+        { en: { q: "[Unit 7: Q8] In 2023, what percentage of the total student body (920+750+700 = 2370) belonged to the Science faculty (750)?", opt: ["31.65%", "35.2%", "28.5%", "40%"], exp: "Total = 2370. Science % = (750 / 2370) * 100 = 31.65%.", ex: "Component share of total universe." }, hi: { q: "[यूनिट 7: प्रश्न 8] वर्ष 2023 में कुल छात्रों (2370) में से साइंस संकाय (750) का हिस्सा कितने प्रतिशत था?", opt: ["31.65%", "35.2%", "28.5%", "40%"], exp: "प्रतिशत = (750 / 2370) * 100 = 31.65%।", ex: "संकाय का कुल प्रतिशत हिस्सा।" }, correct: 0 },
+        { en: { q: "[Unit 7: Q9] Which faculty recorded the lowest overall percentage growth between 2021 and 2024?", opt: ["Arts Faculty (800 to 1000 = 25%)", "Science Faculty (500 to 900 = 80%)", "Commerce (400 to 850 = 112.5%)", "All grew equally"], exp: "Arts grew by 25%, while Science grew by 80% and Commerce grew by 112.5%. Arts had lowest growth.", ex: "Comparative faculty expansion comparison." }, hi: { q: "[यूनिट 7: प्रश्न 9] 2021 से 2024 के बीच किस संकाय में सबसे कम प्रतिशत वृद्धि दर्ज की गई?", opt: ["आर्ट्स संकाय (800 से 1000 = 25%)", "साइंस संकाय (500 से 900 = 80%)", "कॉमर्स संकाय (400 से 850 = 112.5%)", "सभी में बराबर"], exp: "आर्ट्स में केवल 25% वृद्धि हुई, जबकि अन्य में 80% और 112% वृद्धि हुई।", ex: "तुलनात्मक विश्लेषण।" }, correct: 0 },
+        { en: { q: "[Unit 7: Q10] What is the difference between total Science students (2021-2024: 2750) and Commerce students (2021-2024: 2500)?", opt: ["250 students", "200 students", "300 students", "150 students"], exp: "Science total = 500+600+750+900 = 2750. Commerce total = 400+550+700+850 = 2500. Diff = 250.", ex: "Longitudinal aggregate difference." }, hi: { q: "[यूनिट 7: प्रश्न 10] चारों वर्षों में साइंस के कुल छात्रों (2750) और कॉमर्स के कुल छात्रों (2500) के बीच कितना अंतर है?", opt: ["250 छात्र", "200 छात्र", "300 छात्र", "150 छात्र"], exp: "साइंस कुल = 2750, कॉमर्स कुल = 2500। अंतर = 250 छात्र।", ex: "कुल योग का अंतर।" }, correct: 0 }
+      ],
+
+      // UNIT 8: ICT (10 QUESTIONS - COMPLETELY DIFFERENT TOPICS)
       8: [
-        { diff: "hard", en: { q: "[Unit 8: Q1] (Hard) Arrange internal computer storage in descending order of memory access speed (fastest to slowest):", opt: ["CPU Registers > L1/L2 Cache > RAM > Solid State Drive (SSD)", "RAM > Registers > Cache > SSD", "SSD > RAM > Cache > Registers", "Cache > Registers > RAM > SSD"], exp: "CPU Registers operate on-chip with sub-nanosecond access, followed by SRAM cache, volatile DRAM, and secondary SSD.", ex: "Microprocessor memory architecture." }, hi: { q: "[यूनिट 8: Q1] (कठिन) कंप्यूटर मेमोरी को एक्सेस गति के घटते क्रम में (सबसे तेज से सबसे धीमी) व्यवस्थित करें:", opt: ["सीपीयू रजिस्टर्स > L1/L2 कैश > रैम > एसएसडी", "रैम > रजिस्टर्स > कैश > एसएसडी", "एसएसडी > रैम > कैश > रजिस्टर्स", "कैश > रजिस्टर्स > रैम > एसएसडी"], exp: "रजिस्टर्स सबसे तेज होते हैं, फिर कैश, रैम और सेकेंडरी डिस्क।", ex: "प्रोसेसर मेमोरी आर्किटेक्चर।" }, correct: 0 },
-        { diff: "moderate", en: { q: "[Unit 8: Q2] (Moderate) Which malicious cyber threat encrypts a victim's storage drive and demands cryptocurrency ransom?", opt: ["Ransomware", "Spyware", "Adware", "Trojan Horse"], exp: "Ransomware (e.g. WannaCry) maliciously encrypts user files and displays extortion demands.", ex: "Extortion cyberattacks on hospital databases." }, hi: { q: "[यूनिट 8: Q2] (मध्यम) कौन सा मालवेयर उपयोगकर्ता की फाइलों को एन्क्रिप्ट करके फिरौती की मांग करता है?", opt: ["रैनसमवेयर (Ransomware)", "स्पाइवेयर", "एडवेयर", "ट्रोजन हॉर्स"], exp: "रैनसमवेयर फाइलों को लॉक करके फिरौती मांगता है।", ex: "वानाक्राई मालवेयर हमला।" }, correct: 0 },
-        { diff: "easy", en: { q: "[Unit 8: Q3] (Easy) How many total bits constitute an Internet Protocol Version 6 (IPv6) address?", opt: ["128 Bits", "32 Bits", "64 Bits", "256 Bits"], exp: "IPv4 utilizes 32 bits, whereas IPv6 uses 128 bits represented in eight 16-bit hexadecimal blocks.", ex: "Global network address expansion." }, hi: { q: "[यूनिट 8: Q3] (सरल) IPv6 (इंटरनेट प्रोटोकॉल संस्करण 6) पते में कुल कितने बिट्स होते हैं?", opt: ["128 बिट्स", "32 बिट्स", "64 बिट्स", "256 बिट्स"], exp: "IPv6 में 128 बिट्स होते हैं जो हेक्साडेसिमल प्रारूप में लिखे जाते हैं।", ex: "वैश्विक नेटवर्क एड्रेस।" }, correct: 0 },
-        { diff: "moderate", en: { q: "[Unit 8: Q4] (Moderate) Sending deceptive emails disguised as trusted banks to harvest user passwords is known as:", opt: ["Phishing", "Spoofing", "DDoS Attack", "Salami Slicing"], exp: "Phishing uses deceptive communication to trick recipients into revealing confidential credentials.", ex: "Fake banking portal login emails." }, hi: { q: "[यूनिट 8: Q4] (मध्यम) पासवर्ड चुराने के लिए बैंक के नाम से फर्जी ईमेल भेजने की प्रक्रिया क्या कहलाती है?", opt: ["फ़िशिंग (Phishing)", "स्पूफिंग", "डीडीओएस अटैक", "सलामी स्लाइसिंग"], exp: "फ़िशिंग धोखाधड़ी वाले लिंक भेजकर निजी जानकारी चुराती है।", ex: "फर्जी बैंक लॉगिन ईमेल।" }, correct: 0 },
-        { diff: "easy", en: { q: "[Unit 8: Q5] (Easy) What type of software is Linux according to licensing and development models?", opt: ["Open-Source Operating System", "Proprietary Commercial Software", "Hardware Firmware", "Web Browser"], exp: "Linux is released under the GNU General Public License as collaborative open-source software.", ex: "Ubuntu, Debian, and Android OS." }, hi: { q: "[यूनिट 8: Q5] (सरल) लाइसेंसिंग मॉडल के अनुसार लिनक्स (Linux) किस प्रकार का सॉफ्टवेयर है?", opt: ["ओपन-सोर्स ऑपरेटिंग सिस्टम", "स्वामित्व (प्रोपराइटरी) सॉफ्टवेयर", "हार्डवेयर फर्मवेयर", "वेब ब्राउज़र"], exp: "लिनक्स एक ओपन-सोर्स सॉफ्टवेयर है जिसे कोई भी संशोधित कर सकता है।", ex: "उबंटू और डेबियन।" }, correct: 0 },
-        { diff: "easy", en: { q: "[Unit 8: Q6] (Easy) Which protocol guarantees secure encrypted transmission of web pages between browser and web server?", opt: ["HTTPS", "HTTP", "FTP", "SMTP"], exp: "HTTPS combines HTTP with SSL/TLS encryption over port 443.", ex: "Secure padlock icon on web browser URLs." }, hi: { q: "[यूनिट 8: Q6] (सरल) ब्राउज़र और सर्वर के बीच वेब पेजों को एन्क्रिप्ट करके भेजने वाला प्रोटोकॉल कौन सा है?", opt: ["HTTPS", "HTTP", "FTP", "SMTP"], exp: "HTTPS डेटा को सुरक्षित रूप से एन्क्रिप्ट करता है।", ex: "ब्राउज़र में ताले का निशान।" }, correct: 0 },
-        { diff: "hard", en: { q: "[Unit 8: Q7] (Hard) Exactly how many bytes are present in 1 Megabyte (MB) in the standard binary computing scale?", opt: ["1,048,576 Bytes (1024 × 1024)", "1,000,000 Bytes", "512,000 Bytes", "2,048,000 Bytes"], exp: "1 KB = 1024 bytes; therefore 1 MB = 1024 KB = 1024 × 1024 = 1,048,576 bytes.", ex: "Binary computation storage conversion." }, hi: { q: "[यूनिट 8: Q7] (कठिन) बाइनरी कंप्यूटिंग में 1 मेगाबाइट (MB) में वास्तव में कितने बाइट्स होते हैं?", opt: ["1,048,576 बाइट्स (1024 × 1024)", "1,000,000 बाइट्स", "512,000 बाइट्स", "2,048,000 बाइट्स"], exp: "बाइनरी में 1 MB = 1024 × 1024 = 1,048,576 बाइट्स होते हैं।", ex: "मेमोरी क्षमता की गणना।" }, correct: 0 },
-        { diff: "hard", en: { q: "[Unit 8: Q8] (Hard) Which Indian higher education digital repository stores authenticated digital degrees and marksheets accessible via DigiLocker?", opt: ["National Academic Depository (NAD)", "Shodhganga", "e-GyanKosh", "Swayam Prabha"], exp: "NAD is a 24x7 online storehouse of all academic awards authenticated directly by issuing institutions.", ex: "Downloading verified college degrees in DigiLocker." }, hi: { q: "[यूनिट 8: Q8] (कठिन) उच्च शिक्षा की कौन सी डिजिटल पहल डिजिलॉकर के माध्यम से सत्यापित डिग्रियों को ऑनलाइन स्टोर करती है?", opt: ["राष्ट्रीय शैक्षणिक डिपॉजिटरी (NAD)", "शोधगंगा", "ई-ज्ञानकोश", "स्वयं प्रभा"], exp: "NAD डिग्रियों और अंकपत्रों का ऑनलाइन बैंक है।", ex: "डिजिलॉकर में प्रमाण पत्र डाउनलोड करना।" }, correct: 0 },
-        { diff: "moderate", en: { q: "[Unit 8: Q9] (Moderate) The Domain Name System (DNS) on the internet is functionally responsible for:", opt: ["Translating human-friendly domain names into numerical IP addresses", "Filtering malware viruses", "Increasing internet bandwidth", "Compressing image attachments"], exp: "DNS maps human-readable domain names (e.g. nta.ac.in) to machine-routable IP addresses.", ex: "Translating google.com into numeric IP." }, hi: { q: "[यूनिट 8: Q9] (मध्यम) इंटरनेट पर डोमेन नेम सिस्टम (DNS) का मुख्य कार्य क्या है?", opt: ["डोमेन नामों को संख्यात्मक IP पते में बदलना", "वायरस हटाना", "इंटरनेट स्पीड बढ़ाना", "फोटो कंप्रेस करना"], exp: "DNS वेबसाइट के नाम को कंप्यूटर द्वारा पढ़े जाने वाले IP एड्रेस में बदलता है।", ex: "google.com को IP में बदलना।" }, correct: 0 },
-        { diff: "moderate", en: { q: "[Unit 8: Q10] (Moderate) In wireless networking, which security encryption standard is recognized as the most robust for Wi-Fi?", opt: ["WPA3", "WEP", "WPA", "WPS"], exp: "WPA3 provides advanced 192-bit cryptographic security and robust protection against brute-force password guessing.", ex: "Modern secure home and university Wi-Fi routers." }, hi: { q: "[यूनिट 8: Q10] (मध्यम) वायरलेस नेटवर्किंग में वाई-फाई के लिए सबसे सुरक्षित एन्क्रिप्शन मानक कौन सा माना जाता है?", opt: ["WPA3", "WEP", "WPA", "WPS"], exp: "WPA3 वर्तमान में सबसे मजबूत वाई-फाई सुरक्षा मानक है।", ex: "विश्वविद्यालयों के सुरक्षित वाई-फाई नेटवर्क।" }, correct: 0 }
+        { en: { q: "[Unit 8: Q1] Arrange internal computer storage in descending order of access speed (fastest to slowest):", opt: ["CPU Registers > L1/L2 Cache > RAM > Solid State Drive (SSD)", "RAM > Registers > Cache > SSD", "SSD > RAM > Cache > Registers", "Cache > Registers > RAM > SSD"], exp: "CPU Registers operate on-chip with sub-nanosecond speed, followed by SRAM cache, DRAM, and SSD.", ex: "Microprocessor memory architecture." }, hi: { q: "[यूनिट 8: प्रश्न 1] कंप्यूटर मेमोरी को एक्सेस गति के घटते क्रम में (सबसे तेज से सबसे धीमी) व्यवस्थित करें:", opt: ["सीपीयू रजिस्टर्स > L1/L2 कैश > रैम > एसएसडी", "रैम > रजिस्टर्स > कैश > एसएसडी", "एसएसडी > रैम > कैश > रजिस्टर्स", "कैश > रजिस्टर्स > रैम > एसएसडी"], exp: "रजिस्टर्स सबसे तेज होते हैं, फिर कैश, रैम और सेकेंडरी डिस्क।", ex: "प्रोसेसर मेमोरी आर्किटेक्चर।" }, correct: 0 },
+        { en: { q: "[Unit 8: Q2] Which malicious cyber threat encrypts a victim's storage drive and demands cryptocurrency ransom?", opt: ["Ransomware", "Spyware", "Adware", "Trojan Horse"], exp: "Ransomware (e.g. WannaCry) maliciously encrypts user files and displays extortion demands.", ex: "Extortion cyberattacks on hospital databases." }, hi: { q: "[यूनिट 8: प्रश्न 2] कौन सा मालवेयर उपयोगकर्ता की फाइलों को एन्क्रिप्ट करके फिरौती की मांग करता है?", opt: ["रैनसमवेयर (Ransomware)", "स्पाइवेयर", "एडवेयर", "ट्रोजन हॉर्स"], exp: "रैनसमवेयर फाइलों को लॉक करके फिरौती मांगता है।", ex: "वानाक्राई मालवेयर हमला।" }, correct: 0 },
+        { en: { q: "[Unit 8: Q3] How many total bits constitute an Internet Protocol Version 6 (IPv6) address?", opt: ["128 Bits", "32 Bits", "64 Bits", "256 Bits"], exp: "IPv4 utilizes 32 bits, whereas IPv6 uses 128 bits represented in eight 16-bit hexadecimal blocks.", ex: "Global network address expansion." }, hi: { q: "[यूनिट 8: प्रश्न 3] IPv6 (इंटरनेट प्रोटोकॉल संस्करण 6) पते में कुल कितने बिट्स होते हैं?", opt: ["128 बिट्स", "32 बिट्स", "64 बिट्स", "256 बिट्स"], exp: "IPv6 में 128 बिट्स होते हैं जो हेक्साडेसिमल प्रारूप में लिखे जाते हैं।", ex: "वैश्विक नेटवर्क एड्रेस।" }, correct: 0 },
+        { en: { q: "[Unit 8: Q4] Sending deceptive emails disguised as trusted banks to harvest user passwords is known as:", opt: ["Phishing", "Spoofing", "DDoS Attack", "Salami Slicing"], exp: "Phishing uses deceptive communication to trick recipients into revealing confidential credentials.", ex: "Fake banking portal login emails." }, hi: { q: "[यूनिट 8: प्रश्न 4] पासवर्ड चुराने के लिए बैंक के नाम से फर्जी ईमेल भेजने की प्रक्रिया क्या कहलाती है?", opt: ["फ़िशिंग (Phishing)", "स्पूफिंग", "डीडीओएस अटैक", "सलामी स्लाइसिंग"], exp: "फ़िशिंग धोखाधड़ी वाले लिंक भेजकर निजी जानकारी चुराती है।", ex: "फर्जी बैंक लॉगिन ईमेल।" }, correct: 0 },
+        { en: { q: "[Unit 8: Q5] What type of software is Linux according to licensing and development models?", opt: ["Open-Source Operating System", "Proprietary Commercial Software", "Hardware Firmware", "Web Browser"], exp: "Linux is released under the GNU General Public License as collaborative open-source software.", ex: "Ubuntu, Debian, and Android OS." }, hi: { q: "[यूनिट 8: प्रश्न 5] लाइसेंसिंग मॉडल के अनुसार लिनक्स (Linux) किस प्रकार का सॉफ्टवेयर है?", opt: ["ओपन-सोर्स ऑपरेटिंग सिस्टम", "स्वामित्व (प्रोपराइटरी) सॉफ्टवेयर", "हार्डवेयर फर्मवेयर", "वेब ब्राउज़र"], exp: "लिनक्स एक ओपन-सोर्स सॉफ्टवेयर है जिसे कोई भी संशोधित कर सकता है।", ex: "उबंटू और डेबियन।" }, correct: 0 },
+        { en: { q: "[Unit 8: Q6] Which protocol guarantees secure encrypted transmission of web pages between browser and web server?", opt: ["HTTPS", "HTTP", "FTP", "SMTP"], exp: "HTTPS combines HTTP with SSL/TLS encryption over port 443.", ex: "Secure padlock icon on web browser URLs." }, hi: { q: "[यूनिट 8: प्रश्न 6] ब्राउज़र और सर्वर के बीच वेब पेजों को एन्क्रिप्ट करके भेजने वाला प्रोटोकॉल कौन सा है?", opt: ["HTTPS", "HTTP", "FTP", "SMTP"], exp: "HTTPS डेटा को सुरक्षित रूप से एन्क्रिप्ट करता है।", ex: "ब्राउज़र में ताले का निशान।" }, correct: 0 },
+        { en: { q: "[Unit 8: Q7] Exactly how many bytes are present in 1 Megabyte (MB) in the standard binary computing scale?", opt: ["1,048,576 Bytes (1024 × 1024)", "1,000,000 Bytes", "512,000 Bytes", "2,048,000 Bytes"], exp: "1 KB = 1024 bytes; therefore 1 MB = 1024 KB = 1024 × 1024 = 1,048,576 bytes.", ex: "Binary computation storage conversion." }, hi: { q: "[यूनिट 8: प्रश्न 7] बाइनरी कंप्यूटिंग में 1 मेगाबाइट (MB) में वास्तव में कितने बाइट्स होते हैं?", opt: ["1,048,576 बाइट्स (1024 × 1024)", "1,000,000 बाइट्स", "512,000 बाइट्स", "2,048,000 बाइट्स"], exp: "बाइनरी में 1 MB = 1024 × 1024 = 1,048,576 बाइट्स होते हैं।", ex: "मेमोरी क्षमता की गणना।" }, correct: 0 },
+        { en: { q: "[Unit 8: Q8] Which Indian higher education digital repository stores authenticated digital degrees and marksheets accessible via DigiLocker?", opt: ["National Academic Depository (NAD)", "Shodhganga", "e-GyanKosh", "Swayam Prabha"], exp: "NAD is a 24x7 online storehouse of all academic awards authenticated directly by issuing institutions.", ex: "Downloading verified college degrees in DigiLocker." }, hi: { q: "[यूनिट 8: प्रश्न 8] उच्च शिक्षा की कौन सी डिजिटल पहल डिजिलॉकर के माध्यम से सत्यापित डिग्रियों को ऑनलाइन स्टोर करती है?", opt: ["राष्ट्रीय शैक्षणिक डिपॉजिटरी (NAD)", "शोधगंगा", "ई-ज्ञानकोश", "स्वयं प्रभा"], exp: "NAD डिग्रियों और अंकपत्रों का ऑनलाइन बैंक है।", ex: "डिजिलॉकर में प्रमाण पत्र डाउनलोड करना।" }, correct: 0 },
+        { en: { q: "[Unit 8: Q9] The Domain Name System (DNS) on the internet is functionally responsible for:", opt: ["Translating human-friendly domain names into numerical IP addresses", "Filtering malware viruses", "Increasing internet bandwidth", "Compressing image attachments"], exp: "DNS maps human-readable domain names (e.g. nta.ac.in) to machine-routable IP addresses.", ex: "Translating google.com into numeric IP." }, hi: { q: "[यूनिट 8: प्रश्न 9] इंटरनेट पर डोमेन नेम सिस्टम (DNS) का मुख्य कार्य क्या है?", opt: ["डोमेन नामों को संख्यात्मक IP पते में बदलना", "वायरस हटाना", "इंटरनेट स्पीड बढ़ाना", "फोटो कंप्रेस करना"], exp: "DNS वेबसाइट के नाम को कंप्यूटर द्वारा पढ़े जाने वाले IP एड्रेस में बदलता है।", ex: "google.com को IP में बदलना।" }, correct: 0 },
+        { en: { q: "[Unit 8: Q10] In wireless networking, which security encryption standard is recognized as the most robust for Wi-Fi?", opt: ["WPA3", "WEP", "WPA", "WPS"], exp: "WPA3 provides advanced 192-bit cryptographic security and robust protection against brute-force password guessing.", ex: "Modern secure home and university Wi-Fi routers." }, hi: { q: "[यूनिट 8: प्रश्न 10] वायरलेस नेटवर्किंग में वाई-फाई के लिए सबसे सुरक्षित एन्क्रिप्शन मानक कौन सा माना जाता है?", opt: ["WPA3", "WEP", "WPA", "WPS"], exp: "WPA3 वर्तमान में सबसे मजबूत वाई-फाई सुरक्षा मानक है।", ex: "विश्वविद्यालयों के सुरक्षित वाई-फाई नेटवर्क।" }, correct: 0 }
+      ],
+
+      // UNIT 9: PEOPLE & ENVIRONMENT (10 QUESTIONS)
+      9: [
+        { en: { q: "[Unit 9: Q1] The United Nations Sustainable Development Goals (SDGs) for 2030 consist of how many goals and targets?", opt: ["17 Goals and 169 Targets", "8 Goals and 21 Targets", "15 Goals and 100 Targets", "20 Goals and 200 Targets"], exp: "SDGs comprise 17 goals adopted in 2015 to be achieved by 2030. MDGs had 8 goals.", ex: "SDG 4 is Quality Education; SDG 13 is Climate Action." }, hi: { q: "[यूनिट 9: प्रश्न 1] संयुक्त राष्ट्र के सतत विकास लक्ष्यों (SDGs 2030) में कितने लक्ष्य और विशिष्ट उद्देश्य शामिल हैं?", opt: ["17 लक्ष्य और 169 विशिष्ट उद्देश्य", "8 लक्ष्य और 21 उद्देश्य", "15 लक्ष्य और 100 उद्देश्य", "20 लक्ष्य और 200 उद्देश्य"], exp: "एसडीजी में 17 प्रमुख लक्ष्य और 169 सहायक उद्देश्य हैं।", ex: "लक्ष्य 4: गुणवत्तापूर्ण शिक्षा; लक्ष्य 13: जलवायु कार्रवाई।" }, correct: 0 },
+        { en: { q: "[Unit 9: Q2] The landmark Montreal Protocol signed in 1987 is dedicated to the phased elimination of:", opt: ["Ozone Depleting Substances (CFCs / Halons)", "Greenhouse Carbon Dioxide", "Plastic Packaging Waste", "Nuclear Effluents"], exp: "Montreal Protocol successfully phased out CFCs and halons to restore the stratospheric ozone layer.", ex: "Replacing CFCs with ozone-safe refrigerants." }, hi: { q: "[यूनिट 9: प्रश्न 2] 1987 में हस्ताक्षरित मॉन्ट्रियल प्रोटोकॉल विशेष रूप से किसके उन्मूलन पर केंद्रित है?", opt: ["ओजोन क्षयकारी पदार्थ (सीएफसी / CFCs)", "ग्रीनहाउस कार्बन डाइऑक्साइड", "प्लास्टिक कचरा", "रेडियोधर्मी अपशिष्ट"], exp: "मॉन्ट्रियल प्रोटोकॉल ओजोन परत के संरक्षण हेतु सीएफसी को समाप्त करने के लिए बनाया गया था।", ex: "रेफ्रिजरेटर में ओजोन-सुरक्षित गैसों का प्रयोग।" }, correct: 0 },
+        { en: { q: "[Unit 9: Q3] Which primary pollutant is predominantly responsible for the formation of Photochemical Smog in urban areas?", opt: ["Nitrogen Oxides (NOx) and Volatile Organic Compounds (VOCs)", "Carbon Monoxide alone", "Chlorine gas", "Methane alone"], exp: "Photochemical smog forms when NOx and VOCs react in the presence of intense solar ultraviolet radiation.", ex: "Brownish haze over heavily congested metropolitan cities." }, hi: { q: "[यूनिट 9: प्रश्न 3] शहरी क्षेत्रों में प्रकाश-रासायनिक धुंध (Photochemical Smog) के निर्माण के लिए मुख्य रूप से कौन जिम्मेदार है?", opt: ["नाइट्रोजन ऑक्साइड (NOx) और वाष्पशील कार्बनिक यौगिक (VOCs)", "केवल कार्बन मोनोऑक्साइड", "क्लोरीन गैस", "केवल मीथेन"], exp: "यह धूप की उपस्थिति में नाइट्रोजन ऑक्साइड और वाष्पशील कार्बनिक यौगिकों की प्रतिक्रिया से बनता है।", ex: "गर्मियों में महानगरों में दिखने वाला भूरा धुंध।" }, correct: 0 },
+        { en: { q: "[Unit 9: Q4] What is the internationally agreed target of the Paris Agreement (COP21) regarding global temperature rise?", opt: ["Holding temperature rise well below 2°C and pursuing efforts to limit it to 1.5°C above pre-industrial levels", "Limiting rise to 3°C", "Freezing temperature exactly at 0°C", "No specific temperature target"], exp: "The Paris Agreement legally binds nations to limit global warming below 2°C.", ex: "International carbon emission reduction targets." }, hi: { q: "[यूनिट 9: प्रश्न 4] पेरिस समझौते (COP21) का वैश्विक तापमान वृद्धि से संबंधित मुख्य लक्ष्य क्या है?", opt: ["तापमान वृद्धि को 2°C से काफी नीचे रखना और 1.5°C तक सीमित करने का प्रयास करना", "तापमान वृद्धि 3°C तक सीमित करना", "0°C पर स्थिर करना", "कोई लक्ष्य नहीं"], exp: "पेरिस समझौता वैश्विक तापमान वृद्धि को 1.5°C से 2°C के नीचे रखने के लिए बाध्य करता है।", ex: "अंतरराष्ट्रीय जलवायु संधि।" }, correct: 0 },
+        { en: { q: "[Unit 9: Q5] The International Solar Alliance (ISA) was jointly launched by India and France with headquarters at:", opt: ["Gurugram, Haryana (India)", "Paris, France", "Geneva, Switzerland", "New Delhi, India"], exp: "ISA headquarters (National Institute of Solar Energy) is situated in Gurugram, India.", ex: "Alliance of sunshine countries between Tropic of Cancer and Capricorn." }, hi: { q: "[यूनिट 9: प्रश्न 5] भारत और फ्रांस द्वारा संयुक्त रूप से शुरू किए गए अंतर्राष्ट्रीय सौर गठबंधन (ISA) का मुख्यालय कहाँ स्थित है?", opt: ["गुरुग्राम, हरियाणा (भारत)", "पेरिस, फ्रांस", "जिनेवा, स्विट्जरलैंड", "नई दिल्ली"], exp: "अंतर्राष्ट्रीय सौर गठबंधन का मुख्यालय गुरुग्राम (हरियाणा) में है।", ex: "कर्क और मकर रेखा के बीच के सौर ऊर्जा संपन्न देश।" }, correct: 0 },
+        { en: { q: "[Unit 9: Q6] Minamata disease is a severe neurological syndrome caused by severe poisoning from:", opt: ["Methyl Mercury", "Cadmium", "Lead", "Arsenic"], exp: "Minamata disease resulted from industrial discharge of methylmercury in Minamata Bay, Japan.", ex: "Bioaccumulation of mercury in marine fish." }, hi: { q: "[यूनिट 9: प्रश्न 6] मीनामाता रोग (Minamata Disease) किसके गंभीर विषाक्त प्रभाव के कारण होता है?", opt: ["मिथाइल पारा (Methyl Mercury)", "कैडमियम", "सीसा (Lead)", "आर्सेनिक"], exp: "मीनामाता रोग पारे से प्रदूषित मछलियों के खाने से हुआ था।", ex: "समुद्री जल में औद्योगिक पारे का प्रदूषण।" }, correct: 0 },
+        { en: { q: "[Unit 9: Q7] Itai-Itai disease was mass poisoned in Japan primarily due to environmental contamination of:", opt: ["Cadmium", "Mercury", "Asbestos", "Fluoride"], exp: "Itai-itai ('it hurts-it hurts') causes severe bone softening and kidney failure from cadmium pollution.", ex: "River basin cadmium poisoning from mining." }, hi: { q: "[यूनिट 9: प्रश्न 7] इटाई-इटाई रोग मुख्य रूप से किस धातु के जल प्रदूषण के कारण होता है?", opt: ["कैडमियम (Cadmium)", "पारा", "एस्बेस्टस", "फ्लोराइड"], exp: "कैडमियम प्रदूषण से हड्डियों में गंभीर दर्द और कमजोरी होती है जिसे इटाई-इटाई कहते हैं।", ex: "खनन कचरे से नदियों में कैडमियम प्रदूषण।" }, correct: 0 },
+        { en: { q: "[Unit 9: Q8] Which greenhouse gas has the highest Global Warming Potential (GWP) per molecule over 100 years?", opt: ["Sulfur Hexafluoride (SF6)", "Carbon Dioxide (CO2)", "Methane (CH4)", "Nitrous Oxide (N2O)"], exp: "SF6 has a GWP of approximately 23,500 times higher than CO2.", ex: "Industrial electrical insulator gas." }, hi: { q: "[यूनिट 9: प्रश्न 8] 100 वर्षों की अवधि में किस गैस की ग्लोबल वार्मिंग क्षमता (GWP) प्रति अणु सर्वाधिक है?", opt: ["सल्फर हेक्साफ्लोराइड (SF6)", "कार्बन डाइऑक्साइड", "मीथेन", "नाइट्रस ऑक्साइड"], exp: "SF6 की ग्लोबल वार्मिंग क्षमता CO2 से लगभग 23,500 गुना अधिक है।", ex: "औद्योगिक इंसुलेटर गैस।" }, correct: 0 },
+        { en: { q: "[Unit 9: Q9] In the Indian National Air Quality Index (AQI), which air pollutant category represents the most dangerous respirable size?", opt: ["PM2.5 (Particulate Matter < 2.5 micrometers)", "PM10", "Carbon Monoxide", "Ammonia"], exp: "PM2.5 particles are ultrafine and penetrate deep into pulmonary alveoli and bloodstream.", ex: "Winter stubble smoke particles." }, hi: { q: "[यूनिट 9: प्रश्न 9] राष्ट्रीय वायु गुणवत्ता सूचकांक (AQI) में सबसे खतरनाक सूक्ष्म कण कौन सा माना जाता है?", opt: ["PM2.5 (व्यास 2.5 माइक्रोमीटर से कम)", "PM10", "कार्बन मोनोऑक्साइड", "अमोनिया"], exp: "PM2.5 कण फेफड़ों में गहराई तक जाकर रक्तप्रवाह में मिल जाते हैं।", ex: "सर्दियों में धुएं के महीन कण।" }, correct: 0 },
+        { en: { q: "[Unit 9: Q10] Under the National Action Plan on Climate Change (NAPCC), how many specific National Missions were launched?", opt: ["8 National Missions", "5 Missions", "10 Missions", "12 Missions"], exp: "NAPCC was launched in 2008 with 8 missions including Solar, Energy Efficiency, Sustainable Habitat, Water, etc.", ex: "India's climate mitigation roadmap." }, hi: { q: "[यूनिट 9: प्रश्न 10] जलवायु परिवर्तन पर राष्ट्रीय कार्य योजना (NAPCC) के तहत कितने राष्ट्रीय मिशन शुरू किए गए थे?", opt: ["8 राष्ट्रीय मिशन", "5 मिशन", "10 मिशन", "12 मिशन"], exp: "NAPCC 2008 में 8 प्रमुख मिशनों (सौर ऊर्जा, जल, हरित भारत आदि) के साथ शुरू की गई थी।", ex: "भारत का राष्ट्रीय जलवायु रोडमैप।" }, correct: 0 }
+      ],
+
+      // UNIT 10: HIGHER EDUCATION SYSTEM (10 QUESTIONS)
+      10: [
+        { en: { q: "[Unit 10: Q1] Under the National Education Policy (NEP) 2020, what is the single overarching umbrella regulatory body proposed to subsume UGC and AICTE?", opt: ["Higher Education Commission of India (HECI)", "National Research Foundation (NRF)", "PARAKH", "National Testing Agency (NTA)"], exp: "HECI is proposed with 4 distinct verticals: NHERC, NAC, HEGC, and GEC.", ex: "Single unified higher education regulator." }, hi: { q: "[यूनिट 10: प्रश्न 1] राष्ट्रीय शिक्षा नीति (NEP 2020) के तहत यूजीसी और एआईसीटीई के स्थान पर कौन सा एकल शीर्ष निकाय प्रस्तावित है?", opt: ["भारतीय उच्चतर शिक्षा आयोग (HECI)", "राष्ट्रीय अनुसंधान फाउंडेशन (NRF)", "परख (PARAKH)", "एनटीए (NTA)"], exp: "HECI उच्च शिक्षा का एकल नियामक होगा जिसमें 4 स्वतंत्र परिषदें होंगी।", ex: "विश्वविद्यालयों के लिए एकीकृत नियामक संरचना।" }, correct: 0 },
+        { en: { q: "[Unit 10: Q2] Which ancient seat of learning was famous for medical studies and where Chanakya (Kautilya) was an eminent teacher?", opt: ["Takshashila (Taxila)", "Nalanda", "Vikramashila", "Valabhi"], exp: "Takshashila was renowned for medicine (Ayurveda), political craft, and military strategy.", ex: "Ancient university in Gandhara region." }, hi: { q: "[यूनिट 10: प्रश्न 2] प्राचीन काल का कौन सा शिक्षा केंद्र चिकित्सा विज्ञान और चाणक्य की शिक्षण स्थली के रूप में प्रसिद्ध था?", opt: ["तक्षशिला (Takshashila)", "नालंदा", "विक्रमशिला", "वल्लभी"], exp: "तक्षशिला में चाणक्य, चरक और जीवक जैसे महान विद्वान पढ़े और पढ़ाए थे।", ex: "गांधार क्षेत्र का प्राचीन विश्वविद्यालय।" }, correct: 0 },
+        { en: { q: "[Unit 10: Q3] Which historic British dispatch of 1854 is regarded as the 'Magna Carta of English Education in India'?", opt: ["Wood's Despatch", "Macaulay's Minute of 1835", "Hunter Commission Report", "Sadler Commission"], exp: "Wood's Despatch proposed establishing universities at Calcutta, Bombay, and Madras (1857).", ex: "Blueprint of modern Indian university system." }, hi: { q: "[यूनिट 10: प्रश्न 3] 1854 के किस ऐतिहासिक घोषणापत्र को 'भारत में अंग्रेजी शिक्षा का मैग्ना कार्टा' कहा जाता है?", opt: ["वुड्स डिस्पैच (Wood's Despatch)", "मैकाले का विवरण पत्र (1835)", "हंटर आयोग रिपोर्ट", "सैडलर आयोग"], exp: "वुड्स डिस्पैच ने 1857 में कलकत्ता, बंबई और मद्रास में विश्वविद्यालय स्थापित करने की सिफारिश की थी।", ex: "भारतीय आधुनिक विश्वविद्यालय प्रणाली का आधार।" }, correct: 0 },
+        { en: { q: "[Unit 10: Q4] The University Education Commission (1948-49) was established under the chairmanship of:", opt: ["Dr. Sarvepalli Radhakrishnan", "Dr. D. S. Kothari", "Maulana Abul Kalam Azad", "Dr. Zakir Husain"], exp: "The Radhakrishnan Commission laid down foundations for university autonomy and establishing the UGC.", ex: "First education commission in independent India." }, hi: { q: "[यूनिट 10: प्रश्न 4] स्वतंत्र भारत में विश्वविद्यालय शिक्षा आयोग (1948-49) किसकी अध्यक्षता में गठित किया गया था?", opt: ["डॉ. सर्वपल्ली राधाकृष्णन", "डॉ. डी. एस. कोठारी", "मौलाना अबुल कलाम आज़ाद", "डॉ. जाकिर हुसैन"], exp: "राधाकृष्णन आयोग ने यूजीसी की स्थापना और विश्वविद्यालय स्वायत्तता की नींव रखी।", ex: "स्वतंत्र भारत का पहला शिक्षा आयोग।" }, correct: 0 },
+        { en: { q: "[Unit 10: Q5] Which historic Education Commission (1964-66) began its report with: 'The destiny of India is now being shaped in her classrooms'?", opt: ["Kothari Commission", "Radhakrishnan Commission", "Mudaliar Commission", "National Knowledge Commission"], exp: "The Kothari Commission recommended spending 6% of GDP on education and established the 10+2+3 pattern.", ex: "Comprehensive national education blueprint." }, hi: { q: "[यूनिट 10: प्रश्न 5] किस शिक्षा आयोग (1964-66) ने अपनी रिपोर्ट की शुरुआत 'भारत के भाग्य का निर्माण उसकी कक्षाओं में हो रहा है' से की थी?", opt: ["कोठारी आयोग (Kothari Commission)", "राधाकृष्णन आयोग", "मुदलियार आयोग", "राष्ट्रीय ज्ञान आयोग"], exp: "कोठारी आयोग ने शिक्षा पर जीडीपी का 6% खर्च करने और 10+2+3 संरचना की सिफारिश की थी।", ex: "राष्ट्रीय शिक्षा का व्यापक दस्तावेज।" }, correct: 0 },
+        { en: { q: "[Unit 10: Q6] The university accreditation body NAAC (National Assessment and Accreditation Council) functions autonomously under:", opt: ["University Grants Commission (UGC)", "AICTE", "NCERT", "NUEPA"], exp: "NAAC grades institutions of higher education using CGPA scores from A++ down to D.", ex: "NAAC accreditation peer review visits." }, hi: { q: "[यूनिट 10: प्रश्न 6] उच्च शिक्षण संस्थानों को मान्यता देने वाली संस्था NAAC किसके तहत स्वायत्त रूप से कार्य करती है?", opt: ["विश्वविद्यालय अनुदान आयोग (UGC)", "एआईसीटीई", "एनसीईआरटी", "न्यूपा"], exp: "NAAC कॉलेजों और विश्वविद्यालयों को गुणवत्ता के आधार पर ग्रेड (A++, A आदि) प्रदान करती है।", ex: "कॉलेजों का नैक मूल्यांकन।" }, correct: 0 },
+        { en: { q: "[Unit 10: Q7] In ancient Nalanda University, what was the title given to the head of academic and monastic affairs held by Acharya Shilabhadra?", opt: ["Kulapati / Chancellor", "Upadhyaya", "Pramukha", "Nayaka"], exp: "Hiuen Tsang studied under Acharya Shilabhadra, the revered Kulapati of ancient Nalanda.", ex: "Chancellor of Buddhist monastic university." }, hi: { q: "[यूनिट 10: प्रश्न 7] प्राचीन नालंदा विश्वविद्यालय में आचार्य शीलभद्र किस सर्वोच्च शैक्षणिक पद पर आसीन थे?", opt: ["कुलपति (Kulapati / Chancellor)", "उपाध्याय", "प्रमुख", "नायक"], exp: "चीनी यात्री ह्वेनसांग ने नालंदा के कुलपति आचार्य शीलभद्र से योगशास्त्र की शिक्षा ली थी।", ex: "नालंदा महाविहार के कुलपति।" }, correct: 0 },
+        { en: { q: "[Unit 10: Q8] The Gross Enrolment Ratio (GER) target set for Indian higher education by 2035 under NEP 2020 is:", opt: ["50%", "40%", "65%", "100%"], exp: "NEP 2020 aims to increase higher education GER from 27.1% to 50% by 2035.", ex: "Doubling university student access nationwide." }, hi: { q: "[यूनिट 10: प्रश्न 8] NEP 2020 के तहत वर्ष 2035 तक उच्च शिक्षा में सकल नामांकन अनुपात (GER) का क्या लक्ष्य रखा गया है?", opt: ["50%", "40%", "65%", "100%"], exp: "NEP 2020 का लक्ष्य 2035 तक उच्च शिक्षा में जीईआर को बढ़ाकर 50% करना है।", ex: "उच्च शिक्षा में छात्रों की भागीदारी दोगुनी करना।" }, correct: 0 },
+        { en: { q: "[Unit 10: Q9] Which ancient Indian university in Bihar was renowned for Vajrayana Buddhist philosophy before being destroyed in late 12th century?", opt: ["Vikramashila", "Takshashila", "Pushpagiri", "Valabhi"], exp: "Vikramashila was founded by King Dharmapala and headed by Atisa Dipankara for Vajrayana teachings.", ex: "Sister university to Nalanda." }, hi: { q: "[यूनिट 10: प्रश्न 9] 12वीं शताब्दी के अंत में नष्ट हुआ बिहार का कौन सा प्राचीन विश्वविद्यालय वज्रयान बौद्ध दर्शन का केंद्र था?", opt: ["विक्रमशिला (Vikramashila)", "तक्षशिला", "पुष्पगिरि", "वल्लभी"], exp: "विक्रमशिला की स्थापना पाल राजा धर्मपाल ने की थी और यह तंत्रयान/वज्रयान का प्रमुख केंद्र था।", ex: "प्राचीन बौद्ध विश्वविद्यालय।" }, correct: 0 },
+        { en: { q: "[Unit 10: Q10] Under NEP 2020, higher education degrees introduce what structural feature across 4-year undergraduate programmes?", opt: ["Multiple Entry and Exit Options (Certificate, Diploma, Degree, Research Degree)", "Compulsory military service", "No written examinations", "Single subject restrictions"], exp: "Students exit with a Certificate after Year 1, Diploma after Year 2, Bachelor's after Year 3, and Bachelor's with Research after Year 4.", ex: "Academic Bank of Credits (ABC) mobility." }, hi: { q: "[यूनिट 10: प्रश्न 10] NEP 2020 के तहत 4-वर्षीय स्नातक कार्यक्रमों में कौन सी प्रमुख विशेषता शुरू की गई है?", opt: ["एकाधिक प्रवेश और निकास विकल्प (सर्टिफिकेट, डिप्लोमा, डिग्री, रिसर्च डिग्री)", "अनिवार्य सैन्य सेवा", "कोई लिखित परीक्षा नहीं", "एक ही विषय की बाध्यता"], exp: "छात्र 1 वर्ष पर सर्टिफिकेट, 2 वर्ष पर डिप्लोमा और 4 वर्ष पर शोध डिग्री के साथ बाहर निकल सकते हैं।", ex: "एकेडेमिक बैंक ऑफ क्रेडिट्स (ABC)।" }, correct: 0 }
       ]
     };
 
-    function getUnitSpecificQuestions(uId, diffFilter = 'all') {
-      let pool = UNIT_QUESTIONS_DB[uId];
-      if (!pool || pool.length === 0) {
-        // High-standard dynamic fallback for other units
-        const uMeta = PAPER1_UNITS.find(x => x.id === uId) || { name: `Unit ${uId}` };
-        pool = [];
-        for (let i = 1; i <= 10; i++) {
-          pool.push({
-            diff: i <= 3 ? "easy" : (i <= 7 ? "moderate" : "hard"),
-            en: {
-              q: `[${uMeta.name} - Question ${i}]: Assertion (A): Methodological rigor in ${uMeta.name} mandates objective validation.\nReason (R): Subjective cognitive bias distorts empirical outcomes.`,
-              opt: ["Both (A) and (R) are true and (R) explains (A)", "Both are true but (R) does not explain (A)", "(A) is true but (R) is false", "Both are false"],
-              exp: `Controlled systematic verification in ${uMeta.name} eliminates investigator bias.`,
-              ex: "Standard empirical research procedures."
-            },
-            hi: {
-              q: `[${uMeta.name} - प्रश्न ${i}]: अभिकथन (A): ${uMeta.name} में व्यवस्थित पद्धति द्वारा वस्तुनिष्ठ सत्यापन अनिवार्य है।\nतर्क (R): व्यक्तिपरक पूर्वाग्रह अनुसंधान परिणामों को विकृत करते हैं।`,
-              opt: ["दोनों (A) और (R) सही हैं और (R), (A) की सही व्याख्या करता है", "दोनों सही हैं परंतु व्याख्या नहीं है", "(A) सही है परंतु (R) गलत है", "दोनों गलत हैं"],
-              exp: "व्यवस्थित अवलोकन से शोधकर्ता का पूर्वाग्रह समाप्त होता है।",
-              ex: "मानक शोध प्रक्रियाएं।"
-            },
-            correct: 0
-          });
-        }
-      }
-
-      if (diffFilter !== 'all') {
-        const filtered = pool.filter(q => q.diff === diffFilter);
-        if (filtered.length >= 5) return filtered;
-      }
-      return pool;
-    }
-
-    // 5. QUIZ RUNTIME & LOGIC
-    let currentTab = "paper1";
+    // 4. QUIZ RUNTIME & RENDERING CONTROLLER
     let activeUnitId = 1;
     let currentLang = "en";
     let quizSeconds = 0;
     let quizTimer = null;
     let currentSetQuestions = [];
     let currentAnswers = {};
-
-    function switchTab(tab) {
-      currentTab = tab;
-      const views = ['quizView', 'odiaWordsView', 'notesView', 'wrongVaultView', 'historyVaultView', 'adminPanelView'];
-      views.forEach(v => document.getElementById(v).classList.add("hidden"));
-
-      const btns = ['tabBtnPaper1', 'tabBtnPaper2', 'tabBtnOdiaWords', 'tabBtnNotes', 'tabBtnWrongVault', 'tabBtnHistoryVault', 'tabBtnAdminPanel'];
-      btns.forEach(b => {
-        const elem = document.getElementById(b);
-        if (elem) elem.className = "px-3.5 py-1.5 rounded-xl text-slate-400 hover:text-white transition";
-      });
-
-      if (tab === 'paper1') {
-        document.getElementById('quizView').classList.remove('hidden');
-        document.getElementById('tabBtnPaper1').className = "px-3.5 py-1.5 rounded-xl bg-indigo-600 text-white transition shadow-lg shadow-indigo-600/30";
-        activeUnitId = 1;
-        loadUnit(1);
-      } else if (tab === 'paper2') {
-        document.getElementById('quizView').classList.remove('hidden');
-        document.getElementById('tabBtnPaper2').className = "px-3.5 py-1.5 rounded-xl bg-indigo-600 text-white transition shadow-lg shadow-indigo-600/30";
-        activeUnitId = 101;
-        loadUnit(101);
-      } else if (tab === 'odiaWords') {
-        document.getElementById('odiaWordsView').classList.remove('hidden');
-        document.getElementById('tabBtnOdiaWords').className = "px-3.5 py-1.5 rounded-xl bg-amber-600 text-white font-bold transition shadow-lg shadow-amber-600/30";
-        showWordTab('tatsam');
-      } else if (tab === 'notes') {
-        document.getElementById('notesView').classList.remove('hidden');
-        document.getElementById('tabBtnNotes').className = "px-3.5 py-1.5 rounded-xl bg-emerald-600 text-white font-bold transition shadow-lg shadow-emerald-600/30";
-        renderNotes();
-        renderUploadedPdfs();
-      } else if (tab === 'wrongVault') {
-        document.getElementById('wrongVaultView').classList.remove('hidden');
-        document.getElementById('tabBtnWrongVault').className = "px-3.5 py-1.5 rounded-xl bg-rose-600 text-white font-bold transition shadow-lg shadow-rose-600/30";
-        renderWrongVault();
-      } else if (tab === 'historyVault') {
-        document.getElementById('historyVaultView').classList.remove('hidden');
-        document.getElementById('tabBtnHistoryVault').className = "px-3.5 py-1.5 rounded-xl bg-cyan-600 text-white font-bold transition shadow-lg shadow-cyan-600/30";
-        renderHistoryVault();
-      } else if (tab === 'adminPanel') {
-        document.getElementById('adminPanelView').classList.remove('hidden');
-        document.getElementById('tabBtnAdminPanel').className = "px-3.5 py-1.5 rounded-xl bg-amber-600 text-white font-bold transition shadow-lg shadow-amber-600/30";
-        refreshAdminData();
-      }
-      renderSidebarMenu();
-    }
-
-    function changeDifficulty() {
-      const diff = document.getElementById("difficultySelector").value;
-      loadUnit(activeUnitId, diff);
-    }
+    let unitScores = {}; // Persistent score memory
 
     function toggleLanguage() {
       currentLang = currentLang === "en" ? "hi" : "en";
@@ -709,17 +408,12 @@ The modern research landscape has undergone an unprecedented epistemic transitio
       renderQuestions(false);
     }
 
-    function renderSidebarMenu() {
+    function renderUnitSidebar() {
       const container = document.getElementById("unitListContainer");
       container.innerHTML = "";
-      const isOdia = currentTab === 'paper2';
-      const units = isOdia ? PAPER2_ODIA_UNITS : PAPER1_UNITS;
 
-      document.getElementById("unitMenuTitle").innerText = isOdia ? "ଓଡ଼ିଆ ୧୦ ୟୁନିଟ୍" : "Paper 1 10 Units";
-      const user = cloudDb.users[currentUser];
-
-      units.forEach(u => {
-        const solved = (user && user.history && user.history[u.id]) ? user.history[u.id].length : 0;
+      PAPER1_UNITS.forEach(u => {
+        const solved = (unitScores[u.id] && unitScores[u.id].solved) ? unitScores[u.id].solved : 0;
         const isActive = u.id === activeUnitId;
         const btn = document.createElement("button");
         btn.className = `w-full text-left px-3.5 py-3 rounded-2xl text-xs font-semibold transition flex justify-between items-center ${
@@ -728,43 +422,35 @@ The modern research landscape has undergone an unprecedented epistemic transitio
             : 'text-slate-300 hover:bg-slate-800/80 bg-slate-900/60 border border-slate-800'
         }`;
         btn.onclick = () => { triggerSound(); loadUnit(u.id); };
-        btn.innerHTML = `<span class="truncate pr-2">${u.name}</span><span class="text-[10px] px-2 py-0.5 rounded-full ${isActive ? 'bg-indigo-950 text-indigo-200' : 'bg-slate-800 text-slate-400'}">${solved}</span>`;
+        btn.innerHTML = `<span class="truncate pr-2">${u.name}</span><span class="text-[10px] px-2 py-0.5 rounded-full ${isActive ? 'bg-indigo-950 text-indigo-200' : 'bg-slate-800 text-slate-400'}">${solved}/10</span>`;
         container.appendChild(btn);
       });
     }
 
-    function loadUnit(unitId, diffFilter = 'all') {
+    function loadUnit(unitId) {
       activeUnitId = unitId;
       currentAnswers = {};
 
-      const isOdia = unitId >= 101;
-      const u = isOdia ? PAPER2_ODIA_UNITS.find(x => x.id === unitId) : PAPER1_UNITS.find(x => x.id === unitId);
+      const u = PAPER1_UNITS.find(x => x.id === unitId) || PAPER1_UNITS[0];
 
-      document.getElementById("activeUnitBadge").innerText = isOdia ? `ୟୁନିଟ୍ ${u.id - 100}` : `Unit ${u.id}`;
-      document.getElementById("activeUnitSubjectBadge").innerText = isOdia ? "ଓଡ଼ିଆ ସାହିତ୍ୟ" : "Paper 1";
+      document.getElementById("activeUnitBadge").innerText = `Unit ${u.id}`;
       document.getElementById("activeUnitTitle").innerText = u.name;
       document.getElementById("activeUnitDesc").innerText = u.desc;
 
-      // Unseen Passage for Unit 3
+      // Handle Unit 3 Passage Display
       const passageBox = document.getElementById("unit3PassageBox");
       if (unitId === 3) passageBox.classList.remove("hidden");
       else passageBox.classList.add("hidden");
 
-      // Table for Unit 7
+      // Handle Unit 7 Table Display
       const tableBox = document.getElementById("unit7TableBox");
       if (unitId === 7) tableBox.classList.remove("hidden");
       else tableBox.classList.add("hidden");
 
-      // Anti-Duplication Engine
-      const pool = getUnitSpecificQuestions(unitId, diffFilter);
-      currentSetQuestions = pool.map((q, idx) => ({
-        id: `U${unitId}-Q${idx+1}-${Date.now().toString(36)}`,
-        isOdia: unitId >= 101,
-        ...q
-      }));
-
+      // Load EXACT 10 static questions for this specific unit
+      currentSetQuestions = MASTER_PAPER1_QUESTIONS[unitId] || [];
       renderQuestions(false);
-      renderSidebarMenu();
+      renderUnitSidebar();
 
       clearInterval(quizTimer);
       quizSeconds = 0;
@@ -776,7 +462,6 @@ The modern research landscape has undergone an unprecedented epistemic transitio
       }, 1000);
 
       document.getElementById("submitSetBtn").classList.remove("hidden");
-      document.getElementById("nextSetBtn").classList.add("hidden");
       document.getElementById("quizSummaryFeedback").innerText = "Attempt all 10 unit-specific questions and click Submit.";
     }
 
@@ -788,10 +473,10 @@ The modern research landscape has undergone an unprecedented epistemic transitio
         const card = document.createElement("div");
         card.className = "glass-card border border-slate-800/80 rounded-3xl p-6 shadow-md";
 
-        let qText = item.isOdia ? item.q : (currentLang === 'hi' ? item.hi.q : item.en.q);
-        let opts = item.isOdia ? item.options : (currentLang === 'hi' ? item.hi.opt : item.en.opt);
-        let expText = item.isOdia ? item.exp : (currentLang === 'hi' ? item.hi.exp : item.en.exp);
-        let exText = item.isOdia ? item.example : (currentLang === 'hi' ? item.hi.ex : item.en.ex);
+        let qText = currentLang === 'hi' ? item.hi.q : item.en.q;
+        let opts = currentLang === 'hi' ? item.hi.opt : item.en.opt;
+        let expText = currentLang === 'hi' ? item.hi.exp : item.en.exp;
+        let exText = currentLang === 'hi' ? item.hi.ex : item.en.ex;
 
         let optionsHtml = opts.map((opt, optIdx) => {
           let style = "border-slate-800 bg-slate-950/60 hover:bg-slate-800/60 text-slate-300";
@@ -834,9 +519,6 @@ The modern research landscape has undergone an unprecedented epistemic transitio
         card.innerHTML = `
           <div class="flex justify-between items-center mb-3">
             <span class="text-xs font-bold text-indigo-400 bg-indigo-950/80 border border-indigo-900 px-3 py-1 rounded-lg">Question ${idx + 1} of 10</span>
-            <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-md ${item.diff === 'hard' ? 'bg-rose-950 text-rose-300 border border-rose-800' : (item.diff === 'moderate' ? 'bg-amber-950 text-amber-300 border border-amber-800' : 'bg-emerald-950 text-emerald-300 border border-emerald-800')}">
-              ${item.diff || 'Standard'}
-            </span>
           </div>
           <p class="text-sm sm:text-base font-semibold text-slate-100 whitespace-pre-line mb-4 leading-relaxed">${qText}</p>
           <div class="space-y-2.5">${optionsHtml}</div>
@@ -858,44 +540,56 @@ The modern research landscape has undergone an unprecedented epistemic transitio
       }
       clearInterval(quizTimer);
 
-      const user = cloudDb.users[currentUser];
-      if (!user.history) user.history = {};
-      if (!user.history[activeUnitId]) user.history[activeUnitId] = [];
-
-      const timeNow = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
+      let correct = 0;
       currentSetQuestions.forEach((item, idx) => {
-        const choice = currentAnswers[idx];
-        const isRight = choice === item.correct;
-
-        user.history[activeUnitId].push({
-          id: item.id,
-          q: item.isOdia ? item.q : item.en.q,
-          options: item.isOdia ? item.options : item.en.opt,
-          selected: choice,
-          correct: item.correct,
-          isCorrect: isRight,
-          exp: item.isOdia ? item.exp : item.en.exp,
-          example: item.isOdia ? item.example : item.en.ex,
-          timestamp: timeNow
-        });
+        if (currentAnswers[idx] === item.correct) correct++;
       });
 
-      saveCloudDb();
+      unitScores[activeUnitId] = { solved: 10, correct: correct, wrong: 10 - correct };
+
       renderQuestions(true);
       updateMetrics();
+      renderUnitSidebar();
 
       document.getElementById("submitSetBtn").classList.add("hidden");
-      document.getElementById("nextSetBtn").classList.remove("hidden");
-      document.getElementById("quizSummaryFeedback").innerHTML = `<span class="text-emerald-400 font-bold">10 Questions Submitted and permanently locked in History!</span>`;
+      document.getElementById("quizSummaryFeedback").innerHTML = `<span class="text-emerald-400 font-bold">10 Questions Completed! Score: ${correct}/10 (${correct * 2} Marks). Review answers below.</span>`;
     }
 
-    function loadNextSet() {
-      loadUnit(activeUnitId);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    function resetCurrentUnitHistory() {
+      if (confirm(`Do you want to reset history for Unit ${activeUnitId}?`)) {
+        delete unitScores[activeUnitId];
+        loadUnit(activeUnitId);
+        updateMetrics();
+      }
     }
 
-    // 6. DYNAMIC CONTEXTUAL MULTI-AI ENGINE
+    function updateMetrics() {
+      let totalSolved = 0;
+      let totalCorrect = 0;
+      let totalWrong = 0;
+
+      Object.keys(unitScores).forEach(uId => {
+        totalSolved += unitScores[uId].solved;
+        totalCorrect += unitScores[uId].correct;
+        totalWrong += unitScores[uId].wrong;
+      });
+
+      const acc = totalSolved > 0 ? Math.round((totalCorrect / totalSolved) * 100) : 0;
+      document.getElementById("totalAttemptedStat").innerText = totalSolved;
+      document.getElementById("totalWrongStat").innerText = totalWrong;
+      document.getElementById("overallAccuracyText").innerText = `${acc}%`;
+      document.getElementById("accuracyProgressBar").style.width = `${acc}%`;
+
+      let grade = "Grade C";
+      if (totalSolved >= 10) {
+        if (acc >= 80) grade = "Grade A+ (JRF Confirmed)";
+        else if (acc >= 65) grade = "Grade A (NET Qualified)";
+        else if (acc >= 50) grade = "Grade B+";
+      }
+      document.getElementById("jrfGradeBadge").innerText = grade;
+    }
+
+    // 5. DYNAMIC MULTI-AI ENGINE
     let activeAIEngine = "gemini";
 
     function selectAIEngine(engine) {
@@ -949,7 +643,7 @@ The modern research landscape has undergone an unprecedented epistemic transitio
 
       const loadingBubble = document.createElement("div");
       loadingBubble.className = "bg-slate-800 text-slate-400 p-2.5 rounded-2xl mr-auto text-xs animate-pulse";
-      loadingBubble.innerText = `${activeAIEngine.toUpperCase()} synthesizing concept...`;
+      loadingBubble.innerText = `${activeAIEngine.toUpperCase()} analyzing query...`;
       chatList.appendChild(loadingBubble);
       chatList.scrollTop = chatList.scrollHeight;
 
@@ -977,27 +671,20 @@ The modern research landscape has undergone an unprecedented epistemic transitio
 
       if (qLower.includes("definition of education") || qLower.includes("education") || qLower.includes("shiksha")) {
         return `
-          <p><strong>1. Core Concept of Education:</strong> Swami Vivekananda defined education as <em>"the manifestation of perfection already in man."</em> In modern pedagogical frameworks, education is not mere book learning, but the holistic intellectual, emotional, and social empowerment of the learner.</p>
+          <p><strong>1. Core Definition of Education:</strong> Swami Vivekananda defined education as <em>"the manifestation of perfection already in man."</em> In modern pedagogical terms, it is the process of facilitating learning, knowledge acquisition, skills, values, and holistic human development rather than just passing examinations.</p>
           <p><strong>2. Three Classifications in Higher Education:</strong></p>
-          <p>• <strong>Formal:</strong> Structured degree courses inside accredited colleges.</p>
-          <p>• <strong>Informal:</strong> Experiential learning from family and society.</p>
-          <p>• <strong>Non-formal:</strong> Flexible self-paced MOOC portals like SWAYAM.</p>
-          <p class="text-amber-300"><strong>Real Example:</strong> Applying scientific method to solve groundwater depletion in one's own village reflects true educational manifestation.</p>
+          <p>• <strong>Formal:</strong> Structured curriculum inside schools and universities.</p>
+          <p>• <strong>Informal:</strong> Incidental learning from family and daily life.</p>
+          <p>• <strong>Non-formal:</strong> Flexible open courses like SWAYAM.</p>
+          <p class="text-amber-300"><strong>Real Example:</strong> Applying scientific method to solve water logging in one's local area reflects true functional education.</p>
         `;
       }
 
       if (qLower.includes("pramana") || qLower.includes("nyaya") || qLower.includes("vyapti") || qLower.includes("logic")) {
         return `
-          <p><strong>Indian Logic (Nyaya Pramanas):</strong> Nyaya accepts 4 valid sources of knowledge: <strong>Pratyaksha</strong> (Perception), <strong>Anumana</strong> (Inference), <strong>Upamana</strong> (Comparison), and <strong>Sabda</strong> (Verbal Testimony).</p>
+          <p><strong>Indian Logic (Nyaya Philosophy):</strong> Nyaya accepts 4 valid sources of knowledge (Pramanas): <strong>Pratyaksha</strong> (Perception), <strong>Anumana</strong> (Inference), <strong>Upamana</strong> (Comparison), and <strong>Sabda</strong> (Verbal Testimony).</p>
           <p>• <strong>Vyapti:</strong> The universal invariable relation between the Hetu (smoke) and the Sadhya (fire).</p>
           <p class="text-amber-300"><strong>Real Example:</strong> Seeing wet streets in the morning and inferring rain occurred overnight is Anumana.</p>
-        `;
-      }
-
-      if (qLower.includes("sarala") || qLower.includes("chhaman") || qLower.includes("odia") || qLower.includes("bhanja")) {
-        return `
-          <p><strong>ଓଡ଼ିଆ ସାହିତ୍ୟ JRF ବିଶ୍ଳେଷଣ:</strong> ଫକୀର ମୋହନଙ୍କ 'ଛମାଣ ଆଠଗୁଣ୍ଠ' ଉପନ୍ୟାସରେ ରାମଚନ୍ଦ୍ର ମଙ୍ଗରାଜଙ୍କ ଶୋଷଣ ଓ ଔପନିବେଶିକ ଆଇନର ଅସହାୟତାକୁ ଦେଖାଯାଇଛି। ସାରଳା ଦାସଙ୍କ ମହାଭାରତ 'ଦାଣ୍ଡି ବୃତ୍ତ'ର ମୁକ୍ତ ଛନ୍ଦରେ ରଚିତ।</p>
-          <p class="text-amber-300"><strong>ଉଦାହରଣ:</strong> ଉପେନ୍ଦ୍ର ଭଞ୍ଜଙ୍କ 'ବୈଦେହୀଶ ବିଳାସ'ର ପ୍ରତ୍ୟେକ ପାଦ 'ବ' ନିୟମରେ ପ୍ରତିଷ୍ଠିତ।</p>
         `;
       }
 
@@ -1008,270 +695,10 @@ The modern research landscape has undergone an unprecedented epistemic transitio
       `;
     }
 
-    // 7. PDF UPLOAD, NOTES & HISTORY
-    function handleAdminPdfUpload(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        if (!cloudDb.pdfs) cloudDb.pdfs = [];
-        cloudDb.pdfs.push({
-          id: "PDF-" + Date.now(),
-          name: file.name,
-          date: new Date().toLocaleDateString(),
-          data: evt.target.result
-        });
-        saveCloudDb();
-        renderUploadedPdfs();
-        alert("✅ PDF successfully uploaded into Student Vault!");
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function renderUploadedPdfs() {
-      const container = document.getElementById("uploadedPdfListContainer");
-      const list = cloudDb.pdfs || [];
-      if (list.length === 0) {
-        container.innerHTML = `<p class="text-xs text-slate-500 italic p-2">No custom PDFs uploaded yet.</p>`;
-        return;
-      }
-      container.innerHTML = list.map((pdf, i) => `
-        <div class="flex items-center justify-between p-3 bg-slate-900 border border-slate-800 rounded-xl text-xs">
-          <div class="flex items-center gap-2">
-            <span class="text-lg">📕</span>
-            <div>
-              <p class="font-bold text-slate-200">${pdf.name}</p>
-              <p class="text-[10px] text-slate-400">Uploaded on ${pdf.date}</p>
-            </div>
-          </div>
-          <div class="flex gap-2">
-            <a href="${pdf.data}" download="${pdf.name}" class="bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold">Download PDF</a>
-            ${isAdmin ? `<button onclick="deletePdf(${i})" class="bg-rose-950 text-rose-300 border border-rose-800 px-2 py-1.5 rounded-lg text-xs">Delete</button>` : ''}
-          </div>
-        </div>
-      `).join("");
-    }
-
-    function deletePdf(idx) {
-      if (confirm("Delete this PDF from repository?")) {
-        cloudDb.pdfs.splice(idx, 1);
-        saveCloudDb();
-        renderUploadedPdfs();
-      }
-    }
-
-    const ODIA_WORDS_DATA = {
-      tatsam: {
-        title: "ତତ୍ସମ ଓ ତଦ୍ଭବ ଶବ୍ଦତତ୍ତ୍ୱ ବିଭାଗ",
-        content: `
-          <div class="space-y-3">
-            <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800">
-              <h4 class="font-bold text-indigo-400">୧. ତତ୍ସମ ଶବ୍ଦ (ସଂସ୍କୃତ ସହ ସମାନ):</h4>
-              <p class="text-xs text-slate-300 mt-1">ସୂର୍ଯ୍ୟ, ଚନ୍ଦ୍ର, ନଦୀ, ପର୍ବତ, ଆକାଶ, ନଗର, ବୃକ୍ଷ, ଧର୍ମ, ପୁସ୍ତକ, କନ୍ୟା, ଅରଣ୍ୟ, ଭକ୍ତି, ତପସ୍ୟା, ସତ୍ୟ, କର୍ତ୍ତବ୍ୟ, ବିଦ୍ୟା, ପୁରୁଷ, ମାତୃ, ପିତୃ, କ୍ଷମା, ଗ୍ରନ୍ଥ, ସଂଗୀତ, ଭାଷା, ସାହିତ୍ୟ।</p>
-            </div>
-            <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800">
-              <h4 class="font-bold text-emerald-400">୨. ତଦ୍ଭବ ଶବ୍ଦ (ସଂସ୍କୃତରୁ ଜାତ):</h4>
-              <p class="text-xs text-amber-300 mt-1">ହସ୍ତୀ ➔ ହାତୀ, ଅଗ୍ନି ➔ ନିଆଁ, ଘୃତ ➔ ଘିଅ, ମତ୍ସ୍ୟ ➔ ମାଛ, ଭ୍ରାତା ➔ ଭାଇ, କର୍ଣ୍ଣ ➔ କାନ, ଘୋଟକ ➔ ଘୋଡ଼ା, କର୍ପୂର ➔ କପୁର, ଦନ୍ତ ➔ ଦାନ୍ତ, ଦୁଗ୍ଧ ➔ ଦୁଧ, କୁମ୍ଭକାର ➔ କୁମ୍ଭାର, ଚର୍ମକାର ➔ ଚମାର।</p>
-            </div>
-          </div>
-        `
-      },
-      desaja: {
-        title: "ଦେଶଜ ଶବ୍ଦତତ୍ତ୍ୱ",
-        content: `
-          <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-2">
-            <p class="text-xs text-slate-300">• <strong>ଦ୍ରାବିଡ଼:</strong> ଅଟା, ଅଡ଼ୁଆ, କୁଡ଼ିଆ, ଆମ୍ବ, ଏଣ୍ଡୁଅ, ଖଲି, ଗୋଡ଼, ପିଲା, ଖଟ, ଡେଙ୍ଗା, ବଡ଼, ମାଟିଆ, ଛାଞ୍ଚ।</p>
-            <p class="text-xs text-slate-300">• <strong>ଶବର/ଅଷ୍ଟ୍ରିକ:</strong> ଝାଟି, ମାଟି, ଡଙ୍ଗା, ଛେଳି, ବାଉଁଶ, ଢେଙ୍କି, ଝୁମୁକା, ଠେଙ୍ଗା, ଖଡୁ, କୁରାଢ଼ି, ପଖାଳ, ବଉଳ।</p>
-          </div>
-        `
-      },
-      baidesika: {
-        title: "ବୈଦେଶିକ ଶବ୍ଦ (ଯାବନିକ, ପର୍ତ୍ତୁଗୀଜ୍, ଇଂରାଜୀ)",
-        content: `
-          <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-2">
-            <p class="text-xs text-slate-300">• <strong>ଯାବନିକ (ଆରବୀ/ଫାରସୀ):</strong> ଅଦାଲତ, ଆଇନ, ତହସିଲ, ଜମିଦାର, ଖଜଣା, କାଗଜ, ବନ୍ଦୁକ, ଫରିୟାଦ, ଇଜ୍ଜତ, ମକଦ୍ଦମା, ହାକିମ, ବଜାର, ଦସ୍ତଖତ।</p>
-            <p class="text-xs text-slate-300">• <strong>ପର୍ତ୍ତୁଗୀଜ୍:</strong> ଆଲମାରୀ, ଆଚାର, ବାଲ୍ଟି, ବୋତଲ, ପାଉରୁଟି, ସାବୁନ, କିରାଣୀ, ଚାବି, ତଉଲିଆ, ଜାମା, ପିସ୍ତଲ, ବୋତାମ, ଗୀର୍ଜା।</p>
-            <p class="text-xs text-slate-300">• <strong>ଇଂରାଜୀ:</strong> ଟ୍ରେନ୍, ଟିକେଟ, ସ୍କୁଲ, କଲେଜ, ଡାକ୍ତରଖାନା, ଜେଲ୍, ଟେବୁଲ, ପେନ୍, ଷ୍ଟେସନ, ବସ୍, କୋର୍ଟ।</p>
-          </div>
-        `
-      },
-      quiz: {
-        title: "ଶବ୍ଦତତ୍ତ୍ୱ JRF Multiple Selection Questions (MSQ)",
-        content: `
-          <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800 text-xs">
-            <p class="font-bold text-indigo-400 mb-1">MSQ ୧: କେଉଁଗୁଡ଼ିକ ପର୍ତ୍ତୁଗୀଜ୍ ଶବ୍ଦ ଅଟନ୍ତି?</p>
-            <p class="text-slate-300">(A) ଆଲମାରୀ (B) ସାବୁନ (C) ଅଦାଲତ (D) ଚାବି</p>
-            <p class="text-emerald-400 font-bold mt-2">ସଠିକ୍ ଉତ୍ତର: (A), (B) ଏବଂ (D) ସମସ୍ତେ ପର୍ତ୍ତୁଗୀଜ୍। (C) ଅଦାଲତ ଏକ ଆରବୀ ଶବ୍ଦ।</p>
-          </div>
-        `
-      }
-    };
-
-    function showWordTab(key) {
-      const area = document.getElementById("wordContentArea");
-      const d = ODIA_WORDS_DATA[key];
-      area.innerHTML = `<h3 class="text-base font-bold text-white border-b border-slate-800 pb-2">${d.title}</h3><div>${d.content}</div>`;
-    }
-
-    const SYLLABUS_NOTES = [
-      { unit: "Paper 1 - Unit 1: Teaching Aptitude Master Notes", summary: "• Levels of Teaching: Memory (Herbart - factual recall), Understanding (Morrison - relationship & concept mastery), Reflective (Hunt - independent problem solving).\n• Evaluation Systems: Formative (continuous diagnostic feedback during instructional delivery), Summative (terminal semester grading), Criterion-Referenced (absolute standard criteria), Norm-Referenced (percentile ranking against peers).\n• NEP 2020: 5+3+3+4 school structure, PARAKH standard-setting body, Multiple Entry and Exit options." },
-      { unit: "Paper 1 - Unit 6: Indian Logic (Pramanas) Master Notes", summary: "• Nyaya Philosophy accepts 4 valid Pramanas: Pratyaksha (Perception), Anumana (Inference), Upamana (Comparison), Sabda (Testimony).\n• Structure of Anumana: Pratijna (Proposition), Hetu (Reason), Udaharana (Example with Vyapti), Upanaya (Application), Nigamana (Conclusion).\n• Hetvabhasa: Fallacies of inference including Savyabhichara (irregular middle), Viruddha (contradictory middle), Satpratipaksha (counterbalanced), Asiddha (unproved middle)." },
-      { unit: "Paper 2 Odia - ୟୁନିଟ୍ ୨: ପ୍ରାଚୀନ ଓ ମଧ୍ୟଯୁଗୀୟ ସାହିତ୍ୟ", summary: "• ଚର୍ଯ୍ୟାଗୀତିକା: ସନ୍ଧ୍ୟା ଭାଷାର ପ୍ରୟୋଗ (କାହ୍ନୁପା, ଲୁଇପା, ସବରୀପା)। ଓଡ଼ିଆ ଭାଷାର ପ୍ରାଚୀନତମ ମୌଳିକ ନିଦର୍ଶନ।\n• ସାରଳା ଦାସ: ମହାଭାରତ, ଚଣ୍ଡୀ ପୁରାଣ, ବିଳଙ୍କା ରାମାୟଣ। ଛନ୍ଦ: ଦାଣ୍ଡି ବୃତ୍ତ (ଅକ୍ଷର ସଂଖ୍ୟାର ନିର୍ଦ୍ଦିଷ୍ଟ ସୀମା ନାହିଁ, ମୁକ୍ତ ଛନ୍ଦ)।\n• ପଞ୍ଚସଖା: ବଳରାମ (ଜଗମୋହନ ରାମାୟଣ), ଜଗନ୍ନାଥ (ଓଡ଼ିଆ ଭାଗବତ - ନବାକ୍ଷରୀ ବୃତ୍ତ), ଅଚ୍ୟୁତାନନ୍ଦ (ହରିବଂଶ, ଶୂନ୍ୟ ସଂହିତା)।" },
-      { unit: "Paper 2 Odia - ୟୁନିଟ୍ ୫: କଥା ସାହିତ୍ୟ (ଫକୀର ମୋହନ ଓ ଗୋପୀନାଥ)", summary: "• ଫକୀର ମୋହନ ସେନାପତି: ବ୍ୟାସକବି। ଉପନ୍ୟାସ: ଛମାଣ ଆଠଗୁଣ୍ଠ, ମାମୁଁ, ପ୍ରାୟଶ୍ଚିତ୍ତ, ଲଛମା। ରେବତୀ (୧୮୯୮ - ପ୍ରଥମ ଆଧୁନିକ ଗଳ୍ପ)।\n• ଗୋପୀନାଥ ମହାନ୍ତି: ଆଦିବାସୀ ଜୀବନ ଆଧାରିତ 'ପରଜା', 'ଅମୃତର ସନ୍ତାନ' (ପ୍ରଥମ କେନ୍ଦ୍ର ସାହିତ୍ୟ ଏକାଡେମୀ ପୁରସ୍କୃତ ୧୯୫୫), 'ମାଟିମଟାଳ' (ଜ୍ଞାନପୀଠ ୧୯୭୩)।" }
-    ];
-
-    function renderNotes() {
-      const container = document.getElementById("notesAccordionContainer");
-      container.innerHTML = SYLLABUS_NOTES.map(n => `
-        <div class="glass-card border border-slate-800 rounded-3xl p-5 shadow-sm">
-          <h3 class="text-sm font-bold text-emerald-400 mb-2">${n.unit}</h3>
-          <p class="text-xs text-slate-300 whitespace-pre-line leading-relaxed font-mono bg-slate-950 p-4 rounded-2xl border border-slate-800">${n.summary}</p>
-        </div>
-      `).join("");
-    }
-
-    function renderWrongVault() {
-      const container = document.getElementById("wrongQuestionsListContainer");
-      const user = cloudDb.users[currentUser];
-      const wrongs = [];
-
-      Object.keys(user.history || {}).forEach(k => {
-        (user.history[k] || []).forEach(q => {
-          if (!q.isCorrect) wrongs.push(q);
-        });
-      });
-
-      if (wrongs.length === 0) {
-        container.innerHTML = `<div class="glass-card p-10 text-center rounded-3xl text-slate-400">🎉 Koi galat sawal nahi mila! Sabhi concepts verified hain.</div>`;
-        return;
-      }
-
-      container.innerHTML = wrongs.slice().reverse().map(w => `
-        <div class="glass-card border border-rose-900/50 rounded-3xl p-5 text-xs space-y-2.5">
-          <p class="font-bold text-slate-100 leading-relaxed">${w.q}</p>
-          <div class="grid grid-cols-2 gap-2 text-xs">
-            <div class="p-2.5 rounded-xl bg-rose-950/40 text-rose-300 border border-rose-800 font-medium">Your Choice: ${w.options[w.selected] || 'Blank'}</div>
-            <div class="p-2.5 rounded-xl bg-emerald-950/40 text-emerald-300 border border-emerald-800 font-bold">Verified Correct: ${w.options[w.correct]}</div>
-          </div>
-          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-slate-300">
-            <p><strong>Solution:</strong> ${w.exp}</p>
-            <p class="text-amber-300 mt-1"><strong>Example:</strong> ${w.example}</p>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    function renderHistoryVault() {
-      const container = document.getElementById("historyLogsContainer");
-      const user = cloudDb.users[currentUser];
-      const allAttempts = [];
-
-      Object.keys(user.history || {}).forEach(k => {
-        (user.history[k] || []).forEach(q => {
-          allAttempts.push(q);
-        });
-      });
-
-      if (allAttempts.length === 0) {
-        container.innerHTML = `<div class="glass-card p-10 text-center rounded-3xl text-slate-400">No attempts logged yet for your profile. Complete a 10-set test to build your personal history!</div>`;
-        return;
-      }
-
-      container.innerHTML = allAttempts.slice().reverse().map(item => `
-        <div class="glass-card border border-cyan-900/40 rounded-2xl p-4 text-xs space-y-1.5">
-          <div class="flex justify-between items-center text-[11px]">
-            <span class="font-bold ${item.isCorrect ? 'text-emerald-400' : 'text-rose-400'}">${item.isCorrect ? '✓ Correct (+2)' : '✕ Incorrect (0)'}</span>
-            <span class="text-slate-400 font-mono">📅 ${item.timestamp || 'Recorded'}</span>
-          </div>
-          <p class="text-slate-200 line-clamp-2">${item.q.replace(/\n/g, ' ')}</p>
-          <p class="text-[11px] text-slate-400">Your Answer: <strong class="text-slate-200">${item.options[item.selected] || 'Blank'}</strong> | Verified: <strong class="text-emerald-300">${item.options[item.correct]}</strong></p>
-        </div>
-      `).join("");
-    }
-
-    function updateMetrics() {
-      const user = cloudDb.users[currentUser];
-      let totalSolved = 0;
-      let totalCorrect = 0;
-      let totalWrong = 0;
-
-      if (user && user.history) {
-        Object.keys(user.history).forEach(uId => {
-          const list = user.history[uId] || [];
-          totalSolved += list.length;
-          totalCorrect += list.filter(x => x.isCorrect).length;
-          totalWrong += list.filter(x => !x.isCorrect).length;
-        });
-      }
-
-      const acc = totalSolved > 0 ? Math.round((totalCorrect / totalSolved) * 100) : 0;
-      document.getElementById("totalAttemptedStat").innerText = totalSolved;
-      document.getElementById("totalWrongStat").innerText = totalWrong;
-      document.getElementById("overallAccuracyText").innerText = `${acc}%`;
-      document.getElementById("accuracyProgressBar").style.width = `${acc}%`;
-
-      let grade = "Grade C";
-      if (totalSolved >= 10) {
-        if (acc >= 80) grade = "Grade A+ (JRF Confirmed)";
-        else if (acc >= 65) grade = "Grade A (NET Qualified)";
-        else if (acc >= 50) grade = "Grade B+";
-      }
-      document.getElementById("jrfGradeBadge").innerText = grade;
-    }
-
-    function refreshAdminData() {
-      if (!isAdmin) return;
-      const container = document.getElementById("adminUserMonitorGrid");
-      container.innerHTML = "";
-
-      Object.keys(cloudDb.users).forEach(uName => {
-        const u = cloudDb.users[uName];
-        let solved = 0;
-        let wrong = 0;
-        Object.keys(u.history || {}).forEach(k => {
-          solved += (u.history[k] || []).length;
-          wrong += (u.history[k] || []).filter(x => !x.isCorrect).length;
-        });
-
-        container.innerHTML += `
-          <div class="bg-slate-950/90 border border-indigo-500/30 rounded-3xl p-5 shadow-xl">
-            <div class="flex items-center gap-3.5 mb-3">
-              <img src="${u.avatar || 'https://api.dicebear.com/7.x/bottts/svg?seed='+uName}" class="h-12 w-12 rounded-2xl bg-indigo-950 border border-indigo-500/50 object-cover" />
-              <div>
-                <h4 class="font-extrabold text-white text-base flex items-center gap-2">
-                  <span>${u.originalId || u.name || uName}</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full ${u.role === 'admin' ? 'bg-amber-950 text-amber-300 border border-amber-800' : 'bg-slate-800 text-slate-300'}">${u.role.toUpperCase()}</span>
-                </h4>
-              </div>
-            </div>
-            <div class="grid grid-cols-2 gap-2 text-center text-xs py-2 bg-slate-900 rounded-xl border border-slate-800">
-              <div><span class="text-slate-400">Total Solved:</span> <strong class="text-indigo-400 font-mono text-sm">${solved}</strong></div>
-              <div><span class="text-slate-400">Mistakes:</span> <strong class="text-rose-400 font-mono text-sm">${wrong}</strong></div>
-            </div>
-          </div>
-        `;
-      });
-    }
-
-    function refreshGlobalUI() {
-      const u = cloudDb.users[currentUser];
-      document.getElementById("headerCandidateInfo").innerText = `User: ${u.originalId || u.name || currentUser}`;
-      document.getElementById("roleIndicatorBadge").innerText = isAdmin ? "SuperAdmin" : "Candidate";
-
-      if (isAdmin) {
-        document.getElementById("tabBtnAdminPanel").classList.remove("hidden");
-        document.getElementById("adminPdfUploadTrigger").classList.remove("hidden");
-      } else {
-        document.getElementById("tabBtnAdminPanel").classList.add("hidden");
-        document.getElementById("adminPdfUploadTrigger").classList.add("hidden");
-      }
-
-      switchTab('paper1');
-      updateMetrics();
-    }
-
-    window.addEventListener("DOMContentLoaded", initCloudVault);
+    // Initialize On Load
+    window.addEventListener("DOMContentLoaded", () => {
+      loadUnit(1);
+    });
   </script>
 </body>
 </html>
